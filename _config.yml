@@ -63,7 +63,7 @@ plugins:
 ## Site Author settings
 author:
   name                   : "Niklas Jang"
-  avatar                 : /assets/images/profile1.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar                 : /assets/images/profile0.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio                    : "뜻이 있는 곳에 길이 있다."
   location               : "Republic of Korea"
   email                  :

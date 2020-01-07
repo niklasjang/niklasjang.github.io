@@ -60,35 +60,26 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
+## Site Author settings
 author:
-  name   : "First Lastname"
-  avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  name                   : "Niklas Jang"
+  avatar                 : /assets/images/profile1.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio                    : "뜻이 있는 곳에 길이 있다."
+  location               : "Republic of Korea"
+  email                  :
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:niklajang@gmail.com
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: https://github.com/niklasjang
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url:  "https://github.com/niklasjang"
 
 defaults:
   # _posts

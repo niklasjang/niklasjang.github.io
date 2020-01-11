@@ -1,7 +1,7 @@
 ---
 title: "[ps][백트래킹][문제] 신기한 소수"
 excerpt: "완전탐색 - 1번째 알고리즘"
-date: 2020-01-04
+date: 2020-01-05
 categories:
   - PS
 tags:

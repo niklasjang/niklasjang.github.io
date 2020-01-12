@@ -1,5 +1,5 @@
 ---
-title: "[ps][백트래킹][개념2] N자리 K진수"
+title: "[ps][백트래킹][개념2] 고른다 안고른다"
 excerpt: "완전탐색 - 1번째 알고리즘"
 date: 2020-01-11
 categories:
@@ -14,7 +14,7 @@ toc_icon: "list"  # corresponding Font Awesome icon name (without fa prefix)
 toc_sticky: true
 ---
 
-## N자리 K진수 = N자리 K진수\[1,K\]를 오름차순으로 선택해야 하는 경우
+## 오름차순 N자리 K진수 = N자리 K진수\[1,K\]를 오름차순으로 선택해야 하는 경우
 
 첫 번재 개념과는 다른 방법으로 접근한다. 
 1. N자리 K진수를 선택할 때 오름차순으로 선택하야하는 경우, recur(int depth, int start)와 같이 작성했었다. [N과M 2]참고
@@ -113,7 +113,9 @@ void recur(int depth, int cnt) {
 	if (depth == k + 1) return;
 
 	arr[cnt] = depth;
+	//다음에 고를 숫자로 depth로 둔다.
 	recur(depth, cnt + 1); //depth + 1을 depth로만 바꾸면 된다
+	//depth는 고르지 않고 depth+1을 고를지말지 판단한다.
 	recur(depth + 1, cnt);
 }
 int main(void) {

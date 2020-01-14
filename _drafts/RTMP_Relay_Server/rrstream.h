@@ -15,7 +15,7 @@ stream 마다 중간 buffer 1개ㅐ, mutex 1개
 class RRStream : public RRSession{
 private:
     list<RRsessiont> rr_strm_serv; // proxy가 client 일 때 연결된 server
-    list<RRsessiont> rr_strm_clnt; // proxy가 server 일 때 연결된 clnt
+    RRsessiont rr_strm_clnt; // proxy가 server 일 때 연결된 clnt
     RRMutex rr_strem_mutex;
     RRBuffer rr_stream_buff;
     bool isError = false;

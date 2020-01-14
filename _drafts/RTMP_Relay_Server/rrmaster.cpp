@@ -13,18 +13,134 @@
 
 #include "rrthread.h"
 
-/*
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
-#include <signal.h>
 #include <sys/wait.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-*/
 
-using namespace std;
+#include "rrmaster.h"
+
+
+void RRMaster::RRM_init(argc, argv){
+	if(argc!=2) {
+		printf("Usage : %s <port>\n", argv[0]);
+		exit(1);
+	}
+
+    /*
+    signal 함수는 유닉스 계열에서 동작방법에 차이가 있어서 sigaction 함수를 사용한다.
+    TODO 아래의 act.sa_mask와 act.sa_flags는 좀비 프로세스를 막기 위한 목적으로 0으로 세팅되어있다. 
+    만약 signal의 다른 쓰임이 필요하면 찾아봐야 한다. 
+    */
+	act.sa_handler=signalHandler;
+	sigemptyset(&act.sa_mask);
+	act.sa_flags=0;
+	state=sigaction(SIGCHLD, &act, 0);
+}
+
+void RRMaster::RRM_ready(void){
+    /*master socker 생성*/ 
+	master_sock=socket(PF_INET, SOCK_STREAM, 0);
+	memset(&master_adr, 0, sizeof(master_adr));
+	master_adr.sin_family=AF_INET;
+	master_adr.sin_addr.s_addr=htonl(INADDR_ANY);
+	master_adr.sin_port=htons(atoi(argv[1]));
+	
+	if(bind(master_sock, (struct sockaddr*) &master_adr, sizeof(master_adr))==-1)
+		error_handling("bind() error");
+	if(listen(master_sock, 5)==-1)
+		error_handling("listen() error");
+}
+
+void RRMaster::signalHandler(int sig){
+    switch(sig){
+        case SIGINT :
+            puts("ctrl+c pressed");
+            break;
+        case SIGCHLD :
+            puts("relay end");
+            break;
+        case SIGALRM :
+            puts("timeoue");
+            break;
+        defula :
+            puts("Unknown signals")
+    }
+}
+
+void RRMaster::RRM_run(void){
+    int workerStatus = 0;
+    //TODO create control thread : enter 'q' to quit
+    //TODO create pingpong thread : use 'RRM_showWorkerInfos()'
+
+    while(true)
+	{
+		adr_sz=sizeof(worker_adr);
+		worker_sock=accept(master_sock, (struct sockaddr*)&worker_adr, &adr_sz);
+		if(worker_sock==I_AM_DEAD){
+			puts("RRMaster::RRMrun:: I AM DEAD.");
+			continue;
+        }
+		else
+			puts("new client connected...");
+
+		pid=fork();
+		if(pid==I_AM_DEAD)
+		{
+			close(worker_sock);
+			continue;
+		}
+		if(pid==I_AM_WORKER)
+		{   
+			close(master_sock);
+			RRStartRelay(arvg);
+
+            // while (rtmpServer->state != STREAMING_STOPPED)
+            // {
+            //   sleep(1);
+            // }
+
+            // RTMP_Log(종료합니다)
+            while((str_len=read(worker_sock, buf, BUF_SIZE))!=0)
+				write(worker_sock, buf, str_len);
+			
+			close(worker_sock);
+			puts("client disconnected...");
+			return 0;
+		}
+		else{
+            //일단 master는 끝까지 기다린다. 
+            //끝나는 경우는 controlServer가 'q'를 입력받은 경우뿐이다. 
+            workersPID[workersCnt++] = pid;
+            signal(SIGINT, signalHandler);
+            signal(SIGCHILD, signalHandler);
+            while(1){
+                sleep(987654321);
+            }
+            /* 
+            TODO 종료되는 worker process(stream)이 있을 때는 PID만 출력해주자     
+            */
+            //종료된 프로세스가 없어도 블로킹 상태에 빠지지 않는다.
+            // waitpit(pid, &workerStatus, WNOHANG); 
+            // if(WIFEXITED(workerStatus)){
+            //     printf(" %d Wordker send %d \n", pid, WEXITSTATUS(workerStatus));
+            // }
+			// close(worker_sock);
+        }
+	}
+    // CleanupCode
+	close(master_sock);
+}
+
+int main(int argc, char *argv[])
+{   
+    RRMaster master;
+    mater.RRM_init();
+    mater.RRM_ready();
+    mater.RRM_run();
+	return 0;
+}
 
 enum{
     RR_STATE_NULL,
@@ -146,89 +262,3 @@ void error_handling(char *message)
 	exit(1);
 }
 
-int main(int argc, char *argv[])
-{
-	int master_sock, worker_sock;
-	struct sockaddr_in master_adr, worker_adr;
-	pid_t pid;
-	struct sigaction act;
-	socklen_t adr_sz;
-	int str_len, state;
-	char buf[BUF_SIZE];
-    
-	if(argc!=2) {
-		printf("Usage : %s <port>\n", argv[0]);
-		exit(1);
-	}
-
-	act.sa_handler=read_childproc;
-	sigemptyset(&act.sa_mask);
-	act.sa_flags=0;
-	state=sigaction(SIGCHLD, &act, 0);
-
-    /*master socker 생성*/ 
-	master_sock=socket(PF_INET, SOCK_STREAM, 0);
-	memset(&master_adr, 0, sizeof(master_adr));
-	master_adr.sin_family=AF_INET;
-	master_adr.sin_addr.s_addr=htonl(INADDR_ANY);
-	master_adr.sin_port=htons(atoi(argv[1]));
-	
-	if(bind(master_sock, (struct sockaddr*) &master_adr, sizeof(master_adr))==-1)
-		error_handling("bind() error");
-	if(listen(master_sock, 5)==-1)
-		error_handling("listen() error");
-	
-	while(1)
-	{
-		adr_sz=sizeof(worker_adr);
-		worker_sock=accept(master_sock, (struct sockaddr*)&worker_adr, &adr_sz);
-		if(worker_sock==-1)
-			continue;
-		else
-			puts("new client connected...");
-		pid=fork();
-		if(pid==-1)
-		{
-			close(worker_sock);
-			continue;
-		}
-		if(pid==0)
-		{
-			close(master_sock);
-			while((str_len=read(worker_sock, buf, BUF_SIZE))!=0)
-				write(worker_sock, buf, str_len);
-			
-			close(worker_sock);
-			puts("client disconnected...");
-			return 0;
-		}
-		else
-			close(worker_sock);
-	}
-	close(master_sock);
-	return 0;
-/***************************************/
-    cout<<" Hello world!\n";
-
-    //argv 처리 1 : master의 호출에 의한 worker 실행
-    if(argc!=2) {
-		printf("Usage : %s <port>\n", argv[0]);
-		exit(1);
-	}
-
-    //controlThread 생성
-
-    //pingpong Thread 생성
-
-    RRStartRelay(arvg);
-
-    // while (rtmpServer->state != STREAMING_STOPPED)
-    // {
-    //   sleep(1);
-    // }
-
-    // RTMP_Log(종료합니다)
-
-    // CleanupCode
-    return 0;
-}

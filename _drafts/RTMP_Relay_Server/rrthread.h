@@ -6,16 +6,17 @@
 class RRThread{
 private:
 public:
-    RRMakeThread(functionpointer routin, arg){
-        controlThread
-        clientthread
-        ServerThread
-        pingpongThread
-    }
-
-}
+	RRThread();
+    void RRMakeThread(char* argv);
+        // controlThread
+        // clientthread
+        // ServerThread
+        // pingpongThread
+	~RRThread();
+};
 
 #endif
+
 
 /*
 pthread_t id_t1, id_t2;
@@ -29,17 +30,15 @@ pthread_t id_t1, id_t2;
 	pthread_join(id_t2, NULL);
 	printf("result: %d \n", sum);
 */
-/*
-void * thread_summation(void * arg) 
-{
-	int start=((int*)arg)[0];
-	int end=((int*)arg)[1];
+// void * thread_summation(void * arg) 
+// {
+// 	int start=((int*)arg)[0];
+// 	int end=((int*)arg)[1];
 
-	while(start<=end)
-	{
-		sum+=start;
-		start++;
-	}
-	return NULL;
-}
-*/
+// 	while(start<=end)
+// 	{
+// 		sum+=start;
+// 		start++;
+// 	}
+// 	return NULL;
+// }

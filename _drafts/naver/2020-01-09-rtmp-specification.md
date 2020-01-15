@@ -14,7 +14,7 @@
 1. `Remote Procedure Call (PRC)` : 클라와 서버가 peer end에서 서브 루틴을 돌리 수 있도록 하는 것
 1. `metadata` : data의 description
 1. `application instance` : 클라가 서버에게 연결요청을 보낸 어플리케이션의 instance
-1. `Action Message Format (AMF)`: compart 한 binart format. ActionScript object graphs를 serialize하는데 사용한다. AMF는 0버전과 3버전이 있다.
+1. `Action Message Format (AMF)`: compact 한 binary format. ActionScript object graphs를 serialize하는데 사용한다. AMF는 0버전과 3버전이 있다.
 1. `In-band protocal` : data msg와 control msg를 동일 대역/채널/포트 연결 상에서 같이 전송 ex) HTTP
 1. `out-of-ban protocal` : data msg와 control msg를 다른 대역/채널/포트/연결에서 각각 전송 ex) HTTPS 
 1. `opaque` : interface 안에 명시는 되어 있지만 구체적인 structure는 정의되어 있지 않은 data type

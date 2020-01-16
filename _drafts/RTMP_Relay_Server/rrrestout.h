@@ -28,13 +28,13 @@ using namespace web::json;                                  // JSON library
 */
 
 
-class RRRest{
+class RRRestOut{
 private:
     // auto fileStream;
 public:
-    RRRest();
-    ~RRRest();
-    // RRRest() : fileStream(std::make_shaked<ostream>()){};
+    RRRestOut();
+    ~RRRestOut();
+    // RRRestOut() : fileStream(std::make_shaked<ostream>()){};
 };
 
 #endif

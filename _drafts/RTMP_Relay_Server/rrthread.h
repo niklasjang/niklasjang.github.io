@@ -3,6 +3,16 @@
 
 #include <pthread.h>
 
+// #ifndef __RRLOG_H__
+// #define __RRLOG_H__
+// #include "rrlog.h"
+// #endif
+
+#define TFTYPE void * //Thread Function Type
+#define TFRET() return 0//Thread Function Return 0
+#define THANDLE pthread_t //Thread Handle
+typedef TFTYPE (*thrfp)(void *args); // thread function pointer
+
 class RRThread{
 private:
 public:
@@ -12,6 +22,7 @@ public:
         // clientthread
         // ServerThread
         // pingpongThread
+	THANDLE createThread(thrfp rountine, void * args);
 	~RRThread();
 };
 

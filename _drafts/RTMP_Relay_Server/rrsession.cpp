@@ -1,4 +1,10 @@
+#ifndef __RRSESSION_H__
 #include "rrsession.h"
+#endif
+
+RRSession::RRSession(){
+    //Empty
+}
 
 RRSession::RRSession( sockaddr_in _servAdr, sockaddr_in _clntAdr) : servAdr(_servAdr) , clntAdr(_clntAdr) {
     //Empty

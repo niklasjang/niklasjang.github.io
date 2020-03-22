@@ -13,7 +13,7 @@ toc_icon: "list"  # corresponding Font Awesome icon name (without fa prefix)
 toc_sticky: true
 ---
 
-완전탐색의 첫 번째 알고리즘 백트래킹입니다. 백트래킹의 첫 번 째 유형인 N자리 K진수에 대해서 학습합니다.
+완전탐색의 첫 번째 알고리즘 백트래킹입니다. 백트래킹의 첫 번째 유형인 N자리 K진수에 대해서 학습합니다.
 - - -
 
 ## N자리 K진수 : 문제

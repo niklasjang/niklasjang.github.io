@@ -1,13 +1,12 @@
 ---
-title: "[ps][백트래킹][개념] 2차원 백트레킹(소문난 칠공주)"
-excerpt: "완전탐색 - 1번째 알고리즘"
-date: 2020-01-12
+title: "[PS][완전탐색][N자리 K진수] Chapter 4"
+excerpt: "N자리 K진수 2차원에 적용하기"
+date: 2020-03-29
 categories:
   - PS
 tags:
   - ps 
   - back-tracking
-  - problem
 toc : true
 toc_label: "Table of contents"
 toc_icon: "list"  # corresponding Font Awesome icon name (without fa prefix)

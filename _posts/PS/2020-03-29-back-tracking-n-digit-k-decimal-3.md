@@ -1,7 +1,7 @@
 ---
 title: "[PS][완전탐색][N자리 K진수] Chapter 3"
 excerpt: "N자리 K진수 문제에 적용하기"
-date: 2020-03-23
+date: 2020-03-29
 categories:
   - PS
 tags:

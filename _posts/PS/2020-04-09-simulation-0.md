@@ -1,6 +1,6 @@
 ---
 title: "[PS][시뮬레이션] Chapter 0"
-excerpt: "N자리 K진수 개념 이해하기"
+excerpt: "이동시키기 & 순환시키기"
 date: 2020-04-09
 categories:
   - PS
@@ -43,6 +43,9 @@ toc_sticky: true
 
 ### [미세먼지 안녕!](https://www.acmicpc.net/problem/17144)
 
+1. 미는 방향의 반대로 당긴다고 생각한다.
+1. 특정 위치의 값을 save해놔야한다.
+
 문제의 정답은 [여기](https://gist.github.com/niklasjang/74e8b79519f90ab98cc034c4ca6551eb)에서 확인할 수 있습니다. 
 
 ### [원판돌리기](https://www.acmicpc.net/problem/17822)
@@ -53,3 +56,15 @@ toc_sticky: true
 문제의 정답은 [여기](https://gist.github.com/niklasjang/4528e16424a478d24ab983583e1a517a)에서 확인할 수 있습니다. 
 
 
+### [게리멘더링2]](https://www.acmicpc.net/problem/17779)
+
+이 문제는 풀이만 공부하고 나중에 풀어보겠습니다. 
+
+1. 그림을 보고 5번 선거구의 개형을 확인한다.
+1. 5번 선거구의 테두리를 5로 칠한다.
+1. 5번 선거구의 모서리에서 벽까지, 경계지점의 선거구를 칠한다.
+1. 전체 사각형의 네 귀퉁이에서 map[nx][ny]==0인 지점에 대해서만 flood fill을 진행한다.
+1. 5번 선거구의 내부를 5로 채운다.
+  1. x,y 지점에서 dfs를 돌린다.
+  1. 위의 방법만으로는 채워지지 않는 5번 지역이 있으므로 아직까지 0인 경우는 모두 5번 선거구로 처리한다.
+1. 답을 출력한다.

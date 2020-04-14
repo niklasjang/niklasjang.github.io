@@ -37,6 +37,11 @@ toc_sticky: true
 
 ### [원자 소멸 시뮬레이션](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRFInKex8DFAUo)
 
+### [새로운 게임2](https://www.acmicpc.net/problem/17837)
+
+문제의 정답은 [여기](https://gist.github.com/niklasjang/2f2923da61ecde17ba638662bd6434a2)에서 확인할 수 있습니다. 
+
+
 ## 순환시키기
 
 이동방향의 반대로 당긴다는 느낌으로 접근한다. 마지막 값만 temp에 저장해두면 된다. 
@@ -68,3 +73,4 @@ toc_sticky: true
   1. x,y 지점에서 dfs를 돌린다.
   1. 위의 방법만으로는 채워지지 않는 5번 지역이 있으므로 아직까지 0인 경우는 모두 5번 선거구로 처리한다.
 1. 답을 출력한다.
+

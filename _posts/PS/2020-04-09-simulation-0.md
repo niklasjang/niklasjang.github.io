@@ -46,3 +46,10 @@ toc_sticky: true
 문제의 정답은 [여기](https://gist.github.com/niklasjang/74e8b79519f90ab98cc034c4ca6551eb)에서 확인할 수 있습니다. 
 
 ### [원판돌리기](https://www.acmicpc.net/problem/17822)
+
+1. k칸 회전을 1칸씩 k번 돌리는 것으로 반복해도 된다. 50 \* 50 \* 50이기 때문에 시간초과가 나지 않는다.
+1. deque를 사용하면 rotate가 쉬울 것으로 보인다.
+
+문제의 정답은 [여기](https://gist.github.com/niklasjang/4528e16424a478d24ab983583e1a517a)에서 확인할 수 있습니다. 
+
+

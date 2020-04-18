@@ -41,6 +41,7 @@ toc_sticky: true
 
 문제의 정답은 [여기](https://gist.github.com/niklasjang/2f2923da61ecde17ba638662bd6434a2)에서 확인할 수 있습니다. 
 
+1. 상어 문제와 같이 객체 저장과 겹치는 부분 판단을 따로 구현합니다.
 
 ## 순환시키기
 
@@ -52,7 +53,7 @@ toc_sticky: true
 1. 특정 위치의 값을 save해놔야한다.
 
 문제의 정답은 [여기](https://gist.github.com/niklasjang/74e8b79519f90ab98cc034c4ca6551eb)에서 확인할 수 있습니다. 
-
+ 
 ### [원판돌리기](https://www.acmicpc.net/problem/17822)
 
 1. k칸 회전을 1칸씩 k번 돌리는 것으로 반복해도 된다. 50 \* 50 \* 50이기 때문에 시간초과가 나지 않는다.

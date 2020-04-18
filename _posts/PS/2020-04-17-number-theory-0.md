@@ -1,6 +1,6 @@
 ---
-title: "[PS][DP] Chapter 0"
-excerpt: "이동시키기 & 순환시키기"
+title: "[PS][정수론] Chapter 0"
+excerpt: ""
 date: 2020-04-09
 categories:
   - PS

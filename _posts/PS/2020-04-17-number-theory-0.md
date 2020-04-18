@@ -56,3 +56,35 @@ toc_sticky: true
   1. 5만 선택된다는 것은 n에서 5의 배수를 모두 뺀다는 말
   1. 3,5가 선택된다는 것은 n에서 3의 배수와 5의 배수를 빼면서 중복으로 뺀 15의 배수를 더한다는 말
 1. 이를 [포함 배제의 원리](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle)라고 한다. 
+
+
+## 거듭제곱
+
+1. a의 b승을 구할 떄, b가 많이 크면 분할정복으로 접근한다.
+
+``cpp
+#include <iostream>
+using namespace std;
+
+int a, b, p;
+
+//return a의 b승 mod p
+//분할 정복으로 구하는 방법
+long long recur(int a, int b) {
+	if (b == 0) return 1;
+	long long ret = 1;
+	ret = recur(a, b / 2);
+	ret *= ret;
+	ret %= p;
+	if (b % 2 == 0) return ret % p;
+	else return (ret * a)%p;
+}
+
+int main(void) { 
+	cin >> a >> b >> p;
+	
+	cout << recur(a, b) << "\n";
+	return 0;
+}
+```
+

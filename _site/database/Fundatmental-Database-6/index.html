@@ -1,0 +1,978 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[DB] Chapter 7.1절   - NiklasJang’s Blog</title>
+<meta name="description" content="More Complex SQL Retrieval Queries ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[DB] Chapter 7.1절">
+<meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-6/">
+
+
+  <meta property="og:description" content="More Complex SQL Retrieval Queries ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-02T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/database/Fundatmental-Database-6/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DB] Chapter 7.1절">
+    <meta itemprop="description" content="More Complex SQL Retrieval Queries">
+    <meta itemprop="datePublished" content="2019-10-02T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Chapter 7.1절
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  12 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h1 id="more-sql-complex-queries-triggers-views-and-schema-modification">More SQL: Complex Queries, Triggers, Views, and Schema Modification</h1>
+
+<p>이 장에서는 <code class="language-plaintext highlighter-rouge">relational databases</code>를 귀한 <code class="language-plaintext highlighter-rouge">SQL language</code>의 advancd 특성을 서술합니다.</p>
+
+<h2 id="71-more-complex-sql-retrieval-queries">7.1 More Complex SQL Retrieval Queries</h2>
+
+<h3 id="711-comparisons-invloving-null-and-three-valued-logic">7.1.1. Comparisons Invloving Null and Three-Valued Logic</h3>
+
+<p>먼저 <code class="language-plaintext highlighter-rouge">NULL</code>이 무엇인지 알아보겠습니다. <code class="language-plaintext highlighter-rouge">NULL</code>은 a missing value라는 의미를 가지고 있는데 보다 구체적으로는 아래의 3개 중 하나의 의미를 가지는 것으로 생각할 수 있습니다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">UNKNOWN</code> : 존재하기는 하는데 무엇인지 모르는 값. 예를 들어 어떤 사람의 생일을 모를 때 <code class="language-plaintext highlighter-rouge">NULL</code>으로 생각할 수도 있고, 집 전화가 있는지 없는지 상관없이 집전화 번호를 모른다고 말할 수 있습니다.</li>
+  <li>“value not available” : 존재는 하지만 database에서 보여주고 싶지 않은 정보일 떄 이 값을 not vailable 상태로 만듭니다. 이때는 저장되어 있지만 사용자응 이 값을 볼 수 없습니다.</li>
+  <li>“value not applicable” : 특정 tuple에 대해서 적용되지 않거나 정의되지가 않는 경우를 말합니다. 예를 들어 고졸인 사람에게 대학 전공이라는 값은 적용되지도 정의도지도 않습니다.</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">NULL</code>이 위 세 가지 중 어떤 의미를 가지는 지는 정확하게 알 수 없습니다. 다만 database를 이해할 때 <code class="language-plaintext highlighter-rouge">NULL</code>이 상당히 자주 나오는 요소이기 때문에 한 번 듣고 넘어가는 것은 의미가 있다고 생각합니다. 그리고 각각의 <code class="language-plaintext highlighter-rouge">NULL</code>은 여러 개의 <code class="language-plaintext highlighter-rouge">NULL</code>이 있을 때도 개별적으로 취급됩니다. 같은 table에서도 3개 중 어떤 의미로 쓰인 것인지 다를 수 있습니다.</p>
+
+<p>만약 <code class="language-plaintext highlighter-rouge">NULL</code>을 포함하는 record를 사용해서 comparison 연산을 진행할 때 <code class="language-plaintext highlighter-rouge">NULL</code>에 따라서 결과가 달라질 수 있기 때문에 true/false/<code class="language-plaintext highlighter-rouge">UNKNON</code> 3개의 값에 대한 진리표를 정의했습니다.</p>
+
+<p><img src="/assets/images/database/database-1.jpg" alt="database-1" /><br />
+//TODO Table 7.1 페이지 208</p>
+
+<p>SQL은 attribut가 <code class="language-plaintext highlighter-rouge">NULL</code>인지를 확인하는 방법을 제공하는데 <code class="language-plaintext highlighter-rouge">=</code>나 <code class="language-plaintext highlighter-rouge">&lt;&gt;</code>보다는 <code class="language-plaintext highlighter-rouge">IS</code>와 <code class="language-plaintext highlighter-rouge">IS NOT</code>을 사용합니다. 왜냐하면 각각의 <code class="language-plaintext highlighter-rouge">NULL</code>이 개별적인 값으로 생각되기 때문에 equality를 확인하는 표현은 적합하지 않기 때문입니다. 또한 같은 이유로 <code class="language-plaintext highlighter-rouge">JOIN</code> 연산에서도 주목할만한 점이 생깁니다. 만약 <code class="language-plaintext highlighter-rouge">JOIN</code> 연산에 해당하는 attribute의 값이 <code class="language-plaintext highlighter-rouge">NULL</code>인 tuple이 있다면 해당 tuple은 <code class="language-plaintext highlighter-rouge">JOIN</code> 연산의 result에서 제외됩니다. <code class="language-plaintext highlighter-rouge">JOIN</code> 연산은 같은 값을 가지는 attribute를 찾아서 연결하지만 <code class="language-plaintext highlighter-rouge">NULL</code>은 개별적인 값으로 생각되기 때문입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Query</span> <span class="mi">18</span> <span class="p">:</span> <span class="err">상관을</span> <span class="err">가지지</span> <span class="err">않는</span> <span class="err">모든</span> <span class="err">직원들의</span> <span class="err">이름을</span> <span class="err">찾아라</span>
+<span class="k">SELECT</span>      <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span>
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span>
+<span class="k">WHERE</span>       <span class="n">Super_ssn</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="712-nested-queries-tuples-and-setmultiset-comparisons">7.1.2 Nested Queries, Tuples, and Set/Multiset Comparisons</h3>
+
+<p>DB에서 데이터를 fetch하고 다시 comparison 연산에 사용하는 쿼리들이 있습니다. 이러한 쿼리들은 <code class="language-plaintext highlighter-rouge">nested queries</code>로 공식처럼 사용할 수 있습니다. <code class="language-plaintext highlighter-rouge">nested queries</code>는 하나의 쿼리 안에 또 다른 <code class="language-plaintext highlighter-rouge">select-from-where</code> 블럭이 들어있는 쿼리를 말합니다. 이때 밖의 쿼리는 <code class="language-plaintext highlighter-rouge">outer query</code>라고 부르고 안에 있는 쿼리는 <code class="language-plaintext highlighter-rouge">nested queries</code>라고 부릅니다. <code class="language-plaintext highlighter-rouge">nested queries</code>는 <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">FROM</code> , <code class="language-plaintext highlighter-rouge">WHERE</code> 어디서든 사용될 수 있다는 것을 기억해야 합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Query 4. Make a list of all project numbers for projects that involve an employee whose last name is ‘Smith’, either as a worker or as a manager of the department that controls the project.
+</code></pre></div></div>
+
+<p>다음과 같은 쿼리를 6.3절에서 다음과 같이 만들었습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q4A</span><span class="p">:</span> 
+<span class="p">(</span><span class="k">SELECT</span>     <span class="k">DISTINCT</span> <span class="n">Pnumber</span>
+ <span class="k">FROM</span>       <span class="n">PROJECT</span><span class="p">,</span> <span class="n">DEPARTMENT</span><span class="p">,</span> <span class="n">EMPLOYEE</span> 
+ <span class="k">WHERE</span>      <span class="n">Dnum</span> <span class="o">=</span> <span class="n">Dnumber</span> <span class="k">AND</span> 
+            <span class="n">Mgr_ssn</span> <span class="o">=</span> <span class="n">Ssn</span>  <span class="k">AND</span> 
+            <span class="n">Lname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Smith</span><span class="err">’</span> <span class="p">)</span>
+  <span class="k">UNION</span>
+<span class="p">(</span><span class="k">SELECT</span>     <span class="k">DISTINCT</span> <span class="n">Pnumber</span> 
+ <span class="k">FROM</span>       <span class="n">PROJECT</span><span class="p">,</span> <span class="n">WORKS_ON</span><span class="p">,</span> <span class="n">EMPLOYEE</span> 
+ <span class="k">WHERE</span>      <span class="n">Pnumber</span> <span class="o">=</span> <span class="n">Pno</span> <span class="k">AND</span>
+            <span class="n">Essn</span> <span class="o">=</span> <span class="n">Ssn</span>    <span class="k">AND</span> 
+            <span class="n">Lname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Smith</span><span class="err">’</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>이와 같은 쿼리를 <code class="language-plaintext highlighter-rouge">nested queries</code>로 만들면 아래와 같이 작성할 수 있습니다. 첫 번째 <code class="language-plaintext highlighter-rouge">nested queries</code>는 해당 프로젝트를 관리하고 있는 부서를 찾고, 그 부서 매니저의 SSN을 직원들의 SSN과 비교하는 모습입니다. 두 번째 <code class="language-plaintext highlighter-rouge">nested queries</code>는 WORKS_ON에서 어느 Pno에서 어떤 사람이 일을 했는지를 가지고 쿼리문을 작성했습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>      <span class="k">DISTINCT</span> <span class="n">Pnumber</span> 
+<span class="k">FROM</span>        <span class="n">PROJECT</span> 
+<span class="k">WHERE</span>       <span class="n">Pnumber</span> <span class="k">IN</span> 
+            <span class="p">(</span><span class="k">SELECT</span>     <span class="n">Pnumber</span> 
+             <span class="k">FROM</span>       <span class="n">PROJECT</span><span class="p">,</span> <span class="n">DEPARTMENT</span><span class="p">,</span> <span class="n">EMPLOYEE</span> 
+             <span class="k">WHERE</span>      <span class="n">Dnum</span> <span class="o">=</span> <span class="n">Dnumber</span> <span class="k">AND</span> 
+                        <span class="n">Mgr_ssn</span> <span class="o">=</span> <span class="n">Ssn</span>  <span class="k">AND</span> 
+                        <span class="n">Lname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Smith</span><span class="err">’</span> <span class="p">)</span> 
+            <span class="k">OR</span> 
+            <span class="n">Pnumber</span> <span class="k">IN</span> 
+            <span class="p">(</span><span class="k">SELECT</span>     <span class="n">Pno</span> 
+             <span class="k">FROM</span>       <span class="n">WORKS_ON</span><span class="p">,</span> <span class="n">EMPLOYEE</span> 
+             <span class="k">WHERE</span>      <span class="n">Essn</span> <span class="o">=</span> <span class="n">Ssn</span> <span class="k">AND</span> 
+                        <span class="n">Lname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Smith</span><span class="err">’</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>정리해보면 첫 번째 <code class="language-plaintext highlighter-rouge">nested queries</code>는 프로젝트를 관리하는 부서를 먼저 찾고, 그 부서 매니저의 SSN을 찾아야 하기 때문에 DEPARTMENT table을 사용했고, 두 번째에서는 WORKS_ON에서 어떤 프로젝트에서 어떤 사람이 일을 했는지에 대한 정보가 들어있기 때문에 바로 SSN과의 비교를 진행했습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">nested queries</code>는 일반적으로 하나의 값이 아닌 table을 return합니다. 위와 같이 Pnumber 또는 Pno 하나의 값이나 tuple을 return 하도록 짜는 경우에는 <code class="language-plaintext highlighter-rouge">IS</code>를 사용해도 됩니다.</p>
+
+<p>SQL은 comparison 연산에 대해서 tuple을 사용하는 것을 허용합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>      <span class="k">DISTINCT</span> <span class="n">Essn</span> 
+<span class="k">FROM</span>        <span class="n">WORKS_ON</span>
+<span class="k">WHERE</span>       <span class="p">(</span><span class="n">Pno</span><span class="p">,</span> <span class="n">Hours</span><span class="p">)</span> <span class="k">IN</span> 
+            <span class="p">(</span><span class="k">SELECT</span>     <span class="n">Pno</span><span class="p">,</span> <span class="n">Hours</span> 
+             <span class="k">FROM</span>       <span class="n">WORKS_ON</span> 
+             <span class="k">WHERE</span>      <span class="n">Essn</span> <span class="o">=</span> <span class="s1">'123456789'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>(Pno, Hours) 튜플은 nested 쿼리의 결과로 나오는 테이블과 비교해서 같은 (Pno, Hours)를 가지는 tuple에 대해서만 Essn을 출력할 것입니다. <code class="language-plaintext highlighter-rouge">IN</code> 뿐만 아니라 <code class="language-plaintext highlighter-rouge">&gt;,&gt;=,&lt;,&lt;=, &lt;&gt;</code> 그리고 Keyworkd <code class="language-plaintext highlighter-rouge">ALL</code>, <code class="language-plaintext highlighter-rouge">ANY</code>를 사용해서 comparison 연산을 진행할 수도 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">nested queries</code>를 진행할 때 같은 clause에 대해서 table 이름이 명시되지 않은 <code class="language-plaintext highlighter-rouge">unqualified attribute</code>의 경우 <code class="language-plaintext highlighter-rouge">innernost nested query</code>의 규칙에 따라서 가장 안쪽의 table의 attribute를 refer to 하도록 되어 있습니다. 만약 바깥의 table을 reference 하고 싶다면 <code class="language-plaintext highlighter-rouge">alias</code> <code class="language-plaintext highlighter-rouge">AS</code>를 사용해서 table 의 이름을 명시하고 사용해야 합니다.</p>
+
+<h3 id="713-correlated-nested-queries">7.1.3 Correlated Nested Queries</h3>
+
+<p>WHERE 절의 inter query에서 outer query의 attribute를 refer to하는 모든 경우를 <code class="language-plaintext highlighter-rouge">correlated</code>라고 부릅니다. <code class="language-plaintext highlighter-rouge">correlated</code>는 outer query에 있는 모든 tuple에 대해서 한 번씩 inter query가 수행되는 것으로 이해할 수 있습니다.</p>
+
+<h3 id="714-the-exists-and-unique-functions-in-sql">7.1.4 The EXISTS and UNIQUE Functions in SQL</h3>
+
+<p>EXIST와 NOT EXISTS의 사용법을 확인할 수 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>      <span class="n">E</span><span class="p">.</span><span class="n">Fname</span><span class="p">,</span> <span class="n">E</span><span class="p">.</span><span class="n">Lname</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">E</span> 
+<span class="k">WHERE</span>       <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span>      <span class="o">*</span> 
+                    <span class="k">FROM</span>        <span class="n">DEPENDENT</span> <span class="k">AS</span> <span class="n">D</span> 
+                    <span class="k">WHERE</span>       <span class="n">E</span><span class="p">.</span><span class="n">Ssn</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="n">Essn</span> <span class="k">AND</span> 
+                                <span class="n">E</span><span class="p">.</span><span class="n">Sex</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="n">Sex</span>  <span class="k">AND</span> 
+                                <span class="n">E</span><span class="p">.</span><span class="n">Fname</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="n">Dependent_name</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Query</span> <span class="mi">6</span><span class="p">.</span> <span class="n">Retrieve</span> <span class="n">the</span> <span class="k">names</span> <span class="k">of</span> <span class="n">employees</span> <span class="n">who</span> <span class="n">have</span> <span class="k">no</span> <span class="n">dependents</span><span class="p">.</span>
+<span class="n">Q6</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>      <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>       <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> 
+                        <span class="k">FROM</span> <span class="n">DEPENDENT</span> 
+                        <span class="k">WHERE</span> <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Essn</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Query</span> <span class="mi">7</span><span class="p">.</span> <span class="n">List</span> <span class="n">the</span> <span class="k">names</span> <span class="k">of</span> <span class="n">managers</span> <span class="n">who</span> <span class="n">have</span> <span class="k">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">dependent</span><span class="p">.</span>
+<span class="n">Q7</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>      <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>       <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span>      <span class="o">*</span> 
+                    <span class="k">FROM</span>        <span class="n">DEPENDENT</span> 
+                    <span class="k">WHERE</span>        <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Essn</span> <span class="p">)</span> 
+            <span class="k">AND</span>
+            <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span>      <span class="o">*</span> 
+                    <span class="k">FROM</span>        <span class="n">DEPARTMENT</span> 
+                    <span class="k">WHERE</span>       <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Mgr_ssn</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>아래의 쿼리는 부서 5가 관리하는 모든 프로젝트에서 일하는 사람을 골라라입니다. 그래서 부서 5가 관리하는 모든 프로젝트에서 특정 사람이 일한 프로젝트를 모두 제외했을 때, 빈 결과가 나온다면 그 사람을 선택합니다. 왜냐하면 그 사람은 부서 5가 관리하는 모든 프로젝트를 했거나 다른 프로젝트까지 추가로한 사람이기 때문입니다. 이를 위해서 먼저 부터 5가 관리하는 프로젝트의 이름을 찾습니다. 이 때 outer query에서 돌고 있는 EMPLYEE tule의 ssn을 사용해서 ‘지금 (loop에서) 관심있는 사람이 일한 정보를 WORKS_ON에서 찾습니다. 그리고 이 부분의 PNO를 tuple로 만듭니다. 만약에 이렇게 만든 tuple을 제외했을 때 결과라 NOT EXISTS라면, 부터 5가 관리하는 모든 프로젝트에 참여한 것이므로 Fname과 Lname을 출력합니다.</p>
+
+<p>예를 들어서 부서 5가 관리하는 프로젝트 번호가 1,2,3,4,5일 때 WORKS_ON에 현재 보고 있는 사람이 1,2,3에만 일을 했다고 나와있다면 {4,5}가 nested query에서 출력되고 이 사람은 조건을 만족하지 못하는 사람이 됩니다. 반면에 WORKS_ON에 1,2,3,4,5,6을 일했다고 나와있다면 nest query는 아무것도 출력하지 않고 적절한 사람을 찾은 것이 됩니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">The</span> <span class="n">query</span> <span class="n">Q3</span><span class="p">:</span> <span class="n">Retrieve</span> <span class="n">the</span> <span class="n">name</span> <span class="k">of</span> <span class="k">each</span> <span class="n">employee</span> <span class="n">who</span> <span class="n">works</span> <span class="k">on</span> <span class="k">all</span> <span class="n">the</span> <span class="n">projects</span> <span class="n">controlled</span> <span class="k">by</span> <span class="n">department</span> <span class="n">number</span> <span class="mi">5</span> 
+<span class="p">:</span> <span class="err">부서</span> <span class="mi">5</span><span class="err">가</span> <span class="err">관리하는</span> <span class="err">모든</span> <span class="err">프로젝트에서</span> <span class="err">일하는</span> <span class="err">사람을</span> <span class="err">골라라</span>
+
+<span class="k">not</span> <span class="k">work</span> <span class="k">on</span><span class="p">.</span> 
+<span class="n">Q3A</span><span class="p">:</span> 
+<span class="k">SELECT</span>  <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span> 
+<span class="k">FROM</span>    <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>   <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="p">(</span> <span class="p">(</span>  <span class="k">SELECT</span>    <span class="n">Pnumber</span> 
+                        <span class="k">FROM</span>      <span class="n">PROJECT</span> 
+                        <span class="k">WHERE</span>     <span class="n">Dnum</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> 
+                        <span class="k">EXCEPT</span> <span class="p">(</span> <span class="k">SELECT</span>  <span class="n">Pno</span> 
+                                <span class="k">FROM</span>    <span class="n">WORKS_ON</span> 
+                                <span class="k">WHERE</span>   <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Essn</span><span class="p">)</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>아래의 쿼리는 직원을 선택하는데 그 직원이 부서 5에서 관리하는 어떤 프로젝트도 안하지 않도록 선택해야 합니다. 즉  Q3A 쿼리문과 같은 결과를 냅니다.  자세한 설명은 //TODO !</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Reformed</span><span class="o">-</span><span class="n">query</span> <span class="p">:</span>  <span class="k">Select</span> <span class="k">each</span> <span class="n">employee</span> <span class="n">such</span> <span class="n">that</span> <span class="n">there</span> <span class="n">does</span> <span class="k">not</span> <span class="n">exist</span> <span class="n">a</span> <span class="n">project</span> <span class="n">controlled</span> <span class="k">by</span> <span class="n">department</span> <span class="mi">5</span> <span class="n">that</span> <span class="n">the</span> <span class="n">employee</span> <span class="n">does</span> <span class="k">not</span> <span class="k">work</span> <span class="k">on</span><span class="p">.</span> 
+<span class="n">Q3B</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>  <span class="n">Lname</span><span class="p">,</span> <span class="n">Fname</span> 
+<span class="k">FROM</span>    <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>   <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="p">(</span> <span class="k">SELECT</span>  <span class="o">*</span> 
+                     <span class="k">FROM</span>  <span class="n">WORKS_ON</span> <span class="n">B</span> 
+                     <span class="k">WHERE</span> <span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">Pno</span> <span class="k">IN</span> <span class="p">(</span>  <span class="k">SELECT</span>  <span class="n">Pnumber</span> 
+                                        <span class="k">FROM</span> <span class="n">PROJECT</span> 
+                                        <span class="k">WHERE</span> <span class="n">Dnum</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">)</span> 
+                            <span class="k">AND</span>
+                            <span class="k">NOT</span> <span class="k">EXISTS</span>  <span class="p">(</span> <span class="k">SELECT</span> <span class="o">*</span> 
+                                          <span class="k">FROM</span> <span class="n">WORKS_ON</span> <span class="k">C</span> 
+                                          <span class="k">WHERE</span> <span class="k">C</span><span class="p">.</span><span class="n">Essn</span> <span class="o">=</span> <span class="n">Ssn</span> <span class="k">AND</span> 
+                                                <span class="k">C</span><span class="p">.</span><span class="n">Pno</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">Pno</span> <span class="p">)));</span>
+</code></pre></div></div>
+
+<p>특정 사람을 찾을 때, WORKS_ON 종이에서 부서 5(C.Pno = B.Pno)가 관리하는 프로젝트를 그 사람(C.Essn = Ssn )이 전혀 하지 않았다면(NOT EXISTS)</p>
+
+<h3 id="715-explicit-sets-and-renaming-in-sql">7.1.5 Explicit Sets and Renaming in SQL</h3>
+
+<p>nested 쿼리문을 아래와 같이 직접 집합으로 표현할 수도 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Query</span> <span class="mi">17</span><span class="p">.</span> <span class="n">Retrieve</span> <span class="n">the</span> <span class="n">Social</span> <span class="k">Security</span> <span class="n">numbers</span> <span class="k">of</span> <span class="k">all</span> <span class="n">employees</span> <span class="n">who</span> <span class="k">work</span> <span class="k">on</span> <span class="n">project</span> <span class="n">numbers</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">or</span> <span class="mi">3</span><span class="p">.</span>
+<span class="n">Q17</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>       <span class="k">DISTINCT</span> <span class="n">Essn</span> 
+<span class="k">FROM</span>         <span class="n">WORKS_ON</span> 
+<span class="k">WHERE</span>        <span class="n">Pno</span> <span class="k">IN</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="716-joined-tables-in-sql-and-outer-joins">7.1.6 Joined Tables in SQL and Outer Joins</h3>
+
+<p><code class="language-plaintext highlighter-rouge">joined table</code>과 <code class="language-plaintext highlighter-rouge">joined relaion</code>은 사용자들에게 <code class="language-plaintext highlighter-rouge">FROM</code> 절에서 join operation의 결과로 table을 얻을 수 있도록 하기 위해서 SQL에 통합되었습니다. 이것은 WHERE 절에서 모든 SELECT과 JOIN을 모두 진행하는 것이 복잡하기 때문에 사용자들의 이해를 돕기 위한 목적이 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q1A</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span><span class="p">,</span> <span class="n">Address</span>
+<span class="k">FROM</span>        <span class="p">(</span><span class="n">EMPLOYEE</span> <span class="k">JOIN</span> <span class="n">DEPARTMENT</span> <span class="k">ON</span> <span class="n">Dno</span> <span class="o">=</span> <span class="n">Dnumber</span><span class="p">)</span> 
+<span class="k">WHERE</span>       <span class="n">Dname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>위의 쿼리는 FROM 절에서 하나의 joined 된 테이블을 구성합니다. 이 테이블의 모든 attribute는 EMPLOYEE에 있는 모든 attribute에 DEPARTMENT의 모든 attribute가 따라오는 형태입니다. 이러한 기본적인 형태의 JOIN 말고도 <code class="language-plaintext highlighter-rouge">NATURAL JOIN</code>이나 <code class="language-plaintext highlighter-rouge">OUTER JOIN</code>과 같은 연산을 지원합니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">NATURAL JOIN</code>은 명시적인 <code class="language-plaintext highlighter-rouge">JOIN CONDITION</code> 제공하지 않습니다. 암묵적으로 같은 이름을 가지는 attribute를 찾아서 적절하게 join을 해줍니다. 동일한 이름을 가지는 attribute들은 각각 한 번씩만 result table에 등장합니다.</p>
+
+<p><img src="/assets/images/database/database-2.jpg" alt="database-2" />
+//태블릿 사진 옮겨오기 TODO</p>
+
+<p>만약 두 테이블을 NATURAL JOIN 하고 싶은데 두 테이블에 같은 이름의 attribute가 없다면 아래와 같이 renaming을 하고 진행하면 됩니다. 암묵적으로 단 하나의 Dno attribute만 같기 때문에 이 attribute를 기준으로 NATURAL JOIN이 이루어 집니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q1B</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Fname</span><span class="p">,</span> <span class="n">Lname</span><span class="p">,</span> <span class="n">Address</span>
+<span class="k">FROM</span>        <span class="p">(</span><span class="n">EMPLOYEE</span> <span class="k">NATURAL</span> <span class="k">JOIN</span>
+            <span class="p">(</span><span class="n">DEPARTMENT</span> <span class="k">AS</span> <span class="n">DEPT</span> <span class="p">(</span><span class="n">Dname</span><span class="p">,</span> <span class="n">Dno</span><span class="p">,</span> <span class="n">Mssn</span><span class="p">,</span> <span class="n">Msdate</span><span class="p">)))</span> 
+<span class="k">WHERE</span>       <span class="n">Dname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>기본적인 형태의 defulat JOIN은 <code class="language-plaintext highlighter-rouge">inner JOIN</code>이라고 부릅니다. 아래의 기본적인 연산은 충분히 직관적입니다. 아래와 같은 연산의 경우 Super_ssn을 가진 employee에 대해서만 결과에 포함됩니다. super_ssn이 NULL인 경우는 포함되지 않습니다. 만약 모든 employee가 포함되기를 바란다면 <code class="language-plaintext highlighter-rouge">outer join</code>을 사용해야합니다. <code class="language-plaintext highlighter-rouge">outer join</code>에는 여러가지 방법이 있는데 바로 위에서 보았던 그림에서 다양한 형태의 <code class="language-plaintext highlighter-rouge">outer join</code>이 알기 쉽게 나와있습니다. 실제로 쿼리문을 진행하는 것은 아래와 같이 합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q8A</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">E</span><span class="p">.</span><span class="n">Lname</span> <span class="k">AS</span> <span class="n">Employee_name</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">Lname</span> <span class="k">AS</span> <span class="n">Supervisor_name</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">E</span><span class="p">,</span> <span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">S</span>
+<span class="k">WHERE</span>       <span class="n">E</span><span class="p">.</span><span class="n">Super_ssn</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">Ssn</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q8B</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">E</span><span class="p">.</span><span class="n">Lname</span> <span class="k">AS</span> <span class="n">Employee_name</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">Lname</span> <span class="k">AS</span> <span class="n">Supervisor_name</span>
+<span class="k">FROM</span>        <span class="p">(</span><span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">E</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">S</span> <span class="k">ON</span> <span class="n">E</span><span class="p">.</span><span class="n">Super_ssn</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">Ssn</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">LEFT</code>, <code class="language-plaintext highlighter-rouge">RIGHT</code>, <code class="language-plaintext highlighter-rouge">FULL</code>의 세 가지 방식에 더해서 만약 같은 이름의 attribute가 있다면 NATURAL JOIN을 진행하는 것을 명시적으로 <code class="language-plaintext highlighter-rouge">NATURAL LEFT OUTER JOIN</code> 이렇게 나타낼 수도 있습니다.</p>
+
+<p>그리고 이미 JOIN된 table을 활용해서 JOIN을 하는 것이 가능하기 때문에 N개의 Table을 JOIN할 수도 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q2A</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Dnum</span><span class="p">,</span> <span class="n">Lname</span><span class="p">,</span> <span class="n">Address</span><span class="p">,</span> <span class="n">Bdate</span>
+<span class="k">FROM</span>        <span class="p">((</span><span class="n">PROJECT</span> <span class="k">JOIN</span> <span class="n">DEPARTMENT</span> <span class="k">ON</span> <span class="n">Dnum</span> <span class="o">=</span> <span class="n">Dnumber</span><span class="p">)</span> 
+            <span class="k">JOIN</span> <span class="n">EMPLOYEE</span> <span class="k">ON</span> <span class="n">Mgr_ssn</span> <span class="o">=</span> <span class="n">Ssn</span><span class="p">)</span> 
+<span class="k">WHERE</span>       <span class="n">Plocation</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Stafford</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="717-aggregate-functions-in-sql">7.1.7 Aggregate Functions in SQL</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Aggregate Functions</code>은 여러 개의 tuple들서 요약된 정보를 하나의 tuple로 정리하기 위해서 사용됩니다. <code class="language-plaintext highlighter-rouge">Grouping</code>은 요약을 진행하기 전에 작은 그룹을 만들기 위해서 사용됩니다. <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>의 종류로는 <code class="language-plaintext highlighter-rouge">COUNT</code>, <code class="language-plaintext highlighter-rouge">SUM</code>, <code class="language-plaintext highlighter-rouge">MAX</code>, <code class="language-plaintext highlighter-rouge">MIN</code>, <code class="language-plaintext highlighter-rouge">AVG</code>가 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">COUNT</code> 함수는 쿼리에서 명시된 tuple과 value의 갯수를 return 합니다. <code class="language-plaintext highlighter-rouge">SUM</code>, <code class="language-plaintext highlighter-rouge">MAX</code>, <code class="language-plaintext highlighter-rouge">MIN</code>, <code class="language-plaintext highlighter-rouge">AVG</code>는 set과 multiset 모두에 적용될 수 있고 각자 이름에 맞는 return 값을 가집니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Q19</span><span class="p">:</span> <span class="err">가장</span> <span class="err">기본적인</span> <span class="err">형태</span>
+<span class="k">SELECT</span> <span class="k">SUM</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">MAX</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">MIN</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">AVG</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> 
+<span class="k">FROM</span> <span class="n">EMPLOYEE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Q19A</span><span class="p">:</span>  <span class="k">alias</span><span class="err">를</span> <span class="err">사용하는</span> <span class="err">형태</span>
+<span class="k">SELECT</span>  <span class="k">SUM</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Total_Sal</span><span class="p">,</span> <span class="k">MAX</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Highest_Sal</span><span class="p">,</span> 
+        <span class="k">MIN</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Lowest_Sal</span><span class="p">,</span> <span class="k">AVG</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Average_Sal</span>
+<span class="k">FROM</span> <span class="n">EMPLOYEE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">20</span><span class="p">.</span> <span class="n">Find</span> <span class="n">the</span> <span class="k">sum</span> <span class="k">of</span> <span class="n">the</span> <span class="n">salaries</span> <span class="k">of</span> <span class="k">all</span> <span class="n">employees</span> <span class="k">of</span> <span class="n">the</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span> <span class="n">department</span><span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">salary</span><span class="p">,</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">salary</span><span class="p">,</span> <span class="k">and</span> <span class="n">the</span> <span class="n">average</span> 
+<span class="n">salary</span> <span class="k">in</span> <span class="n">this</span> <span class="n">department</span><span class="p">.</span>  
+
+<span class="n">Q20</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="k">SUM</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">MAX</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">MIN</span> <span class="p">(</span><span class="n">Salary</span><span class="p">),</span> <span class="k">AVG</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> 
+<span class="k">FROM</span>        <span class="p">(</span><span class="n">EMPLOYEE</span> <span class="k">JOIN</span> <span class="n">DEPARTMENT</span> <span class="k">ON</span> <span class="n">Dno</span> <span class="o">=</span> <span class="n">Dnumber</span><span class="p">)</span> 
+<span class="k">WHERE</span>       <span class="n">Dname</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Queries</span> <span class="mi">21</span> <span class="k">and</span> <span class="mi">22</span><span class="p">.</span> <span class="n">Retrieve</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="k">in</span> <span class="n">the</span> <span class="n">company</span> <span class="p">(</span><span class="n">Q21</span><span class="p">)</span> <span class="k">and</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="k">in</span> <span class="n">the</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span> <span class="n">department</span> <span class="p">(</span><span class="n">Q22</span><span class="p">).</span>
+<span class="n">Q21</span><span class="p">:</span> 
+
+<span class="k">SELECT</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span> <span class="n">EMPLOYEE</span><span class="p">;</span>
+
+<span class="n">Q22</span><span class="p">:</span> 
+
+<span class="k">SELECT</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">EMPLOYEE</span><span class="p">,</span> <span class="n">DEPARTMENT</span>
+<span class="k">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="n">DNUMBER</span> <span class="k">AND</span> <span class="n">DNAME</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Research</span><span class="err">’</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>COUNT(*)의 *는 table의 rows(tuples)를 나타내며, 따라서 COUNT(*)은 쿼리 결과에 들어있는 tuples의 갯수를 return 합니다. 또는 아래와 같은 방법으로 column에서 갯수를 세는 연산도 가능합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">23</span><span class="p">.</span> <span class="k">Count</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="k">distinct</span> <span class="n">salary</span> <span class="k">values</span> <span class="k">in</span> <span class="n">the</span> <span class="k">database</span><span class="p">.</span>
+<span class="n">Q23</span><span class="p">:</span> 
+
+<span class="k">SELECT</span> <span class="k">COUNT</span> <span class="p">(</span><span class="k">DISTINCT</span> <span class="n">Salary</span><span class="p">)</span> 
+<span class="k">FROM</span> <span class="n">EMPLOYEE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>만약 DISTINCT 키워드를 사용하지 않으면 중복된 값이 포함되서 count가 됩니다. 주의할 점은 만약 column에서 NULL의 값을 가지는 것은 count하지 않습니다. 일반적으로 <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>에서는 NULL 값이 버려지고 남은 값에 대해서 연산이 진행됩니다. 따라서 <code class="language-plaintext highlighter-rouge">COUNT(SALARY)</code>와 <code class="language-plaintext highlighter-rouge">AVG(SALARY)</code>를 진행할 때 count는 4개의 tuple에 대해서, MAX는 NULL 값이 하나 포함되어 있어서 3개의 AVG를 출력할 수도 있습니다. 이 때 몇 개의 값을 기반으로 <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>를 진행했는지에 대해서는 명시적으로 출력되지 않습니다. 하지만 <code class="language-plaintext highlighter-rouge">COUNT()</code>는 그 값이 NULL이어도 tuple의 갯수를 세는데는 문제가 없기 때문에 NULL을 버리지 않고 count 합니다. 만약 모든 값이 NULL일 때, MAX MIN AVG는 NULL을 return하고 COUNT는 empty collection of values에 대해서 연산을 해야할 때는 <code class="language-plaintext highlighter-rouge">0</code>을 return 합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q5</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Lname</span><span class="p">,</span> <span class="n">Fname</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>       <span class="p">(</span> <span class="k">SELECT</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+            <span class="k">FROM</span>  <span class="n">DEPENDENT</span> 
+            <span class="k">WHERE</span> <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Essn</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="o">=</span>  <span class="mi">2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="718-grouping-the-group-by-and-having-clauses">7.1.8 Grouping: The GROUP BY and HAVING Clauses</h3>
+
+<p><code class="language-plaintext highlighter-rouge">그룹</code>은 서로 겹치지 않는 수분 집합이라고 생각하면 됩니다. <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>를 진행할 때 특정 그룹에 대해서만 진행하고 싶어서 그룹을 나눕니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">24</span><span class="p">.</span> <span class="k">For</span> <span class="k">each</span> <span class="n">department</span><span class="p">,</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="n">department</span> <span class="n">number</span><span class="p">,</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="k">in</span> <span class="n">the</span> <span class="n">department</span><span class="p">,</span> <span class="k">and</span> <span class="n">their</span> <span class="n">average</span> <span class="n">salary</span><span class="p">.</span>
+<span class="n">Q24</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>       <span class="n">Dno</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">AVG</span> <span class="p">(</span><span class="n">Salary</span><span class="p">)</span> 
+<span class="k">FROM</span>         <span class="n">EMPLOYEE</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>     <span class="n">Dno</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>위의 쿼리는 EMPLOYEE 전체에 대해서 <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>를 진행하지 않고 Dno에 따라서 여러 번 진행한 후에 이를 결과로 그려줍니다. 따라서 여러 번 <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>된 결과들이 어떤 기준에 따라서 여러번 수행된 것인지 명시하기 위해서 <code class="language-plaintext highlighter-rouge">GROUP BY</code>에 field로 적은 attribute는 반드시 <code class="language-plaintext highlighter-rouge">SELECT</code>에 포함되어야 합니다.</p>
+
+<p>만약에 <code class="language-plaintext highlighter-rouge">GROUP BY</code> 필드의 값이 NULL인 경우, 이 NULL들은 각각 독립적인 값으로 여겨져서 NULL을 포함하는 각 tuple에 대해서 결과가 출력됩니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">25</span><span class="p">.</span> <span class="k">For</span> <span class="k">each</span> <span class="n">project</span><span class="p">,</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="n">project</span> <span class="n">number</span><span class="p">,</span> <span class="n">the</span> <span class="n">project</span> <span class="n">name</span><span class="p">,</span> <span class="k">and</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="n">who</span> <span class="k">work</span> <span class="k">on</span> <span class="n">that</span> <span class="n">project</span><span class="p">.</span>
+<span class="n">Q25</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>      <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>        <span class="n">PROJECT</span><span class="p">,</span> <span class="n">WORKS_ON</span> 
+<span class="k">WHERE</span>       <span class="n">Pnumber</span> <span class="o">=</span> <span class="n">Pno</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>    <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>//TODO
+확인 필요한 부분!! : GROUP BY의 field를 SELECT에 안적을 수 없듯이, 반대로 SELECT에 있는 field는 반드시 GROUP BY에 들어가야한다? 안그래도 될 것같은데 뭐가 맞지?</p>
+
+<p>만약 여러 그룹으로 나눈 뒤 특정한 조건에 만족하는 그룹에 대해서만 <code class="language-plaintext highlighter-rouge">Aggregate Functions</code>를 적용하고 싶은데 이 떈 <code class="language-plaintext highlighter-rouge">HAVINGS</code>를 사용합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">26</span><span class="p">.</span> <span class="k">For</span> <span class="k">each</span> <span class="n">project</span> <span class="k">on</span> <span class="n">which</span> <span class="k">more</span> <span class="k">than</span> <span class="n">two</span> <span class="n">employees</span> <span class="k">work</span><span class="p">,</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="n">project</span> <span class="n">number</span><span class="p">,</span> <span class="n">the</span> <span class="n">project</span> <span class="n">name</span><span class="p">,</span> <span class="k">and</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="n">who</span> <span class="k">work</span> <span class="k">on</span> <span class="n">the</span> <span class="n">project</span><span class="p">.</span>
+<span class="n">Q26</span><span class="p">:</span> 
+
+<span class="k">SELECT</span>      <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>        <span class="n">PROJECT</span><span class="p">,</span> <span class="n">WORKS_ON</span> 
+<span class="k">WHERE</span>       <span class="n">Pnumber</span> <span class="o">=</span> <span class="n">Pno</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>    <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span> 
+<span class="k">HAVING</span>      <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Query</span> <span class="mi">27</span><span class="p">.</span> <span class="k">For</span> <span class="k">each</span> <span class="n">project</span><span class="p">,</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="n">project</span> <span class="n">number</span><span class="p">,</span> <span class="n">the</span> <span class="n">project</span> <span class="n">name</span><span class="p">,</span> <span class="k">and</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="k">from</span> <span class="n">department</span> <span class="mi">5</span> <span class="n">who</span> <span class="k">work</span> <span class="k">on</span> <span class="n">the</span> <span class="n">project</span><span class="p">.</span>
+<span class="n">Q27</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span>        <span class="n">PROJECT</span><span class="p">,</span> <span class="n">WORKS_ON</span><span class="p">,</span> <span class="n">EMPLOYEE</span>
+<span class="k">WHERE</span>       <span class="n">Pnumber</span> <span class="o">=</span> <span class="n">Pno</span> <span class="k">AND</span> <span class="n">Ssn</span> <span class="o">=</span> <span class="n">Essn</span> <span class="k">AND</span> <span class="n">Dno</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>    <span class="n">Pnumber</span><span class="p">,</span> <span class="n">Pname</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>주의할 사항!!</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">query</span>  <span class="n">we</span> <span class="n">want</span> <span class="k">to</span> <span class="k">count</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="k">of</span> <span class="n">employees</span> <span class="n">whose</span> <span class="n">salaries</span> <span class="n">exceed</span> <span class="err">$</span><span class="mi">40</span><span class="p">,</span><span class="mi">000</span> <span class="k">in</span> <span class="k">each</span> <span class="n">department</span><span class="p">,</span> <span class="n">but</span> <span class="k">only</span> <span class="k">for</span> <span class="n">departments</span> <span class="k">where</span> <span class="k">more</span> <span class="k">than</span> <span class="n">five</span> <span class="n">employees</span> <span class="k">work</span><span class="p">.</span> 
+<span class="o">//</span><span class="err">잘못된</span> <span class="err">쿼리</span>
+<span class="k">SELECT</span>      <span class="n">Dno</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>       <span class="n">Salary</span><span class="o">&gt;</span><span class="mi">40000</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>    <span class="n">Dno</span>
+<span class="k">HAVING</span>      <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>WHERE 절이 HAVING 절보다 먼저 수행되기 때문에 Salary가 4만보다 높은 사람이 추려졌을 때의 결과가 5보다 작아서 잘못된 결과를 가져올 수 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="n">Query</span> <span class="mi">28</span><span class="p">.</span> <span class="k">For</span> <span class="k">each</span> <span class="n">department</span> <span class="n">that</span> <span class="n">has</span> <span class="k">more</span> <span class="k">than</span> <span class="n">five</span> <span class="n">employees</span><span class="p">,</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="n">department</span> <span class="n">number</span> <span class="k">and</span> <span class="n">the</span> <span class="n">number</span> <span class="k">of</span> <span class="n">its</span> <span class="n">employees</span> <span class="n">who</span> <span class="k">are</span> <span class="n">making</span> <span class="k">more</span> <span class="k">than</span> <span class="err">$</span><span class="mi">40</span><span class="p">,</span><span class="mi">000</span><span class="p">.</span>
+<span class="n">Q28</span><span class="p">:</span> 
+<span class="k">SELECT</span>      <span class="n">Dno</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>        <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>       <span class="n">Salary</span><span class="o">&gt;</span><span class="mi">40000</span> <span class="k">AND</span> 
+            <span class="n">Dno</span> <span class="k">IN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">Dno</span> 
+                     <span class="k">FROM</span> <span class="n">EMPLOYEE</span>
+                     <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Dno</span>
+                     <span class="k">HAVING</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Dno</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="719-other-sql-constructs-with-and-case">7.1.9 Other SQL Constructs: WITH and CASE</h3>
+
+<p><code class="language-plaintext highlighter-rouge">WITH</code> 키워드는 반복되는 코드를 함수로 작성하는 것과 같은 의미와 효과를 가진다고 생각하면 됩니다. 그리고 <code class="language-plaintext highlighter-rouge">WITH</code> 키워드는 ;를 만나서 해당 쿼리가 끝나면 사라지는 특성을 가지고 있습니다. 그리고 <code class="language-plaintext highlighter-rouge">CASE</code>는 if else의 기능을 제공하는 것으로 생각할 수 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q28</span><span class="err">′</span><span class="p">:</span> 
+<span class="k">WITH</span>  <span class="n">BIGDEPTS</span> <span class="p">(</span><span class="n">Dno</span><span class="p">)</span> <span class="k">AS</span> 
+            <span class="p">(</span> <span class="k">SELECT</span>  <span class="n">Dno</span> 
+              <span class="k">FROM</span>   <span class="n">EMPLOYEE</span> 
+              <span class="k">GROUP</span> <span class="k">BY</span>   <span class="n">Dno</span> 
+              <span class="k">HAVING</span>   <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> 
+<span class="k">SELECT</span>  <span class="n">Dno</span><span class="p">,</span> <span class="k">COUNT</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>   <span class="n">EMPLOYEE</span> 
+<span class="k">WHERE</span>  <span class="n">Salary</span><span class="o">&gt;</span><span class="mi">40000</span> <span class="k">AND</span> <span class="n">Dno</span> <span class="k">IN</span> <span class="n">BIGDEPTS</span> 
+<span class="k">GROUP</span> <span class="k">BY</span>  <span class="n">Dno</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">U6</span><span class="err">′</span><span class="p">:</span> 
+<span class="k">UPDATE</span> <span class="n">EMPLOYEE</span>
+<span class="k">SET</span> <span class="n">Salary</span>  <span class="o">=</span> 
+<span class="k">CASE</span>    <span class="k">WHEN</span> <span class="n">Dno</span> <span class="o">=</span> <span class="mi">5</span> <span class="k">THEN</span> <span class="n">Salary</span> <span class="o">+</span> <span class="mi">2000</span> 
+        <span class="k">WHEN</span> <span class="n">Dno</span> <span class="o">=</span> <span class="mi">4</span> <span class="k">THEN</span> <span class="n">Salary</span> <span class="o">+</span> <span class="mi">1500</span> 
+        <span class="k">WHEN</span> <span class="n">Dno</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="n">Salary</span> <span class="o">+</span> <span class="mi">3000</span> 
+        <span class="k">ELSE</span> <span class="n">Salary</span> <span class="o">+</span> <span class="mi">0</span> <span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="7110-recursive-queries-in-sql">7.1.10 Recursive Queries in SQL</h3>
+
+<p>recursive SQL이 필요하면 교재를 천천히 읽어봅니다. 이런 것이 있다고만 알고 넘어가기로 합니다.</p>
+
+<ol>
+  <li>초기 조건 : UNION 이전의 SELECT FROM 문</li>
+  <li>나중 연산 : SELECT FROM WHERE 조건</li>
+  <li>다음 loop 에서는 초기 조건 = 초기 조건 UNION 나중 연산</li>
+  <li>적절한 상황까지 계속 recursive</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Q29</span><span class="p">:</span>   
+<span class="k">WITH</span> <span class="k">RECURSIVE</span> <span class="n">SUP_EMP</span> <span class="p">(</span><span class="n">SupSsn</span><span class="p">,</span> <span class="n">EmpSsn</span><span class="p">)</span> <span class="k">AS</span> 
+  <span class="p">(</span> <span class="k">SELECT</span> <span class="n">SupervisorSsn</span><span class="p">,</span> <span class="n">Ssn</span> 
+    <span class="k">FROM</span> <span class="n">EMPLOYEE</span> 
+    <span class="k">UNION</span> 
+    <span class="k">SELECT</span> <span class="n">E</span><span class="p">.</span><span class="n">Ssn</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">SupSsn</span> 
+    <span class="k">FROM</span> <span class="n">EMPLOYEE</span> <span class="k">AS</span> <span class="n">E</span><span class="p">,</span> <span class="n">SUP_EMP</span> <span class="k">AS</span> <span class="n">S</span> 
+    <span class="k">WHERE</span> <span class="n">E</span><span class="p">.</span><span class="n">SupervisorSsn</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">EmpSsn</span><span class="p">)</span> 
+  <span class="k">SELECT</span><span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">SUP_EMP</span><span class="p">;</span>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#database" class="page__taxonomy-item" rel="tag">Database</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-02T00:00:00+09:00">October 2, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Chapter+7.1%EC%A0%88++%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-6%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-6%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-6%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/database/Fundatmental-Database-5/" class="pagination--pager" title="[DB System] 5장
+">Previous</a>
+    
+    
+      <a href="/database/Fundatmental-Database-7/" class="pagination--pager" title="[DB] Chapter 7.2절 ~ 7.4절
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

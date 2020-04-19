@@ -1,0 +1,777 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[PS][완전탐색][N자리 K진수] Chapter 0 - NiklasJang’s Blog</title>
+<meta name="description" content="N자리 K진수 개념 이해하기 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[PS][완전탐색][N자리 K진수] Chapter 0">
+<meta property="og:url" content="http://localhost:4000/ps/back-tracking-n-digit-k-decimal-0/">
+
+
+  <meta property="og:description" content="N자리 K진수 개념 이해하기 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-03-22T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ps/back-tracking-n-digit-k-decimal-0/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[PS][완전탐색][N자리 K진수] Chapter 0">
+    <meta itemprop="description" content="N자리 K진수 개념 이해하기">
+    <meta itemprop="datePublished" content="2020-03-22T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[PS][완전탐색][N자리 K진수] Chapter 0
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#백트래킹--개념">백트래킹 : 개념</a></li>
+  <li><a href="#n자리-k진수--개념">N자리 K진수 : 개념</a></li>
+  <li><a href="#n자리-k진수--코드">N자리 K진수 : 코드</a></li>
+  <li><a href="#n자리-k진수--문제">N자리 K진수 : 문제</a>
+    <ul>
+      <li><a href="#n과-m-3">N과 M (3)</a></li>
+      <li><a href="#n과-m-1">N과 M (1)</a></li>
+      <li><a href="#n과-m-2">N과 M (2)</a></li>
+      <li><a href="#n과-m-4">N과 M (4)</a></li>
+      <li><a href="#n과-m-7">N과 M (7)</a></li>
+      <li><a href="#n과-m-5">N과 M (5)</a></li>
+      <li><a href="#n과-m-6">N과 M (6)</a></li>
+      <li><a href="#n과-m-8">N과 M (8)</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>완전탐색의 첫 번째 알고리즘 백트래킹입니다. 백트래킹의 첫 번째 유형인 N자리 K진수에 대해서 학습합니다.</p>
+<hr />
+
+<h2 id="백트래킹--개념">백트래킹 : 개념</h2>
+
+<p>백트래킹은 완전탐색의 일부입니다. 정답이 될 수 있는 모든 가능성을 살펴보는데, 정답이 될 수 없는 경우가 나오면 더이상 진행하지 않습니다. 이때 처음으로 되돌아가지 않고 한 step만 뒤로가서 다시 모든 경우를 살펴보는 방법을 의미합니다.</p>
+
+<h2 id="n자리-k진수--개념">N자리 K진수 : 개념</h2>
+
+<p>길이가 N인 배열에 대해, 각 칸을 0~k-1로 채우는 모든 경우를 순회하는 경우를 의미합니다.</p>
+
+<p>Ex) 3자리  4진수</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>000
+001
+002
+003
+010
+011
+012
+013
+...
+230
+231
+232
+233
+330
+331
+332
+333
+</code></pre></div></div>
+
+<p>각 자리수에 대해서 0부터 k-1까지의 숫자라 순환되고 변경되는 자리수는 일의 자리 -&gt; 십의 자리 -&gt; 백의 자리 순서대로 진행됩니다. 코드를 작성할 때에는 재귀형태로 구현할 것이기 때문에 “백의 자리 0부터 k-1까지 순회한다. 이때 백의 자리가 저장될 때마다 십의 자리를 0부터 k-1까지 순회한다. 이때 십의 자리가 저장될 때마다 일의 자리를 0부터 k-1까지 순회한다.”고 할 수 있습니다.</p>
+
+<h2 id="n자리-k진수--코드">N자리 K진수 : 코드</h2>
+
+<p>이를 코드로 구현하면 아래와 같습니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*기본적인 N자리 K진수*/</span>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//N:배열의 길이 , K: 진수</span>
+<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">//숫자가 저장될 배열</span>
+
+<span class="cm">/*depth번째 index의 배열을 0부터 k-1까지 채운다. 0부터 n-1자리까지 모두 채워졌으면 출력한다.*/</span>
+<span class="kt">void</span> <span class="nf">recur</span><span class="p">(</span><span class="kt">int</span> <span class="n">depth</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//0부터 n-1자리까지 모두 채워진 경우</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">depth</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//각 칸을 0부터 k-1까지 저장한다. </span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">depth</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">recur</span><span class="p">(</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//빠른 표준입력</span>
+  <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="s">"false"</span><span class="p">);</span>
+  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+  <span class="c1">//배열의 0번쨰 index부터 채우기 시작해야한다.</span>
+  <span class="n">recur</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 N자리 K진수의 기본 코드는 통으로 외우는 것이 좋습니다. if 조건문을 사용해서 recur()이 끝나야하는 조건을 설정해줍니다. recur()을 호출하는 부분이 for문에 있기 때문에 if 조건문이 참이 되어 return;이 호출되었을 때 for문이 다시 실행됩니다.</p>
+
+<p>앞서 언급한 3자리 4진수의 경우</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>000
+001
+002
+003
+010
+011
+012
+013
+</code></pre></div></div>
+
+<p>003 다음으로 010이 출력되는 과정을 생각해보겠습니다. 003을 출력한 것은 00이후에 2번 index에 0,1,2,3을 순서대로 채워넣었기 때문입니다. 003이 출력되고 return;이 호출되어 recur()이 종료합니다. 다음으로는 십의 자리에 1을 채우고 일의 자리에 0,1,2,3을 순서대로 채워넣습니다. 01까지 채우고 2번 index에 0을 넣을 때 이미 003에서의 3이 들어있을 것입니다. 이를 0,1,2,3 순서대로 덮어쓰면서 010,011,012,013이 출력됩니다.</p>
+
+<h2 id="n자리-k진수--문제">N자리 K진수 : 문제</h2>
+
+<p>N자리 K진수를 연습하는 대표적인 문제로는 <a href="https://www.acmicpc.net/workbook/view/2052">N과M</a>이 있습니다. 1~12 중에서 1~8까지의 문제가 N자리 K진수를 연습하는 부분입니다. 설명과 이해의 편의를 위해서 3 - 1 - 2 - 4 - 7 - 5 - 6 - 8의 순서로 문제를 풀이하겠습니다.</p>
+
+<h3 id="n과-m-3">N과 M (3)</h3>
+
+<p>3번 문제는 가장 기본적인 N자리 K진수입니다. 문제의 조건을 정리하면 아래와 같습니다.</p>
+
+<ol>
+  <li>N자리 K진수</li>
+  <li>같은 수를 여러 번 골라도 된다.</li>
+  <li>중복되는 수열은 한 번만 출력한다.</li>
+  <li>각 수열은 공백으로 구분해서 출력한다.</li>
+  <li>사전 순으로 증가하는 순서로 출력한다.</li>
+</ol>
+
+<p>3번 문제의 코드는 <a href="https://gist.github.com/niklasjang/7a05fb4ff5be248ebd145bd8f5c4bc90">여기</a>에 있습니다.</p>
+
+<h3 id="n과-m-1">N과 M (1)</h3>
+
+<p>1번 문제는 3번 문제와 한 가지 조건만 달라집니다.</p>
+
+<ol>
+  <li>N자리 K진수</li>
+  <li><del>같은 수를 여러 번 골라도 된다.</del> -&gt; 같은 수를 여러 번 고르면 안된다.</li>
+  <li>중복되는 수열은 한 번만 출력한다.</li>
+  <li>각 수열은 공백으로 구분해서 출력한다.</li>
+  <li>사전 순으로 증가하는 순서로 출력한다.</li>
+</ol>
+
+<p>같은 수를 여러 번 고르지 않게 하기 위해서는 bool 타입의 visited 배열을 사용하는 것이 가장 편리합니다.</p>
+
+<p>1번 문제의 코드는 <a href="https://gist.github.com/niklasjang/fdf53e26b64594cca15b878370916ee9">여기</a>에 있습니다.</p>
+
+<p>if(!visited[i])를 사용하는 것은 조건문을 통해서 실행되면 안되는 경우를 먼저 처리하기 위해서입니다. 그리고 recur(depth+1)를 호출한 뒤에 visited[i] = false;로 바꿔주는 부분을 주의해서 기억합니다.</p>
+
+<h3 id="n과-m-2">N과 M (2)</h3>
+
+<p>2번 문제는 3번 문제와 한 가지 조건만 달라집니다.</p>
+
+<ol>
+  <li>N자리 K진수</li>
+  <li><del>같은 수를 여러 번 골라도 된다.</del> -&gt; 고른 수열은 오름차순이어야 한다.</li>
+  <li>중복되는 수열은 한 번만 출력한다.</li>
+  <li>각 수열은 공백으로 구분해서 출력한다.</li>
+  <li>사전 순으로 증가하는 순서로 출력한다.</li>
+</ol>
+
+<p>2번 문제의 코드는 <a href="https://gist.github.com/niklasjang/50013629c03ea86cbd070e135f2a379a">여기</a>에 있습니다.</p>
+
+<p>위 방법은 1번째 이상의 index에 대해서 조건문을 통해서 문제의 조건을 만족하는 방법입니다. 이전 인덱스보다 큰 값만 배열에 저장될 수 있도록 하는 것입니다.</p>
+
+<p>2번 문제에서 recur()의 param을 2개로 늘려서 푸는 방법은 <a href="https://gist.github.com/niklasjang/601c51561f4fe1753767c5ee422bd321">여기</a>에 있습니다.</p>
+
+<p>위 방법은 start를 인자로 넘겨서 각 자리의 숫자라 start~k-1까지 저장될 수 있도록 합니다. 이 문제를 풀 때는 먼저 설명한 방법이 직관적일 수 있으나 문제 풀이의 방법 넓히는 것에 목적이 있습니다.</p>
+
+<h3 id="n과-m-4">N과 M (4)</h3>
+
+<p>2번 문제는 3번 문제와 한 가지 조건만 달라집니다.</p>
+
+<ol>
+  <li>N자리 K진수</li>
+  <li><del>같은 수를 여러 번 골라도 된다.</del> -&gt; 고른 수열은 비내림차순이어야 한다. 길이가 K인 수열 A가 A1 ≤ A2 ≤ … ≤ AK-1 ≤ AK를 만족하면, 비내림차순이라고 한다.</li>
+  <li>중복되는 수열은 한 번만 출력한다.</li>
+  <li>각 수열은 공백으로 구분해서 출력한다.</li>
+  <li>사전 순으로 증가하는 순서로 출력한다.</li>
+</ol>
+
+<p>이 방법은 2번 문제의 코드에서 한 가지만 변형하면 풀 수 있습니다. <del>recur(depth+1, i+1);</del> -&gt; recur(depth+1, i);</p>
+
+<p>이 문제의 코드는 <a href="https://gist.github.com/niklasjang/2e1b4c3e66d4828f4f2e2af7a336098e">여기</a>에 있습니다.</p>
+
+<h3 id="n과-m-7">N과 M (7)</h3>
+
+<p>7번 문제는 3번 문제와 한 가지 조건만 달라집니다.</p>
+
+<ol>
+  <li>N자리 K진수</li>
+  <li>같은 수를 여러 번 골라도 된다. + 단, K진수가 아닌 주어지는 K개의 수만 사용할 수 있다.</li>
+  <li>중복되는 수열은 한 번만 출력한다.</li>
+  <li>각 수열은 공백으로 구분해서 출력한다.</li>
+  <li>사전 순으로 증가하는 순서로 출력한다.</li>
+</ol>
+
+<p>입력으로 주어지는 값들을 배열에 저장하고 sort()를 사용해서 오름차순으로 정렬한 뒤 사용하면 됩니다.</p>
+
+<p>이 문제의 코드는 <a href="https://gist.github.com/niklasjang/5bcc97fe2a1ba1b41dd1f14c2e4ba1ba">여기</a>에 있습니다.</p>
+
+<h3 id="n과-m-5">N과 M (5)</h3>
+<h3 id="n과-m-6">N과 M (6)</h3>
+<h3 id="n과-m-8">N과 M (8)</h3>
+
+<p>5,6,8번 문제도 7번 문제와 같이 앞서 풀이한 문제를 변형하여 N자리 K진수의 방법으로 해결할 수 있습니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#back-tracking" class="page__taxonomy-item" rel="tag">back-tracking</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ps" class="page__taxonomy-item" rel="tag">ps</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ps" class="page__taxonomy-item" rel="tag">PS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-03-22T00:00:00+09:00">March 22, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPS%5D%5B%EC%99%84%EC%A0%84%ED%83%90%EC%83%89%5D%5BN%EC%9E%90%EB%A6%AC+K%EC%A7%84%EC%88%98%5D+Chapter+0%20http%3A%2F%2Flocalhost%3A4000%2Fps%2Fback-tracking-n-digit-k-decimal-0%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fps%2Fback-tracking-n-digit-k-decimal-0%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fps%2Fback-tracking-n-digit-k-decimal-0%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/guide/how-to-preview-post/" class="pagination--pager" title="Github Jekyll Post Localhost에서 확인하기
+">Previous</a>
+    
+    
+      <a href="/ps/back-tracking-n-digit-k-decimal-2/" class="pagination--pager" title="[PS][완전탐색][N자리 K진수] Chapter 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

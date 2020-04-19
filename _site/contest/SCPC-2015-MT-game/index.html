@@ -1,0 +1,717 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[SCPC][2015][예선] 1번 MT 문제 - NiklasJang’s Blog</title>
+<meta name="description" content="45점 풀이 및 코드 + 150점 만점 풀이 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[SCPC][2015][예선] 1번 MT 문제">
+<meta property="og:url" content="http://localhost:4000/contest/SCPC-2015-MT-game/">
+
+
+  <meta property="og:description" content="45점 풀이 및 코드 + 150점 만점 풀이 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-14T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/contest/SCPC-2015-MT-game/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[SCPC][2015][예선] 1번 MT 문제">
+    <meta itemprop="description" content="45점 풀이 및 코드 + 150점 만점 풀이">
+    <meta itemprop="datePublished" content="2019-06-14T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[SCPC][2015][예선] 1번 MT 문제
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="간략히-정리한-문제">간략히 정리한 문제</h2>
+
+<p><a href="https://www.codeground.org">원본 문제 링크</a></p>
+
+<p>A, B 두 과 사람들이 다음과 같은 게임을 한다. A과의 학생은 a명, B과의 학생은 b명이다.
+ N, K가 주어졌을 때 다음과 같은 게임을 한다. 1부터 시작해서 모든 학생은 1~k 개의 연속한 숫자를 부를 수 있다. A과가 먼저 시작하고 A과의 모든 학생이
+자신이 정한 숫자(1~k)개의 수를 부른 후 B과의 학생이 같은 방법으로 진행한다. N을 부르는 학생이 속한 과가 진다.</p>
+
+<ul>
+  <li>N, K가 주어졌을 때 어느 과가 이기는지 구하시오. $1≤b≤a≤10,000$ , $2≤N≤1,000,000$,   $1≤K≤1,000$ 이다.</li>
+  <li>전체 수행 시간은 3초 이내. (Java 4초 이내)</li>
+</ul>
+
+<h2 id="45점-풀이">45점 풀이</h2>
+
+<p>31 게임의 반드시 이기는 알고리즘을 변형한 풀이입니다. A과와 B과가 진행하는 게임을 a과 대표 1명과 b과 대표 1명이 진행하는 게임으로 변형합니다. 그리고
+이들이 각각 부를 수 있는 수의 갯수는 A과 대표는 a~ak B과 대표는 b~bk개 입니다.</p>
+
+<p><img src="/assets/images/contest/scpc/31-game.jpg" alt="31game- 1" /></p>
+
+<p>A와 B는 숫자 3개씩을 부를 수 있습니다. A가 먼저 시작해서 반드시 이기기 위해서는 27을 B가 부르게 만들면 됩니다. B가 어떤 갯수의 숫자를 말해도, A는 숫자의 합이 4가 되도록 부를 수 있습니다. 즉, A는 B가 31을 부르게 만들기 위해서 27을 부르게하고, 27을 부르게 하기 위해서 23을 부르게 합니다. 결국 31에서 4를 계속 빼서 B가 3불러야하는 상황을 만들 수 있습니다. A는 1,2까지만 말하면 B는 그 순간 졌다고 볼 수 있습니다.</p>
+
+<p><img src="/assets/images/contest/scpc/31-game-2.jpg" alt="31game- 2" /></p>
+
+<p>왜 합이 4가 되게 만들어야하는지는 다음 그림을 보면 알 수 있습니다.</p>
+
+<p><img src="/assets/images/contest/scpc/mt-game-1.jpg" alt="MTgame-1" /></p>
+
+<p>MT 문제를 읽고 오면 위 그림을 이해할 수 있습니다. 위 그림에서의 P가 31 게임에서의 숫자 4에 해당합니다. 즉, A의 입장에서 B가 부른 숫자와 내가 부를 숫자의 갯수의 합과 일치시켜야 하는 값입니다. 하지만 이 알고리즘을 코드로 옮기면 아래와 같고 부분점수 45점만 받을 수 있습니다. 왜일까요?</p>
+
+<p>두 명이 부르는 수의 합이 7이 되도록 조절하는 것은 위 그림에서 가능했습니다. 두 번 째 경우(2)의 경우 p = 2 + 3 * 2 = 8인데, 두 명이 부르는 수의 합을 8로 조절하는 것도 가능합니다.
+또 하나의 P를 만들 수 있다는 것은 B가 밟았을 때 반드시 A가 이기는 폭탄을 하나 더 만드는 것으로 생각할 수 있습니다. 모든 P를 고려하지 않는다면, A가 이기는 조건 중에 일부만 구하는 것이므로 부분점수만 받을 수 있습니다.</p>
+
+<p>예를 들어서 a=2, b=2=1, k=3일 때 가능한 P는 5,6,7입니다.</p>
+
+<ol>
+  <li>N이 8일 때, 8%5, 8%6, 8%7, 즉 3, 2, 1 위치에도 폭탄을 놓을 수 있습니다. 이 폭탄을 B가 밟는 순간 A가 두 명이 부르는 수의 갯수를 P개로 조절해서 A가 이깁니다.</li>
+  <li>N이 9일 때, 폭탄이 4,3,2 위치에 추가됩니다. 이 중에 하나라도 B가 밟게 만들 수 있다면 A는 이길 수 있습니다.</li>
+  <li>N이 10일 때, 폭탄이 5,4,3 위치에 추가됩니다. 이 중에 하날도 B가 밟게 만들 수 있다면 A는 이길 수 있습니다.</li>
+</ol>
+
+<p>만약 A가 폭탄을 밟는 경우, B는 이에 대응하는 P로 두 명이 부르는 숫자의 갯수를 맞출 것이고, B가 이길 것입니다. 그래서 A가 자신이 설치한 폭탄을 피할 수 있는지 없는지 판단해야 합니다.
+a,b,k가 주어졌을 때 가능한 P 갯수는 최대 - 최소 = (b+ak) - (a+bk) = (a-b)(k-1)개 입니다.  주어진 N에 따라서 (a-b)(k-1)개의 폭탄의 위치를 판별하고, 이 폭탄이 재수없게 a가 움직일 수 있는 a~ak의 범위를 모두 커버한다면 A가 질 수밖에 없습니다.</p>
+
+<p>범위를 모두 커버하는지 판단하기 위해서는 a~ak의 갯수 ak-a+1과 (a-b)(k-1)를 비교해야합니다. 전자가 더 많다면 A가 갈 수 있는 경로가 더 많은 것이므로 A는 자신이 설치한 폭탄을 피할 수 있고, A가 이깁니다. 전자와 후자가 같거나 후자가 더 크면 일일이 비교해서 A의 모든 경로를 덮는지 판단해야 합니다. 이는 폭탄의 위치를 하나씩 판단해보고 마지막으로 a가 갈 수 있는 모든 길이 모두 막혔는지 훑어보면 됩니다. 즉 $O((a-b)(k-1) + (ak-a+1))$만에 할 수 있습니다.</p>
+
+<p>이정도 생각하는데 이 문제에만 10시간은 쓴 것 같습니다. 이렇게 모든 경로를 가능성을 다 판단하고(다 판단한 건지도 모르겠네요.) 코드까지 짜는 것은 불가능해 보입니다.
+그래서 똑똑하게 아래와 같이 DP로 풀어야 합니다.</p>
+
+<h2 id="dp--이인복-교수님--최백준--장환석-풀이">DP : 이인복 교수님 + 최백준 + 장환석 풀이</h2>
+
+<p><img src="/assets/images/contest/scpc/mt-game-2.jpg" alt="MTgame-2" /></p>
+
+<ol>
+  <li>$[1:a]$ : A가 반드시 불러야하는 숫자입니다. 이 범위에 N이 있다면 B WIN입니다.</li>
+  <li>$[a+1 :a+b]$ : A가 최소로 a개만 부르고 멈추면 B는 자신의 최소 갯수 b 개를 채우다가 N을 불러야합니다. A가 반드시 WIN 하는 구역입니다.</li>
+  <li>$[ak+1 : ak+b]$ : A가 최대로 ak개 부르고 멈추면 B는 자신의 최소 갯수 b 개를 채우다가 N을 불러야합니다. A가 반드시 WIN 하는 구역입니다.</li>
+  <li>$[a+1 : ak]$ : 또는 $[a+1 : ak+1]$ : A가 부르는 갯수를 조절해서 B가 반드시 다음 숫자를 부르게 만들 수 있음으로 A WIN 구역입니다.</li>
+  <li>$[i-ak-1 : i-a-1]$ : 1.~4.의 체크가 끝난 뒤에 이들을 사용해서 ? 위치에서 A가 이기는지 B가 이기는지 판단할 수 있습니다. 설명은 아래 그림 입니다.</li>
+</ol>
+
+<p><img src="/assets/images/contest/scpc/mt-game-3.jpg" alt="MTgame-3" /></p>
+
+<p>10번째에 폭탄이 있다면  $[i-ak-1 : i-a-1]$ 중 한 군데에서라도 B가 숫자 부르는 것을 멈추면 A가 9번까지 불러서, B가 10을 부르도록 유도할 수 있음을 나타내는 그림입니다. 따라서 $[i-ak-1 : i-a-1]$에서 하나라도 B가 부를 수 밖에 없는 경우(B LOSE 또는 A WIN)이 있다면 10번 째는 A가 이깁니다.</p>
+
+<p><img src="/assets/images/contest/scpc/mt-game-4.jpg" alt="MTgame-4" /></p>
+
+<h2 id="dp--시간-복잡도-onk">DP : 시간 복잡도 $O(NK)$</h2>
+
+<p>모든 dp[i]를 구하기 위해서   $[i-ak-1 : i-a-1]$ 범위의 $a(k-1)$ 개를 판단해야 하므로 $O(NAK)$가 걸립니다. 위 그림의 $O(NK(a+b))$는 어떻게 생각한건지 모르겠습니다.</p>
+
+<h2 id="dp--시간-복잡도-on">DP : 시간 복잡도 $O(N)$</h2>
+
+<p><a href="https://www.youtube.com/watch?v=RzPElBr3L5A">최백준님의 풀이</a>를 들어보면 시간복잡도를 $O(NK)$까지 줄이십니다. “1:04:08”부터 보면 이해할 수 있습니다.</p>
+
+<p>이 문제를 이해하기 위해서는 돌게임 문제를 풀어봐야한다는데.. 방학에 풀어보겠습니다.</p>
+
+<h2 id="45점-코드-">45점 코드 :</h2>
+
+<p><strong>아래의 코드는 제일 작은 P 1개의 가능성만 판단했기 때문에 45점밖에 받지 못했습니다. 모든 가능한 P를 확인하는 코드는 방학에 올리겠습니다.</strong></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">string</span> <span class="n">Answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">T</span><span class="p">,</span> <span class="n">test_case</span><span class="p">;</span>
+
+	<span class="c1">//freopen("input.txt", "r", stdin);</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">test_case</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">test_case</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">;</span> <span class="n">test_case</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>
+		<span class="c1">//scanf_s("%d %d %d", &amp;a, &amp;b, &amp;c);</span>
+		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+			<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="k">for</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">k</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">n</span> <span class="o">%=</span> <span class="n">p</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="n">n</span> <span class="o">+=</span> <span class="n">p</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">Answer</span> <span class="o">==</span> <span class="s">""</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">Answer</span> <span class="o">=</span> <span class="s">"a"</span><span class="p">;</span>
+						<span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+						<span class="k">break</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="n">Answer</span> <span class="o">+=</span> <span class="s">"a"</span><span class="p">;</span>
+						<span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+						<span class="k">break</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">Answer</span> <span class="o">==</span> <span class="s">""</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">Answer</span> <span class="o">=</span> <span class="s">"b"</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="n">Answer</span> <span class="o">+=</span> <span class="s">"b"</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Case #"</span> <span class="o">&lt;&lt;</span> <span class="n">test_case</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Answer</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">Answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="백준-풀이">백준 풀이</h2>
+
+<ul>
+  <li>참고문제 :<a href="https://www.acmicpc.net/workbook/view/81">프로돌게이머-시리즈</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#dp" class="page__taxonomy-item" rel="tag">DP</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#scpc" class="page__taxonomy-item" rel="tag">SCPC</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#contest" class="page__taxonomy-item" rel="tag">Contest</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-14T00:00:00+09:00">June 14, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSCPC%5D%5B2015%5D%5B%EC%98%88%EC%84%A0%5D+1%EB%B2%88+MT+%EB%AC%B8%EC%A0%9C%20http%3A%2F%2Flocalhost%3A4000%2Fcontest%2FSCPC-2015-MT-game%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcontest%2FSCPC-2015-MT-game%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcontest%2FSCPC-2015-MT-game%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/contest/SCPC-2016-stone-bridge/" class="pagination--pager" title="[SCPC][2016/5]징검다리 + 개구리 뛰기
+">Previous</a>
+    
+    
+      <a href="/os/LN-10-Atomic-Action/" class="pagination--pager" title="Lecture 10. Atomic Action
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

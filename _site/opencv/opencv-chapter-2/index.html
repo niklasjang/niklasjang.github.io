@@ -1,0 +1,855 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>히스토그램부터 모폴로지까지 - NiklasJang’s Blog</title>
+<meta name="description" content="오일석 - Computer Vision Chapter 2. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="히스토그램부터 모폴로지까지">
+<meta property="og:url" content="http://localhost:4000/opencv/opencv-chapter-2/">
+
+
+  <meta property="og:description" content="오일석 - Computer Vision Chapter 2. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-03T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/opencv/opencv-chapter-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="히스토그램부터 모폴로지까지">
+    <meta itemprop="description" content="오일석 - Computer Vision Chapter 2.">
+    <meta itemprop="datePublished" content="2019-06-03T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">히스토그램부터 모폴로지까지
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cgv-2019-오일석-02장-영상처리pptx">CGV-2019-오일석-02장 영상처리.pptx</a>
+    <ul>
+      <li><a href="#히스토그램">히스토그램</a>
+        <ul>
+          <li><a href="#히스토그램-계산">히스토그램 계산</a></li>
+          <li><a href="#히스토그램-용도">히스토그램 용도</a>
+            <ul>
+              <li><a href="#영상의-특성-파악">영상의 특성 파악</a></li>
+              <li><a href="#평활화를-통한-영상-품질-개선">평활화를 통한 영상 품질 개선</a></li>
+            </ul>
+          </li>
+          <li><a href="#히스토그램의-역투영와-얼굴-검출">히스토그램의 역투영와 얼굴 검출</a></li>
+        </ul>
+      </li>
+      <li><a href="#이진-영상--명암-영상을-흑과-백만-가진-영상으로-변환">이진 영상 : 명암 영상을 흑과 백만 가진 영상으로 변환</a>
+        <ul>
+          <li><a href="#오츄-알고리즘">오츄 알고리즘</a></li>
+        </ul>
+      </li>
+      <li><a href="#연결요소">연결요소</a></li>
+      <li><a href="#영상-처리의-세-가지-기본-연산">영상 처리의 세 가지 기본 연산</a>
+        <ul>
+          <li><a href="#점-연산">점 연산</a>
+            <ul>
+              <li><a href="#선형-연산">선형 연산</a></li>
+              <li><a href="#비성현-연산">비성현 연산</a></li>
+            </ul>
+          </li>
+          <li><a href="#영역-연산">영역 연산</a>
+            <ul>
+              <li><a href="#상관과-컨볼루션">상관과 컨볼루션</a></li>
+              <li><a href="#비선형-연산">비선형 연산</a></li>
+            </ul>
+          </li>
+          <li><a href="#기하-연산">기하 연산</a>
+            <ul>
+              <li><a href="#동차-좌표와-동차-행렬">동차 좌표와 동차 행렬</a></li>
+            </ul>
+          </li>
+          <li><a href="#영상에-기하-변환-적용">영상에 기하 변환 적용</a></li>
+        </ul>
+      </li>
+      <li><a href="#모폴로지">모폴로지</a>
+        <ul>
+          <li><a href="#이진-모폴로지">이진 모폴로지</a></li>
+          <li><a href="#명암-모폴로지">명암 모폴로지</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="cgv-2019-오일석-02장-영상처리pptx">CGV-2019-오일석-02장 영상처리.pptx</h1>
+
+<h2 id="히스토그램">히스토그램</h2>
+
+<h3 id="히스토그램-계산">히스토그램 계산</h3>
+
+<p>영상 f의 히스토그램은 명암값이 나타난 빈도수로, [0,L - 1] 사이의 명암값 각각이 영상에 몇 번 나타나는지 표시한다.</p>
+
+<p>알고리즘 (2-1)</p>
+
+<p>식(2.1)<br />
+식(2.2)<br />
+예제 (2-1)</p>
+
+<h3 id="히스토그램-용도">히스토그램 용도</h3>
+
+<h4 id="영상의-특성-파악">영상의 특성 파악</h4>
+
+<ul>
+  <li>어두운 영상인지, 밝은 영상인지 파악</li>
+  <li>이진화를 진행할 때 히스토그램이 어느 쪽으로 치우쳐있는지는 사용함. 두 개으 봉우리가 뚜렷하다면 이진화하기 쉽다.</li>
+</ul>
+
+<h4 id="평활화를-통한-영상-품질-개선">평활화를 통한 영상 품질 개선</h4>
+
+<p>히스토그램을 평활화하면 명암의 범위, 즉 <code class="language-plaintext highlighter-rouge">동적 범위</code>가 늘어나서 영상이 이전보다 선명해진다.</p>
+
+<p>식 (2.3)</p>
+
+<p>식 2.3의 식이 어떻게 사용되는지는 아래 예제 (2.2)의 표를 보면 알 수 있다.</p>
+
+<p>예제 2-2</p>
+
+<p>평활화를 진행한 히스토그램은 아래와 같은 모슴을 가진다.</p>
+
+<p>그림 2- 10</p>
+
+<p>그림 2- 11을 보면 전체적으로 화질이 나빠진 것으로 느껴질 수도 있다. 새가 벌래는 먹는 모습은 뚜렷해졌지만 전체적으로 
+사진의 느낌이 퇴화되었다고 느낄 수도 있다. 상황에 맞도록 평활화를 진행해야 한다.</p>
+
+<h3 id="히스토그램의-역투영와-얼굴-검출">히스토그램의 역투영와 얼굴 검출</h3>
+
+<p><code class="language-plaintext highlighter-rouge">역투영</code>은 물체의 모양은 무시하고 단순히 컬러 분포만으로 검출하는 방법으로, 히스토그램은 컬러 분포를 표현하는 방법을 사용된다.</p>
+
+<p>그림 2-12</p>
+
+<p>예를 들어 히스토그램 역투영을 적용해 사람의 얼굴을 찾을 때는, 얼굴을 검출하기 위해서 비교 기준으로 모델의 얼굴의 히스토그램을 지정하고 이와 비슷한 히스토그램을 얼굴이라고 검출한다.
+얼굴 검출에서 1차원만 사용하면 정확한 결과를 내기 어렵다. 특히 명암은 더욱 그러하다. 사람 얼굴 RGB를 HSI 공간으로 바꾼 후 I(integrity, 명암)은 무시하고 H(Hue, 색상)과 S(Saturation)채도를 사용하기로 하자.</p>
+
+<p>H와 S 두 개의 축에 대해서 각각 L단계로 나누면 $L_{2}$의 칸이 만들어진다. 축 하나를 표현하는데 1Byte를 사용하면 256<em>256칸의 너무 큰 공간을 사용한다. 또한 원래의 얼굴 영상이
+100 * 80 과 같은 작은 크기의 이미지였다면 대부분의 칸은 0을 갖는 행렬이 될 것이다. 이는 너무 낭비가 심하므로 원래 히스토그램의 4</em>4 칸을 1 칸으로 축소하는 등의 <code class="language-plaintext highlighter-rouge">양자화</code>가 필요하다.</p>
+
+<p>어떤 입력 영상이 얼굴 영상인지 분별하는 알고리즘은 다음과 같다.</p>
+
+<ol>
+  <li>입력 영상에서 특정 지점을 선택한다. 이 지점의 H와 S를 얻는다.</li>
+  <li>모델의 히스토그램에서 (H,S) 좌표의 값을 확인한다. 이 값이 크다면 입력 영상이 모델의 영상과 비슷할 가능성이 높다.</li>
+</ol>
+
+<p>알고리즘 (2-3)</p>
+
+<p>모델 히스토그램과 입력 영상의 히스토그램의 비율을 계산한다. 모델의 히스토그램에 입력영상의 히스토그램의 역수를 곱하는 것으로 생각할 수 있다. 입력 영상의 얼굴 부분만 히스토그램의
+값이 크다고 할 때, 모델 영상의 히스토그램에 입력 영상의 히스토그램의 역수를 곱하면 그 비율은 얼굴로 추정되는 부분에서 역수의 값을 곱한 것보다 더 큰 값을 갖게 될 것이다. (히스토그램의 값이 1보다 작은 0.01 ~0.08의 값을 갖는다.) 이러한 개념을 사용해서 입력 영상에서 얼굴 부분을 추출한 역투영 영상을 얻을 수 있다.</p>
+
+<h2 id="이진-영상--명암-영상을-흑과-백만-가진-영상으로-변환">이진 영상 : 명암 영상을 흑과 백만 가진 영상으로 변환</h2>
+
+<h3 id="오츄-알고리즘">오츄 알고리즘</h3>
+
+<ul>
+  <li>이진화 했을 때 흑 그룹과 백 그룹 각각이 균일할수록 좋다는 원리에 착안하여 균일성이 클수록 <code class="language-plaintext highlighter-rouge">임계값 t</code>에게 높은 점수를 준다.</li>
+  <li><code class="language-plaintext highlighter-rouge">균일성</code>은 그룹의 분산으로 측정하는 데, <strong>분산이 작을수록 균일성이 높다.</strong> 히스토그램에서 두 개의 뾰족한 봉우리가 있으면 쉽고 좋은 결과를 얻을 수 있다고 볼 수 있다.</li>
+  <li>가능한 모든 임계값 t에 대해 점수를 계산한 후 가장 좋은 t를 최종 임계값으로 취한다.</li>
+</ul>
+
+<p>오츄 알고리즘에 대한 자세한 설명은 생략한다.</p>
+
+<h2 id="연결요소">연결요소</h2>
+
+<p>화소들이 어떻게 연결되어있는지 생각해볼 때, opencv에서는 가장 간단하게 사각형으로 정의한다.  하나의 화소는 이웃한 8개의 화소를 가진다. 이를 <code class="language-plaintext highlighter-rouge">8-연결성</code>이라고 부른다.</p>
+
+<p>연결요소는 이전에 정리했던 포스팅을 참고해서 이해합니다.</p>
+
+<p><a href="https://niklasjang.github.io/boj/Flood-Fill/">flood-fill</a><br />
+<a href="https://niklasjang.github.io/boj/DFS-BFS/">connected-components</a></p>
+
+<h2 id="영상-처리의-세-가지-기본-연산">영상 처리의 세 가지 기본 연산</h2>
+
+<p>영상 처리는 화소 입장에서 새로운 값을 부여받는 것을 의미합니다. 새로운 값을 취하는 방식에 따라서 3가지로 나뉩니다.</p>
+
+<ol>
+  <li>점 연산 : 화소가 자신의 값만을 보고 새로운 값을 정한다.</li>
+  <li>영역 연산 : 화소가 이웃에 있는 몇 개의 화소들을 보고 새로운 값을 정한다.</li>
+  <li>기하 연산 : 일정한 기하하적 규칙에 따라 다른 곳에 있는 값을 취한다.</li>
+</ol>
+
+<h3 id="점-연산">점 연산</h3>
+
+<h4 id="선형-연산">선형 연산</h4>
+
+<p>식(2.11)</p>
+
+<p>위 식은 한 점의 화소값을 밝게/어룹게/반전하는 식을 나타냅니다. 이들은 모두 <code class="language-plaintext highlighter-rouge">선형 연산</code>에 속합니다.</p>
+
+<h4 id="비성현-연산">비성현 연산</h4>
+
+<p>식(2.12)</p>
+
+<p><code class="language-plaintext highlighter-rouge">감마 수정</code>이라고 부르는 비선형 연산은 [0,1] 사이의 값을 갖는 정규 영상입니다.</p>
+
+<p>그림(2.19)</p>
+
+<p>그림은 감마값에 따른 변환 함수의 모양과 연산을 적용한 결과를 보여줍니다. $/gamma$가 1보다 작으면 밝아지고, 1보다 크면 어두워지는 효과를 나타냅니다.
+만약 $/gamma$가 1이라면 원본 영상을 나타냅니다.</p>
+
+<p>앞서 공부했던 이진화의 <code class="language-plaintext highlighter-rouge">계단 함수</code> 또는 <code class="language-plaintext highlighter-rouge">누적 히스토그램</code>도 점연산에 속하는 변환함수입니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">디졸브</code>라는 효과도 있습니다. 두 영상을 겹치는 것으로 아래와 같은 식으로 효과를 나타냅니다.</p>
+
+<p>$ I = /alpha F + (1 - /alpha)B$ 단, $0&lt;= /alpha &lt;= 1$</p>
+
+<h3 id="영역-연산">영역 연산</h3>
+
+<p>그림(2.22)</p>
+
+<p>위 그림은 1차원에 관한 간단한 예제이지만, 매칭에 대한 물리적인 직관을 얻는데 아주 유용합니다. 이를 통해서 <code class="language-plaintext highlighter-rouge">상관(corelation)</code>과 <code class="language-plaintext highlighter-rouge">컨볼루션(convolution)</code>을 이해할 수 있을 것입니다.</p>
+
+<h4 id="상관과-컨볼루션">상관과 컨볼루션</h4>
+
+<p>문제를 해결하기 위해서 $u$를 $f$의 위치 0,1,2,3,~ ,9에 각각 씌워 곱의 합을 계산하고, 그 결과를 새로운 영상 $g$라고 해보겠습니다. 그림(2-22)의 상관을 보면 index 6의 위치에서 최대 출력의 값 29를 갖습니다. 바로 window와 같은 값을 가지는 index가 6이기 때문입니다. 이처럼 <strong>윈도우와 영상이 얼마나 비슷한지 측정해주는 연산을 <code class="language-plaintext highlighter-rouge">상관</code>이라고 합니다. <code class="language-plaintext highlighter-rouge">컨볼루션</code>은 <code class="language-plaintext highlighter-rouge">상관</code>과 비슷한데 윈도우를 적용하기 전에 뒤집는 것만 다릅니다.</strong> 이렇게 상관과 컨볼루션을 계산한 결과를 window를 움직이면서 그때그때 적용하면 안되고 새로운 영상에 기록해둬야합니다.</p>
+
+<p>이제 1차원 윈도우르 2차원으로 확장해보겠습니다.</p>
+
+<p>그림(2.23)</p>
+
+<p>상관과 컨볼루션이 어떻게 다른지 보기 좋은 그림입니다. 상관의 출력 영상은 윈도우가 뒤집힌 형태이고 컨볼루션은 윈도우가 그대로 출력된 꼴이 됩니다.</p>
+
+<p>식(2.14)</p>
+
+<p>식에서 상관에서는 + 컨볼루션에서는 -가 붙은 것을 볼 수 있습니다. 이는 윈도우를 뒤집는 효과를 낼 수 있습니다. 매칭하여 물체를 검출하는 목적이 있으면 뒤집어서 맞추는 컨볼루션은 합리적이지 않습니다. 따라서 상관을 적용합니다. 반면 신호처리 분야는 연산의 특성과 동작을 분석하는 <code class="language-plaintext highlighter-rouge">임펄스 반응</code>이라는 성질을 사용합니다. 이 <code class="language-plaintext highlighter-rouge">임펄스 반응</code>은 상관에서는 나타나지 않고 컨볼루션에서만 나타납니다. 즉, 상황에 맞는 쓰임이 있습니다.</p>
+
+<p>이 책에서는 연산을 적용할 때 <code class="language-plaintext highlighter-rouge">상관</code>처럼 윈도우를 그대로 사용할 것이지만 연산을 부를 때는 <code class="language-plaintext highlighter-rouge">컨볼루션</code>이라고 하겠습니다. 많은 연구에서 이런 방식으로 사용하고 있기 때문입니다.</p>
+
+<p>다양한 컨볼루션의 효과는 아래와 같습니다.</p>
+
+<p>그림(2-24)</p>
+
+<h4 id="비선형-연산">비선형 연산</h4>
+
+<p>커볼루션은 선형연산입니다. 상수를 곱하고 이들이 합을 구하는 단순한 연산이기 때문입니다.</p>
+
+<p>비선형 연산에는 메디안 필터가 있습니다.</p>
+
+<h3 id="기하-연산">기하 연산</h3>
+
+<p>화소값을 갱신할 때 멀리 떨어져 있는 화소의 값도 영향을 주는 경우가 있습니다. 이 경우가 바로 <code class="language-plaintext highlighter-rouge">기하 연산</code>이 필요한 경우입니다.</p>
+
+<h4 id="동차-좌표와-동차-행렬">동차 좌표와 동차 행렬</h4>
+
+<p>기하 변환은 <code class="language-plaintext highlighter-rouge">동차 좌표</code>와 <code class="language-plaintext highlighter-rouge">동차 행렬</code>로 표현합니다. 동차 좌표는 2차원 상의 점 $(x,y)$에 세 번째 값을 더해서 $(x,y,1)$로 변형시킨 형태입니다. 이 벡터를 원래 벡터와 구분하기 위해서 아래와 같이 표기합니다.</p>
+
+<p>식(2.15)</p>
+
+<p>동차 좌표는 세 요소에 같은 값을 곱하면 같은 좌표가 되는 특징을 가지고 있습니다. 예를 들어서 $(x,y,1)$와 $(ax,ay,a)$는 같은 동차 좌표입니다.</p>
+
+<p>동차 행렬은 아래의 표를 보고 이해합니다.</p>
+
+<p>표 (2-1) page 86</p>
+
+<p>예를 들어서 어떤 점을 y 방향으로 3, x 방향으로 2만큼 이동시키는 동차 행렬은 아래와 같습니다.</p>
+
+<p>식(2.16)</p>
+
+<p>예제(2.3)<br />
+예제(2.4)</p>
+
+<h3 id="영상에-기하-변환-적용">영상에 기하 변환 적용</h3>
+
+<p>그림(2.27)</p>
+
+<p>기하 변환을 적용하면 결과 값이 double이 되는데 이를 정수로 변환하는 과정에서 위와 같은 문제가 발생할 수 있습니다. 이와 같이 인공적으로 발생하는 시각적으로 불만족스러운 현상을
+모두 <code class="language-plaintext highlighter-rouge">에일리어싱aliasing</code>이라고 부릅니다. 이러한 현상을 해소하려는 과정을 <code class="language-plaintext highlighter-rouge">안티-에일리어싱anti-</code>라고 부릅니다.  안티-에일리러싱의 한 방법으로는 <code class="language-plaintext highlighter-rouge">양선형 보간법</code>이 있습니다.</p>
+
+<p>식(2.18)<br />
+그림(2.30)</p>
+
+<h2 id="모폴로지">모폴로지</h2>
+
+<p>모폴로지는 <code class="language-plaintext highlighter-rouge">이진 모폴로지</code>와 <code class="language-plaintext highlighter-rouge">명암 모폴로지</code>로 나뉜다.</p>
+
+<h3 id="이진-모폴로지">이진 모폴로지</h3>
+
+<p><code class="language-plaintext highlighter-rouge">모폴로지</code>는 <code class="language-plaintext highlighter-rouge">구조요소</code>를 사용하여 이진 영상에 있는 연결요소의 모양을 조작한다.</p>
+
+<p>그림 2-36</p>
+
+<p>위 그림은 다양항 구조요소를 보여줍니다. 모폴로지에서 구조 요소는 집합을 표현하는데, 값이 1인 요소만 집합에 속합니다. { (0, 0), (0,1), (-1,0), (0,-1), (1,0)} 이중에서(0,0)이 중앙값을 나타냅니다. 위 그림의 가장 오른쪽처럼 비대칭일 수도 있습니다.</p>
+
+<p>구조요소를 사용해서 4가지 연산을 진행할 수 있습니다.</p>
+
+<ol>
+  <li>팽창</li>
+  <li>침식</li>
+  <li>열기</li>
+  <li>닫기</li>
+</ol>
+
+<p>식(2.22)<br />
+식(2.23)<br />
+식(2.24)<br />
+식(2.25)</p>
+
+<p>그림(2-38)</p>
+
+<h3 id="명암-모폴로지">명암 모폴로지</h3>
+
+<p>명암 모폴로지는 구조요소의 값이 조금 달라진 형태입니다.</p>
+
+<p>그림(2-39)</p>
+
+<p>그림(2-40)</p>
+
+<p>위 그림에서 봉우리를 매우거나 깎는 역할을 수행해야 합니다.</p>
+
+<p>식(2.26)
+식(2.27)
+식(2.28)
+식(2.29)
+식(2.30)
+식(2.31)</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#opencv" class="page__taxonomy-item" rel="tag">opencv</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#opencv" class="page__taxonomy-item" rel="tag">Opencv</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-03T00:00:00+09:00">June 3, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8%EB%B6%80%ED%84%B0+%EB%AA%A8%ED%8F%B4%EB%A1%9C%EC%A7%80%EA%B9%8C%EC%A7%80%20http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/shake/shake-qualifying-problem-2/" class="pagination--pager" title="[SHAKE][2019] 예선 2번 풀이
+">Previous</a>
+    
+    
+      <a href="/opencv/opencv-chapter-3/" class="pagination--pager" title="에지 검출의 기초부터 선분검출까지
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

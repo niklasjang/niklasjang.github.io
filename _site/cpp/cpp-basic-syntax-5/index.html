@@ -1,0 +1,908 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[C++] 기본 Syntax 5  - NiklasJang’s Blog</title>
+<meta name="description" content="const, const 함수, 캡슐화 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[C++] 기본 Syntax 5">
+<meta property="og:url" content="http://localhost:4000/cpp/cpp-basic-syntax-5/">
+
+
+  <meta property="og:description" content="const, const 함수, 캡슐화 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-06T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/cpp/cpp-basic-syntax-5/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[C++] 기본 Syntax 5">
+    <meta itemprop="description" content="const, const 함수, 캡슐화">
+    <meta itemprop="datePublished" content="2019-09-06T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[C++] 기본 Syntax 5
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#const-함수">const 함수</a></li>
+  <li><a href="#const-함수-2">const 함수 2</a></li>
+  <li><a href="#const-참조자-객체의-멤버함수-호출">const 참조자 객체의 멤버함수 호출</a></li>
+  <li><a href="#encapsulation">Encapsulation</a></li>
+  <li><a href="#정보은닉과-캡슐화의-차이점">정보은닉과 캡슐화의 차이점</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="const-함수">const 함수</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Rectangle</span><span class="o">::</span><span class="n">ShowRecInfo</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"좌 상단 : "</span> <span class="o">&lt;&lt;</span> <span class="sc">'['</span> <span class="o">&lt;&lt;</span> <span class="n">upLeft</span><span class="p">.</span><span class="n">GetX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">upLeft</span><span class="p">.</span><span class="n">GetY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">']'</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"우 하단: "</span> <span class="o">&lt;&lt;</span> <span class="sc">'['</span> <span class="o">&lt;&lt;</span> <span class="n">lowRight</span><span class="p">.</span><span class="n">GetX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">lowRight</span><span class="p">.</span><span class="n">GetY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">']'</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ol>
+  <li>이 함수 내에서는 멤버변수에 저장된 값을 변경하지 않겠다. 라는 뜻이다.</li>
+  <li>매개변수도, 지역변수도 아닌, 멤버변수의 값을 변경하지 않는 것이다.</li>
+</ol>
+
+<h2 id="const-함수-2">const 함수 2</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">Rectangle</span><span class="o">::</span><span class="n">GetUpLeftXpos</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">upLeft</span><span class="p">.</span><span class="n">GetX</span><span class="p">();</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="n">Point</span><span class="o">::</span><span class="n">GetX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>다음과 같이 const함수에서 선언하는 함수의 경우 const 함수 내에서 호출되는 함수도 const 선언이 되어 있어야 한다.</li>
+  <li>int Point::GetX()와 같이 const 선언이 없다면 GetX()안에서 멤버변수의 변경이 일어날 수 있으므로 컴파일 에러가 난다.</li>
+  <li>즉, const 함수 내에서는 const가 아닌 함수의 호출이 제한된다.</li>
+</ol>
+
+<h2 id="const-참조자-객체의-멤버함수-호출">const 참조자 객체의 멤버함수 호출</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "EasyClass.h"
+#include "LiveClass.h"
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">EasyClass</span> <span class="n">easy</span><span class="p">;</span>
+	<span class="n">LiveClass</span> <span class="n">live</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//EasyClass.h</span>
+<span class="cp">#ifndef __EASYCLASS_H__
+#define __EASYCLASS_H__
+</span><span class="k">class</span> <span class="nc">EasyClass</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">InitNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">int</span> <span class="n">GetNum</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="c1">//이 곳에 const 선언을 하지 않으면</span>
+		<span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span> <span class="c1">//LiveClass.h</span>
+<span class="cp">#ifndef __LIVECLASS_H__
+#define __LIVECLASS_H__
+</span>
+<span class="cp">#include "EasyClass.h"
+</span><span class="k">class</span> <span class="nc">LiveClass</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">InitNum</span><span class="p">(</span><span class="k">const</span> <span class="n">EasyClass</span> <span class="o">&amp;</span><span class="n">easy</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">num</span> <span class="o">=</span> <span class="n">easy</span><span class="p">.</span><span class="n">GetNum</span><span class="p">();</span>  <span class="c1">//이곳에서 에러가 발생한다.</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<ol>
+  <li>EasyClass의 GetX()를 const 선언하지 않는다면 LiveClass에서 EasyClass &amp;easy를 const선언해서, 참조자 easy로 해당하는 값을 바꿀 수 없어야하지만 바꿀 수 있는 가능성이 생기는 것이므로 에러가 난다.</li>
+  <li>비록 GetX() 함수는 멤버 변수를 바꾸는 기능이 없지만 바뀔 수 있는 가능성을 원천 차단하는 것이다.</li>
+</ol>
+
+<h2 id="encapsulation">Encapsulation</h2>
+
+<p>먼저 아래와 같은 코드가 있다고 가정하자.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Coldpatient.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __COLDPATIENT_H__
+#define __COLDPATIENT_H__
+#include "RunnyNoseCap.h"
+#include "SneezeCap.h"
+#include "SnuffleCap.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">ColdPatient</span> <span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">TakeRunnyNoseCap</span><span class="p">(</span><span class="k">const</span> <span class="n">RunnyNoseCap</span> <span class="o">&amp;</span><span class="n">cap</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">TakeSneezeCap</span><span class="p">(</span><span class="k">const</span> <span class="n">SneezeCap</span> <span class="o">&amp;</span><span class="n">cap</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">TakeSnuffleCap</span><span class="p">(</span><span class="k">const</span> <span class="n">SnuffleCap</span> <span class="o">&amp;</span><span class="n">cap</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//RunnyNoseCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __RUNNYNOSECAP_H__
+#define __RUNNYNOSECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">RunnyNoseCap</span> <span class="p">{</span>
+
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"콧물이 멈춥니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//sneezeCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __SNEEZECAP_H__
+#define __SNEEZECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SneezeCap</span> <span class="p">{</span>
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"재채기가 멎습니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//SnuffleCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __SNUFFLECAP_H__
+#define __SNUFFLECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SnuffleCap</span> <span class="p">{</span>
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"코가 뻥 뚤립니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "Coldpatient.h"
+#include "RunnyNoseCap.h"
+#include "SneezeCap.h"
+#include "SnuffleCap.h"
+</span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">CodeDivideTest</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">ColdPatient</span> <span class="n">patient</span><span class="p">;</span>
+	<span class="n">RunnyNoseCap</span> <span class="n">Rcap</span><span class="p">;</span>
+	<span class="n">SneezeCap</span> <span class="n">Scap</span><span class="p">;</span>
+	<span class="n">SnuffleCap</span> <span class="n">SnCap</span><span class="p">;</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeRunnyNoseCap</span><span class="p">(</span><span class="n">Rcap</span><span class="p">);</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeSneezeCap</span><span class="p">(</span><span class="n">Scap</span><span class="p">);</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeSnuffleCap</span><span class="p">(</span><span class="n">SnCap</span><span class="p">);</span> <span class="c1">//두 개의 cpp 파일을 사용하는 것을 연습 하기 위함</span>
+	<span class="n">CodeDivideTest</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+ <span class="c1">//secondCppCode.cpp</span>
+<span class="c1">//두 개의 cpp 파일을 사용하는 것을 연습 하기 위함</span>
+<span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">CodeDivideTest</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="err">출력</span> <span class="o">:</span> 
+
+<span class="err">콧물이</span> <span class="err">멈춥니다</span><span class="p">.</span>
+
+<span class="err">재채기가</span> <span class="err">멎습니다</span><span class="p">.</span>
+
+<span class="err">코가</span> <span class="err">뻥</span> <span class="err">뚤립니다</span><span class="p">.</span>
+
+<span class="mi">123</span>
+
+<span class="n">C</span><span class="o">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">maker</span><span class="err">\</span><span class="n">source</span><span class="err">\</span><span class="n">repos</span><span class="err">\</span><span class="n">Encapsulation</span><span class="err">\</span><span class="n">Debug</span><span class="err">\</span><span class="n">Encapsulation</span><span class="p">.</span><span class="n">exe</span><span class="p">(</span><span class="mi">19308</span> <span class="err">프로세스</span><span class="p">)</span><span class="err">이</span><span class="p">(</span><span class="err">가</span><span class="p">)</span> <span class="mi">0</span> <span class="err">코드로</span> <span class="err">인해</span> <span class="err">종료되었습니다</span><span class="p">.</span>
+
+<span class="err">이</span> <span class="err">창을</span> <span class="err">닫으려면</span> <span class="err">아무</span> <span class="err">키나</span> <span class="err">누르세요</span><span class="p">.</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//너무 길고 복잡하다.</span>
+    <span class="n">RunnyNoseCap</span> <span class="n">Rcap</span><span class="p">;</span>
+	<span class="n">SneezeCap</span> <span class="n">Scap</span><span class="p">;</span>
+	<span class="n">SnuffleCap</span> <span class="n">SnCap</span><span class="p">;</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeRunnyNoseCap</span><span class="p">(</span><span class="n">Rcap</span><span class="p">);</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeSneezeCap</span><span class="p">(</span><span class="n">Scap</span><span class="p">);</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakeSnuffleCap</span><span class="p">(</span><span class="n">SnCap</span><span class="p">);</span>
+</code></pre></div></div>
+<p>위의 코드는 약을 먹는 과정이 번거롭고 꼭 정해진 순서대로 콧물/재채기/코막힘 약을 먹어야하는 불편함이 있다.</p>
+
+<p>​</p>
+
+<p>아래와 같이 간단하게 만들 수 있다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "Coldpatient.h"
+#include "ColdPill.h"
+</span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">CodeDivideTest</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">ColdPatient</span> <span class="n">patient</span><span class="p">;</span>
+	<span class="n">ColdPill</span> <span class="n">pill</span><span class="p">;</span>
+	<span class="n">patient</span><span class="p">.</span><span class="n">TakePill</span><span class="p">(</span><span class="n">pill</span><span class="p">);</span>
+	<span class="c1">//두 개의 cpp 파일을 사용하는 것을 연습 하기 위함</span>
+	<span class="n">CodeDivideTest</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//SnuffleCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __SNUFFLECAP_H__
+#define __SNUFFLECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SnuffleCap</span> <span class="p">{</span>
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"코가 뻥 뚤립니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//RunnyNoseCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __RUNNYNOSECAP_H__
+#define __RUNNYNOSECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">RunnyNoseCap</span> <span class="p">{</span>
+
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"콧물이 멈춥니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//sneezeCap.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __SNEEZECAP_H__
+#define __SNEEZECAP_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SneezeCap</span> <span class="p">{</span>
+<span class="nl">private:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"재채기가 멎습니다."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//Coldpatient.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __COLDPATIENT_H__
+#define __COLDPATIENT_H__
+#include "ColdPill.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">ColdPatient</span> <span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">TakePill</span><span class="p">(</span><span class="k">const</span> <span class="n">ColdPill</span> <span class="o">&amp;</span><span class="n">pill</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">pill</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//ColdPill.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#ifndef __COLDPILL_H__
+#define __COLDPILL_H__
+#include "RunnyNoseCap.h"
+#include "SneezeCap.h"
+#include "SnuffleCap.h"
+</span><span class="k">class</span> <span class="nc">ColdPill</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="n">RunnyNoseCap</span> <span class="n">Rcap</span><span class="p">;</span>
+	<span class="n">SneezeCap</span> <span class="n">Scap</span><span class="p">;</span>
+	<span class="n">SnuffleCap</span> <span class="n">SnCap</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="kt">void</span> <span class="n">Take</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">Rcap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+		<span class="n">Scap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+		<span class="n">SnCap</span><span class="p">.</span><span class="n">Take</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<ol>
+  <li>ColdPill class를 따로 만들어서 Take() 함수 하나로 세 개의 약을 먹는 효과를 나타내었다.</li>
+  <li>ColdPatient는 세 개의 약을 먹는 순서를 신경쓰지 않고 약을 먹는 행위만을 하면 되도록 바뀌었다.</li>
+  <li>비록 ColdPill이라는 class가 하나 추가되었지만 patient 입장에서는 3개의 Cap class를 알아야했다가, CodlPill class만 알면 되는 것으로 코드가 변경되었다.</li>
+  <li>main.cpp부분에서 inclue문도 아래와 같이 두 줄로 변경되었다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "Coldpatient.h"
+#include "ColdPill.h"
+</span></code></pre></div></div>
+
+<h2 id="정보은닉과-캡슐화의-차이점">정보은닉과 캡슐화의 차이점</h2>
+
+<p>정보은닉은 제한된 방법으로의 접근만 데이터 접근을 허용해서 잘못된 값이 저장되지 않도록 돕는 개념이다. private와 public을 잘 구분해서 사용하면 된다.</p>
+
+<p>캡슐화는 현실 상황을 반영하는 개념이다. 감기환자가 항상 특정한 증상을 동반한다면 Coldpill은 해당하는 증상을 치료하는 기능을 담도록 설정해야 한다. (종합감기약) 하지만 감기 환자가 특정 증상 하나 만을 나타낸다면 해당 증상만을 위한 약을 먹어야하는 것이다. 그래서 캡슐화에는 정답이 없고, 상황을 잘 판단해서 코드 아키텍쳐를 짜야한다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#cpp" class="page__taxonomy-item" rel="tag">cpp</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#cpp" class="page__taxonomy-item" rel="tag">CPP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-06T00:00:00+09:00">September 6, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BC%2B%2B%5D+%EA%B8%B0%EB%B3%B8+Syntax+5+%20http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cpp/cpp-basic-syntax-4/" class="pagination--pager" title="[C++] 기본 Syntax 4
+">Previous</a>
+    
+    
+      <a href="/cpp/cpp-basic-syntax-6/" class="pagination--pager" title="[C++] 기본 Syntax 6
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

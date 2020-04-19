@@ -1,0 +1,605 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Machine Learning 개론 - NiklasJang’s Blog</title>
+<meta name="description" content="역시, 미래는 Machine Learning이다. - niklasjang- ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="Machine Learning 개론">
+<meta property="og:url" content="http://localhost:4000/ml/Machine-Learning-intruduction/">
+
+
+  <meta property="og:description" content="역시, 미래는 Machine Learning이다. - niklasjang- ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-02T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ml/Machine-Learning-intruduction/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Machine Learning 개론">
+    <meta itemprop="description" content="역시, 미래는 Machine Learning이다. - niklasjang-">
+    <meta itemprop="datePublished" content="2019-05-02T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Machine Learning 개론
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="goal--machine-learning이-무엇인지-왜-세상을-아름답게할-수-있는-기술인지-이해한다">Goal : Machine Learning이 무엇인지, 왜 세상을 아름답게할 수 있는 기술인지 이해한다.</h2>
+
+<h2 id="개념">개념</h2>
+
+<p>Machine Learning은 A.I.의 한 분야이며, ML 안에서도 다양한 분야로 구분됩니다. ML의 세부 분야는 대략 아래와 같습니다.</p>
+
+<ol>
+  <li>Computer Vision</li>
+  <li>Natural Language</li>
+  <li>Reasoning</li>
+  <li>Speech Recognition</li>
+</ol>
+
+<h3 id="reasoning">Reasoning?</h3>
+<p>추상적으로 보이는Reasoning을 간단히 설명해보겠습니다. 수 많은 데이터들에서 피부암의 형태를 가지는 데이터를 찾는 A.I. S/W를 만들 수 있을 것입니다. 하지만 이것보다 더 어려운 것은 A.I.가 Think하게 만들어서 정말로 피부함이 무엇인지 알게만드는 것은 훨씬 더 어려운 문제입니다. 쉽게 말에서 인간이 주어준 특정 데이터 패턴보다 더 효과적인 데이터 패턴이 무엇인지 스스로 생각할 수 있는 로봇을 만드는데 중점을 두는 것이 Reasoning이라고 합니다.</p>
+
+<p>알파고는 가능한 모든 경우의 수를 <code class="language-plaintext highlighter-rouge">game tree algorithm</code>으로 연산한 후 최적의 값을 도출해서 출력합니다. 인간이 결과물만 놓고 보기에는 Intelligence인 것처럼 보이지만, 인간은 이렇게 사고하지 않습니다. 알파고는 수 많은 데이터들을 통해서 <code class="language-plaintext highlighter-rouge">학습</code>을 한 결과를 보여줄 뿐입니다. 수 많은 데이터들이 입력되지 못하면 그저 깡통일 뿐입니다. 우리가 영화에서 보아온 A.I.는 스스로 데이터를 만들고 과거의 경험을 통해서 배웁니다. 그리고 인간이 실제로 만들고 싶은 형태로 이러한 Intelligence를 가지는 로봇입니다.</p>
+
+<p>아직은 알파고가 가지는 <code class="language-plaintext highlighter-rouge">game tree algorithm</code>같은 것도 <code class="language-plaintext highlighter-rouge">reasoning</code>이라고 부릅니다. 매우 제한된 frame에서의 전략이지만요. 아니면 Insta에서 사용하는 ‘당신이 좋아할만한 영상’ 추천 목록도 제한된 수준의 <code class="language-plaintext highlighter-rouge">reasoning</code>이라고 할 수 있겠네요.</p>
+
+<h2 id="why-ml">Why ML?</h2>
+<p>Reasoning이 아닌 다른 세 가지 분야 그리고 제가 알지 못하는 다른 모든 세부 분야는 모두 ‘기계에게 학습을 시켜서 인간이 원하는 결과를 얻기 위해’ 존재합니다. 영상을 처리해서 특정 패던을 찾거나 사람을 찾을 수도 있고, 복잡한 소리 속에서 특정 인물의 목소리를 찾아서 또렷하게 만들 수도 있을 것 같습니다. 제가 최근에 본 연구는 자율 주행 자동차에 ML을 적용 시켜서 카메라로 촬영한 도로의 상태를 실시간으로 받아옵니다. 그리고 도로의 Feature를 찾아서 도로를 detect하고 도로가 기울어지는 방향으로 회전을 합니다. 이 연구에서 놀라웠던 것은 자동차가 왜, 어떤 이유로 오른쪽으로 회전을 했는지를 역으로 영상에 표시해주는 과정을 구현했다는 점입니다.</p>
+
+<p>로봇에게 컵을 집으라고 명령을 내리고 로봇이 이를 수행하는 과정에서는 카메라로 촬영한 영상에서 Edge를 찾아서 물체를 detect 하고, 로봇의 어깨에 3D joint, 팔꿈치에 1D joint, 손목에 3D joint 총 7개의 joint에 매 순간순간 적당한 theta값을 주는 과정을 필요로 합니다. (손가락의 관절은 제외했습니다.) 하지만 인간이 이를 손으로 계산하거나 정확한 수식을 만들어서 적용하기는 어렵습니다. 제 방식대로 표현하면 <strong>‘왜 되는지 모르겠는데, 되는 그 값’</strong>을 찾아주는 방법이 ML이라고 생각합니다. 그리고 이 값들은 어떤 방식으로든 인간을 이롭게 하고 행복을 하게 해주겠죠. 그리고.. 개발자는 아마 부자가 될껍니다.</p>
+
+<h2 id="posting-순서-공부-순서">Posting 순서, 공부 순서</h2>
+
+<p>이 부분에 대해서는 아직 잘 몰라서 한국 항공대의 최영식 교수님께서 강의해주신 내용만 그대로 옮겨 적겠습니다. 제가 더 공부하고 똑똑해진 다음에 본 포스팅을 수정하겠습니다.</p>
+
+<ol>
+  <li>Machine Learning</li>
+  <li>Neural Network</li>
+  <li>Deep Learning</li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+<ol>
+  <li><a href="https://edgy.app/machine-learning-vs-machine-reasoning-know-the-difference">machine-learning-vs-machine-reasoning-know-the-difference</a></li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#introduction" class="page__taxonomy-item" rel="tag">introduction</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ml" class="page__taxonomy-item" rel="tag">ML</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-02T00:00:00+09:00">May 2, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Machine+Learning+%EA%B0%9C%EB%A1%A0%20http%3A%2F%2Flocalhost%3A4000%2Fml%2FMachine-Learning-intruduction%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fml%2FMachine-Learning-intruduction%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fml%2FMachine-Learning-intruduction%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/guide/apply-mathjax-to-blog/" class="pagination--pager" title="Github.io에 MathJax 추가하기 &amp; latex 사용법
+">Previous</a>
+    
+    
+      <a href="/ml/Back-Propagation/" class="pagination--pager" title="ML의 기초 Back Propagation
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

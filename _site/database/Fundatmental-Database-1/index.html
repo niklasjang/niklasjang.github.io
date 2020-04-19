@@ -1,0 +1,696 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[DB System] 개론 및 1장 - NiklasJang’s Blog</title>
+<meta name="description" content="Page 0 ~ 47 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[DB System] 개론 및 1장">
+<meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-1/">
+
+
+  <meta property="og:description" content="Page 0 ~ 47 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-02T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/database/Fundatmental-Database-1/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DB System] 개론 및 1장">
+    <meta itemprop="description" content="Page 0 ~ 47">
+    <meta itemprop="datePublished" content="2019-09-02T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 개론 및 1장
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="개요">개요</h2>
+
+<h3 id="교재">교재</h3>
+
+<ol>
+  <li>교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기</li>
+  <li>6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음</li>
+</ol>
+
+<h1 id="part-1--introduction-to-databases">Part 1 : Introduction to Databases</h1>
+
+<p>일반적으로 물건을 사고 예약을 하는 행위를 하면서 전통적인 database 시스템을 자각을 하지 못하는 사이에도 사용하고 있었다. 요즘에는 SNS를 통해서 비전통적인 데이터(posts, tweets, mages, and video clips)들을 저장하기에 이르렀다. 또한 <code class="language-plaintext highlighter-rouge">GIS</code>(Geographic informatino systems)는 맵을 저장하고 분석하고 날씨를 위한 위성 이미지를 포함한다.</p>
+
+<h3 id="database-applications">Database Applications</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Data warehouses</code> and <code class="language-plaintext highlighter-rouge">online analytical processing (OLAP)</code> systems are used in many companies to extract and analyze useful business information from very large databases to support decision making.</li>
+  <li><code class="language-plaintext highlighter-rouge">Real-time</code> and <code class="language-plaintext highlighter-rouge">active database</code> technology is used to control industrial and manufacturing processes.</li>
+  <li>database <code class="language-plaintext highlighter-rouge">search techniques</code> are being applied to the <code class="language-plaintext highlighter-rouge">World Wide Web</code> to improve the search for information that is needed by users browsing the Internet.</li>
+</ul>
+
+<h2 id="11-introduction">1.1 Introduction</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">data</code> : known facts that can be recorded and that have implicit meaning.</li>
+  <li><code class="language-plaintext highlighter-rouge">database</code> : a collection of related data.</li>
+  <li><code class="language-plaintext highlighter-rouge">Mini-world</code> : A database represents some aspect of the real world, sometimes called the <code class="language-plaintext highlighter-rouge">miniworld</code>. Changes to the miniworld are reflected in the database.
+    <ul>
+      <li><strong>Mini-world?</strong> : 학생을 누구는 가르쳐야하는 대상으로 생각하고 누구는 키워야하는 대상으로 생각할 것이다. 이와 같이 대상을 <code class="language-plaintext highlighter-rouge">보는 관점</code>이 여러가지가 있을 수 있음을 이야하기 하는 것이다. 같은 대상을 사용하는 목적에 따라서 필요한 데이터가 다르다. <code class="language-plaintext highlighter-rouge">Universe of Discourse</code>라고도 부른다. Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것이 DB이다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">database management system (DBMS)</code> : a computerized system that enables users to create and maintain a database. The DBMS is a general-purpose software system that facilitates the processes of defining, constructing, manipulating, and sharing databases among various users and applications.
+    <ul>
+      <li><strong>DBMS?</strong> : 데이터베이스를 관리하기 위한 모든 기능을 제공하는 a collection of programs  that enables users to create and maintain a DB. 기능이란 defining(데이터를 정의), constrcuting(저장장치에 값을 저장하는 행위), manipulating(데이터를 사용(삭제or검색) 하는 행위), sharing(concurrency control), protecting, maintaining(시간에 따른 백업 및 보관)을 말한다. (<code class="language-plaintext highlighter-rouge">Protection</code>의 두 가지 기능 : system protecting(HW/SW의 고장으로부터 보호) / security protection(불법적인 사용으로부터 보호))</li>
+      <li><code class="language-plaintext highlighter-rouge">Defining</code> a database involves specifying the data <code class="language-plaintext highlighter-rouge">types</code>, <code class="language-plaintext highlighter-rouge">structures</code>, and <strong><code class="language-plaintext highlighter-rouge">constraints</code></strong> of the data to be stored in the database. <strong>The database definition or descriptive information is also stored by the <code class="language-plaintext highlighter-rouge">DBMS</code></strong> in the form of a database catalog or dictionary; it is called <code class="language-plaintext highlighter-rouge">meta-data</code>. Spread Sheet에서 어떤 data type인지와 같은 data의 structure를 정의하는 것.</li>
+      <li><code class="language-plaintext highlighter-rouge">Constructing</code> the database is the process of storing the data on some storage medium that is controlled by the DBMS.
+        <ul>
+          <li>store <code class="language-plaintext highlighter-rouge">data</code> as a record in the appropriate file</li>
+          <li>store <code class="language-plaintext highlighter-rouge">relationships</code> among the records</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">Manipulating</code> a database includes functions such as querying the database to retrieve specific data, updating the data-base to reflect changes in the miniworld, and generating reports from the data.</li>
+      <li><code class="language-plaintext highlighter-rouge">Sharing</code> a database allows <strong>multiple users and programs</strong> to access the database <strong>simultaneously</strong>. a sinle repository is maintained and then is accessed by various users.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Database System</code> : 전체를 다 합쳐서 <code class="language-plaintext highlighter-rouge">DS</code>라고 부른다.</li>
+  <li><code class="language-plaintext highlighter-rouge">query</code> typically causes some data to be retrieved</li>
+</ul>
+
+<p>DB는 사람, H/W , S/W 모두를 포함한다. DB에서 query를 날리면 DBMS에서 Query를 처리하는 S/w가 있고, 데이터를 저장하는 H/W disk가 있다. 또 이를 가져오는 S/W to Access Stored Data가 있다. 이런 과정은 O/S의 기능을 이용하기도 하고 아니기도 한다.</p>
+
+<p>Stored Database에는 <code class="language-plaintext highlighter-rouge">Stored Database</code>와 <code class="language-plaintext highlighter-rouge">Stored Database Definition(Meta-Data)</code>이 있다. 후자는 데이터가 어떻게 저장되어있는가를 정리해놓은 것이다. 이것이 없다면 데이터를 원하는 방향으로 처리할 수 없을 것이다.</p>
+
+<h2 id="13-characteristics-of-the-database-approach">1.3 Characteristics of the Database Approach</h2>
+
+<p>만약에 file 처리 시스템을 쓰면 C/C++/Java로 짤 때는 데이터를 이런 언어로 짜야한다. 해당되는 프로그램이 해당되는 파일을 가지고 있다. 특정 파일을 사용하는 사람이 있을 때, 다른 사람의 PC에 저장된 file에 접근할 수 없기 때문에 redendancy in defining and strogin data results in <strong>wasted storage space</strong> and in redundant efforts to maintain common data up-to-date를 가진다. 또한 데이터를 update할 때 데이터가 저장된 모든 app에서 데이터의 update를 해야한다.</p>
+
+<h3 id="131-self-describing-nature-of-a-database-system">1.3.1 Self-Describing Nature of a Database System</h3>
+
+<p>database system contains not only the database itself but also a complete definition or description of the database structure and constraints. This definition is stored in the DBMS cata- log, which contains information such as the structure of each file, the type and storage format of each data item, and various constraints on the data. The information stored in the catalog is called meta-data, and it describes the structure of the primary database.</p>
+
+<p>주목할만한 점은 <code class="language-plaintext highlighter-rouge">NOSQL</code>은 <code class="language-plaintext highlighter-rouge">meta-data</code>를 저장하지 않는다는 점이다. 이 부분은 Chapter 24에서 다룬다.</p>
+
+<h3 id="132--insulation-between-programs-and-data-and-data-abstraction">1.3.2  Insulation between Programs and Data, and Data Abstraction</h3>
+
+<p>In traditional file processing, the structure of data files is embedded in the application programs, so any changes to the structure of a file may require changing all programs that access that file.</p>
+
+<p>By contrast, DBMS access programs do not require such changes in most cases. The structure of data files is stored in the DBMS catalog separately from the access programs. We call this property <code class="language-plaintext highlighter-rouge">program-data-independence</code>.</p>
+
+<p>In some types of database systems, such as object-oriented and object-relational systems (see Chapter 12), users can define operations on data as part of the database definitions. An operation (also called a function or method) is specified in two parts. The interface (or signature) of an operation includes the operation name and the data types of its arguments (or parameters). The implementation (or method) ofthe operation is specified separately and can be changed without affecting the inter- 
+face. User application programs can operate on the data by invoking these operations through their names and arguments, regardless of how the operations areimplemented. This may be termed <code class="language-plaintext highlighter-rouge">program-operation independence</code>. interface를 사용하는 database system에 대한 설명.</p>
+
+<p>The characteristic that allows program-data independence and program-operation independence is called data abstraction. A DBMS provides users with a conceptual representation of data that does not include many of the details of how the data is stored or how the operations are implemented. 사용자에게는 데이터들이 표로 들어가있다고 생각하고 사용할 수 있도록 만들어주는 것을 말한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Data model</code> : It is used to hide storage details and present the users with a conceptual view of the database. The data model uses logical concepts, such as objects, their properties, and their interrelationships.</p>
+
+<h3 id="133-support-of-multiple-views-of-the-data">1.3.3 Support of Multiple Views of the Data</h3>
+
+<p>여러 테이블의 데이터를 한 번에 합쳐서 보고 싶은 사람이 있을 것이다. 반드시 데이터가 저장되어있는 형태로 보지 않아도 된다.</p>
+
+<h3 id="134-sharing-of-data-and-multiuser-transaction-processing">1.3.4 Sharing of Data and Multiuser Transaction Processing</h3>
+
+<p>Multiple users access the database at the same time ` concurrency control`이라고 한다.</p>
+<ul>
+  <li><strong>concurrency control</strong> : serveral users trying to updata the same data do so in a controlled manner so that the result of the updates is correct.
+Most important characteristics in distinguish a DBMS from traditional file-processing software.</li>
+</ul>
+
+<p>For example, when several reservation agents try to assign a seat on an airline flight, the DBMS should ensure that each seat can be accessed by only one agent at a time for assignment to a passenger. These types of applications are generally called <code class="language-plaintext highlighter-rouge">online transaction processing (OLTP)</code> applications. A fundamental role of multiuser DBMS software is to ensure that concurrent transactions operate correctly and efficiently. (<code class="language-plaintext highlighter-rouge">On-Line Analytical Processing (OLAP) application</code> : OLTP의 반대 개념)</p>
+
+<p>The concept of a transaction has become central to many database applications. A transaction is an executing program or process that includes one or more database accesses, such as reading or updating of database records. Each transaction is sup-posed to execute a logically correct database access if executed in its entirety with-out interference from other transactions. The DBMS must enforce several transaction properties. The isolation property ensures that each transaction appears to execute in isolation from other transactions, even though hundreds of transactions may be executing concurrently. The atomicity property ensures that either all the database operations in a transaction are executed or none are. We discuss transactions in detail in Part 9.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Transaction</code> : an executing program or process that includes one or more DB a accesses, such as reading or updating of DB records 내가 읽는 동안 다른 사람이 쓰면 안되고, 마치 가장 작은 하나의 단위처럼 생각되는 것</li>
+  <li>The DBMS must enforce several transaction properties.
+    <ol>
+      <li>isolation property //누가 중간에 훼방을 안놓을 수 있는 특정</li>
+      <li>atomicity property // 가장 작은 단위로 생각되는 것</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="14-actors-on-the-scene">1.4 Actors on the Scene</h2>
+
+<p>In this section we identify the people whose jobs involve the day-to-day use of a large database; we call them the actors on the scene.</p>
+
+<h3 id="141-database-administrators">1.4.1 Database Administrators</h3>
+<p>Administering these resources is the responsibility of 
+the database administrator (DBA). The DBA is responsible for authorizing access to the database, coordinating and monitoring its use, and acquiring software and hardware resources as needed. DataBase Administrator (DBA) : DB 전체를 관리하는 사람. 사용을 허락해주고 모니터링하고 필요한 S/W를 보충/추가해주고 보안에 대해서 책임을 지는 사람.</p>
+
+<h3 id="142-database-designers">1.4.2 Database Designers</h3>
+
+<p>Database designers are responsible for identifying the data to be stored in the database and for choosing appropriate structures to represent and store this data. Database designers typically interact with each potential group 
+of users and develop views of the database that meet the data and processing requirements of these groups.</p>
+
+<h3 id="143-end-users">1.4.3 End Users</h3>
+
+<p>End users are the people whose jobs require access to the database for querying, updating, and generating reports; the database primarily exists for their use. There are several categories of end users:</p>
+
+<ul>
+  <li>Naive or parametric end users make up a sizable portion of database 
+end users. Their main job function revolves around constantly querying 
+and updating the database, using standard types of queries and updates— 
+called <code class="language-plaintext highlighter-rouge">canned transactions</code>ㅡ that have been carefully programmed and 
+tested.</li>
+  <li>Sophisticated end users include engineers, scientists, business analysts, and others who thoroughly familiarize themselves with the facilities of the DBMS in order to implement their own applications to meet their complex requirements.</li>
+  <li>Standalone users maintain personal databases by using ready-made pro- 
+gram packages that provide easy-to-use menu-based or graphics-based 
+interfaces.</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#database" class="page__taxonomy-item" rel="tag">Database</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-02T00:00:00+09:00">September 2, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+%EA%B0%9C%EB%A1%A0+%EB%B0%8F+1%EC%9E%A5%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/review/From-7-15-To-8-31/" class="pagination--pager" title="3학년 여름방학 되돌아보기
+">Previous</a>
+    
+    
+      <a href="/review/Pearl-Abyss-Written-Test-Preparing/" class="pagination--pager" title="[필기TEST] 펄어비스 게임플레이 프로그래머
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

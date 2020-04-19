@@ -1,0 +1,940 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>기본 Python sysntax 정리 Part 2. - NiklasJang’s Blog</title>
+<meta name="description" content="Try! Hello world정리 Part 10.~ 12. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="기본 Python sysntax 정리 Part 2.">
+<meta property="og:url" content="http://localhost:4000/python/python-basic-syntax-2/">
+
+
+  <meta property="og:description" content="Try! Hello world정리 Part 10.~ 12. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-30T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/python/python-basic-syntax-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="기본 Python sysntax 정리 Part 2.">
+    <meta itemprop="description" content="Try! Hello world정리 Part 10.~ 12.">
+    <meta itemprop="datePublished" content="2019-05-30T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">기본 Python sysntax 정리 Part 2.
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#part-10-딕셔너리와-튜플">PART 10 딕셔너리와 튜플</a>
+    <ul>
+      <li><a href="#29-딕셔너리-수정list와-비교">29 딕셔너리 수정(list와 비교)</a></li>
+      <li><a href="#30-딕셔너리와-반복문">30 딕셔너리와 반복문</a></li>
+      <li><a href="#31-리스트와-딕셔너리">31 리스트와 딕셔너리</a></li>
+      <li><a href="#32--튜플-tuple">32  튜플 tuple</a></li>
+      <li><a href="#33-패킹과-언패킹">33 패킹과 언패킹</a></li>
+      <li><a href="#34-튜플을-이용한-함수의-반환-값">34 튜플을 이용한 함수의 반환 값</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-11-while문과-반복-제어">PART 11 while문과 반복 제어</a>
+    <ul>
+      <li><a href="#35-while문">35 while문</a></li>
+      <li><a href="#36-break와-continue">36 break와 continue</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-12-예외-처리">PART 12 예외 처리</a>
+    <ul>
+      <li><a href="#37-try-except">37 try-except</a></li>
+      <li><a href="#38-모든-예외를-한-번에-처리하고-싶을-때">38 모든 예외를 한 번에 처리하고 싶을 때</a></li>
+      <li><a href="#39-raise">39 raise</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="part-10-딕셔너리와-튜플">PART 10 딕셔너리와 튜플</h2>
+
+<p>###28 딕셔너리</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># '이름표1' : '값1' 형태
+# 값은 리스트를 포함해서 무엇이든 올 수 있다.
+</span><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span> <span class="s">'가위'</span> <span class="p">:</span> <span class="s">' 보'</span> <span class="p">,</span> <span class="s">'보'</span> <span class="p">:</span> <span class="s">'바위'</span><span class="p">,</span> <span class="s">'바위'</span> <span class="p">:</span> <span class="s">' 가위'</span> <span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span> <span class="p">,</span> <span class="s">'one'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span><span class="err">로</span> <span class="err">구현</span><span class="o">.</span>
+<span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s">'가위'</span> <span class="p">:</span> <span class="s">' 보'</span> <span class="p">,</span> 
+    <span class="s">'보'</span> <span class="p">:</span> <span class="s">'바위'</span><span class="p">,</span> 
+    <span class="s">'바위'</span> <span class="p">:</span> <span class="s">' 가위'</span> <span class="p">,</span> 
+    <span class="mi">1</span><span class="p">:</span><span class="mi">2</span> <span class="p">,</span> 
+    <span class="s">'one'</span><span class="p">:</span> <span class="mi">1</span>           <span class="c1">#마지막 dictionary 뒤에 ,는 붙여도 되지만 붙이지 말자.
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="29-딕셔너리-수정list와-비교">29 딕셔너리 수정(list와 비교)</h3>
+
+<ul>
+  <li>list = [1,2,3,4,5]</li>
+  <li>list[2] = 33 # list = [1,2,33,4,5]로 변함.</li>
+  <li>list.append(6) #list = [1,2,33,4,5,6] 즉, 리스트의 새 값을 하난 덧붙이는 함수.</li>
+  <li>dict1 = { ‘one’ : 1, ‘two’ : 2}</li>
+  <li>dict1[‘one’] = 11 # dict1 = {‘one’ : 11 , ‘two’ :2}로 갱신됨.</li>
+  <li>
+    <p>dict1[‘three’] = 3 # 딕셔너리에는 .append가 없고 그냥 dict[‘이름표’] = ‘값’을 하면 추가됨.</p>
+  </li>
+  <li>list = [1,2,3,4,5]</li>
+  <li>list.remove(1) #리스트에서 가장 앞에 있는 1 하나를 지운다.</li>
+  <li>list.pop(0) # pop은 해당하는 인덱스의 값을 제거한 후에 반환까지 한다. REPL에서 확인 가능.</li>
+  <li>dict = { ‘one’: 1, ‘two’ : 2 }</li>
+  <li>dict.pop(‘one’) # list.pop()와 마찬가지로 삭제 후에 반환까지 함.</li>
+</ul>
+
+<h3 id="30-딕셔너리와-반복문">30 딕셔너리와 반복문</h3>
+
+<ul>
+  <li>앞서 말했던 딕셔너리의 이름표와 값은 각각 key와 value가 제대로된 이름임.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">age</span><span class="o">.</span><span class="n">key</span><span class="p">():</span>       <span class="c1">#for in list와 같은 방법으로 구현. age는 딕셔너리임!
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>              <span class="c1">#키가 다 출력 됨.
+</span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">age</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>            <span class="c1">#value 값이 다 출력 됨.
+</span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">age</span> <span class="p">:</span>            <span class="c1"># 일반적으로 사용하는 값이 key이기 때문에 .key를 생략해도 key를 가져옴.
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>              <span class="c1">#key 값이 다 출력 됨. 
+</span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">age</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 값은 {}입니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">age</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span> <span class="c1">#key의 값을 받아서 인덱스로서 사용하기.
+</span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">age</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">:</span> <span class="c1"># enumerate와 같이 key와 value를 같이 반환
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 값은 {}입니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>dict : age를 딕셔너리로 만들었기 때문에 모든 내용이 한 번씩은 나오지만 순서는 지켜지지 않음.</li>
+  <li>list : 순서가 중요한 경우 사용.</li>
+  <li>dict : key를 이용해서 value를 찾을 때 사용.</li>
+</ul>
+
+<h3 id="31-리스트와-딕셔너리">31 리스트와 딕셔너리</h3>
+
+<p><img src="/assets/images/python/dict-vs-list.jpg" alt="list-vs-dict" /></p>
+
+<ul>
+  <li>위에서 삽입한 표를 다시 한번 보기.</li>
+  <li>값 확인: A in B: A가 B 안에 있는 것을 확인한 후에 True/False를 반환함.</li>
+  <li>.clear() : 내용을 모두 지움.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">300</span><span class="p">}</span>
+<span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">300</span><span class="p">}</span>
+<span class="n">dict1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dict2</span><span class="p">)</span> <span class="c1"># dict1 = {1: 3000, 2: 200, 3: 300}
+</span><span class="n">dict2</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dict1</span><span class="p">)</span> <span class="c1"># dict2 = {1: 100, 2: 300, 3: 300}
+#키가 서로 같은 것은 각각의 키와 함께 값이 남고, 키가 같아 충돌하는 부분은 update() 함수에  
+#실행인자로 넘긴 딕셔너리 값으로 업데이된다.
+</span></code></pre></div></div>
+
+<h3 id="32--튜플-tuple">32  튜플 tuple</h3>
+
+<ul>
+  <li>[]:대괄호: 리스트</li>
+  <li>{}:중괄호: 딕셔너리</li>
+  <li>():소괄호: 튜플을 만들 때 사용한다.</li>
+  <li>tuple1 = (1,2,3)</li>
+  <li>type(tuple1) #&lt;class ‘tuple’&gt;이 출력된다.</li>
+  <li>tuple2 = 1,2,3 # 튜플의 핵심은 ()가 아님. ()를 없애도 튜플로 인식함.</li>
+  <li>#단 ()가 있으면 튜플임을 더 명확히 나타낼 수 있음</li>
+  <li>튜플과 일반적인 변수 지정의 차이
+    <ul>
+      <li>괄호를 넣지 않고 변수를 지정할 때, 예를 들어 a=1과 같이 하면 a는 int형으로 저장됨.</li>
+      <li>int를 튜플로 저장하기 위해서는 a=1,과 같이 꼭 ,를 넣어야한다.</li>
+    </ul>
+  </li>
+  <li>list1 = [1,2,3]</li>
+  <li>tuple3 = tuple(list1) #리스트를 튜플로 형변환 시키기.</li>
+  <li>튜플은 연속된 값을 저장하되, <strong>순서와 값이 모두 고정되므로 한 번 만든 다음에는 변경할 수 없다.</strong></li>
+  <li>튜플은 값을 지울수도, 값을 넣을 수도 없다. 그래서 del와 pop도 불가능하다.</li>
+  <li>불편한 튜플을 쓰는 이유.
+    <ol>
+      <li>두 변수의 값을 맞바꿀 때</li>
+      <li>여러 개의 값을 한 번에 전달하고 싶을 떄</li>
+      <li>딕셔너리의 키에 값을 여러 개 넣고 싶을 때</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="33-패킹과-언패킹">33 패킹과 언패킹</h3>
+
+<ul>
+  <li>패킹: 튜플을 이용해서 변수 하나에 값을 여러 개 대입하는 것.</li>
+  <li>언패킹: 패킹딘 변수에서 여러 개의 값을 꺼내오는 것.</li>
+  <li>a,b = 1,2  # a=1, b=2가 각각 대입됨.</li>
+  <li>a,b는 a와 b로 이루어진 튜플 하나. 1,2는 1과2로 이루어진 튜플 하나.</li>
+  <li>즉 튜플 하나에 튜플 하나를 할당한 것.</li>
+  <li>c= (3,4)</li>
+  <li>d,e = c # C의 값을 언패킹해서 d와 e에 넣었다고 말함.</li>
+  <li>f = d,e  #f= (3,4)       #d와 e의 값을 패킹해서 f에 넣었다고 함.</li>
+</ul>
+
+<pre><code class="language-txt">#두 수로 이루어진 튜플을 언패킹해서 두 개의 문자에 할당하면 그 문자들은 각각 int형으로 저장됨.
+#두 int형 문자에 해당하는 숫자를 하나의 변수에 패킹하면 그 변수는 튜플이 됨.
+#이는 패킹과 언패킹에서 ,의 사용 유무를 보면 쉽게 추측이 가능함.
+</code></pre>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span>    <span class="c1">#x =10 , y=5가 대입됨. 굉장히 쉽게 두 수를 교환할 수 있음
+</span></code></pre></div></div>
+
+<ul>
+  <li>튜플의 또 다른 유용한 점은 함수에서 여러 개의 값을 한 번에 반환할 때 사용됨.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">tuple_func</span> <span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">tuple_func</span><span class="p">()</span>
+<span class="c1">#a와 b에는 각각 1과 2가 할당되며 이는 튜플이 언패킹된 결과임.
+</span></code></pre></div></div>
+
+<h3 id="34-튜플을-이용한-함수의-반환-값">34 튜플을 이용한 함수의 반환 값</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 값은 {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+<span class="c1">#enumerate는 list의 인덱스와 값을 튜플의 형태로 i,v에 대입.
+#따라서 i에는 인덱스, v에는 값이 대응되는 것임
+</span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 값은 {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1">#튜플을 하나의 변수에 입력할 수 있기 때문에 enumerate여도 a하나만 쓸 수 있다.
+#그리고 튜플을 list[0]과 같은 형태로 쓸 수 있기 때문에 a[0], a[1]하면 첫/두번째 값을 불러옴.
+</span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 값은 {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">))</span>
+<span class="c1">#이것도 귀찮으면 *을 붙인다. 이는 튜플에 든 값을 쪼개서 여러 개의 실행인자(arguments)로 만듦.
+</span></code></pre></div></div>
+
+<ul>
+  <li>딕셔너리에서도 enumerate와 비슷한 .items가 있다.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ages</span><span class="o">=</span> <span class="p">{</span><span class="s">'Tod'</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="s">'Jane'</span><span class="p">:</span><span class="mi">23</span> <span class="p">,</span> <span class="s">'Paul'</span> <span class="p">:</span><span class="mi">62</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">ages</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 나이는 {}세 입니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">))</span>           <span class="c1">#가능_1
+</span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ages</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 나이는 {}세 입니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>          <span class="c1">#가능_2
+</span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ages</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}의 나이는 {}세 입니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>                 <span class="c1">#가능_3
+#리스트 : 인데스와 값
+#딕셔너리 : key와 value 값을 리턴.
+</span></code></pre></div></div>
+
+<h2 id="part-11-while문과-반복-제어">PART 11 while문과 반복 제어</h2>
+
+<h3 id="35-while문">35 while문</h3>
+
+<ul>
+  <li>selected = None   #=None을 하면 아무것도 입력하지 않는다. <strong>none는 안되니 꼭 N!</strong></li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="n">selected</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'가위'</span><span class="p">,</span><span class="s">'바위'</span><span class="p">,</span><span class="s">'보'</span><span class="p">]</span> <span class="p">:</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'가위 바위 보 중에 입력하라&gt;'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'선택된 값은:'</span><span class="p">,</span><span class="n">selected</span><span class="p">)</span> <span class="c1"># format에 치우져 이 방법을 까먹지 말자! 단순하다!
+</span></code></pre></div></div>
+
+<ul>
+  <li>while 반복문은 아래 줄에 들여 써진 블록을 원하는 만큼 반복하며, 구조는 if 조건문과 비슷함.</li>
+  <li>조건을 평가해서 조건이 맞으면 블록을 실행하고 아니면 실행하지 않음.</li>
+  <li>for in 문을 while 문으로 바꿀 때 팁 : length = len(patterns)로 두고 i&lt;length로 돌린다.</li>
+</ul>
+
+<pre><code class="language-txt">ex) for in range(len(patterns)) : ----&gt;  while i&lt;length :
+</code></pre>
+
+<p>-while 문이 더 복잡하므로 for문을 만들어 보고 for문이 너무 복잡해지면 while을 사용하라.</p>
+
+<h3 id="36-break와-continue">36 break와 continue</h3>
+
+<ul>
+  <li>break : 반복문 안에서 break가 실행되면 그 즉시 반복문 블록의 실행을 종료하고 밖으로 나감.</li>
+  <li>continue: 이번 반복만 끝내고다음 반복을 당장 시작한느 기능. 신경쓰지 않을 부분을 제외함.</li>
+  <li>tab이 두 번 이상 있으면 코드를 분석하기가 힘들어 진다. 따라서 continue를 이용해 깔끔하게하자.</li>
+</ul>
+
+<h2 id="part-12-예외-처리">PART 12 예외 처리</h2>
+
+<h3 id="37-try-except">37 try-except</h3>
+
+<ul>
+  <li>IndexError : list=[]한 다음에 list[0]을 불러오는 경우. 빈 리스트에서 값을 불러왔기 때문.</li>
+  <li>ValueError: text=’abc’하고 number=int(text)하는 경우. 문자열을 정수로 못바꿈.</li>
+  <li>이와 같은 에러 문구가 자주 나타나는데 오류의 이름을 미리 알면 코드안에서 미리 처리를 할 수 있음</li>
+  <li>try: 에러가 발생할 가능성이 있는 코드</li>
+  <li>except 에러 종류 : 에러가 발생했을 경우 처리할 코드</li>
+  <li>에러가 발생하면 원래는 멈추어야 하는데 멈추지 말고 except를 실행시킴.</li>
+  <li>예를 들면 이렇게</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">safe_pop_print</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'{} index의 값을 가져올 수 없습니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+<span class="n">safe_pop_print</span><span class="p">()</span>
+</code></pre></div></div>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">safe_pop_print</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">try</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">IndexError</span> <span class="p">:</span>
+         <span class="k">print</span><span class="p">(</span><span class="s">'{} index의 값을 가져올 수 없습니다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+<span class="n">safe_pop_print</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>더 쉽게 문제를 풀 수 있거나 더 쉽게 이해할 수 있는 방법으로 사용하기.</li>
+  <li>비슷하면 try 보다는 if가 낫다.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">my_module</span>
+<span class="k">except</span> <span class="nb">ImportError</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'모듈이 없습니다.'</span><span class="p">)</span>       <span class="c1">#이렇게도 쓸 수 있다.try가 더 자연스러운 경우임.
+</span></code></pre></div></div>
+<ul>
+  <li>ZeroDivisionError : 3/0을 하면 나는 에러.</li>
+</ul>
+
+<h3 id="38-모든-예외를-한-번에-처리하고-싶을-때">38 모든 예외를 한 번에 처리하고 싶을 때</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s">'abc'</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">except</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'에러가 발생했습니다.'</span><span class="p">)</span>
+<span class="c1">#빈 list에서 값을 출력하려고 해서 IndexError가 발생할 것이고
+#문자열을 정수형으로 바꾸려고 해서 ValueError가 발생할 것이다.
+#try- except에서는 Error가 발생하면 남은 try를 모두 건너뛰고 except로 간다.
+</span></code></pre></div></div>
+
+<ul>
+  <li>위와 같이 코드를 하면 에러 오류 종류를 알 수 없기 때문에</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">:</span>
+    <span class="nb">list</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s">'abc'</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>         <span class="c1">#예외 정보를 ex에 담아서 가져오는 것이다.
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'오류가 발생했습니다'</span><span class="p">,</span> <span class="n">ex</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<p>-이 방법은 어떤 예외가 발생하더라도 프로그램을 중단하지 않고 다음 과정을 계속 실행해 나가야 할 떄 유용하다. 
+예를 들어, 웹 서버는 사용자가 어떤 페이지를 어떤 방법으로 요청하더라도 요청 하나를 처리한 다음에 다음 요청을 처리해야한다. 
+요청을 처리하는 도중에 오류가 발생하더라도 웹 서버가 그대로 예외를 출력하고 멈춰 버리면 곤란하기 때문이다.</p>
+
+<ul>
+  <li>잡아야 하는 예외의 이름을 모를 때 Exception as에서 Exception은 모든 예외의 상위 예외이므로 Exception을 잡으면 그 코드는 어떤 예외라도 잡을 수 있다. 
+따라서 모든 예외를 잡아야하는 상황이라면 하상 Exception이라는 예외를 잡으면 된다. 하지만 상위 예외 이름을 써 하위 예외를 잡으면 의도하지 않은 예외까지 
+함께 잡기 때문에 디버깅하기가 어려워질 수 있다. 따라서 의도한 게 아닐라면 쓰지 않는 것이 낫다.</li>
+  <li>잡아야하는 예외의 이름을 모를 때는 상위 예외를 잡는 것보다 try-except 없이 그대로 예외를 일으킨 다음 예외 이름을 확인한 뒤에 처리하는 것이 낫다.</li>
+  <li>파이썬에는 모든 예외를 처리하는 상황을 지원하기 위해 [traceback 모듈]<a href="https://docs.python.org/2/library/traceback.html">https://docs.python.org/2/library/traceback.html</a>을 제공한다. 이 모듈은 책에서 다루는 범위를 벗어나므로 알아서 더 찾아보도록 해라.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="k">pass</span>   <span class="c1"># 예외를 발생시키는 코드를 넣어 주세요.
+</span><span class="k">except</span> <span class="nb">Exception</span> <span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">traceback</span>
+    <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>   <span class="c1">#파이썬에서 예외를 출력해 주는 코드와 같다.
+</span>      <span class="c1">#오류 출력 후 이 다음 코드는 정상으로 실행된다.
+</span></code></pre></div></div>
+
+<h3 id="39-raise">39 raise</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rsp</span><span class="p">(</span><span class="n">mine</span><span class="p">,</span> <span class="n">yours</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="s">'가위'</span><span class="p">,</span><span class="s">'바위'</span><span class="p">,</span><span class="s">'보'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">mine</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed</span> <span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"'가위','바위','보' 가운데 하나의 값만 입력받을 수 있습니다."</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">yours</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed</span> <span class="p">:</span>  <span class="c1">#↖ 큰 따옴표를 사용한다. 
+</span>        <span class="k">raise</span> <span class="nb">ValueError</span>   <span class="c1">#일부러 ValueError를 일으킨다. 일부러 내가 지정한 곳에서 낸다.
+</span>
+<span class="n">rsp</span><span class="p">(</span><span class="s">'가위'</span><span class="p">,</span><span class="s">'바'</span><span class="p">)</span>  <span class="c1">#일부러 틀린 값인 '바'를 넣는다.
+</span>
+<span class="c1"># (코드줄임)
+</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">rsp</span><span class="p">(</span><span class="s">'가위'</span><span class="p">,</span><span class="s">'바'</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ValueError</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'잘못된 값을 넣었습니다.'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">classrooms</span> <span class="o">=</span> <span class="p">{</span><span class="s">'1반'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">172</span><span class="p">,</span><span class="mi">185</span><span class="p">,</span><span class="mi">198</span><span class="p">,</span><span class="mi">177</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">199</span><span class="p">],</span> <span class="s">'2반'</span><span class="p">:[</span><span class="mi">165</span><span class="p">,</span><span class="mi">177</span><span class="p">,</span><span class="mi">167</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">191</span><span class="p">]}</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">class_id</span><span class="p">,</span> <span class="n">heights</span> <span class="ow">in</span> <span class="n">calssrooms</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">height</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="mi">190</span> <span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">class_id</span><span class="p">,</span> <span class="s">'에 190이 넘는 학생이 있습니다.'</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="nb">StopIteration</span>
+
+<span class="k">except</span> <span class="nb">StopIteration</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'정상 종료.'</span><span class="p">)</span>
+<span class="c1">#classrooms 딕셔너리를 정의하고, try에서 1반과 키를 튜플로 받은 다음에
+# 튜플이 class_id와 heights에 언패팅이 된 후에
+# for height in heights 문에 들어가고 if문을 지나서 StopIteration이 raise된다.
+</span></code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># shops라는 딕셔너리 안에 가격을 입력한 딕셔너리가 또 들어가있다.
+</span><span class="o">-</span><span class="n">shops</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"송일문방구"</span><span class="p">:</span> <span class="p">{</span><span class="s">"가위"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s">"크레파스"</span><span class="p">:</span> <span class="mi">3000</span><span class="p">},</span>
+            <span class="s">"알파문구"</span><span class="p">:</span> <span class="p">{</span><span class="s">"풀"</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s">"도화지"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s">"A4용지"</span><span class="p">:</span> <span class="mi">8000</span><span class="p">},</span>
+            <span class="s">"다이소"</span><span class="p">:</span> <span class="p">{</span><span class="s">"풀"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s">"목공본드"</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s">"화분"</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">shop</span><span class="p">,</span> <span class="n">products</span> <span class="ow">in</span> <span class="n">shops</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">products</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">product</span> <span class="o">==</span><span class="s">'풀'</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{}: {}원"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">shop</span><span class="p">,</span> <span class="n">price</span><span class="p">))</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#syntax" class="page__taxonomy-item" rel="tag">syntax</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-30T00:00:00+09:00">May 30, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B8%B0%EB%B3%B8+Python+sysntax+%EC%A0%95%EB%A6%AC+Part+2.%20http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/python/python-basic-syntax-1/" class="pagination--pager" title="기본 Python sysntax 정리 Part 1.
+">Previous</a>
+    
+    
+      <a href="/python/python-basic-syntax-3/" class="pagination--pager" title="기본 Python sysntax 정리 Part 3.
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

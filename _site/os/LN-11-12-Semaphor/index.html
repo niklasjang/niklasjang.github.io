@@ -1,0 +1,786 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Lecture 11.~12. Semaphor - NiklasJang’s Blog</title>
+<meta name="description" content="OS에서 제일 재밌는 부분 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="Lecture 11.~12. Semaphor">
+<meta property="og:url" content="http://localhost:4000/os/LN-11-12-Semaphor/">
+
+
+  <meta property="og:description" content="OS에서 제일 재밌는 부분 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-16T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/os/LN-11-12-Semaphor/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Lecture 11.~12. Semaphor">
+    <meta itemprop="description" content="OS에서 제일 재밌는 부분">
+    <meta itemprop="datePublished" content="2019-06-16T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Lecture 11.~12. Semaphor
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#semaphor란-">Semaphor란 ?</a></li>
+  <li><a href="#details-of-semaphore-operation">Details of Semaphore Operation</a>
+    <ul>
+      <li><a href="#ps-or-waits">P(s) or Wait(s)</a></li>
+      <li><a href="#vs-or-signals">V(s) or signal(s)</a></li>
+      <li><a href="#정리">정리</a></li>
+    </ul>
+  </li>
+  <li><a href="#문제-풀이">문제 풀이</a></li>
+  <li><a href="#implementing-semaphores">Implementing Semaphores</a>
+    <ul>
+      <li><a href="#solution-1---basic">Solution 1.  : Basic</a>
+        <ul>
+          <li><a href="#문제점">문제점</a></li>
+        </ul>
+      </li>
+      <li><a href="#solution-2--disableenable-interrupts">Solution 2. : disable/enable interrupts</a>
+        <ul>
+          <li><a href="#문제점-1">문제점</a></li>
+        </ul>
+      </li>
+      <li><a href="#solution-3--testset">Solution 3. : test&amp;set</a>
+        <ul>
+          <li><a href="#장점">장점</a></li>
+          <li><a href="#문제점-2">문제점</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="semaphor란-">Semaphor란 ?</h2>
+
+<p>세마포는 다익스트라가 1965년에 발명했다고 합니다. 세마포는 두 개의 atomic-operation을 지원합니다. P/wait와 V/signal입니다.</p>
+
+<p>세마포는 그저 하나의 변수일 뿐입니다. 세마포는 처음에 1로 초기화됩니다. Thread는 CS에 들어가기 전에 P-세마포(이하 P)를 Call 하거나 wait-세마포(이하 wait)해야합니다. Thread는 CS를 나올 때 V-세마포(이하 V)를 Call하거나 Signal-세마포(이하 signal)해야합니다.</p>
+
+<p>냉장고 우유의 예시에서 두 쓰레드는 아래의 코드를 똑같이 실행합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Thread A and execute this code seperatively</span>
+
+<span class="n">milk</span><span class="o">-&gt;</span><span class="n">P</span><span class="p">();</span>     <span class="c1">//(1)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">noMilk</span><span class="p">);</span>    <span class="c1">//(2)</span>
+    <span class="n">buy</span> <span class="n">milk</span><span class="p">;</span>  <span class="c1">//(3)</span>
+<span class="n">milk</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">();</span>     <span class="c1">//(4)</span>
+</code></pre></div></div>
+
+<p>(2)와 (3)이 CS입니다. CS에 들어가기 전에 P 나오면서 V를 했습니다. 조금 더 자세히 보겠습니다.</p>
+
+<h2 id="details-of-semaphore-operation">Details of Semaphore Operation</h2>
+
+<h3 id="ps-or-waits">P(s) or Wait(s)</h3>
+<p>CS에 들어가기 전에 P 또는 Wait 를 Call 합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait</span><span class="p">(</span><span class="n">s</span><span class="p">){</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+        <span class="err">뒤늦게</span> <span class="n">wait</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="err">를</span> <span class="n">call</span><span class="err">한</span> <span class="n">Thread</span><span class="err">를</span> <span class="n">block</span><span class="err">합니다</span><span class="p">.</span>
+        <span class="c1">//설명 1</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">CS</span><span class="err">는</span> <span class="err">비어있습니다</span><span class="p">.</span> <span class="err">따라서</span> <span class="err">해당</span> <span class="n">Thread</span><span class="err">가</span> <span class="n">cS</span><span class="err">에</span> <span class="err">들어갑니다</span><span class="p">.</span>
+        <span class="c1">//설명 2</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>s는 처음에 1로 초기화 되어있습니다. CS에 들어가기 전에 P를 수행합니다. P는 s 를 -1하는 연산을 포함합니다. 만약에 어떤 Thread가 P를 수행했습니다. 그래서 s를 -1 감소시켰습니다. 원래 S는 1로 초기화가 되었기 때문에 나만 P를 수행했다면 s의 값은 0이어야 합니다. 그런데 내가 -1한 결과가 s&lt;0라면 이미 다른 Thread가 P(s)를 call 한 상태입니다. 이 때는 뒤늦게 wait(s)를 call한 Thread를 block합니다.</li>
+  <li>-1을 한 s가 s&gt;0라면 다른 Thread에서 P(s)를 한 적이 없는 것이므로 CS는 비어있습니다. 따라서 해당 Thread가 cS에 들어갑니다.</li>
+</ol>
+
+<h3 id="vs-or-signals">V(s) or signal(s)</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">signal</span><span class="p">(</span><span class="n">s</span><span class="p">){</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="err">기다리고</span> <span class="err">있는</span> <span class="n">Thread</span> <span class="err">중</span> <span class="err">하나를</span> <span class="err">깨우면</span> <span class="err">됩니다</span><span class="p">.</span> 
+        <span class="c1">//설명 1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>s는 1로 초기화를 시켰었다. 그리고 CS에 들어보면서 s를 -1 시켰습니다. 이제 CS에서 나가면서 +1을 시킵니다. 만약에 나 혼자만 -1 시키고 +1 시켰다면 현재 s는 1이어야 합니다. 그런데 CS에 들어오려고하는 다른 Thread가 P(s)를 call해서 s를 -1  시킨 뒤, BLock된 상태라면 CS에 들어있던 Thread가 +1을 해도 S는 s&lt;=0 입니다. 즉, s +=1 한 결과가 s&lt;=0라면 CS에 들어오려는 다른 Thread가 있는 것이므로 기다리고 있는 Thread 중 하나를 깨우면 됩니다.</li>
+</ol>
+
+<h3 id="정리">정리</h3>
+
+<ol>
+  <li>Positive S : CS에 들어올 수 있는 Thread의 수 (waiting 하고 있는 Thread 중 몇 개가 깨어나서 CS에 들어올 수 있는지)</li>
+  <li>Negative s: waiting 하고 있는 Thread의 수</li>
+  <li>Binary semaphor는 1로 초기화 시킨다.</li>
+  <li>Binary Semaphor가 아닌 Counting semaphor라는 것은 1보다 큰 수로 초기화를 한다.</li>
+</ol>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p><img src="/assets/images/OS/semaphor-1.jpg" alt="semaphor-1" /></p>
+
+<p>//TODO The Code Machine</p>
+
+<h2 id="implementing-semaphores">Implementing Semaphores</h2>
+
+<h3 id="solution-1---basic">Solution 1.  : Basic</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#wait(s){
+</span>    <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="c1">//do nothing</span>
+    <span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span><span class="mi">1</span>
+<span class="err">}</span>
+</code></pre></div></div>
+<p>지금까지는 -1을 먼저한 뒤 그 결과가 s&lt;0이라면 block 되는 것으로 설명했습니다. 여기서는 -1을 한 결과가 s&lt;0이 될 것을 미리 파악하고 s가 1이상인 경우만 s -= 1을 진행하는 모습입니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">signal</span><span class="p">(</span><span class="n">s</span><span class="p">){</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+<p>signal은 그냥 더해줍니다.</p>
+
+<h4 id="문제점">문제점</h4>
+
+<ol>
+  <li>CS에 들어가기 위해서 blocked 된 Thread의 Queue를 지원하지 않습니다.</li>
+  <li>Wait(S)를 진행하면서 아무것도 하지 않으면서 시간을 낭비합니다.</li>
+  <li>wait와 signal 속에 존재할 수 있는 CS를 보호하지 못합니다.</li>
+</ol>
+
+<h3 id="solution-2--disableenable-interrupts">Solution 2. : disable/enable interrupts</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#wait(s){
+</span>    <span class="n">disable</span> <span class="n">interrupts</span>
+    <span class="nf">while</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="c1">//do nothing</span>
+    <span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">enable</span> <span class="n">interrupts</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">signal</span><span class="p">(</span><span class="n">s</span><span class="p">){</span>
+    <span class="n">disable</span> <span class="n">interrupts</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">enable</span> <span class="n">interrupts</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>solution 1.에 disable/enable interrupts를 추가한 것입니다. 이는 위의 3번 문제를 해결하기 위한 방법으로 생각해본 것입니다.</p>
+
+<h4 id="문제점-1">문제점</h4>
+
+<ol>
+  <li>CS에 들어가기 위해서 blocked 된 Thread의 Queue를 지원하지 않습니다.</li>
+  <li>Wait(S)를 진행하면서 아무것도 하지 않으면서 시간을 낭비합니다.</li>
+  <li>Multi-processor에서는 작동하지 않습니다. disable하는 processor만 disable되기 때문입니다. 모든 Processor가 공동으로 접근할 수 있는 변수를 사용한 방법이 아니라, 그때 그때 Processor A를 접근 못하게 막고, B를 못하게 막고  이런식으로 진행된다고 볼 수 있기 때문입니다.</li>
+  <li>Timer와 연동될 수 없습니다. interrupt diable을 사용해서 timer가 소용이 없어집니다.</li>
+  <li>oS가 interrupt disable을 하도록 하는 것은 문제가 없지만, 사용자가 interrupt disable을 할 수 있도록 허용하는 것은 문제점을 낳을 수 있습니다.</li>
+</ol>
+
+<h3 id="solution-3--testset">Solution 3. : test&amp;set</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#wait(s){
+</span>    <span class="n">whlie</span><span class="p">(</span><span class="n">test</span><span class="o">&amp;</span><span class="n">set</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="k">do</span> <span class="n">nothing</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="c1">//do nothing</span>
+    <span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">enable</span> <span class="n">interrupts</span>
+    <span class="n">lk</span><span class="o">=</span><span class="mi">0</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">signal</span><span class="p">(</span><span class="n">s</span><span class="p">){</span>
+    <span class="n">whlie</span><span class="p">(</span><span class="n">test</span><span class="o">&amp;</span><span class="n">set</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="k">do</span> <span class="n">nothing</span>
+    <span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">lk</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p>test&amp;set은 LOCK이 걸려있는지 아닌지 test하고, LOCK이 안걸려 있다면 LOCK을 거는 것을 말합니다. LOCK은 특정 구역에 들어갈 수 있는지 아닌지를 나타내는 변수라고 생각하면 됩니다. 마지막에 lk=0 부분은 LOCK을 해제하는 Unlock을 이해할 수 있습니다.</p>
+
+<ol>
+  <li>Lock lk는 0으로 초기화됩니다.</li>
+  <li>LOCk이 안걸려있는 경우 ( lk == 0) : Atomic하게 lk의 값을 읽고(0), 쓰고(1), return(0)합니다.</li>
+  <li>Lock이 걸려있는 경우(lk == 1): Atomic 하게, lk의 값을 읽고(1), 쓰고(1), return(1)합니다.</li>
+</ol>
+
+<p>위 코드의 test&amp;set()은 test&amp;set()이 시작될 때의 lk값을 return합니다. 0이었으면 0을 1로 바꿨더라도 0을 return하고, 1이었으면 그대로 1로 두고 1을 return 합니다. 따라서 test&amp;set()의 결과가 1이라면 lock이 걸려있는 상태, 0이라면 unlock 상태입니다.</p>
+
+<p>test&amp;set()은 Read-Modify-Write(이하 RMW)패턴의 한 예시입니다. RMW 명령어는 Atomic하게 memory의 값을 읽고, 수정하고, 씁니다.</p>
+
+<h4 id="장점">장점</h4>
+
+<ol>
+  <li>Multiprocessor에서도 동작하게 만들 수 있습니다.</li>
+</ol>
+
+<h4 id="문제점-2">문제점</h4>
+
+<ol>
+  <li>CS에 들어가기 위해서 blocked 된 Thread의 Queue를 지원하지 않습니다.</li>
+  <li>Wait(S)를 진행하면서 아무것도 하지 않으면서 시간을 낭비합니다.</li>
+</ol>
+
+<p>다음 포스팅에서 LOCK에 대해서 제대로 알아보겠습니다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#os" class="page__taxonomy-item" rel="tag">OS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#samaphor" class="page__taxonomy-item" rel="tag">Samaphor</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#os" class="page__taxonomy-item" rel="tag">OS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-16T00:00:00+09:00">June 16, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Lecture+11.~12.+Semaphor%20http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-11-12-Semaphor%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-11-12-Semaphor%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-11-12-Semaphor%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/os/LN-13-14-Lock-Conditional-variable/" class="pagination--pager" title="Lecture 13.~15. LOCK &amp; Condition variable
+">Previous</a>
+    
+    
+      <a href="/os/LN-15-Readers-Writers-Prioritymd/" class="pagination--pager" title="Lecture 15. Readers-Writers-Priority
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

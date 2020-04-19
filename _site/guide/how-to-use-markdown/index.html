@@ -1,0 +1,872 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Markdown을 사용한 Post 작성 가이드 - NiklasJang’s Blog</title>
+<meta name="description" content="MD부터 YAML front Matter까지 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="Markdown을 사용한 Post 작성 가이드">
+<meta property="og:url" content="http://localhost:4000/guide/how-to-use-markdown/">
+
+
+  <meta property="og:description" content="MD부터 YAML front Matter까지 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-28T04:34:30+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/guide/how-to-use-markdown/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Markdown을 사용한 Post 작성 가이드">
+    <meta itemprop="description" content="MD부터 YAML front Matter까지">
+    <meta itemprop="datePublished" content="2019-04-28T04:34:30+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Markdown을 사용한 Post 작성 가이드
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-heart"></i> === Contents ===</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#notice">NOTICE</a></li>
+  <li><a href="#sub-title--jekyll-theme에-최적화-되어있습니다">Sub Title : jekyll theme에 최적화 되어있습니다.</a></li>
+  <li><a href="#main-title">Main Title</a></li>
+  <li><a href="#sub-title">Sub Title</a></li>
+  <li><a href="#yaml-front-matter">YAML front matter</a></li>
+  <li><a href="#h1h6">H1~H6</a></li>
+  <li><a href="#제목-2">제목 2</a>
+    <ul>
+      <li><a href="#제목-3">제목 3</a>
+        <ul>
+          <li><a href="#제목-4--httpsmmistakesgithubiominimal-mistakes">제목 4 : https://mmistakes.github.io/minimal-mistakes/</a>
+            <ul>
+              <li><a href="#제목-5">제목 5</a>
+                <ul>
+                  <li><a href="#제목-6">제목 6</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#평서문">평서문</a></li>
+  <li><a href="#강조">강조</a></li>
+  <li><a href="#하이퍼링크">하이퍼링크</a></li>
+  <li><a href="#이미지">이미지</a></li>
+  <li><a href="#코드-블록">코드 블록</a></li>
+  <li><a href="#table">Table</a></li>
+  <li><a href="#인용문">인용문</a></li>
+  <li><a href="#구분선">구분선</a></li>
+  <li><a href="#개행">개행</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="notice">NOTICE</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>**Notice:**  
+기본적인 Notice
+{: .notice}
+
+**Primary Notice:**  
+중요한 Notice
+{: .notice--primary}
+
+**Info Notice:**  
+정보 Notice
+{: .notice--info}
+
+**Warning Notice:**  
+경고 Notice
+{: .notice--warning}
+
+**Danger Notice:**  
+Danger Notice
+{: .notice--danger}
+
+**Success Notice:**  
+Success Notice
+{: .notice--success}
+</code></pre></div></div>
+<p class="notice"><strong>Changes in Service:</strong><br />
+기본적인 Notice</p>
+
+<p class="notice--primary"><strong>Primary Notice:</strong><br />
+중요한 Notice</p>
+
+<p class="notice--info"><strong>Info Notice:</strong><br />
+정보 Notice</p>
+
+<p class="notice--warning"><strong>Warning Notice:</strong><br />
+경고 Notice</p>
+
+<p class="notice--danger"><strong>Danger Notice:</strong><br />
+Danger Notice</p>
+
+<p class="notice--success"><strong>Success Notice:</strong><br />
+Success Notice</p>
+
+<h1 id="main-title--이-포스트는-mmistakes의-minimal-mistakes">Main Title : 이 포스트는 mmistakes의 minimal-mistakes</h1>
+
+<h2 id="sub-title--jekyll-theme에-최적화-되어있습니다">Sub Title : jekyll theme에 최적화 되어있습니다.</h2>
+
+<h2 id="main-title">Main Title</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Main Title    // YAML Front Matter 바로 아래에
+===========
+</code></pre></div></div>
+
+<h2 id="sub-title">Sub Title</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sub Title     // Maint title의 아래에
+-----------
+</code></pre></div></div>
+<h2 id="yaml-front-matter">YAML front matter</h2>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Markdown을</span><span class="nv"> </span><span class="s">사용한</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">작성</span><span class="nv"> </span><span class="s">가이드"</span>
+<span class="na">excerpt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">MD부터</span><span class="nv"> </span><span class="s">YAML</span><span class="nv"> </span><span class="s">front</span><span class="nv"> </span><span class="s">Matter까지"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2019-04-27T15:34:30-04:00</span>
+<span class="na">categories</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Guide</span>
+<span class="na">tags</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Markdown</span>
+<span class="na">toc </span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">toc_label</span><span class="pi">:</span> <span class="s2">"</span><span class="s">===</span><span class="nv"> </span><span class="s">Contents</span><span class="nv"> </span><span class="s">==="</span>
+<span class="na">toc_icon</span><span class="pi">:</span> <span class="s2">"</span><span class="s">heart"</span>  <span class="c1"># corresponding Font Awesome icon name (without fa prefix)</span>
+<span class="na">toc_sticky</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">classes</span><span class="pi">:</span> <span class="s">wide</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<h2 id="h1h6">H1~H6</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 제목 1
+## 제목 2
+### 제목 3
+#### 제목 4 : https://mmistakes.github.io/minimal-mistakes/
+##### 제목 5
+###### 제목 6
+</code></pre></div></div>
+<h1 id="제목-1">제목 1</h1>
+<h2 id="제목-2">제목 2</h2>
+<h3 id="제목-3">제목 3</h3>
+<h4 id="제목-4--httpsmmistakesgithubiominimal-mistakes">제목 4 : https://mmistakes.github.io/minimal-mistakes/</h4>
+<h5 id="제목-5">제목 5</h5>
+<h6 id="제목-6">제목 6</h6>
+
+<h2 id="평서문">평서문</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>평서문은 그냥 적습니다.
+</code></pre></div></div>
+<p>평서문은 그냥 적습니다.</p>
+
+<h2 id="강조">강조</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 평서문 중간에 `강조`를 싶을 때 
+3. *기울이기* 또는 _기울이기_
+4. **Bold** 또는 __Bold__
+1. ~~취소~~
+1. &lt;u&gt;밑줄&lt;/u&gt;
+1. -, *, +를 사용한 순서가 없는 list
+</code></pre></div></div>
+<ol>
+  <li>평서문 중간에 <code class="language-plaintext highlighter-rouge">강조</code>를 싶을 때</li>
+  <li><em>기울이기</em> 또는 <em>기울이기</em></li>
+  <li><strong>Bold</strong> 또는 <strong>Bold</strong></li>
+  <li><del>취소</del></li>
+  <li><u>밑줄</u></li>
+  <li>-, *, +를 사용한 순서가 없는 list</li>
+</ol>
+
+<h2 id="하이퍼링크">하이퍼링크</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 하이퍼 링크를 작성하는 방법
+  - [GOOGLE](https://google.com)
+  - [NAVER](https://naver.com "링크 설명(title)을 작성하세요.")
+  - [GitHub1][1] "본문을 복잡하지 않게 하기 위함"
+  - [GitHub2][2]
+  - [GitHub3][3]
+  - [GitHub4][4]
+  - 구글 홈페이지: https://google.com
+  - 네이버 홈페이지: &lt;https://naver.com&gt;
+
+[1]: https://github.com
+[2]: https://github.com
+[3]: https://github.com
+[4]: https://github.com
+</code></pre></div></div>
+<ul>
+  <li>하이퍼 링크를 작성하는 방법
+    <ul>
+      <li><a href="https://google.com">GOOGLE</a></li>
+      <li><a href="https://naver.com" title="링크 설명(title)을 작성하세요.">NAVER</a></li>
+      <li><a href="https://github.com">GitHub1</a> “본문을 복잡하지 않게 하기 위함”</li>
+      <li><a href="https://github.com">GitHub2</a></li>
+      <li><a href="https://github.com">GitHub3</a></li>
+      <li><a href="https://github.com">GitHub4</a></li>
+      <li>구글 홈페이지: https://google.com</li>
+      <li>네이버 홈페이지: <a href="https://naver.com">https://naver.com</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="이미지">이미지</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 이미지를 등록하는 방법 : 개행을 하지 않으면 되도록 정렬되서 출력됨.
+[![imagename1](/assets/images/500x300.jpg)](https://www.naver.com)
+![imagename2](/assets/images/500x300.jpg)
+</code></pre></div></div>
+
+<p><a href="https://www.naver.com"><img src="/assets/images/500x300.jpg" alt="imagename1" /></a>
+<img src="/assets/images/500x300.jpg" alt="imagename2" /></p>
+
+<h2 id="코드-블록">코드 블록</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 코드를 등록하는 방법
+  // 포멧이 깨지는 것을 방지하기 위해 '로 작성함. 실제로는 ' 대신 `를 사용할 것
+  '''Code-type
+  Code
+  '''
+
+</code></pre></div></div>
+<p>-bash</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>vim ./~zshrc
+</code></pre></div></div>
+<p>-python</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">s</span> <span class="o">=</span> <span class="s">"Python syntax highlighting"</span>
+  <span class="k">print</span> <span class="n">s</span>
+</code></pre></div></div>
+<p>-c++</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">){</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;}</span>
+</code></pre></div></div>
+
+<h2 id="table">Table</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 표 그리기
+| 왼쪽 정렬 | 가운데 정렬 | 오른쪽 정렬 |
+|:--------|:--------:|--------:|
+| 내용 11 | 내용 12 | 내용 13 |
+| 내용 21 | 내용 22 | 내용 23 |
+
+|  &lt;center&gt;Header1&lt;/center&gt; |  &lt;center&gt;Header2&lt;/center&gt; |  &lt;center&gt;Header3&lt;/center&gt; |
+|:--------|:--------:|--------:|
+|**cell 1x1** | &lt;center&gt;cell 1x2 &lt;/center&gt; |*cell 1x3* |
+|**cell 2x1** | &lt;center&gt;cell 2x2 &lt;/center&gt; |*cell 2x3* |
+|**cell 3x1** | &lt;center&gt;cell 3x2 &lt;/center&gt; |*cell 3x3* |
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">왼쪽 정렬</th>
+      <th style="text-align: center">가운데 정렬</th>
+      <th style="text-align: right">오른쪽 정렬</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">내용 11</td>
+      <td style="text-align: center">내용 12</td>
+      <td style="text-align: right">내용 13</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">내용 21</td>
+      <td style="text-align: center">내용 22</td>
+      <td style="text-align: right">내용 23</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"><center>Header1</center></th>
+      <th style="text-align: center"><center>Header2</center></th>
+      <th style="text-align: right"><center>Header3</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>cell 1x1</strong></td>
+      <td style="text-align: center"><center>cell 1x2 </center></td>
+      <td style="text-align: right"><em>cell 1x3</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>cell 2x1</strong></td>
+      <td style="text-align: center"><center>cell 2x2 </center></td>
+      <td style="text-align: right"><em>cell 2x3</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>cell 3x1</strong></td>
+      <td style="text-align: center"><center>cell 3x2 </center></td>
+      <td style="text-align: right"><em>cell 3x3</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="인용문">인용문</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;인용문
+&gt;&gt;인용문
+</code></pre></div></div>
+<blockquote>
+  <p>인용문</p>
+  <blockquote>
+    <p>인용문</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="구분선">구분선</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>구분선
+---
+</code></pre></div></div>
+<p>구분선
+—</p>
+
+<h2 id="개행">개행</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>문장의 끝에서 띄어쓰기 두번이면 줄바꿈 됩니다.  
+br tag로 줄바꿈 &lt;br&gt; 됩니다.
+</code></pre></div></div>
+<p>문장의 끝에서 띄어쓰기 두번이면 줄바꿈 됩니다.<br />
+br tag로 줄바꿈 <br /> 됩니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#markdown" class="page__taxonomy-item" rel="tag">Markdown</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#minimal-mistakes" class="page__taxonomy-item" rel="tag">minimal-mistakes</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#guide" class="page__taxonomy-item" rel="tag">Guide</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-28T04:34:30+09:00">April 28, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Markdown%EC%9D%84+%EC%82%AC%EC%9A%A9%ED%95%9C+Post+%EC%9E%91%EC%84%B1+%EA%B0%80%EC%9D%B4%EB%93%9C%20http%3A%2F%2Flocalhost%3A4000%2Fguide%2Fhow-to-use-markdown%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fguide%2Fhow-to-use-markdown%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fguide%2Fhow-to-use-markdown%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/welcome-to-jekyll/" class="pagination--pager" title="WWWWelcome to Jekyll!
+">Previous</a>
+    
+    
+      <a href="/guide/apply-mathjax-to-blog/" class="pagination--pager" title="Github.io에 MathJax 추가하기 &amp; latex 사용법
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,607 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[열혈TCP/IP] 07 소켓의 우아한 연결종료 Half-close - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[열혈TCP/IP] 07 소켓의 우아한 연결종료 Half-close">
+<meta property="og:url" content="http://localhost:4000/ardenttcpip/chapter-7/">
+
+
+  <meta property="og:description" content="반갑습니다. niklas jang입니다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-01-13T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ardenttcpip/chapter-7/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[열혈TCP/IP] 07 소켓의 우아한 연결종료 Half-close">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2020-01-13T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[열혈TCP/IP] 07 소켓의 우아한 연결종료 Half-close
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#07-소켓의-우아한-연결종료-half-close">07 소켓의 우아한 연결종료 Half-close</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="07-소켓의-우아한-연결종료-half-close">07 소켓의 우아한 연결종료 Half-close</h1>
+
+<p>일방적인 연결종료의 문제점</p>
+
+<p>리눅스의 clsoe()의 호출은 완전종류를 의미한다. 완전종료라는 것은 데이터를 전송하는 것은 물론, 수신하는 것도 더 이상 불가능한 상황을 의미한다. 때문에 한쪽에서의 일방적인 close()의 호출은 우아하지 못하다.</p>
+
+<p>두 호스트가 데이터를 주고 받을 때  한 쪽이 먼저 완전종료를 해버리면 아직 송신했지만 수신되지 못한 데이터가 있을 수 있다. 이러한 문제를 해결하기 위해서 <code class="language-plaintext highlighter-rouge">Half close</code>의 개념을 사용한다. 이는 전송은 가능하지만 수신은 불가능한 상황, 혹은 수신은 가능하지만 전송은 불가능한 상황을 뜻한다. 말 그대로 스트림의 반만 닫는 것이다.</p>
+
+<p>소켓과 스트림Stream / connection 과 stream</p>
+
+<p>소켓을 통해서 두 호스트가 연결되면, 그 다음부터는 상호간에 데이터를 송수신이 가능한 상태가 된다. 이러한 상태를 stream이 형성된 상태라고 한다. 즉, 두 소켓이 연결되어서 데이터의 송수신이 가능한 상태를 일종의스트림으로 보는 것이다. stream은 물의 흐름을 의미한다. 물의 흐름은 한쪽 방향으로만 형성된다. 따라서 소켓 스트림 역시 양방향 데이터의 이동이 가능하기 위해서는 두 개의 스트림이 필요하다.</p>
+
+<p>때문에 두 호스트간에 소켓이 연결되면, 각 호스트 별로 입력 스트림과 출력 스트림이 형성된다. 물론 한 호스트의 출력 스트림은 다른 호스트의 입력스트림으로 이어진다. Half close라는 것은 둘 중 하나의 stream만 끊는 것이다. 물론 리눅스의 close() 호출은 두 가지 스트림을 동시에 끊어서 우아하지 못하다.</p>
+
+<p>우아한 종료를 위한<code class="language-plaintext highlighter-rouge">shutdown()</code> 함수</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;sys/socket.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">shutdown</span><span class="p">(</span><span class="kt">int</span> <span class="n">sock</span><span class="p">,</span> <span class="kt">int</span> <span class="n">howto</span><span class="p">);</span>
+<span class="cm">/*
+return 성공시 0, 실패시 -1
+sock : 종료한소켓의 fd 전달
+howto : 종료 방법에 대한 정보 전달
+    - SHUT_RD : 입력 스트림 종료
+    - SHUT_WR : 출력 스트림 종료
+    - SHUT_RDWR : 입출력 스트림 종료
+*/</span>
+</code></pre></div></div>
+
+<ul>
+  <li>SHUT_RD를 전달하면 입력스트림이 종료된다. 데이터가 입력 버퍼에 전달되더라도 지워지고 입력관련 함수의 호출도 불가능한 상태가 된다.</li>
+  <li>SHUT_WR를 전달하면 출력스트림이 종료된다. 더이상의 데이터를 전송하는 것이 불가능해지지만 아직 출력버퍼에 데이터가 남아있으면 해당데이터는 모두 목적지로 전송된다.</li>
+</ul>
+
+<p>Half-close가 필요한 이유</p>
+
+<ol>
+  <li>연결 종료 직전에 클라가 서버에 전송할 데이터(“아래의 Thank you”)가 있는 경우, 서버는 데이터를 계속 보내면 되지만 클라는 언제 데이터를 수신해야하는지 잘 모른다. 계속해서 입력 함수를 호출하면 블로킹상태(호출된 함수가 반환하지 않는 상태)에 빠질 수 있다.</li>
+  <li>전송되는 파일의 끝에 특정 문자를 추가해도 특정 문자가 데이터 파일에 존재할 수도 있기 때문에 적절하지 못하다. 따라서 이를 위해서 서버는 파일의 전송이 끝났음을 의미하기 위해 EOF를 전송해야한다. 클라는 EOF의 수신을 함수의 반환값을 통해서 확인이 가능하기 때문에 저장된 데이터와 중복될 일도 없다.</li>
+  <li>
+    <p>서버는 출력 스트림을 종료하면 상대 호스트에게 EOF가 전송되기 때문에 신뢰가능한 데이터 송수신이 완성된다.</p>
+  </li>
+  <li>클라 : 연결요청</li>
+  <li>서버 : 파일 데이터</li>
+  <li>서버 : EOF</li>
+  <li>클라 : Thank you</li>
+</ol>
+
+<p>파일 전송 예제 필요하면 책 174 페이지 참조</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ardenttcpip" class="page__taxonomy-item" rel="tag">ArdentTCPIP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-13T00:00:00+09:00">January 13, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%97%B4%ED%98%88TCP%2FIP%5D+07+%EC%86%8C%EC%BC%93%EC%9D%98+%EC%9A%B0%EC%95%84%ED%95%9C+%EC%97%B0%EA%B2%B0%EC%A2%85%EB%A3%8C+Half-close%20http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-7%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-7%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-7%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ardenttcpip/chapter-6/" class="pagination--pager" title="[열혈TCP/IP] 06 UDP는 생략
+">Previous</a>
+    
+    
+      <a href="/ardenttcpip/chapter-8/" class="pagination--pager" title="[열혈TCP/IP] 08 도메인 이름과 인터넷 주소
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,706 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[DB System] 2장 계속  - NiklasJang’s Blog</title>
+<meta name="description" content="Page 66 ~ 77 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[DB System] 2장 계속">
+<meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-3/">
+
+
+  <meta property="og:description" content="Page 66 ~ 77 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-09T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/database/Fundatmental-Database-3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DB System] 2장 계속">
+    <meta itemprop="description" content="Page 66 ~ 77">
+    <meta itemprop="datePublished" content="2019-09-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 2장 계속
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="22--three-schema-architecture-and-data-independence">2.2  Three-Schema Architecture and Data Independence</h2>
+
+<p>Three of the four important characteristics of the database approach, listed in Section 1.3, are</p>
+<ol>
+  <li>(1) use of a catalog to store the database description (schema) so as to make it self-describing,</li>
+  <li>(2) insulation of programs and data (program-data and program-operation independence), and</li>
+  <li>(3) support of multiple user views.</li>
+</ol>
+
+<p>In this section we specify an architecture for database systems, called the three-schema architecture, that was proposed to help achieve and visualize these characteristics. Then we discuss further the concept of data independence.</p>
+
+<h3 id="221-the-three-schema-architecture">2.2.1 The Three-Schema Architecture</h3>
+
+<p><img src="" alt="Figure 2.2" /></p>
+
+<ol>
+  <li>The internal level has an internal schema, which describes the physical storage structure of the database. The internal schema uses a physical data model and describes the complete details of data storage and access paths for the database.</li>
+  <li>The conceptual level has a conceptual schema, which describes the structure of the whole database for a community of users. The conceptual schema hides the details of physical storage structures and concentrates on describing enties, data types, relationships, user operations, and constraints.</li>
+  <li>The external or view level includes a number of external schemas or user views. Each external schema describes the part of the database that a particular user group is interested in and hides the rest of the database from that user group.</li>
+</ol>
+
+<p>Schema가 있을 때 데이터는 DISK에  물리적 레벨에서 저장되어있는 상태로만 있다. 유저입장에서는 External View만 보고 사용한다. 각 유저는 자신의 schema level을 보고 파악한다. DBMS는 3개의 Schema에 대한 명령을 변환시켜주어서 데이터를 검색하고 검색한 데이터는 internal한 form으로 나온다. 이를 Conceptual -&gt; external 형태로 변환해서 user에게 보여준다.</p>
+
+<p>유저는 ‘SN’을 검색했지만 Conceptual은 ‘SNUMBER’를 검색하는 명령으로 바꿔준다. DBMS는 ‘STORED-STUDENT’라는 BOX 안에 SNO라는 이름으로 4BYTE OFFSET 4바이트를 가지고 있다고  알고 이를 Conceptual scheme에게 보내준다. conceptual은 이를 integer로 바꾸고 C 스타일로 바꿔서 유저에게 보여준다.</p>
+
+<p>위와 같은 명령을 바꾸고, 검색 결과를 바꿔서 전달하는 과정을 mapping이라고 한다. 이러한 과정은 시간도 오래걸리고 비용이 크다. <strong>이렇게 3단계 Schema가 도입된 이유는 데이터의 독립성을 위해서이다.</strong> 어떤 데이터가 수정이 되었을 때 위의 level에는 영향을 주지 않기 위함이다. 어떤 특정레벨에서 Schema가 바뀌면 상위 사용자들에게는 영향을 주지 않는다.</p>
+
+<h3 id="222-data-independence">2.2.2 Data Independence</h3>
+
+<p>conceptual schema가 바뀌어도 external schema에는 영향을 주지 않는다. 이것이 어떻게 가능하냐?? view definition과 mapping만 변하면 된다?</p>
+
+<p>The three-schema architecture can be used to further explain the concept of data independence, which can be defined as the capacity to change the schema at one level of a database system without having to change the schema at the next higher level. We can define two types of data independence:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Logical data independence</code>  is the capacity to change the conceptual schema without having to change external schemas or application programs. We may change the conceptual schema to expand the database (by adding a record type or data item), to change constraints, or to reduce the database 
+(by removing a record type or data item). In the last case, external schemas that refer only to the remaining data should not be affected. mapping 시키는 방법은 DBMS의 책임이고 user의 책임이다. user는 몰라도 된다. 이러한 것을 논리적 데이터 독립성이라 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Physical data independence</code> is the capacity to change the internal schemawithout having to change the conceptual schema. Hence, the external sche mas need not be changed as well. Changes to the internal schema may be needed because some physical files were reorganized. interal schema가 바뀌어도 conceptual/external schemal에 영향을 주지 않는다. 원래 있던 데이터가 똑같이 들어있기만 하면, 구조가 바뀌어도 윗단에 영향을 주지 않는다. mapping만 바뀌면 된다. 실제로는 <code class="language-plaintext highlighter-rouge">LDI</code>, <code class="language-plaintext highlighter-rouge">PDI</code>를 지나고 mapping하면서 시간 손실이 많이 일어난다. 그래서 실제로는 external과 conceputla 두 schema를 합쳐서 제공한다.</li>
+</ol>
+
+<h2 id="23-database-languages-and-interfaces">2.3 Database Languages and Interfaces</h2>
+
+<p>In Section 1.4 we discussed the variety of users supported by a DBMS. The DBMS must provide appropriate languages and interfaces for each category of users. In this section we discuss the types of languages and interfaces provided by a DBMS and the user categories targeted by each interface.</p>
+
+<h3 id="231-dbms-languages">2.3.1 DBMS Languages</h3>
+
+<p>Once the design of a database is completed and a DBMS is chosen to implement the database, the first step is to specify conceptual and internal schemas for the database and any mappings between the two. In many DBMSs where no strict separation of levels is maintained, one language, called the <code class="language-plaintext highlighter-rouge">data definition language (DDL)</code>, is used by the DBA and by database designers to define both schemas. The DBMS will have a DDL compiler whose function is to process DDL statements in order to identify descriptions of the schema constructs and to store the schema description in the DBMS catalog.</p>
+
+<p>일단 DB의 디자인이 완성되면 DBMS는 이를 implement해야한다. 첫 번째로는 conceptual schemas와 internal schema를 명시화하고 이 둘을 연결해주는 mapping을 명시해야한다. 구분되는 레벨이 없는 많은 DBMS에서는 <code class="language-plaintext highlighter-rouge">DDL</code>이라고 불리는 단 하나의 언어만 사용된다. 이 언어는 <code class="language-plaintext highlighter-rouge">DBA</code>와 <code class="language-plaintext highlighter-rouge">DB 디자이너</code>들에 의해서 사용된다.</p>
+
+<p>In DBMSs where a clear separation is maintained between the conceptual and internal levels, the DDL is used to specify the conceptual schema only. Another language, the <code class="language-plaintext highlighter-rouge">storage definition language (SDL)</code>, is used to specify the internal schema. The mappings between the two schemas may be specified in either one of these languages.</p>
+
+<p>반대로 conceptual and internal levels 사이에 분명한 구분이 있는 DBSM에서는 <code class="language-plaintext highlighter-rouge">DDL</code>은 오직 conceptual schema에만 사용된다. 다른 언어인 <code class="language-plaintext highlighter-rouge">SDL</code>이 interaml schema를 위해서 사용된다. 이 둘 사이의 mapping은 이 둘 중 하나의 언어로 명시될 수 있다.</p>
+
+<p>In most relational DBMSs today, there is no specific language that performs the role of SDL. Instead, the internal schema is specified by a combination of functions, parameters, and specifications related to storage of files. These permit the DBA staff to control indexing choices and mapping of data to storage.</p>
+
+<p>많은 대부분의 DBMS에서는 <code class="language-plaintext highlighter-rouge">SDL</code>의 역할을 하는 특정한 언어가 존재하지 않는다. 대신에 internal schema는 함수, 파라미터 그리고 파일과 관련된 specifiation들에 의해서 명시된다.</p>
+
+<p>For a true three-schema architecture, we would need a third language, the <code class="language-plaintext highlighter-rouge">view definition language (VDL)</code>, to specify user views and their mappings to the conceptual schema, but in most DBMSs the DDL is used to define both conceptual and external schemas. In relational DBMSs, SQL is used in the role of VDL to define user or application views as results of predefined queries (see Chapters 6 and 7).</p>
+
+<p>3가지 schema를 가지고 있는 구조에서는 3번째의 언어가 필요하고 이를 <code class="language-plaintext highlighter-rouge">VDL</code>이라고 부른다. 이것은 user view를 명시하고 user와 conceptual schema 사이의 맵핑을 명시한다. 하지만 대부분의 DBMS에서는 <code class="language-plaintext highlighter-rouge">DDL</code>은 conceptual과 external schema를 모두 명시한다. 관계형 DBMS에서는 SQL이 VDL의 역할을 한다.</p>
+
+<p>Once the database schemas are compiled and the database is populated with data, users must have some means to manipulate the database. Typical manipulations include retrieval, insertion, deletion, and modification of the data. The DBMS provides a set of operations or a language called the <code class="language-plaintext highlighter-rouge">data manipulation language (DML)</code> for these purposes.</p>
+
+<p>There are two main types of <code class="language-plaintext highlighter-rouge">DMLs</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">A high-level or nonprocedural DML</code>: can be used on its own홀로 to specify complex database operations concisely. Many DBMSs allow high-level DML statements either to be entered interactively from a display monitor or terminal or to be embedded in a general-purpose programming language. In the latter case, DML statements must be identified within the program so that they can be extracted by a precompiler and processed by the DBMS. High-level DMLs, such as SQL, can specify and retrieve many records in a single DML statement; therefore, they are called set-at-a-time or set-oriented DMLs. (서울출신 모두 일어서, 한 번에 하나의 집합을 처리.) A query in a high-level DML often specifies which data to retrieve rather than how to retrieve it; therefore, such languages are also called <code class="language-plaintext highlighter-rouge">declarative</code>.택시 손님이 목적지 가는 경로를 알려준다?</li>
+  <li><code class="language-plaintext highlighter-rouge">A low- level or procedural DML</code> must be embedded in a general-purpose programming language. This type of DML typically retrieves individual records or objects from the database and processes each separately. Therefore, it needs to use programming language constructs, such as looping, to retrieve and process each record from <code class="language-plaintext highlighter-rouge">a set of records</code>. for문을 돌면서 한 번에 하나의 데이터를 처리할 수 있다. 너 서울 출신이야?</li>
+</ul>
+
+<p>Whenever DML commands, whether high level or low level, are embedded in a general-purpose programming language, that language is called the host language and the DML is called the data sublanguage.10 On the other hand, a high-levelDML used in a standalone interactive manner is called a query language. In gen- eral, both retrieval and update commands of a high-level DML may be used inter-actively and are hence considered part of the query language.</p>
+
+<ol>
+  <li>DML :
+    <ul>
+      <li>A high-level or nonprocedural DMl :</li>
+    </ul>
+    <ul>
+      <li>declarative languages : .</li>
+      <li>set-at-a-time or set-oriented DMLs : 
+      - A low-level or procedural DML</li>
+      <li>recored-at-a-time? :</li>
+    </ul>
+  </li>
+  <li>
+    <p>QUery language :</p>
+  </li>
+  <li>Data sublanguage
+    <ul>
+      <li>host language</li>
+    </ul>
+  </li>
+  <li>SQL
+    <ul>
+      <li>a comprehensive integrated language</li>
+      <li>a combination of DDL, VDL, and DML, as well as statements for constracint specificatino and schema evolution</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="232-dbms-interfaces">2.3.2 DBMS Interfaces</h3>
+
+<p>I/O에 관한 부분은 OS의 기능을 사용한다. buffer management는 많은 DBMS들이 그들 자신의 modeul을 사용한다. 디스크에서 읽고 쓰고 하는 명령을 Stored data manager에서 전담한다.</p>
+
+<h3 id="24-the-database-system-environment">2.4 The Database System Environment</h3>
+
+<p>The database and the DBMS catalog are usually stored on disk. Access to the disk is controlled primarily by the operating system (OS), which schedules disk read/write. Many DBMSs have their own buffer management module to sched- ule disk read/write, because management of buffer storage has a considerable effect on performance. Reducing disk read/write improves performance consid- erably. A higher-level stored data manager module of the DBMS controls access to DBMS information that is stored on disk, whether it is part of the database or the catalog.</p>
+
+<p>Casual users and persons with occasional need for information from the database interact using the <code class="language-plaintext highlighter-rouge">interactive query</code> interface in Figure 2.3. We have not explicitly shown any menu-based or form-based or mobile interactions that are typically used to generate the interactive query automatically or to access canned transactions. These queries are parsed and validated for correctness of the query syntax, the names of files and data elements, and so on by a <code class="language-plaintext highlighter-rouge">query compiler</code> that compiles them into an internal form.</p>
+
+<p>This internal query is subjected to <code class="language-plaintext highlighter-rouge">query optimization</code> (discussed in Chapters 18 and 19). Among other things, the query optimizer is concerned with the rearrangement and possible reordering of operations, elimina- tion of redundancies, and use of efficient search algorithms during execution. It consults the system catalog for statistical and other physical information about the stored data and generates executable code that performs the necessary operations for the query and makes calls on the runtime processor.</p>
+
+<p>Application programmers write programs in host languages such as Java, C, or C++ that are submitted to a precompiler. 하나의 프로그램에 DB SQL명령과 C 명령이 같이 들어있으면 어렵다. precompiler를 지나면 하나는 C코드만 빼고 하나느 SQL 코드를 포함하는 별도의 프로그램으로 나눈다. 그리고 원래의 형태를 함수를 호출하는 부분으로 바꾼다.  The precompiler extracts DML commands from an application program written in a host programming language. These com- mands are sent to the DML compiler for compilation into object code for database access. The rest of the program is sent to the host language compiler. The object codes for the DML commands and the rest of the program are linked, forming a canned transaction whose executable code includes calls to the runtime database processor. It is also becoming increasingly common to use scripting languages such as PHP and Python to write database programs.</p>
+
+<ul>
+  <li>Runtime database processor
+    <ul>
+      <li>handles database access at run time;</li>
+    </ul>
+  </li>
+  <li><strong>Query Compiler + Query Optimizer효율적으로 질의를 하도록 도와줌 : Query Processor 라고도 부름..</strong></li>
+</ul>
+
+<h3 id="242-database-system-utilities">2.4.2 Database System Utilities</h3>
+
+<ul>
+  <li>설명 간단히 하고 넘어감</li>
+</ul>
+
+<p>In addition to possessing the software modules just described, most DBMSs have database utilities that help the DBA manage the database system. Common utili- ties have the following types of functions:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Loading</code>. A loading utility is used to load existing data files—such as text 
+files or sequential files—into the database. Usually, the current (source) for- 
+mat of the data file and the desired (target) database file structure are speci- 
+fied to the utility, which then automatically reformats the data and stores it 
+in the database. With the proliferation of DBMSs, transferring data from 
+one DBMS to another is becoming common in many organizations. Some 
+vendors offer conversion tools that generate the appropriate loading pro- 
+grams, given the existing source and target database storage descriptions 
+(internal schemas).</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#database" class="page__taxonomy-item" rel="tag">Database</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-09T00:00:00+09:00">September 9, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+2%EC%9E%A5+%EA%B3%84%EC%86%8D+%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cpp/cpp-basic-syntax-8/" class="pagination--pager" title="[C++] 기본 Syntax 8
+">Previous</a>
+    
+    
+      <a href="/database/Fundatmental-Database-4/" class="pagination--pager" title="[DB System] 2장 계속 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

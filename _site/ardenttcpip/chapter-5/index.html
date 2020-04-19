@@ -1,0 +1,824 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[열혈TCP/IP] 05 TCP 기반 서버 / 클라이언트 2 - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[열혈TCP/IP] 05 TCP 기반 서버 / 클라이언트 2">
+<meta property="og:url" content="http://localhost:4000/ardenttcpip/chapter-5/">
+
+
+  <meta property="og:description" content="반갑습니다. niklas jang입니다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-01-11T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ardenttcpip/chapter-5/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[열혈TCP/IP] 05 TCP 기반 서버 / 클라이언트 2">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2020-01-11T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[열혈TCP/IP] 05 TCP 기반 서버 / 클라이언트 2
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#05-tcp-기반-서버--클라이언트-2">05 TCP 기반 서버 / 클라이언트 2</a>
+    <ul>
+      <li><a href="#05-2-tcp의-이론적인-이야기">05-2 TCP의 이론적인 이야기!</a>
+        <ul>
+          <li><a href="#tcp의-내부-동작원리1-상대-소켓과의-연결3-way-handshake">TCP의 내부 동작원리1: 상대 소켓과의 연결(3-way handshake)</a></li>
+          <li><a href="#tcp의-내부-동작원리2-상대-소켓과의-데이터-송수신">TCP의 내부 동작원리2: 상대 소켓과의 데이터 송수신</a></li>
+          <li><a href="#tcp의-내부-동작원리3-상대-소켓과의-연결종료four-way-handshaking">TCP의 내부 동작원리3: 상대 소켓과의 연결종료(Four-way handshaking)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="05-tcp-기반-서버--클라이언트-2">05 TCP 기반 서버 / 클라이언트 2</h1>
+
+<p>챕터 4의 마지막에 언급했던 문제는 echo_server에는 없고, echo_client에만 있다. 에코_클라는 read() 호출을 통해서 잣니이 전송한 문자열 데이터를 한방에 수신하기를 원하고 있다. 이를 문자열 데이터가 전송되었을 때 이를 모두 읽어서 출력하는 것으로 해결하면 된다. 즉, 클라가 수신해야할 데이터의 크기를 미리 알고 있기 때문에 이를 활용하면 된다. 전체적으로는 똑같고 달라지는 부분만 입력한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="n">fputs</span><span class="p">(</span><span class="s">"Input message(Q to quit): "</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+	<span class="n">fgets</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">BUF_SIZE</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="s">"q</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="s">"Q</span><span class="se">\n</span><span class="s">"</span><span class="p">))</span>
+		<span class="k">break</span><span class="p">;</span>
+
+	<span class="n">str_len</span><span class="o">=</span><span class="n">write</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">message</span><span class="p">));</span>
+	
+	<span class="n">recv_len</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">recv_len</span><span class="o">&lt;</span><span class="n">str_len</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">recv_cnt</span><span class="o">=</span><span class="n">read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">message</span><span class="p">[</span><span class="n">recv_len</span><span class="p">],</span> <span class="n">BUF_SIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">recv_cnt</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+			<span class="n">error_handling</span><span class="p">(</span><span class="s">"read() error!"</span><span class="p">);</span>
+		<span class="n">recv_len</span><span class="o">+=</span><span class="n">recv_cnt</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="n">message</span><span class="p">[</span><span class="n">recv_len</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Message from server: %s"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>전송한 데이터 크기만큼 데이터를 수신하기 위해서 read 함수를 반복하고 있다.</p>
+
+<p>아래의 예제 코드는 131페이지에서 설명하고 있는 코드이다. 1바이트 피연산자의 수 - 피연산자 N개 - 연산자를 char형 배열에 저장해서 한 번에 write를 한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//opclient.c</span>
+<span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+</span>
+<span class="cp">#define BUF_SIZE 1024
+#define RLT_SIZE 4
+#define OPSZ 4
+</span><span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">sock</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">opmsg</span><span class="p">[</span><span class="n">BUF_SIZE</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">result</span><span class="p">,</span> <span class="n">opnd_cnt</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_adr</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">!=</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Usage : %s &lt;IP&gt; &lt;port&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	
+	<span class="n">sock</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>   
+	<span class="k">if</span><span class="p">(</span><span class="n">sock</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"socket() error"</span><span class="p">);</span>
+	
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">));</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">inet_addr</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"connect() error!"</span><span class="p">);</span>
+	<span class="k">else</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">"Connected..........."</span><span class="p">);</span>
+
+	<span class="n">fputs</span><span class="p">(</span><span class="s">"Operand count: "</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">opnd_cnt</span><span class="p">);</span>
+	<span class="n">opmsg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">opnd_cnt</span><span class="p">;</span>
+	
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">opnd_cnt</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Operand %d: "</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">opmsg</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">OPSZ</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
+	<span class="p">}</span>
+	<span class="n">fgetc</span><span class="p">(</span><span class="n">stdin</span><span class="p">);</span>
+	<span class="n">fputs</span><span class="p">(</span><span class="s">"Operator: "</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%c"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">opmsg</span><span class="p">[</span><span class="n">opnd_cnt</span><span class="o">*</span><span class="n">OPSZ</span><span class="o">+</span><span class="mi">1</span><span class="p">]);</span>
+	<span class="n">write</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">opmsg</span><span class="p">,</span> <span class="n">opnd_cnt</span><span class="o">*</span><span class="n">OPSZ</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
+	<span class="n">read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">,</span> <span class="n">RLT_SIZE</span><span class="p">);</span>
+	
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Operation result: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+	<span class="n">close</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">fputs</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">fputc</span><span class="p">(</span><span class="sc">'\n'</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//opserver.c</span>
+<span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+</span>
+<span class="cp">#define BUF_SIZE 1024
+#define OPSZ 4
+</span><span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">calculate</span><span class="p">(</span><span class="kt">int</span> <span class="n">opnum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">opnds</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">oprator</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">serv_sock</span><span class="p">,</span> <span class="n">clnt_sock</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">opinfo</span><span class="p">[</span><span class="n">BUF_SIZE</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">result</span><span class="p">,</span> <span class="n">opnd_cnt</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">recv_cnt</span><span class="p">,</span> <span class="n">recv_len</span><span class="p">;</span>	
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_adr</span><span class="p">,</span> <span class="n">clnt_adr</span><span class="p">;</span>
+	<span class="n">socklen_t</span> <span class="n">clnt_adr_sz</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">!=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Usage : %s &lt;port&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	
+	<span class="n">serv_sock</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>   
+	<span class="k">if</span><span class="p">(</span><span class="n">serv_sock</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"socket() error"</span><span class="p">);</span>
+	
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">));</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"bind() error"</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"listen() error"</span><span class="p">);</span>	
+	<span class="n">clnt_adr_sz</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">clnt_adr</span><span class="p">);</span>
+
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">opnd_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="n">clnt_sock</span><span class="o">=</span><span class="n">accept</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">clnt_adr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clnt_adr_sz</span><span class="p">);</span>	
+		<span class="n">read</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">opnd_cnt</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+		
+		<span class="n">recv_len</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="k">while</span><span class="p">((</span><span class="n">opnd_cnt</span><span class="o">*</span><span class="n">OPSZ</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">recv_len</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">recv_cnt</span><span class="o">=</span><span class="n">read</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">opinfo</span><span class="p">[</span><span class="n">recv_len</span><span class="p">],</span> <span class="n">BUF_SIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+			<span class="n">recv_len</span><span class="o">+=</span><span class="n">recv_cnt</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">result</span><span class="o">=</span><span class="n">calculate</span><span class="p">(</span><span class="n">opnd_cnt</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">opinfo</span><span class="p">,</span> <span class="n">opinfo</span><span class="p">[</span><span class="n">recv_len</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+		<span class="n">write</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">result</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+		<span class="n">close</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">close</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">calculate</span><span class="p">(</span><span class="kt">int</span> <span class="n">opnum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">opnds</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">op</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">result</span><span class="o">=</span><span class="n">opnds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">;</span>
+	
+	<span class="k">switch</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+	<span class="p">{</span>
+	<span class="k">case</span> <span class="sc">'+'</span><span class="p">:</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">opnum</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">result</span><span class="o">+=</span><span class="n">opnds</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">break</span><span class="p">;</span>
+	<span class="k">case</span> <span class="sc">'-'</span><span class="p">:</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">opnum</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">result</span><span class="o">-=</span><span class="n">opnds</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">break</span><span class="p">;</span>
+	<span class="k">case</span> <span class="sc">'*'</span><span class="p">:</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">opnum</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">result</span><span class="o">*=</span><span class="n">opnds</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">fputs</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">fputc</span><span class="p">(</span><span class="sc">'\n'</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="05-2-tcp의-이론적인-이야기">05-2 TCP의 이론적인 이야기!</h2>
+
+<p>양쪽 호스트의 read() / write()에 대해서는 각각 출력버퍼와 입력버퍼가 있어서 경계가 없는 데이터 송수신이 가능하다. (write와 read의 호출 횟수가 일치하지 않을 수 있다.)</p>
+
+<ol>
+  <li>입출력 버퍼는 TCP 소켓 각각에 대해서 별도로 존재한다.</li>
+  <li>입출력 버퍼는 소켓생성시 자동으로 생성된다.</li>
+  <li>소켓을 닫아도 출력버퍼에 남아있는 데이터는 계속해서 전송이 이루어진다.</li>
+  <li>소켓을 닫으면 입력버퍼에 남아있는 데이터는 소멸되어버린다.</li>
+</ol>
+
+<p>입력버퍼의 크기를 초과하는 분량의 데이터 전송을 TCp에서는 일어나지 않는다. <code class="language-plaintext highlighter-rouge">슬라이딩 윈도우</code>라는 프로토콜을 사용한다. 입력 버퍼가 50바이트이고 데이터가 100바이트이면, 입력버퍼의 20바이트가 처리됐다면 70바이트까지는 보낼 수 있도록 통신을 한다는 뜻이다.</p>
+
+<h3 id="tcp의-내부-동작원리1-상대-소켓과의-연결3-way-handshake">TCP의 내부 동작원리1: 상대 소켓과의 연결(3-way handshake)</h3>
+
+<p>TCP 소켓 생성에서 소멸의 과정을 거치면서 아래의 단계를 지난다.</p>
+
+<ol>
+  <li>상대 소켓과의 연결</li>
+  <li>상대 소켓과의 데이터 송수신</li>
+  <li>상대 소켓과의 연결종료</li>
+</ol>
+
+<p>3-way handshake를 간단하게 표현하면 다음과 같다.</p>
+
+<ol>
+  <li>A : 연결하자 : [SYN] SEQ: 1000, ACK : -
+    <ul>
+      <li>내가 지금 보내는 패킷에 1000이라는 번호를 부여하니, 잘 받았으면 다음에는 1001번 패킷을 전달하라고 내게말해줘</li>
+    </ul>
+  </li>
+  <li>B : 준비됐어 : [SYN+ACK] SEQ: 1000, ACK : 1001
+    <ul>
+      <li>내가 지금 보내는 패킷에 2000이라는 번호를 부여하니, 잘 받았으면 다음에는 2001번 패킷을 전달하라고 내게말해줘</li>
+      <li>좀 전에 전송한 SEQ가 1000인 패킷은 잘 받았으니, 다음 번에는 SEQ가 1001인 패킷을 전송하기 바란다.</li>
+    </ul>
+  </li>
+  <li>A : 알겠어  : [ACK] SEQ: 1001, ACK : 2001
+    <ul>
+      <li>1001 보낼게</li>
+      <li>2000 잘 받았고 다음부터 2001 보내</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="tcp의-내부-동작원리2-상대-소켓과의-데이터-송수신">TCP의 내부 동작원리2: 상대 소켓과의 데이터 송수신</h3>
+
+<p>호스트 A가 호스트 B에게 총 200바이트를 두 번에 나눠서 보내는 경우</p>
+
+<ol>
+  <li>A: [SEQ] SEQ: 1200, 100 byte data</li>
+  <li>B: [ACK] 1301</li>
+  <li>A: [SEQ] SEQ: 1301, 100 byte data</li>
+  <li>B: [ACK] 1402</li>
+</ol>
+
+<ul>
+  <li>ACK 번호 = SEQ 번호 + 전송된 바이트 크기 + 1이다.</li>
+  <li>+1은 다음번에 전달될 SEQ의 번호를 알리기 위함이다.</li>
+  <li>A: [SEQ] SEQ: 1301, 100 byte data를 B가 제대로 받지 못하면 timeout이 걸리고 A는 같은 패킷을 재전송한다.</li>
+</ul>
+
+<h3 id="tcp의-내부-동작원리3-상대-소켓과의-연결종료four-way-handshaking">TCP의 내부 동작원리3: 상대 소켓과의 연결종료(Four-way handshaking)</h3>
+
+<ol>
+  <li>A: 연결 끊고싶습니다. FIN SEQ 5000, ACK -</li>
+  <li>B: 잠시만요 ACK SEQ 7500, ACK 5001</li>
+  <li>B: 저도 끊을 준비가 됐습니다. 끊으세요. FIN SEQ 7501, ACK 5001</li>
+  <li>A: 네 연결 끊겠습니다. ACK SEQ 5001, ACK 7502</li>
+</ol>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ardenttcpip" class="page__taxonomy-item" rel="tag">ArdentTCPIP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-11T00:00:00+09:00">January 11, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%97%B4%ED%98%88TCP%2FIP%5D+05+TCP+%EA%B8%B0%EB%B0%98+%EC%84%9C%EB%B2%84+%2F+%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8+2%20http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ardenttcpip/chapter-4/" class="pagination--pager" title="[열혈TCP/IP] 04 TCP 기반 서버 / 클라이언트 1
+">Previous</a>
+    
+    
+      <a href="/ps/back-tracking-problem-6/" class="pagination--pager" title="[ps][백트래킹][문제] 퇴사
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

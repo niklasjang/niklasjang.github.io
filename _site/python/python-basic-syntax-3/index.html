@@ -1,0 +1,895 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>기본 Python sysntax 정리 Part 3. - NiklasJang’s Blog</title>
+<meta name="description" content="Try! Hello world정리 Part 13.~ 15. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="기본 Python sysntax 정리 Part 3.">
+<meta property="og:url" content="http://localhost:4000/python/python-basic-syntax-3/">
+
+
+  <meta property="og:description" content="Try! Hello world정리 Part 13.~ 15. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-30T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/python/python-basic-syntax-3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="기본 Python sysntax 정리 Part 3.">
+    <meta itemprop="description" content="Try! Hello world정리 Part 13.~ 15.">
+    <meta itemprop="datePublished" content="2019-05-30T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">기본 Python sysntax 정리 Part 3.
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#part-13-논리-연산과-if문-더-알아보기">PART 13 논리 연산과 if문 더 알아보기</a>
+    <ul>
+      <li><a href="#40-논리-연산-더-알아보기">40 논리 연산 더 알아보기</a></li>
+      <li><a href="#41-bool-값과-논리-연산">41 bool 값과 논리 연산</a></li>
+    </ul>
+  </li>
+  <li><a href="#part14-리스트-더-알아보기">PART14 리스트 더 알아보기</a></li>
+  <li><a href="#42-리스트의-다양한-기능">42 리스트의 다양한 기능</a>
+    <ul>
+      <li><a href="#43-리스트와-문자열">43 리스트와 문자열</a></li>
+      <li><a href="#44슬라이스">44슬라이스</a></li>
+      <li><a href="#45-듬성듬성한-슬라이스">45 듬성듬성한 슬라이스</a></li>
+      <li><a href="#46-슬라이스로-리스트-수정">46 슬라이스로 리스트 수정</a></li>
+    </ul>
+  </li>
+  <li><a href="#part15-클래스와-객체-지향-프로그래밍">PART15 클래스와 객체 지향 프로그래밍</a>
+    <ul>
+      <li><a href="#47-자료형-다루기">47 자료형 다루기</a></li>
+      <li><a href="#48-인스턴스instance">48 인스턴스(instance)</a></li>
+      <li><a href="#49-클래스">49 클래스</a></li>
+      <li><a href="#50-모델링">50 모델링</a></li>
+      <li><a href="#51메서드">51메서드</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="part-13-논리-연산과-if문-더-알아보기">PART 13 논리 연산과 if문 더 알아보기</h2>
+
+<h3 id="40-논리-연산-더-알아보기">40 논리 연산 더 알아보기</h3>
+
+<ul>
+  <li>and : 연결된 모든 식이 True일 때만 True</li>
+  <li>:연결된 식 중 하나라도 False 이면 False</li>
+  <li>: A and B 에서 A가 True 일 때 B의 결과를 따름.</li>
+  <li>
+    <p>: A and B 에서 A가 False 이면 B는 판단하지 않고 False</p>
+  </li>
+  <li>or    : 연결된 모든 식 중 하나만 True이면 True</li>
+  <li>:  연결된 모든 식이 False 일 때만 False</li>
+  <li>: A or B에서 A가 True 일 때는 B를 판단하지 않고 True</li>
+  <li>: A or B에서 A가 Falses 일 떄는 B의 결과를 따름.</li>
+</ul>
+
+<p><img src="/assets/images/python/basic-syntax-1.jpg" alt="else" /></p>
+
+<p>19번 줄 : return_false가 False 이기 때문에 and 뒤의 return_True 값에 상관없이 False 이기 때문에 and 뒤를 진행하지 않고 바로 else : 로 들어간다.</p>
+
+<ul>
+  <li>단락 평가 : 위 같이 필요 없는 연산을 하지 않는 것을 <code class="language-plaintext highlighter-rouge">단락 평가</code>를 지원한다.고 말함.</li>
+  <li>활용 구문 :</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="s">"Key1"</span> <span class="ow">in</span> <span class="n">dictionary</span> <span class="ow">and</span> <span class="n">dictionary</span><span class="p">[</span><span class="s">"Key1"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Value 1"</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Key1도 있고, 그 값은 Value1이다."</span><span class="p">)</span>
+<span class="c1">#and를 기준으로 if 두 개를 중첩한 구문을 사용할 수 있지만  위와 같이 써도 효율적인 코드이다.
+</span></code></pre></div></div>
+
+<h3 id="41-bool-값과-논리-연산">41 bool 값과 논리 연산</h3>
+
+<ul>
+  <li>bool 형식이 아닌 값이 논리 연산에서 어떻게 평가되는지 살펴본다.</li>
+  <li>bool(0) # False</li>
+  <li>bool(1) # True</li>
+  <li>bool(-1) # True    ##0이 아닌 모든 숫자를 다 True</li>
+  <li>bool([]) #빈 list는 모두 False</li>
+  <li>bool([3]) #값을 가지는 list는 True</li>
+  <li>bool(None) # Fales</li>
+  <li>bool(‘ ‘) # False</li>
+  <li>bool(‘hi’) #True</li>
+</ul>
+
+<pre><code class="language-PY">if 'Hi' :
+    print('이 문장은 출력 됨.')
+</code></pre>
+
+<ul>
+  <li>활용 : value = input(‘입력해 주세요&gt;’) or ‘아무것도 못 받았어’</li>
+</ul>
+
+<pre><code class="language-txt">#입력된 값이 있기만 하면 그 문자열은 True로 인식되어 or 뒤의 연산을 진행하지 않는다.
+#만약 input 구문에서 바로 enter만 입력한다면 빈 문자열이 되므로 or 뒤의 연산을 진행한다.
+#이 경우 value = '아무것도 못 받았어'로 저장된다.
+</code></pre>
+
+<h2 id="part14-리스트-더-알아보기">PART14 리스트 더 알아보기</h2>
+
+<h2 id="42-리스트의-다양한-기능">42 리스트의 다양한 기능</h2>
+
+<ul>
+  <li>list1 = [135,467, 27, 2753, 234]</li>
+  <li>list1.index(27) # 2(출력)     #.index()는 실행인자로 받은 값이 리스트의 몇 번째에 있는지 조사함.</li>
+  <li>list1.index(50) # ValueError</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="mi">50</span> <span class="ow">in</span> <span class="n">list1</span> <span class="p">:</span>
+<span class="n">list1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#if문으로 50이 list1에 없는 경우를 걸러내므로 오류가 발생하지 않음.
+</span></code></pre></div></div>
+
+<ul>
+  <li>list2 = [1,2,3] + [4,5,6]</li>
+  <li>list3 = [1,2,3]</li>
+  <li>list3.extend([9,10,11])</li>
+  <li>list.append(16) #append() takes exactly one argument</li>
+  <li>list3.insert(2, 999) #index 2 자리에 999를 집어 넣는다</li>
+  <li>list3.insert(-1, 100) #가장 마지막 자리에 100을 넣는다. [1,2,3] 이었으면 [1,2,100,3]으로 변함.</li>
+  <li><strong>index -1은 index 2를 의미하므로 list3[2] = 100이 되고 3은 list3[3]이 되는게 맞다.</strong></li>
+  <li>그냥 list3[1000]하면 index를 벗어나므로 IndexError가 발생.</li>
+  <li>근데 list3.insert(1000,555)를 하면 list3의 가장 뒤에 붙음. [1,2,3]이었으면 [1,2,3,555]가 됨.</li>
+  <li>list3.sort() # 오름차순 정렬</li>
+  <li>list3.reverse() #내림차순 정렬</li>
+</ul>
+
+<h3 id="43-리스트와-문자열">43 리스트와 문자열</h3>
+<ul>
+  <li>list1 = [ 1,2,3,4,5,6]</li>
+  <li>list1[0] # 1</li>
+  <li>list1[1]# 2</li>
+  <li>str1= “Hello World”</li>
+  <li>st1[0] = ‘H’</li>
+  <li>str1[1] = ‘e’</li>
+  <li>str1.index(“r”) # 8</li>
+  <li>characters = list(“abcdef”) # characters = [‘a’,b’,’c’,’d’,’e’,’f’]</li>
+  <li>words = “우리는 하나다”</li>
+  <li>words_list = words.split() # [‘우리는’,’하나다’]</li>
+  <li>time_str = “10:12:23”</li>
+  <li>time_list = time_str.split(“:”) # [‘10’,’12’,’23’]</li>
+  <li>”:”.join(time_list)  # “10:12:23”    #2 “ “로 한다면 “10 12 23”, ““로한다면 “101223”</li>
+  <li>#”“.join에서 ““안의 값을 기준으로 붙이고  .split(““)의 ““안의 값 기준으로 나눈다.</li>
+</ul>
+
+<h3 id="44슬라이스">44슬라이스</h3>
+
+<ul>
+  <li>list = [‘영’,’일’,’이’,’삼’,’사’,’오’]</li>
+  <li>list[1:3] # [‘일’,’이’]</li>
+  <li>list[0:2] # [‘영’,’일’]</li>
+  <li>list[2:len(list)] #[‘이’,’삼’,’사’,’오’]</li>
+  <li>list[0:2] # [‘영’,’일’]    #2 list[:2]와 같음.</li>
+  <li>list[2:] #[‘이’,’삼’,’사’,’오’]</li>
+  <li>list[:] # list와 출력값이 같음. #2 전체를 모두 출력</li>
+  <li>list와 list[:]은 같은 값이 나오지만 원래 있던 리스트를 넘겨주는 것이 아니다. 똑같은값을가지는 새로운리스트를 만들어 넘겨주는 것이다. 즉, 리스트가 복사된 것이다.</li>
+</ul>
+
+<h3 id="45-듬성듬성한-슬라이스">45 듬성듬성한 슬라이스</h3>
+
+<ul>
+  <li>list1 = list(range(20)) # [0,1,2,~~,19,20]</li>
+  <li>list1[5:15:2] # 세번째 자리에 오는 숫자(2)를 step이라고 부른다. 5부터 14까지 2칸씩 건너 뛴다.</li>
+  <li>list1[5:15:3] # [5,8,11,14]</li>
+  <li>#step을 지정하지 않는다면 1로 지정한 것과 같은 결과</li>
+</ul>
+
+<h3 id="46-슬라이스로-리스트-수정">46 슬라이스로 리스트 수정</h3>
+<ul>
+  <li>numbers = list(range(10))</li>
+  <li>del numbers[0] # [1,2,~8,9]</li>
+  <li>del numbers[:5] #[6,7,8,9]</li>
+  <li>numbers[1:3] = [77,88] # [6,77,88,9]</li>
+  <li>numbers[1:3] = [77,88,99] # [6,77,88,99,9]  #2 리스트에 들어 있는 값의 갯수를 맞출필요없음</li>
+  <li>number2[1:4] = [8] # [6,8,9]</li>
+</ul>
+
+<h2 id="part15-클래스와-객체-지향-프로그래밍">PART15 클래스와 객체 지향 프로그래밍</h2>
+
+<h3 id="47-자료형-다루기">47 자료형 다루기</h3>
+<ul>
+  <li>type(42) #&lt;class ‘int’&gt;</li>
+  <li>type(42.0) #&lt;class ‘float’&gt;</li>
+  <li>42 == 42.0  # True! #2자료형은 다르지만 값을 같으므로 True 출력.</li>
+  <li>isinstance() # 수가 정수인지 실수인지를 판단해주는 함수</li>
+  <li>isinstance(42, int) # True</li>
+  <li>isinstance(42.0, int) # False</li>
+</ul>
+
+<h3 id="48-인스턴스instance">48 인스턴스(instance)</h3>
+
+<ul>
+  <li>클래스, 인스턴스에 대한 설명을 아래에 적음.</li>
+  <li>numbers1 = []</li>
+  <li>type(nubmers) # &lt;class ‘list’&gt;</li>
+  <li>character = list(“Hello”) 와 Character = list(range(10))  모두 list 형임.</li>
+  <li>type()로 출력되는 &lt;class ‘list’&gt; 따위를 클래스라고 부름. list는 클래스의 한 종류</li>
+  <li>nubmerbers1 = [] 한 다음에 numbers == list 를 하면 False가 나옴.</li>
+  <li>
+    <p>#동등 연산자 (==)로 검사해 보면 물론 같지 않다 (False)라고 나옵니다. numbers1이 리스트는 맞지만(isinstance), 그렇다고 완전히 같은 것(==)은 아니라는 말이다. 앞 문장에서 말한 ‘numbers1은 리스트이다.’라는 말을 엄밀히 적으면 ‘numbers1은 리스트(list) 클래스의 인스턴스 가운데 하나다.’라는 뜻.</p>
+  </li>
+  <li>48장에서의 코드에 대해서, nubmers1이 리스트의 한 인스턴스이고, character와 Character도 각각 다른 리스트의 인스턴스임. class의 한 종류가 list이고, list에 해당하는 각각을 인스턴스라고 이해하자.</li>
+  <li>list1 = []</li>
+  <li>list2 = list1</li>
+  <li>list3 = []</li>
+  <li>list1과 list2가 가리키는 인스턴스는 같음. list3가 가리키는 인스턴스는 다른 인스턴스.</li>
+  <li>list1.append(2)</li>
+  <li>list2.append(1)</li>
+  <li>list3.append(3)</li>
+  <li>print(list1) # [2,1]</li>
+  <li>print(list2) # [2,1]</li>
+  <li>print(list3) # [3]       으로 같은 인스턴스인지 다른 인스턴스인지를 확인할 수 있다.</li>
+</ul>
+
+<h3 id="49-클래스">49 클래스</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Human</span><span class="p">()</span> <span class="p">:</span> 
+<span class="c1">#'''사람''' # 클래스를 만드는 간단한 방법.
+</span><span class="n">person1</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span> <span class="c1">#Human 클래스의 인스턴스를 하나 생성한다.
+</span><span class="n">person2</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span> <span class="c1"># Human 클래스의 또 다른 인스턴스를 하나 생성한다.
+</span></code></pre></div></div>
+
+<ul>
+  <li>list 클래스에는 append(), extend(), insert(), pop()과 같은 기능들이 이미 구현되어 있는 상태.</li>
+  <li>dict 클래스는 특정한 키(key)에 원하는 값을 저장할 수는 있지만 순서를 저장할 수는 없다.</li>
+  <li>Human 클래스의 기능을 설명할 때 이 책에서는 ‘특징’와 ‘행동’이라고 설명하고 있다.</li>
+  <li>일단은 특징을 설명하고, 행동을 다음에 설명하겠다.</li>
+  <li>먼저 간략하게 말해도면 행도은 class안에 함수를 넣는 것이고, 특징은 class에 속하는 값을 만드는 것.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person1</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span>
+<span class="n">person2</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span>
+<span class="n">person1</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="s">'한국어'</span>   
+<span class="n">person2</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="s">'English'</span>   
+<span class="c1">#class Human() : 아래에 따로 코드를 적은 것은 없지만 ,이렇게 하면 person2.language 자체가 Human 클래스 안에 있는 하나의 값으로 저장이 된다. math module의 pi를 생각해보자.
+</span><span class="n">person1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">'서울시민'</span>
+<span class="n">person2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">'인도인'</span> <span class="c1">#'특징'은 얼마든지 만들 수 있다.
+</span></code></pre></div></div>
+
+<p>-클래스와 인스턴스를 사용하는 이유 : 꼭 사용할 필요하지는 않은 인위적인 도구이다. 클래스를 쓴다고 해서 이전에 풀 수 없었던 문제를 풀 수 있는 것은 아니다. 그럼에도 불구하고 클래스와 인스턴스를 이용하면 데이터와 코드를 사람들이 더 쉽게 이해할 수 있도록 포장할 수 있다. 이해하기 쉽게 만들어줌!
+-language 나 name과 같은 ‘값’ 뿐만 아니라 ‘행동’(함수)를 클래스 안에 담아둘 수도 있다.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"{}이 {}로 말을 합니다."</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">person</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+
+<span class="n">speak</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
+<span class="n">speak</span><span class="p">(</span><span class="n">person2</span> <span class="p">)</span> <span class="err">이렇게만</span> <span class="err">쓸</span> <span class="err">수도</span> <span class="err">있지만</span> <span class="err">이렇게만</span> <span class="err">하면</span> <span class="err">클래스</span> <span class="err">안에는</span> <span class="err">아무것도</span> <span class="err">들어있지</span> <span class="err">않다</span><span class="o">.</span>
+<span class="n">Human</span><span class="o">.</span><span class="n">speak</span> <span class="o">=</span> <span class="n">speak</span>   <span class="c1">#이와  같이 한 줄을 적어주면 Human 클래스 안에 speak 함수가 속함.
+#물론 Human.speak 보다 speak라고 적는 것이 코드를 작성할 때는 짧지만 전자가 더 이해하기 쉽
+</span><span class="n">person1</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+<span class="n">person2</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span> <span class="c1">#Human class 안에 speak()가 들어가서 이와 같은 형태로 구현할 수 있음
+#person1이라는 Human 클래스 안에 속해 있는 speak 함수를 호출하는 것이다.
+#Human 클래스의 인스턴스를 person1으로 정해놓고 함수 이름을 speak로 하고
+#speak 안에 print를 구현해 놓으면 person1이 print문을 speak한다고 이해할 수 있다.
+#speak(person1)는 speak가 중심일 때 person1을 argument로 주는 것이다.
+#person1.speak()는 person1을 중심으로 말하는 것이다.
+#class에 대한 추가설명은 51강에 있으니까 이 부분을 읽고 있다면 51강까지는 꼭 읽자
+</span></code></pre></div></div>
+
+<h3 id="50-모델링">50 모델링</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Human</span><span class="p">()</span> <span class="p">:</span>
+<span class="s">'''인간'''</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span>    
+    <span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">'철수'</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="mf">60.5</span>   <span class="c1">#이 것을 매번 반복하는 것이 귀찮다.
+</span></code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Human</span> <span class="p">()</span> <span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">creat_human</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">person</span> <span class="o">=</span> <span class="n">Human</span> <span class="p">()</span>
+        <span class="n">person</span> <span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+        <span class="k">return</span> <span class="n">person</span>
+        <span class="n">Human</span><span class="o">.</span><span class="n">creat</span> <span class="o">=</span> <span class="n">creat_human</span> <span class="c1">#Human 클래스의 creat 함수로 creat_human 함수를 지정
+</span>        <span class="n">person</span> <span class="o">=</span> <span class="n">Human</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s">"철수"</span><span class="p">,</span> <span class="mf">60.5</span><span class="p">)</span> <span class="c1"># Human.create의 retrun 값이 인스턴스
+</span>
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">weight</span> <span class="o">+=</span> <span class="mf">0.1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"{}가 먹어서 {}kg이 되었습니다."</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">person</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">walk</span> <span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="mf">0.1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"{}가 걸어서 {}kg이 되었습니다."</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">person</span><span class="o">.</span><span class="n">weight</span><span class="p">))</span>
+
+<span class="n">Human</span><span class="o">.</span><span class="n">eat</span> <span class="o">=</span><span class="n">eat</span>         <span class="c1">#Human class에 넣기
+</span><span class="n">Human</span><span class="o">.</span><span class="n">walk</span> <span class="o">=</span> <span class="n">walk</span>
+
+<span class="n">person</span><span class="o">.</span><span class="n">walk</span><span class="p">()</span>     <span class="c1">#실제 사람(인스턴스)에 적용하기.
+</span><span class="n">person</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>
+<span class="n">person</span><span class="o">.</span><span class="n">walk</span><span class="p">()</span>  <span class="c1">#이렇게 코드로 현실의 개념을 표현하는 것을 '모델링'이라고 한다.
+</span></code></pre></div></div>
+
+<h3 id="51메서드">51메서드</h3>
+
+<ul>
+  <li>메서드: 클래스에 포함된 함수를 가리키는 다른 이름일 뿐임.</li>
+  <li>지금까지는 빈 클래스와 함수를 따로 만들고, 다시 함수를 클래스에 넣는 방식을 사용</li>
+  <li>def로 정의한  함수 내용을 indent만 해주면 class 안에 들어감.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Human</span> <span class="p">()</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">creat_human</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">Human</span> <span class="p">()</span>
+    <span class="n">person</span> <span class="o">=</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+    <span class="k">return</span> <span class="n">person</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이와 같이 쓰면 person = Human() 한 다음에 Human.create = creat_human(a,b)하지 않다도 됨. 코드만 봐도 Human 클래스가 가진 메서드가 무엇인지 더 잘 드러난다. 뿐만 아니라 함수를 만들었다가 따로 클래스에 대입해 넣는 번거로운 작업을 하지 않아도 된다. 하지만 이는 기능은 완벽하지만 아직 관습에 맞지 않는 부분이 있음</li>
+  <li><strong>메서드에 대한 특별한 규칙 중에 ‘메서드를 호출할 때 첫 번쨰 인자를 생략하면 인스턴스 자신으로 채워준다.’라는 규칙이 있다. 파이썬에서는 자기 자신을 자동으로 넘겨주는 매개변수라는 뜻으로 self 매개변수를 사용한다.</strong> 단, 인스턴스에서 호출하지 않고 Human 클래스에서 바로 호출하는 create()함수는 예외로 둔다. # person = Human.create(a,b)형태로 Human.create 적는 것은 self 안씀</li>
+</ul>
+
+<p><img src="/assets/images/python/basic-syntax-2.jpg" alt="else" />
+eat 함수와 walkf 함수의 모든 person 을 self로 바꾼 모습</p>
+
+<ul>
+  <li>eat 함수를 class 밖으로 빼고 eat(person)으로 실행하면 같은 결과가 나옴.</li>
+  <li>단, eat()와 같이 실행인자를 적어주지 않으면 self parameter에는 들어갈 것이 없어서 오류남.</li>
+  <li>eat을 class 안에 넣고 person.eat()을 한다면 자동으로 첫 번째 인자에 person을 넣어서 오류가 안남.</li>
+  <li>매개변수가 여러 개인 경우</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Human</span><span class="p">():</span>
+    <span class="p">(</span><span class="err">코드줄임</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="n">person</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s">"안녕하세요."</span><span class="p">)</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#syntax" class="page__taxonomy-item" rel="tag">syntax</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-30T00:00:00+09:00">May 30, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B8%B0%EB%B3%B8+Python+sysntax+%EC%A0%95%EB%A6%AC+Part+3.%20http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/python/python-basic-syntax-2/" class="pagination--pager" title="기본 Python sysntax 정리 Part 2.
+">Previous</a>
+    
+    
+      <a href="/algorithm/Topological-Sort/" class="pagination--pager" title="[위상정렬] Topological Sort
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

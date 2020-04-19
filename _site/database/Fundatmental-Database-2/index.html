@@ -1,0 +1,832 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[DB System] 1장 마무리 및 2장 - NiklasJang’s Blog</title>
+<meta name="description" content="Page 47 ~ 66 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[DB System] 1장 마무리 및 2장">
+<meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-2/">
+
+
+  <meta property="og:description" content="Page 47 ~ 66 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-04T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/database/Fundatmental-Database-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DB System] 1장 마무리 및 2장">
+    <meta itemprop="description" content="Page 47 ~ 66">
+    <meta itemprop="datePublished" content="2019-09-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 1장 마무리 및 2장
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="16-advantages-of-using-the-dbms-approach">1.6 Advantages of Using the DBMS Approach</h2>
+
+<h3 id="161-controlling-redundancy">1.6.1 Controlling Redundancy</h3>
+
+<p>Controlling redundancy in data storage and in development and maintenance efforts. redundancy를 아예 없애지는 않고 성능을 위해서 조금은 허용한다. 최소한의 데이터의 중복을 유지하면서 data의 동일성은 계속 유지해주어야 한다.</p>
+
+<h3 id="162-restricting-unauthorized-access">1.6.2 Restricting Unauthorized Access</h3>
+
+<p>불법적인 권한에 대해서 제한을 할 수 있다.</p>
+
+<h3 id="163-providing-persistent-storage-for-program-objects">1.6.3 Providing Persistent Storage for Program Objects</h3>
+
+<p>Databases can be used to provide persistent storage for program objects and data structures. This is one of the main reasons for object-oriented database systems 
+(see Chapter 12).</p>
+
+<h3 id="168-enforcing-integrity-constraints"><strong>1.6.8 Enforcing Integrity Constraints</strong></h3>
+
+<p>Most database applications have certain <code class="language-plaintext highlighter-rouge">integrity constraints</code> that must hold for the data.  A DBMS should provide capabilities for defining and enforcing these constraints. The simplest type of integrity constraint involves specifying a data type for each data item.</p>
+
+<p>we can specify that every section record must be related to a course record. This is known as a <code class="language-plaintext highlighter-rouge">referential integrity</code> constraint. <code class="language-plaintext highlighter-rouge">참조 무결성</code></p>
+
+<p>Another type of constraint specifies uniqueness on data item values, such as every course record must have a unique value for Course_number. This is known as a <code class="language-plaintext highlighter-rouge">key</code> or <code class="language-plaintext highlighter-rouge">uniqueness constraint</code>.  These constraints are derived from the meaning or semantics of the data and of the miniworld it represents.  It is the 
+responsibility of the database designers to identify <code class="language-plaintext highlighter-rouge">integrity constraints</code> during database design.</p>
+
+<h3 id="1610--additional-implications-of-using-the-database-approach">1.6.10  Additional Implications of Using the Database Approach</h3>
+
+<ol>
+  <li>Potential for Enforcing Standards.</li>
+  <li>Reduced Application Development Time.</li>
+  <li>Flexiblity to change dat structires. 데이터구조 변화에 대한 융통성. 기존의 field를 사용할 때 새로운 row나 col을 추가하는 것이 가능하다. 1개의 row에 대해서만 col을 추가하는 것도 기존의 데이터를 뒤엎지 않고 허용해준다.</li>
+  <li>Providing backup and recovery services</li>
+  <li>Reduced application development time</li>
+  <li>Availability of up-to-data information</li>
+</ol>
+
+<h2 id="17-a-brief-history-of-database-applications">1.7 A Brief History of Database Applications</h2>
+
+<h2 id="hierarchical-and-network-systems">Hierarchical and Network Systems</h2>
+
+<h3 id="171--early-database-applications-using-hierarchical-and-network-systems">1.7.1  Early Database Applications Using Hierarchical and Network Systems</h3>
+
+<ul>
+  <li>early DB applications(60’~80’) maintained large numbers of records of similar structure
+    <ul>
+      <li>계산 위주의 DB를 사용하다가, 어떤 데이터가 어디에 있는지 모르는 상태가 된다. 관리가 안되는 문제가 발생</li>
+    </ul>
+  </li>
+  <li>problem -&gt; intermixing of conceptual relationships with the physical storage
+    <ul>
+      <li>기록들 간의 관계를 표현하는 특별한 방법이 없었다. 트리에서 부모/자식과 같은 관계. 포인터로 지칭하는 방법밖에 없었다. 즉, 기존의 방식에서는 수많은 포인터를 사용해서 실제 디스크 주소를 찾아가서 데이터를 얻었다. 이러한 관계를 Hierarchical and Network Systems라고 부르고 데이터를 옮기면 많은 포인터를 다 바꿔야하는 문제가 있었다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="172--providing-data-abstraction-and-application-flexibility-with-relational-databases">1.7.2  Providing Data Abstraction and Application Flexibility with Relational Databases</h3>
+
+<ul>
+  <li>Providing application flexibility : seperate the physical storage of data from its comceptual representation and provide query language.</li>
+  <li><strong>관계형 DB로 되면서는 주소를 몰라도 관계를 알면 데이터를 찾을 수 있었다. 어떻게 찾는지는 DBMS가 찾아주고 사용자는 어떻게 찾는지는 몰라도 됐다.(가장 큰 차이)</strong></li>
+</ul>
+
+<h3 id="173--object-oriented-applications-and-the-need-for-more-complex-databases">1.7.3  Object-Oriented Applications and the Need for More Complex Databases</h3>
+
+<ul>
+  <li>complexity of models and the lack of an early standard -&gt; under 5% of DB market</li>
+  <li>이 때 객체지향 프로그래밍 language가 나왔다. C++/C#/Object-C이런 것들이 나왔다. C++의 class/object 개념을 가지는 DBMS를 만들기 위해서 노력했지만 어려워서 망했다. 어려워서 사람들이 안써서 market share가 많이 줄어들고 있다.</li>
+</ul>
+
+<h3 id="174--interchanging-data-on-the-web-for-e-commerce-using-xml">1.7.4  Interchanging Data on the Web for E-Commerce Using XML</h3>
+
+<ul>
+  <li>XML : <code class="language-plaintext highlighter-rouge">eXtended Markup Language</code></li>
+  <li>웹페이지를 DB로 관리하기 어려워서 Web Page를 DB화 관리하기 위한 language가 나타났다.</li>
+</ul>
+
+<h3 id="175--extending-database-capabilities-for-new-applications">1.7.5  Extending Database Capabilities for New Applications</h3>
+
+<ul>
+  <li>Scientific applications : 유전자 염기서열 분석 및 재조립</li>
+  <li>Storage and retrieval of images ans videos : 케이블 TV의 DB에는 영상이 들어가있다.</li>
+  <li>Data mining applicaations :</li>
+  <li>Spatial/Time series applications : 시간에 따라 변하면 주식/시간/날씨 등을 처리</li>
+  <li>더 복잡해지고 새로운 데이터 타입에 새로운 indexing 방식을 사용하게 됨.</li>
+</ul>
+
+<p>This led DBMS developers to add functionality to their systems. 두 가지 기능이 있는데 하나는 범용 기능. 하나는 특수 기능. Some functionality was general purpose, such as incorporating concepts from object-oriented databases into relational systems. Other functionality was special purpose, in the form of optional modules that could be used for specific applications. For example, users could buy a time series module to use with their relational DBMS for their time series application.</p>
+
+<ul>
+  <li>general purpose functionality : incorporating concepts from OODB into relational systems.
+    <ul>
+      <li>OODB의 모든 기능은 모두 reltional DB에 들어가있어서 OODB로 쓰려면 쓸 수 있다.</li>
+    </ul>
+  </li>
+  <li>special purpose functionality, in the form of optional modules
+    <ul>
+      <li>E.g, users could buy a time series module to use with their relational DBMS for their time series application</li>
+      <li>돈을 주고 옵션을 같이 사면 추가적인 library를 사용할 수 있다. 특수 기능들을 어디서는 module 어디서는 blade라고 부른다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="176--emergence-of-big-data-storage-systems-and-nosql-databases">1.7.6  Emergence of Big Data Storage Systems and NOSQL Databases</h3>
+
+<ul>
+  <li>social media Web sites, large e-commerce companies, Web search indexes, and cloud storage/backup -&gt; data stored on large DBs and massive servers</li>
+  <li>New types of DB Systems were necessary to mange these huge databases
+    <ul>
+      <li>fast search and retrieval as well as reliable and safe sotrage of nontraditional(동영상 소리 신호 등) types of data, such as social media posts and tweets/</li>
+      <li>Some of the requirements of these new systems were not compatible with SQL relational DBMSs</li>
+    </ul>
+  </li>
+  <li>The term <code class="language-plaintext highlighter-rouge">NOSQL</code> is generally interpreted as <code class="language-plaintext highlighter-rouge">Not Only SQL</code>
+    <ul>
+      <li>meaning that in systems than namage large amount of data, <strong>some of the data is stored using SQL systems</strong>, where as <strong>other data would be stored using NOSQL,</strong> depending on the application requirements.</li>
+      <li>다양한 뒤죽박죽한 환경에서 미디어를 찾아주기 위한 기능으로서의 의미를 가진다.</li>
+    </ul>
+  </li>
+  <li>Main inhibitors costs of using a DBMS :
+    <ul>
+      <li>High initial investment in H/W, S/W, and training</li>
+      <li>The generality that a DBMS provides for defining and processing data - CAD, GIS</li>
+      <li>Overhead for prividing security, <strong>concurrency control제일 어렵</strong>, recovery, and integrity functions</li>
+    </ul>
+  </li>
+  <li>When a DBMS may be unnecessary :
+    <ul>
+      <li>Simple, well-defined database applications that are not expected to change at all
+        <ul>
+          <li>한 번짜서 변경이 잘 없으면 DB를 쓰지 않아도 된다.</li>
+        </ul>
+      </li>
+      <li>Stringent, real-time requirements for some application programs that may not be met because of DBMS overhead
+        <ul>
+          <li>Real time 특성이 굉장히 큰 것은 적합하지 않다. 예를 들어서 미사일 발사에서 Transaction 순서가 늦으면 죽는다.</li>
+        </ul>
+      </li>
+      <li>Embeded systems with limited storage capacity, where a general-purpose DBMS would not fit.</li>
+      <li>No multiple-user access to data</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="chapter-2">Chapter 2</h1>
+
+<h2 id="21-data-models-schemas-and-instances">2.1 Data Models, Schemas, and Instances</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Data abstraction</code> generally refers to the suppression of details of data organization and storage, and the highlighting of the essential features for an improved understanding of data. One of the main characteristics of the database approach is to support data abstraction so that different users can perceive data at their preferred level of detail.</p>
+<ul>
+  <li>hiding details of data storage that are not needed by most database users.</li>
+</ul>
+
+<p>A <code class="language-plaintext highlighter-rouge">data model</code> a collection of concepts that can be used to describe the structure of a database—provides the necessary means to achieve this abstraction.</p>
+
+<p>By structure of a database we mean the data types, relationships, and constraints that apply to the data. Most data models also include a set of basic operations for specifying retrievals and updates on the database.</p>
+
+<h3 id="211-categories-of-data-models">2.1.1 Categories of Data Models</h3>
+
+<p>High-level or conceptual data models provide concepts that are close to the way many users perceive data, whereas low-level or physical data models provide concepts that describe the details of how data is stored on the computer storage media, typically magnetic disks.</p>
+
+<p>Conceptual data models use concepts such as entities, attributes, and relationships.</p>
+<ul>
+  <li>An <code class="language-plaintext highlighter-rouge">entity</code> represents a real-world object or concept, such as an employee or a project from the miniworld that is described in the database.</li>
+  <li>An <code class="language-plaintext highlighter-rouge">attribute</code> represents some property of interest that further describes an entity, such as the employee’s name or salary.</li>
+  <li><code class="language-plaintext highlighter-rouge">relationship</code> among two or more entities represents an association among the entities, for example, a works-on relationship between an employee and a project.</li>
+</ul>
+
+<h3 id="212-schemas-instances-and-database-state">2.1.2 Schemas, Instances, and Database State</h3>
+
+<p>In a data model, it is important to distinguish between the description of the database and the database itself. The description of a database is called the database schema, which is specified during database design and is not expected to change frequently.6 Most data models have certain conventions for displaying schemas as diagrams.7 A displayed schema is called a schema diagram.</p>
+
+<p><img src="" alt="Figure 2.1" /></p>
+
+<p>We call each object in the schema—such as STUDENT or COURSE a <code class="language-plaintext highlighter-rouge">schema construct</code>.</p>
+
+<p>The data in the database at a particular moment in time is called a database state or snapshot. It is also called the current set of occurrences or instances in the database.</p>
+
+<p>The distinction between database schema and database state is very important. When we define a new database, we specify its database schema only to the DBMS. At this point, the corresponding database state is the empty state with no data. We get the initial state of the database when the database is first populated or loaded with the initial data.</p>
+
+<p>At any point in time, the database has a current state.8 The DBMS is partly responsible for ensuring that every state of the database is a valid state—that is, a state that satisfies the structure and constraints specified in the schema. Hence, specifying a correct schema to the DBMS is extremely important and the schema must be designed with utmost care. The DBMS stores the descriptions of the schema constructs and constraints—also called the meta-data—in the DBMS catalog so that DBMS software can refer to the schema whenever it needs to. The schema 
+is sometimes called the intension, and a database state is called an extension of the schema.</p>
+
+<h3 id="data-model---soc---structure--operations--constraints제약조건">Data Model = ( S,O,C ) : Structure &amp; Operations &amp; Constraints제약조건</h3>
+
+<ul>
+  <li>a collection of concepts to describe the structure of a DB and certain constraints that the DB sould obey</li>
+  <li>provides t he necessary <strong>means to achieve the abstraction</strong></li>
+  <li><strong>structure &amp; operations</strong>
+    <ul>
+      <li>structure : data types, relationships and <strong>!!constraints제약조건!!</strong></li>
+      <li>a set of basic operations for specifying retrievals and updates</li>
+      <li>요즘엔 C와 S를 합쳐서 S와 O 두 개로 얘기하기도 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="we-can-catagorize-them-according-to-the-types-of-concepts-they-use-to-describe-the-database-structure">We can catagorize them according to the types of concepts they use to describe the database structure</h3>
+
+<ul>
+  <li>High-level or conceptual data models
+    <ul>
+      <li>use concepts such as <strong>entity, attribute, relationship</strong></li>
+    </ul>
+  </li>
+  <li>Representational ( or implementation) data models
+    <ul>
+      <li>사람이 이해하기도, 구현하기도 편한 중간 형태</li>
+      <li>provide concepts between CDM and PDM (Conceptual Data Model / Physical Data Model)</li>
+      <li><strong>record-based data models</strong> : used most frequently in traditional commercial DBMSs</li>
+      <li>relational data model, network and hierarchical models, OO models …</li>
+    </ul>
+  </li>
+  <li>Low-level or physical data models
+    <ul>
+      <li>데이터가 컴퓨터애 어덯게 저장되는가?
+        <ul>
+          <li>record formats, record orderings, and <strong>access paths</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>entity를 record로 표현하고 실제로는 format으로 구현되는 흐름이다.</li>
+</ul>
+
+<h2 id="database-schemas">Database Schemas</h2>
+
+<ul>
+  <li>the description of a database - <strong>meta-data</strong> stored in a system catalog
+    <ul>
+      <li>어려운 말로는 <strong>intension</strong>이라고 한다. 한국어로는 <strong>내포</strong></li>
+    </ul>
+  </li>
+  <li>Schema diagram</li>
+</ul>
+
+<h2 id="database-state-or-snapshot">Database state or snapshot</h2>
+
+<ul>
+  <li>the data in the database at a particular moment in time</li>
+  <li><strong>extension외연</strong></li>
+  <li><strong>the current set of occuences or instances in the DB</strong></li>
+</ul>
+
+<h1 id="schenasm-instances-and-database-state">Schenasm Instances, and Database State</h1>
+
+<ul>
+  <li>Define : 정의하는 것</li>
+  <li>populate : 처음의 데이터를 넣는다. -&gt; initial state -&gt; update -&gt; new state</li>
+  <li>At any point in time, the database has a current state</li>
+  <li>The DBMS는 이 안에 들어있는 데이터는 원래 정해진 조건에 부합되는 데이터들!</li>
+  <li><strong>Valid state</strong> is a state that satisfies the structure and constraints specified in the schema</li>
+  <li><strong>Schema Evolution</strong> : changes need to be applied to the schema</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//chapter 1 , 2 review True/False quiz
+
+1. 보호(protection)는 하드웨어 또는 소프트웨어 오동작(또는 붕괴)으로부터 시스템을 보호하는 기능(security protection )과 권한이 없는 또는 악의적인 접근을 하려는 보안 위협으로부터 보호하는 기능(system protection)을 포함한다. False
+2. 어떤 특정 시점에 데이터베이스에 들어 있는 데이터를 데이터베이스 상태(state), 스키마의 내포(intension), 또는 스냅삿(snapshot)이라고 한다. False intension은 아님
+3. 데이터 모델은 데이터 추상화(data abstraction)를 달성하는 데 필요한 수단을 제공한다. 데이터 타입, 관계성(relationship), 데이터에 대한 제약조건 등의 데이터베이스 구조를 기술하는데 필요한 개념을 포함하지만, 기본 연산 집합은 포함하지 않는다. False S,O,C 모두 포함
+4. 데이터베이스 설계자(database designer)는 데이터베이스에 저장될 데이터를 선정하고, 데이터를 나타내고 저장하는 구조를 정의하는 역할을 담당한다.
+5. 3단계-스키마 아키텍처의 목적은 물리적 데이터베이스로부터 사용자 응용들을 분리하는 것이다. 3단계-스키마 아키텍처는 데이터 독립성의 개념을 설명하기 위해 사용될 수 있다.
+6. 데이터베이스는 서로 연관된 데이터들의 모임이다. 데이터는 기록될 수 있으며 어떤 의미를 내포하고 있는, 알려진 사실(fact)이다.
+7. 데이터 모델은 데이터를 구조화하는 스키마에 대한 규칙을 제공하며, 스키마는 현실 세계를 표현하는 데이터 인스턴스가 유효한지를 검증하는 규칙을 제공한다.
+8. DBMS를 접근하는 응용 프로그램들은 데이터 파일의 구조가 응용 프로그램과 분리되어 DBMS 카탈로그에 저장된다. 따라서 데이터 파일의 구조가 변경되어도 응용 프로그램은 거의 변하지 않게 된다. 이러한 성질을 프로그램-데이터 독립성 (program-data independence) 이라 한다.
+9. 표현(representational) 데이터 모델들은 일반 사용자들이 쉽게 이해할 수 있는 개념을 제공하지만, 컴퓨터 저장 장치에서 데이터가 구성되는 방식과는 완전히 무관하다.
+10. 데이터의 중복성(redundancy)은 여러 가지 문제점을 초래한다. 논리적으로는 한 번의 변경이지만 데이터가 중복된 횟수만큼 반복해서 변경해야 하고 메모리 낭비도 초래한다.
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#database" class="page__taxonomy-item" rel="tag">Database</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-04T00:00:00+09:00">September 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+1%EC%9E%A5+%EB%A7%88%EB%AC%B4%EB%A6%AC+%EB%B0%8F+2%EC%9E%A5%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/review/Pearl-Abyss-Written-Test-Preparing/" class="pagination--pager" title="[필기TEST] 펄어비스 게임플레이 프로그래머
+">Previous</a>
+    
+    
+      <a href="/cpp/cpp-basic-syntax-1/" class="pagination--pager" title="[C++] 기본 Syntax 1
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

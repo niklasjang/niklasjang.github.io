@@ -1,0 +1,1103 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[BFS &amp; DFS] 연결요소 이분 그래프 - NiklasJang’s Blog</title>
+<meta name="description" content="내 손이 제 멋대로 BFS와 DFS를 짜도록 만든다. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[BFS &amp; DFS] 연결요소 이분 그래프">
+<meta property="og:url" content="http://localhost:4000/algorithm/DFS-BFS/">
+
+
+  <meta property="og:description" content="내 손이 제 멋대로 BFS와 DFS를 짜도록 만든다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-04T04:34:30+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/DFS-BFS/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[BFS &amp; DFS] 연결요소 이분 그래프">
+    <meta itemprop="description" content="내 손이 제 멋대로 BFS와 DFS를 짜도록 만든다.">
+    <meta itemprop="datePublished" content="2019-05-04T04:34:30+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[BFS &amp; DFS] 연결요소 이분 그래프
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#bfs와-dfs">BFS와 DFS</a>
+    <ul>
+      <li><a href="#goal--내-손이-제-멋대로-bfs와-dfs를-짜도록-만든다">Goal : 내 손이 제 멋대로 BFS와 DFS를 짜도록 만든다.</a></li>
+      <li><a href="#정의">정의</a></li>
+      <li><a href="#목적">목적</a></li>
+      <li><a href="#dfs--stack을-사용해서-구현">DFS : Stack을 사용해서 구현</a></li>
+      <li><a href="#bfs--queue를-사용해서-구현">BFS : Queue를 사용해서 구현</a></li>
+      <li><a href="#시간-복잡도">시간 복잡도</a>
+        <ul>
+          <li><a href="#백준-문제-1260번">백준 문제 1260번</a></li>
+        </ul>
+      </li>
+      <li><a href="#연결-요소-connected-component">연결 요소 Connected Component</a>
+        <ul>
+          <li><a href="#백준-11724번">백준 11724번</a></li>
+        </ul>
+      </li>
+      <li><a href="#이분-그래프-bipartite-graph">이분 그래프 Bipartite Graph</a>
+        <ul>
+          <li><a href="#백준-1707번">백준 1707번</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="bfs와-dfs">BFS와 DFS</h1>
+
+<h2 id="goal--내-손이-제-멋대로-bfs와-dfs를-짜도록-만든다">Goal : 내 손이 제 멋대로 BFS와 DFS를 짜도록 만든다.</h2>
+
+<p class="notice--warning"><strong>Warning Notice:</strong><br />
+본 포스팅은 정확한 정의보다는 기억하기 쉬운 내용을 목적으로 합니다.</p>
+
+<h2 id="정의">정의</h2>
+
+<p>DFS : 한 지점에서 갈 수 있을 때까지 계속 진행하고, 더이상 진행할 수 없으면 돌아온다.<br />
+BFS : 한 지점에서 이어져있는 모든 노드를 진행한 뒤, 다음 노드를 진행한다.</p>
+
+<h2 id="목적">목적</h2>
+
+<p class="notice--primary"><strong>Primary Notice:</strong> 
+모든 정점을 모두 한 번씩만 방문하는 것</p>
+
+<p><img src="/assets/images/boj/20190503-BFS-DFS.jpg" alt="DFS-BFS" /></p>
+
+<h2 id="dfs--stack을-사용해서-구현">DFS : Stack을 사용해서 구현</h2>
+
+<ol>
+  <li>여러 개의 노드를 방문할 수 있을 때는 <code class="language-plaintext highlighter-rouge">숫자가 작은 노드부터 방문</code>한다고 가정한다.</li>
+  <li>모든 노드에 대해서 방문했는지 여부를 나타내는 check 배열을 만든다. 이때 check배열에서 0은 방문하지 않았음을, 1은 이미 방문했음을 의미한다.</li>
+  <li>시작 노드부터 방문하고, 방문한 노드는 스택에 넣는다.</li>
+  <li>방문한 노드의 check를 0에서 1로 바꾼다.</li>
+  <li>다시 인접한 노드 중 check가 1이 아닌 0.의 조건을 만족하는 노드를 방문하고 스택에 넣고 check를 1로 바꾼다.</li>
+  <li>만약 더이상 진행할 수 없는 경우 stack에서 top의 위치에 있는 노드에 대해서 판단한다. 판단 후 stack에서 top의 데이터를 pop한다.</li>
+  <li>stack이 비어있으면 탐색을 종료한다. 혹은 모든 check가 1이면 탐색을 종료한다.</li>
+</ol>
+
+<p>아래 코드는 인접행렬을 이용한 dfs입니다. a[x][i]는 해당 위치에 노드가 있는지 없는지를 판단하고, check[i]는 방문하지 않는 노드인 것을 확인합니다. 아래의 코드는 <code class="language-plaintext highlighter-rouge">stack</code>이 아닌 <code class="language-plaintext highlighter-rouge">재귀호출</code>을 사용해서 구현한 코드입니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+    <span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>                      <span class="c1">//C1</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">){</span> 
+            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//c1 : 인접행렬에서는 a[0][0]의 값이 의미를 가지지 않는다. 그리고 현재 방문한 노드에 대해서 for문을 사용해서 모든 노드의 조건을 확인한다. </span>
+</code></pre></div></div>
+
+<p>아래는 인접 리스트를 이용한 구현입니다. 인접 리스트 A[i]는 i와 연결된 정점들을 리스트로 포함하고 있습니다.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+    <span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">==</span><span class="nb">false</span><span class="p">){</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>결과 : 1 -&gt; 5 -&gt; 4 -&gt; 6 -&gt; 3 -&gt; 2</p>
+
+<h2 id="bfs--queue를-사용해서-구현">BFS : Queue를 사용해서 구현</h2>
+<ol>
+  <li>큐에 넣을 때 방문했다고 체크해야 한다.</li>
+  <li>큐를 이용해서 지금 위치에서 갈 수 있는 것을 모두 큐에 넣는 방식</li>
+  <li>시작 노드를 방문하고 큐에 넣는다.</li>
+  <li>시작 노드와 인접한 모든 노드를 방문했다고 생각하고 큐에 넣는다.</li>
+  <li>큐는 First In First Out이므로 시작 노드를 pop한다.</li>
+  <li>현재 큐에서 가장 앞에 있는 노드에 대해서 전체 과정을 다시 진행한다.</li>
+  <li>3.에서 시작 노드와 인접한 노드를 방문했다고 생각한 뒤, 큐에 넣었기 때문에 모든 노드가 큐에 한 번씩만 들어가고 다시 나온다.*</li>
+</ol>
+
+<p>*만약 큐에서 나올 때 방문하는 것으로 생각하면 위 그래프 그림에서</p>
+<ol>
+  <li>1을 방문</li>
+  <li>2와 5를 큐에 넣음</li>
+  <li>2을 빼면서 2를 방문</li>
+  <li>2와 연결된 3과 5를 큐에 넣음 (check[5]는 아직 0이므로 큐에 들어감)
+이와 같이 하나의 노드가 큐에 두 번 들어가는 문제점(하나의 노드를 두 번 방문하는 문제점)이 발생합니다.</li>
+</ol>
+
+<p>아래 코드는 인접행렬을 이용한 bfs입니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">check</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> 
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span><span class="nb">false</span><span class="p">){</span>
+            <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>아래 코드는 인접리스트를 이용한 bfs입니다.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="n">check</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">();</span>
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">){</span>
+            <span class="n">check</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+<p>결과 : 1 -&gt; 5 -&gt; 2 -&gt; 4 -&gt; 3 -&gt; 6</p>
+
+<h2 id="시간-복잡도">시간 복잡도</h2>
+
+<p>두 알고리즘의 목표는 <code class="language-plaintext highlighter-rouge">모든 정점을 한 번씩만 방문하는 것</code>입니다. DFS 함수는 하나의 정점을 방문하고 출력한 뒤, 다시 방문해야하는 노드가 있는지 검사를 합니다. 따라서
+DFS()함수는 Node의 갯수만큼  $V$번 호출됩니다. 따라서 O($V$)에 DFS 내부의 복잡도를 곱하면 최종적인 시간 복잡도를 얻을 수 있습니다.</p>
+
+<p>DFS : 인접행렬 : 각 노드마다 연결된 노드를 찾기 위해서 모든 노드를 점검해야하므로 $O(VxV) = O(V^2)$의 시간 복잡도를 가집니다. 
+DFS : 인접리스트 : 역시 각 노드마다 연결된 노드만큼 탐색을 진행합니다. 하지만 a[x][i]에 저장된 연결된 Edge의 갯수는 노드마다 다릅니다. 따라서 <del>$O(VE)$</del>가 절대 아닙니다. 
+인접리스트에서는 모든 노드를 점검하면서 연결된 노드를 탐색하는데 모든 에지는 각 두 번씩 인접리스트에 포함됩니다. 따라서 $O(V+2E) = O(V+E)$의 시간 복잡도를 가집니다.</p>
+
+<p>BFS도 마찬가지 입니다. 같은 이유로 아래의 시간 복잡도를 가집니다.</p>
+
+<p>BFS : 인접행렬 :$O(V^2)$
+BFS : 인접리스트 : $O(V+E)$</p>
+
+<h3 id="백준-문제-1260번">백준 문제 1260번</h3>
+
+<ol>
+  <li>인접행렬 코드</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">node</span><span class="p">[</span><span class="mi">1000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="mi">1000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">//방문했는지 안했는지는 노드기준으로. 에지 기준 아님</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">//모든 노드에 대해서</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span><span class="c1">//현재 노드에서 다른 노드로 가는 길이 있고, 그 길을 안갔으면</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//여기선 false가 방문한 상태</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> <span class="c1">//q의 front를 빼서 그 값을 탐색.</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">//이번 x와 인접한 모든 노드를 다 q에 넣는다.</span>
+			<span class="c1">//해당 노드를 방문할 때 q에 넣으면 강의에서 설명한 것처럼 같은 노드가 q에 두 번 들어가는 경우가 생긴다.</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">V</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">es</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ee</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//edge start , edge end</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">V</span><span class="p">);</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">node</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//노드 번호 부여</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">es</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ee</span><span class="p">);</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">es</span><span class="p">][</span><span class="n">ee</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//에지 저장</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">ee</span><span class="p">][</span><span class="n">es</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//양방향 에지 저장</span>
+	<span class="p">}</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="n">bfs</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>인접리스트 코드</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">memset</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">check</span><span class="p">));</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+		<span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">start</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">start</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+	<span class="p">}</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+	<span class="n">bfs</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="연결-요소-connected-component">연결 요소 Connected Component</h2>
+
+<p>노드 1,2,3,4,5,6은 다음과 같은 조건으로 서로 연결되어있습니다.</p>
+<ol>
+  <li>노드 1,2,3은 삼각형으로 이루어져있다.</li>
+  <li>노드 4,5,6은 삼각형으로 이루어져있다.</li>
+  <li>
+    <p>두 삼각형은 연결되어있지 않다.
+이 때 전체 그래프에서 연결 요소의 갯수를 찾는 방법은 아래와 같습니다.</p>
+  </li>
+  <li>한 점에서 BFS나 DFS를 진행합니다. 예를 들어 1에서 시작합니다.</li>
+  <li>연결요소의 갯수를 +1합니다.</li>
+  <li>탐색을 하는 동안 1,2,3의 check는 true가 됩니다. 탐색이 종료합니다.</li>
+  <li>다음으로 노드 2에서 시작하려고하는데 이미 true여서 탐색하지도 않고 연결 요소 갯수도 그대로 입니다.</li>
+  <li>3도 마찬가지로 지나가고 4에서는 check가 false이므로 탐색을 진행하고 갯수도 하나 늘립니다.</li>
+</ol>
+
+<h3 id="백준-11724번">백준 11724번</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+2019-04-09
+장환석
+
+문제
+방향 없는 그래프가 주어졌을 때, 연결 요소 (Connected Component)의 개수를 구하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 정점의 개수 N과 간선의 개수 M이 주어진다. (1 ≤ N ≤ 1,000, 0 ≤ M ≤ N×(N-1)/2) 둘째 줄부터 M개의 줄에 간선의 양 끝점 u와 v가 주어진다. (1 ≤ u, v ≤ N, u ≠ v) 같은 간선은 한 번만 주어진다.
+
+출력
+첫째 줄에 연결 요소의 개수를 출력한다.
+
+	
+*/</span>
+
+<span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+<span class="p">}</span>
+
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">scanf_s</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">scanf_s</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+		<span class="n">a</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">//정렬</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+	<span class="p">}</span>
+
+	<span class="c1">//모든 점에 대해서 한번씩 확인하면서 connected components를 찾는다</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">bfs</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="이분-그래프-bipartite-graph">이분 그래프 Bipartite Graph</h2>
+
+<p>그래프를 아래와 같은 조건으로 A와 B로 나눌 수 있으면 이분그래프라고 합니다.</p>
+
+<ol>
+  <li>A에 포함되어 있는 정점끼리는 간선이 없다.</li>
+  <li>B에 포함되어 있는 정점끼리는 간선이 없다.</li>
+  <li>모든 간선의 한 점은 A에, 다른 한 점은 B에 속한다.</li>
+</ol>
+
+<p><img src="/assets/images/boj/bipartite.jpg" alt="bipartite" /></p>
+
+<p>그리고 아래와 같이 생긴 그래프로 이분 그래프입니다.</p>
+
+<p>A  —간선—   B</p>
+
+<p>G  —간선—  D</p>
+
+<p>C  —간선—   E</p>
+
+<p>탐색은 아래와 같이 진행합니다.</p>
+
+<ol>
+  <li>예상되는 두 개의 그룹에 각각 빨간색과 파란색을 부여합니다.</li>
+  <li>하나의 점에서 시작합니다. 현재의 노드를 빨간색으로 칠합니다.</li>
+  <li>현재 노드에서 갈 수 있는 어떤 노드를 탐색을 하고 파란색으로 칠합니다.</li>
+  <li>현재 노드에서 방문할 수 있는 노드를 하나 선택해서 방문하고 빨간색으로 칠합니다.</li>
+  <li>만약 더 갈 수 있는 노드가 없다면 BFS 알고리즘을 통해서 찾습니다.</li>
+  <li>더이상 접근할 수 있는 노드가 없을 때까지 진행합니다.</li>
+  <li>마지막 노드에서 연결된 모든 노드들의 색을 검사해서 마지막 노드의 색과 다른 색인지 판단합니다.</li>
+</ol>
+
+<p>정리하면,</p>
+<ol>
+  <li>방문하지 않은 정점이면 방문하고 적절한 색을 칠합니다.</li>
+  <li>방문한 정점이면 색만 검사하고 다음 탐색을 진행합니다.</li>
+  <li>더이상 검사를 할 노드가 없으면 종료합니다.</li>
+</ol>
+
+<h3 id="백준-1707번">백준 1707번</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+2019-05-04
+장환석
+
+문제
+그래프의 정점의 집합을 둘로 분할하여, 각 집합에 속한 정점끼리는 서로 인접하지 않도록 분할할 수 있을 때, 그러한 그래프를 특별히 이분 그래프 (Bipartite Graph) 라 부른다.
+
+그래프가 입력으로 주어졌을 때, 이 그래프가 이분 그래프인지 아닌지 판별하는 프로그램을 작성하시오.
+
+입력
+입력은 여러 개의 테스트 케이스로 구성되어 있는데, 첫째 줄에 테스트 케이스의 개수 K(2≤K≤5)가 주어진다. 각 테스트 케이스의 첫째 줄에는 그래프의 정점의 개수 V(1≤V≤20,000)와 간선의 개수 E(1≤E≤200,000)가 빈 칸을 사이에 두고 순서대로 주어진다. 각 정점에는 1부터 V까지 차례로 번호가 붙어 있다. 이어서 둘째 줄부터 E개의 줄에 걸쳐 간선에 대한 정보가 주어지는데, 각 줄에 인접한 두 정점의 번호가 빈 칸을 사이에 두고 주어진다.
+
+출력
+K개의 줄에 걸쳐 입력으로 주어진 그래프가 이분 그래프이면 YES, 아니면 NO를 순서대로 출력한다.
+
+*/</span>
+<span class="cp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">20001</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">color</span><span class="p">[</span><span class="mi">20001</span><span class="p">];</span> <span class="c1">//0 :defulat, 1, Group A, 2: Group 2</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">color</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">next</span><span class="p">,</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">c</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">K</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">K</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">V</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">E</span><span class="p">);</span>
+
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">V</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+			<span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">E</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+			<span class="n">a</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+			<span class="n">a</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="c1">//색칠한다.</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">V</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="c1">//검사한다.</span>
+		<span class="kt">bool</span> <span class="n">OK</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">V</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">color</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+					<span class="n">OK</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">OK</span> <span class="o">?</span> <span class="s">"YES"</span> <span class="o">:</span> <span class="s">"NO"</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#11724" class="page__taxonomy-item" rel="tag">11724</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#1260" class="page__taxonomy-item" rel="tag">1260</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#1707" class="page__taxonomy-item" rel="tag">1707</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#bfs" class="page__taxonomy-item" rel="tag">BFS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#biparteti-graph" class="page__taxonomy-item" rel="tag">biparteti-graph</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#boj" class="page__taxonomy-item" rel="tag">BOJ</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#connected-component" class="page__taxonomy-item" rel="tag">connected-component</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#dfs" class="page__taxonomy-item" rel="tag">DFS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#%EC%97%B0%EA%B2%B0%EC%9A%94%EC%86%8C" class="page__taxonomy-item" rel="tag">연결요소</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#%EC%9D%B4%EB%B6%84%EA%B7%B8%EB%9E%98%ED%94%84" class="page__taxonomy-item" rel="tag">이분그래프</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-04T04:34:30+09:00">May 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BBFS+%26+DFS%5D+%EC%97%B0%EA%B2%B0%EC%9A%94%EC%86%8C+%EC%9D%B4%EB%B6%84+%EA%B7%B8%EB%9E%98%ED%94%84%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDFS-BFS%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDFS-BFS%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDFS-BFS%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ml/Batch-Normalization/" class="pagination--pager" title="빠른 속도를 위한 Batch Normalization
+">Previous</a>
+    
+    
+      <a href="/algorithm/Flood-Fill/" class="pagination--pager" title="[Flood Fill] 플루드 필
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

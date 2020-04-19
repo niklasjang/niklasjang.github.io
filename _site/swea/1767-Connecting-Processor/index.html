@@ -1,0 +1,754 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[1767][미완성] 프로세서 연결하기 - NiklasJang’s Blog</title>
+<meta name="description" content="[SW Test 샘플문제] 뿌시기 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[1767][미완성] 프로세서 연결하기">
+<meta property="og:url" content="http://localhost:4000/swea/1767-Connecting-Processor/">
+
+
+  <meta property="og:description" content="[SW Test 샘플문제] 뿌시기 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-08-09T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/swea/1767-Connecting-Processor/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[1767][미완성] 프로세서 연결하기">
+    <meta itemprop="description" content="[SW Test 샘플문제] 뿌시기">
+    <meta itemprop="datePublished" content="2019-08-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[1767][미완성] 프로세서 연결하기
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#dfs-풀이">DFS 풀이</a></li>
+  <li><a href="#dfs-코드">DFS 코드</a></li>
+  <li><a href="#시간초과-brute-force-풀이">[시간초과 Brute-Force] 풀이</a></li>
+  <li><a href="#구글-코드">구글 코드</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="dfs-풀이">DFS 풀이</h2>
+
+<ol>
+  <li>가장자리에 있지 않은 모든 코어를 queue에 넣는다.</li>
+  <li>dfs(idx)를 진행하는데, idx는 몇 번째의 core에 대해서 4방향으로 연결을 시도할 것인지를 나타낸다.</li>
+  <li>dfs(idx)의 종료 조건은 마지막 idx의 core까지 모두 연결을 시도한 순간이 된다.</li>
+  <li>idx번째의 core에 대해서 4방향으로 연결을 시도하고, 만약 연결이 가능하면 idx번째의 core는 해당 방향으로 연결된 것으로 간주하고 dfs(idx+1)한다.</li>
+  <li>만약 4방향 모두로 연결이 불가능하다면 idx번째의 core는 연결이 불가능한 것이므로 dfs(idx+1)을 한다.</li>
+</ol>
+
+<h2 id="dfs-코드">DFS 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//NOT-YET</span>
+<span class="cp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">map</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="mi">12</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">dx</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">dy</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="p">};</span>
+<span class="c1">//ans.first : 몇 개를 연결했는가?</span>
+<span class="c1">//ans.second : ans.first개를 연결하기 위해서 몇 개의 전선을 사용했는가?</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">core</span><span class="p">;</span> <span class="c1">//테두리에 있지 않은 코어들</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">tans</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">core</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+		<span class="c1">//모든 코어를 다 점검한 경우</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">tans</span><span class="p">.</span><span class="n">first</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">tans</span><span class="p">;</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">first</span> <span class="o">==</span> <span class="n">tans</span><span class="p">.</span><span class="n">first</span> <span class="o">&amp;&amp;</span> <span class="n">ans</span><span class="p">.</span><span class="n">second</span> <span class="o">&gt;</span> <span class="n">tans</span><span class="p">.</span><span class="n">second</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">tans</span><span class="p">;</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">int</span> <span class="n">impos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">core</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">first</span><span class="p">,</span> <span class="n">core</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">second</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span> <span class="p">{</span>
+			<span class="n">tans</span><span class="p">.</span><span class="n">first</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tans</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="n">impos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">disconnect</span><span class="p">(</span><span class="n">core</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">first</span><span class="p">,</span> <span class="n">core</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">second</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">impos</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="n">dfs</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tans</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">connect</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//dir 방향으로 전선을 깔아보기</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">i</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">[</span><span class="n">dir</span><span class="p">];</span>
+		<span class="n">j</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">[</span><span class="n">dir</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> 
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">disconnect</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//dir 방향으로 전선을 지우기</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">tcase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tcase</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">tc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="n">tcase</span><span class="p">;</span> <span class="n">tc</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">memset</span><span class="p">(</span><span class="n">map</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">map</span><span class="p">));</span>
+		<span class="n">core</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">j</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="n">core</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">));</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"#%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="시간초과-brute-force-풀이">[시간초과 Brute-Force] 풀이</h2>
+
+<ol>
+  <li>N의 최대값이 12이고, 코어의 최대 갯수가 12개이므로 $$Brute-Force임을 짐작할 수 있다.</li>
+  <li>모든 경우의 수를 커버하는 방법은 다음과 같다. 각 시도마다 각각의 코어들이 연결될 방향이 결정되어 있다.</li>
+  <li>코어 A를 할당된 방향으로 연결하고 코어 B에 할당된 방향으로 연결하면서 전선이 겹친다면 이 경우를 그냥 제외하면 된다. 왜냐하면 코어 A와 B에 할당된 방향이 각각 전원과 연결될 가능성이 있는 유일한 방향이라면, 둘 중 하나만 유일한 가능성의 방향으로 할당되고, 나머지 하나는 아예 가능성이 없는 방향으로 할당된 경우의 수도 고려하기 때문에 모든 수를 고려할 수 있다. 아래와 같이 첫 번 째 사진의 경우를 무시해도 되는 것은 두, 세 번째의 경우를 모두 고려하기 때문이다.</li>
+</ol>
+
+<p><img src="/assets/images/swea/connecting-processor-1.jpg" alt="connecting-processor-1" /></p>
+
+<p><img src="/assets/images/swea/connecting-processor-2.jpg" alt="connecting-processor-2" /></p>
+
+<p><img src="/assets/images/swea/connecting-processor-3.jpg" alt="connecting-processor-3" /></p>
+
+<h2 id="구글-코드">구글 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+ 
+<span class="kt">int</span> <span class="n">t</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">map</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="mi">12</span><span class="p">],</span><span class="n">cnt</span><span class="p">,</span><span class="n">cnt2</span><span class="p">,</span><span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span><span class="n">dy</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span><span class="n">CORE</span><span class="p">,</span><span class="n">SUM</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">core</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+ 
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tmap</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="mi">12</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">tmap</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">cnt2</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="n">core</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">core</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">x</span><span class="o">+=</span><span class="n">dx</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span><span class="n">y</span><span class="o">+=</span><span class="n">dy</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">n</span> <span class="o">||</span> <span class="n">y</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">y</span><span class="o">&gt;=</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">c</span><span class="o">++</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tmap</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="k">else</span> <span class="n">tmap</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">CORE</span><span class="o">&lt;</span><span class="n">c</span><span class="p">)</span> <span class="n">CORE</span><span class="o">=</span><span class="n">c</span><span class="p">,</span><span class="n">SUM</span><span class="o">=</span><span class="n">sum</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">CORE</span><span class="o">==</span><span class="n">c</span> <span class="o">&amp;&amp;</span> <span class="n">SUM</span><span class="o">&gt;</span><span class="n">sum</span><span class="p">)</span> <span class="n">SUM</span><span class="o">=</span><span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span> <span class="nf">go</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="n">cnt</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">solve</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">go</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">t</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="n">i</span><span class="o">==</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">j</span><span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="n">j</span><span class="o">==</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">cnt2</span><span class="o">++</span><span class="p">;</span>
+                    <span class="k">else</span> <span class="n">core</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">}),</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">go</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"#%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">SUM</span><span class="p">);</span>
+        <span class="n">core</span><span class="p">.</span><span class="n">clear</span><span class="p">(),</span><span class="n">cnt</span><span class="o">=</span><span class="n">cnt2</span><span class="o">=</span><span class="n">CORE</span><span class="o">=</span><span class="n">SUM</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#not-yet" class="page__taxonomy-item" rel="tag">NOT-YET</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#sample-test" class="page__taxonomy-item" rel="tag">Sample-Test</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#swea" class="page__taxonomy-item" rel="tag">SWEA</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-09T00:00:00+09:00">August 9, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B1767%5D%5B%EB%AF%B8%EC%99%84%EC%84%B1%5D+%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C+%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0%20http%3A%2F%2Flocalhost%3A4000%2Fswea%2F1767-Connecting-Processor%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fswea%2F1767-Connecting-Processor%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fswea%2F1767-Connecting-Processor%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/swea/1952-Swimming-Pool/" class="pagination--pager" title="[1952] 수영장
+">Previous</a>
+    
+    
+      <a href="/swea/4014-Constructing-Rail-Road/" class="pagination--pager" title="[4014] 활주로 건설
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,798 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>기계학습 - NiklasJang’s Blog</title>
+<meta name="description" content="오일석 - Computer Vision Chapter 8. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="기계학습">
+<meta property="og:url" content="http://localhost:4000/opencv/opencv-chapter-8/">
+
+
+  <meta property="og:description" content="오일석 - Computer Vision Chapter 8. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-04T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/opencv/opencv-chapter-8/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="기계학습">
+    <meta itemprop="description" content="오일석 - Computer Vision Chapter 8.">
+    <meta itemprop="datePublished" content="2019-06-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">기계학습
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#preview">PREVIEW</a>
+    <ul>
+      <li><a href="#기계-학습">기계 학습</a></li>
+      <li><a href="#기계합습의-기초">기계합습의 기초</a>
+        <ul>
+          <li><a href="#지도학습과-비지도-학습">지도학습과 비지도 학습</a>
+            <ul>
+              <li><a href="#지도-학습">지도 학습</a></li>
+              <li><a href="#비지도-학습과-준지도-학습">비지도 학습과 준지도 학습</a></li>
+            </ul>
+          </li>
+          <li><a href="#테스트-집합에-대한-모델의-부류-예측-결과--confusion-matrix">테스트 집합에 대한 모델의 부류 예측 결과 – confusion matrix</a></li>
+          <li><a href="#재-샘플링을-이용한-성능-평가">재 샘플링을 이용한 성능 평가</a>
+            <ul>
+              <li><a href="#교차-검증을-사용하는-두-가지-상황">교차 검증을 사용하는 두 가지 상황</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#신경망">신경망</a>
+        <ul>
+          <li><a href="#ppt-25-페이지-다수결">PPT 25 페이지 다수결</a></li>
+          <li><a href="#ppt-27-퍼셉트론">PPT 27 퍼셉트론</a></li>
+          <li><a href="#ppt-28">PPT 28</a></li>
+          <li><a href="#ppt-29">PPT 29</a></li>
+        </ul>
+      </li>
+      <li><a href="#821-구조와-작동원리">8.2.1. 구조와 작동원리</a>
+        <ul>
+          <li><a href="#다층-퍼셉트론">다층 퍼셉트론</a></li>
+          <li><a href="#깊은-학습">깊은 학습</a>
+            <ul>
+              <li><a href="#컨볼루션-신경망">컨볼루션 신경망</a></li>
+            </ul>
+          </li>
+          <li><a href="#분류기-앙상블">분류기 앙상블</a>
+            <ul>
+              <li><a href="#앙상블의-효과">앙상블의 효과</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#얼굴-검출">얼굴 검출</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="preview">PREVIEW</h1>
+
+<ul>
+  <li>지식은 구별할 수 있는 근거가 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">학습</code> : 경험으로 지식을 습득한다. 실패로부터 지식을 배운다. E.g. 자전거를 타다가 넘어지지 않도록 넘어지는 방향으로 핸들을 돌린다.</li>
+  <li>오류 = 결과 - 목표</li>
+</ul>
+
+<h2 id="기계-학습">기계 학습</h2>
+
+<p>사람의 학습 과정을 기계로 흉내 낸다. <code class="language-plaintext highlighter-rouge">학습 모델</code>은 학습 구조 또는 알고리즘을 의미한다. 훈련된 모델을 <code class="language-plaintext highlighter-rouge">판단 모델</code>이라고 한다. 
+기존의 알고리즘은 수작업으로 매개변수를 설정하거나 규칙을 개발해야하지만, 기계학습은 학습 집합을 분석해서 필요한 최적의 설정을 자동으로 수행해준다.</p>
+
+<h2 id="기계합습의-기초">기계합습의 기초</h2>
+
+<p>Mitchell은 기계학습을 아래와 같이 정의했다.</p>
+
+<pre><code class="language-txt">어떤 컴퓨터 프로그램이 T라는 작업을 수행한다. 이 프로그램의 성능을 P라는 척도로 평가했을 때, 경험 E를 통해 성능이 개선된다면
+이 프로그램은 학습을 한다고 말할 수 있다. 
+</code></pre>
+
+<p>이 정의를 컴퓨터 비전에 대입하면</p>
+
+<ul>
+  <li>T : 분류 문제</li>
+  <li>E : 학습 집합</li>
+  <li>P : 인식률</li>
+</ul>
+
+<p>이 될 것이다.</p>
+
+<h3 id="지도학습과-비지도-학습">지도학습과 비지도 학습</h3>
+
+<p>그림 8-2</p>
+
+<p>사람은 외부 환경과 지도 교사로부터 가르침을 받아 그것을 기억에 쌓는다. 어느 정도 이상의 성능이 확인되면, 그때부터 현장에서 작업을 수행한다.</p>
+
+<h4 id="지도-학습">지도 학습</h4>
+
+<p>기계 학습은 개념적으로는  사람과 비슷하지만 세부사항은 크게 다르다.</p>
+
+<p>그림 8-3</p>
+
+<p>아래 그램은 인식하는 응용에서 학습을 활용하는 사례이다. 영상에 네 가지 부류 중 하나에 속한다고 했을 때, 입력 영상이 어떤 부류에 속하는지 <code class="language-plaintext highlighter-rouge">인식Recognition</code>하는 문제이다.
+먼저 6장에서 공부한 알고리즘을 통해서 적절한 특징 벡터를 추출한다. 이렇게 하면, 입력 영상이 특징 공간에서 한 점이 된다. 충분히 많은 특징 벡터를 수집하여 <code class="language-plaintext highlighter-rouge">학습 집합</code>을 구축한 후,
+그것을 <code class="language-plaintext highlighter-rouge">분류기</code>에 넣어서 학습시킨다. 학습이 완료된 분류기는 <code class="language-plaintext highlighter-rouge">특징공간</code>을 네 개의 영역으로 나눈다. 여기까지가 <code class="language-plaintext highlighter-rouge">학습단계</code>이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">특징 벡터</code>는 사례의 특성을 나타낸다. <code class="language-plaintext highlighter-rouge">입력 변수</code>는 모델의 입력으로 사용되며 이들이 값으로 목표 변수의 값을 예측하다. <code class="language-plaintext highlighter-rouge">목표 변수</code>는 모델이 예측할 변수의 값이다. 분류인 경우 부류 정보는 class-label을, 회귀인 경우 목표 값-수치가 <code class="language-plaintext highlighter-rouge">입력/목표 변수</code>에 해당한다.</p>
+
+<p>학습이 완료된 판단 모델에 새로운 사례의 입력 변수 값을 입력하면 목표 변수를 예측할 수 있다. 예를 들어,</p>
+
+<ul>
+  <li>입력 변수 : 얼굴영상으로부터 주름의 양, 눈꼬리의 처짐 정도 등을 분석하여 수치화</li>
+  <li>목표 변수 : 연령</li>
+</ul>
+
+<p>2 종류의 예측이 있다.</p>
+
+<ul>
+  <li>분류 : classification: 목표 변수 값이 부류 예: 사람의 얼굴영상으로 부터 남, 녀를 추정</li>
+  <li>회귀 : regression: 목표 변수 값이 수치 예: 사람의 얼굴 영상으로 부터 연령을 추정</li>
+</ul>
+
+<p>다음은 <code class="language-plaintext highlighter-rouge">인식 단계</code>에 투입되어 활용한다. 학습 때와 똑같은 특징 추출 알고리즘으로 영상에서 특징 벡터를 추출한 후, 그것을 분류기에 입력하면 네 개의 영영 중 어디에 속하는지 판단하여 해당 부류를 출력한다. 위 그림은 영상 전체에서 특징을 추출하는 시나리오를 제시한다. 하지만 응용에 따라서 영역, 일정한 크기의 윈도으, 또는 지역 특징이 인식 대상인 경우도 있다. 예를 들어 얼굴 검출의 경우, 고정 크기의 윈도우를 영상 곳곳으로 옮겨 특징을 추출하고 분류를 수행하여 얼굴이 있는 곳을 알아낸다.</p>
+
+<p>기계가 학습하려면 <code class="language-plaintext highlighter-rouge">학습 모델</code>이 있어야 한다. 뒤에서 배울 <code class="language-plaintext highlighter-rouge">신경망</code>이 학습 모델의 예이다. 이 모델은 매개변수 집합 $\theta$를 갖는다. 또한 현재 설정된 매개변수 값이 얼마나 좋은지 측정하는 <code class="language-plaintext highlighter-rouge">목적 함수</code>가 정의되어야 한다. 학습은 최적의 매개변수 값을 추정하는 단계라 볼 수 있다. 이때 최적에 접근하려면 어느 방향으로 매개변수를 조정할지 파단해야 하는데, 이 목적을 달성하는데 쓰는 데이터가 <code class="language-plaintext highlighter-rouge">학습 집합</code>이다. 학습 알고리즘은 이동 방향을 찾고 매개변수를 조정하는 과정을 수렴할 때까지 반복한다. 수렴에 도달하면 <code class="language-plaintext highlighter-rouge">검증 집합</code>을 가지고 성능을 평가한다. 결과가 만족스러우면 학습을 마치고, 그렇지 않으면 모델의 내부 구조인 <code class="language-plaintext highlighter-rouge">매개변수 집합</code>을 변경하고 다시 학습한다. 예를 들어 신경망의 경우 노드를 추가하거나 학습률 또는 초기 가중치를 변경한다. 이를 <code class="language-plaintext highlighter-rouge">모델 선택</code>이라고 한다.</p>
+
+<p>학습을 마친 분류기의 성능을 객관적으로 평가하는 일은 매우 중요하다. <code class="language-plaintext highlighter-rouge">테스트 단계</code>가 평가 작업을 담당한다. 이 때 학습 과정에서 썼던 <code class="language-plaintext highlighter-rouge">학습 집합</code>이나 <code class="language-plaintext highlighter-rouge">검증 집합</code>으로 성능을 측정하면 공평하지 않다. 완전 새로운 데이터를 가지고 성능을 평가해야 한다.</p>
+
+<h4 id="비지도-학습과-준지도-학습">비지도 학습과 준지도 학습</h4>
+
+<p>지금까지 설명한 부분은 <code class="language-plaintext highlighter-rouge">지도 학습</code>이다. 즉 학습 집합에 있는 샘플은 $(x,t)$라는 정보를 갖는다. $x$는 특징 벡터이고, $t$는 그것이 속하는 부류이다. 경우에 따라서는 $x$만 있고 $t$가 없는 경우가 있는데 이러한 상호아을 <code class="language-plaintext highlighter-rouge">비지도 학습</code>이라고 한다. 부류 정보가 없기 때무에 분류 작업을 수행할 수 없다. 대신 가까이 있는 샘플을 같은 군집으로 모으는 군집화를 수행하거나 이들 군집에서 유용한 정보를 찾아내는 작업을 수행한다.</p>
+
+<p>지도 학습과 비지도 학습 사이에는 <code class="language-plaintext highlighter-rouge">준지도 학습</code>이라는 것이 있다. 방대한 양의 데이터에 모두 부류 정보를 달아주는 것은 많은 노동력을 필요로 한다. 게다가 새로운 영상이 끊임없이 발생하는 경우 부류 정보를 가지지 못한 영상이 항상 존재할 수 밖에 없다. <code class="language-plaintext highlighter-rouge">준지도 학습</code>은 부류 정보를 가진 영상뿐 아니라 그렇지 않은 영상도 같이 사용하여 분류기의 성능을 높이는 것이 중요한 목표아다.</p>
+
+<h3 id="테스트-집합에-대한-모델의-부류-예측-결과--confusion-matrix">테스트 집합에 대한 모델의 부류 예측 결과 – confusion matrix</h3>
+
+<p>PPT 19페이지</p>
+
+<h3 id="재-샘플링을-이용한-성능-평가">재 샘플링을 이용한 성능 평가</h3>
+
+<p>기계 학습은 학습 집합을 가지고 수행한다. 학습이 완료되면 테스트 집합으로 성능을 평가한다. 학습과정에서 모델 선택이 필요한 경우에는 별도의 검증 집합도 사용한다. 그런데 데이터 수집에 상당한 비용이 들기 때문에 데이터의 양이 충분하지 않은 현실적인 문제가 발생한다. 이때 이미 있는 데이터를 <code class="language-plaintext highlighter-rouge">재 샘플링</code>하여 부족한 데이터의 양을 보완할 수 있다. 이는 성능 측정의 통계적인 신뢰도를 높이려는 의도이다.</p>
+
+<p>훈련 데이터 집합을 $k-1$의 부분 집합으로 학습시키고 나머지 한 개의 부분 집합으로 분류기의 성능을 측정한다. 이 과정을 서로 다른 부분 집합에 대해서 $k$번 수행하여 얻은 성능의 평균값을 분류기의 성능으로 취한다. 이러한 방법을 <code class="language-plaintext highlighter-rouge">k-겹 교차 검증</code>이라고 한다. 극단적으로 $k=N$이라면 매번 한 개의 샘플로 성능 측정을 하는 셈이다. 이런 경우를 <code class="language-plaintext highlighter-rouge">하나 남기기</code> 혹은 <code class="language-plaintext highlighter-rouge">잭 나이프</code> 기법이라고 한다.</p>
+
+<p>알고리즘 8-1</p>
+
+<h4 id="교차-검증을-사용하는-두-가지-상황">교차 검증을 사용하는 두 가지 상황</h4>
+
+<ol>
+  <li>모델 선택이 필요 없는 경우 : 하나뿐인 데이터베이스를 훈련과 테스트 집합으로 나누어 쓰는 상황</li>
+  <li>훈련 집합과 테스트 집합이 별도로 준비되어 있는데 모델을 선택하기 위한 검증 집합이 필요한 상황</li>
+</ol>
+
+<p>이 때는 훈련 집합을 <code class="language-plaintext highlighter-rouge">k겹 교차</code>하여 훈련과 검증 목적으로 사용하면 된다. 교차 검증은 가지고 있는 샘플의 대부분을 학습에 쓸 수 있다는 면에서 매력적이다.
+하지만 $k$가 커짐에 따라서 계산 시간이 오래 걸린다는 부담을 가진다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">붓스트랩bootstrap</code> 알고리즘은 샘플의 중복 사용을 허용한다. $N$ 개의 샘플을 가진 집합에서 $pN$개의 샘플을 임의로 뽑는다. 이 때 한 번에 하나씩 샘플을 뽑는데 뽑은 것을
+다시 집어넣는다. 따라서 어떤 샘플은 두 번 이상 뽑히고 어떤 샘플은 한번도 뽑히지 않을 수 있다. 이렇게 얻은 샘플 집합으로  성능을 측정한다. 이 과정을 독립적으로 $T$번 수행하고, 그 결과를 평균한 값을 최정 성능으로 취한다. 이렇게 구한 값은 통계적 신뢰도가 높다고 볼 수 있다.</p>
+
+<p>알고리즘 8-2</p>
+
+<h2 id="신경망">신경망</h2>
+
+<h3 id="ppt-25-페이지-다수결">PPT 25 페이지 다수결</h3>
+
+<p>입력노드는 입력 값을 유지시키는 메모리 역할만을 한다. 상위의 뉴럭들이 계산한 값을 유지시키는 역할만 한다. 빨간선은 edge로 출력노드에게 입력 노드의 값을 전달한다. 단순히 전달하는 것이 아니라 Weight 값을 곱해서 전달한다. $t$는 bias를 의미한다. 합산을 한 후 <code class="language-plaintext highlighter-rouge">임계</code>를 진행한다. 0보다 크면 1을 0보다 작으면 0을 출력한다.</p>
+
+<h3 id="ppt-27-퍼셉트론">PPT 27 퍼셉트론</h3>
+
+<p>입력계측과 출력계층이 있는데 이들을 연결하는 것은 weight이다.</p>
+
+<h3 id="ppt-28">PPT 28</h3>
+
+<p>계층을 트리 모양으로 구성하였다. 네트워크 구조를 만든다.</p>
+
+<h3 id="ppt-29">PPT 29</h3>
+
+<p>출력의 범위가 제한되는 특성이 있다.</p>
+
+<h2 id="821-구조와-작동원리">8.2.1. 구조와 작동원리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">퍼셉트론</code>은 입력층과 출력층으로 구성된다. 입력층은 $d$개의 컴포넌트를 가지는 특징 벡터를 받기 위해서 $d+1$개의 노드를 갖는다. 여분의 하나는 bias를 얻기 위해서 사용된다. 출력층은 하나의 노드를 갖는다. 퍼셉트론은 두 개의 부류로 분류하는 <code class="language-plaintext highlighter-rouge">이진 분류기</code>이다.</p>
+
+<p>식 8.2)</p>
+
+<p>퍼셉트론의 한계는 선형 분리 불가능한 상황에 대처하지 못하는 한계가 있다.</p>
+
+<p>그림 8.8</p>
+
+<h3 id="다층-퍼셉트론">다층 퍼셉트론</h3>
+
+<p>XOR 분류 문제  퍼셉트론은 75% 정 인식률이 한계였다. 현재에는 세 개의 퍼셉트론을 사용하여 정-인식률을 100% 가까이 올리는 효과를 내었다.</p>
+
+<p>그림 8.9</p>
+
+<p>첫 번째 단계에서 두 개의 퍼셉트론 d1과 d2를 이용하여 특징 벡터를 새로운 공간으로 매핑한 후, 새로운 공간에서 하나의 퍼셉트론 d3을 이용하여 최종 분류한 것으로 간주할 수 있다.d3 는 and 연산의 역할을 한다.</p>
+
+<p>그림 8-10</p>
+
+<p>은닉층이 많아지면 깊은 학습을 가능하게 한다.</p>
+
+<h3 id="깊은-학습">깊은 학습</h3>
+
+<p>그림 8 -12</p>
+
+<p>특징 추출과 분류를 하나의 학습 모델로 처리</p>
+
+<h4 id="컨볼루션-신경망">컨볼루션 신경망</h4>
+
+<p>그림 8 -13</p>
+
+<p>층 별로 다운 샘플링 또는 특징점 추출 등 역할을 나눠서 진행한다. 최종적인 결과는 종합해서 분류 결과를 나타내는 층도 따로 있다.</p>
+
+<p>그림 8-14</p>
+
+<p>이렇게  깊은 신경망도 가능하게 되었다.</p>
+
+<h3 id="분류기-앙상블">분류기 앙상블</h3>
+
+<p>다수의 기초 분류기들에게 같은 데이터를 넣는다. 다수의 결과가 나오면 다수결 투표와 같은 방식을 통해서 예측 결과를 내놓는다. 이렇게하면 하나의 분류기만을 쓴 것보다 다수의 분류기를 사용한 것이 정확보다 더 좋았다. 각각의 기초적인 분류기는 서로 다르게 설계되었다. 즉, 학습 데이터를 서로 다르게 설정하였다.</p>
+
+<h4 id="앙상블의-효과">앙상블의 효과</h4>
+
+<p>기초 분류기의 오류율이 0.35이다. 각각의 분류기들이 독립적일 때 기초 분류기를 25개 모았을 때 오류율이 0.06으로 떨어졌다.</p>
+
+<h2 id="얼굴-검출">얼굴 검출</h2>
+
+<p>얼굴 검출에서 표준이 되는 알고리즘이 <code class="language-plaintext highlighter-rouge">비올라 존스 얼굴 검출</code>이 있다. <code class="language-plaintext highlighter-rouge">유사 하르 특징</code>을 사용하고 <code class="language-plaintext highlighter-rouge">직렬 분류기</code>를 사용한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">유사 하르 특징</code>이란 영상의 한 부분에 특정한 마스크르 씌운다.</p>
+
+<p>그림 8-23</p>
+
+<p>흰 영역과 검은 영역으로 나뉘면 두 영역의 차이를 계산한다. 정확히는 두 영역의 화소값의 합(흰 영역의 합 v.s. 검은 영역의 합)의 차이를 계산한다. 24*24크기 영상에 네 종류의 연산자를 적용하면 14만 가지의 서로 다른 특징을 추출할 수 있다. 이들 중 얼굴을 추출하기에 분별력이 좋은 특징만을 선택하여 사용한다.</p>
+
+<p>유사 하르 연산자를 움직이면서 특징을 찾아낸다. 그리고 특징 벡터로 구성을 한다. 이 후 첫 번쨰 분류기(가장 간단한 분류기, 특징을 1개 사용), 두 번째 분류기 etc.를 사용해서 얼굴을 골라낸다. 직렬로 연결하되, 처음에는 간단한 분류기를 사용해서 검출 속도를 높힌다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#opencv" class="page__taxonomy-item" rel="tag">opencv</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#opencv" class="page__taxonomy-item" rel="tag">Opencv</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-04T00:00:00+09:00">June 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5%20http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-8%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-8%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-8%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/opencv/opencv-chapter-4/" class="pagination--pager" title="지역 특징점 검출부터 스케일 불변 특징점 검출까지
+">Previous</a>
+    
+    
+      <a href="/algorithm/Kruskal/" class="pagination--pager" title="[Kruskal] 크루스칼 최소신장트리
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

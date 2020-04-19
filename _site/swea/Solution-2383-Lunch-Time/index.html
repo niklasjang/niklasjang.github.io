@@ -1,0 +1,1047 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[2383] 점심 식사시간 - NiklasJang’s Blog</title>
+<meta name="description" content="[모의 SW 역량테스트 해설] 뿌시기 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[2383] 점심 식사시간">
+<meta property="og:url" content="http://localhost:4000/swea/Solution-2383-Lunch-Time/">
+
+
+  <meta property="og:description" content="[모의 SW 역량테스트 해설] 뿌시기 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-08-11T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/swea/Solution-2383-Lunch-Time/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[2383] 점심 식사시간">
+    <meta itemprop="description" content="[모의 SW 역량테스트 해설] 뿌시기">
+    <meta itemprop="datePublished" content="2019-08-11T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[2383] 점심 식사시간
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#생각">생각</a></li>
+  <li><a href="#2-목표-포작">2. 목표 포작</a>
+    <ul>
+      <li><a href="#dfs-설계">DFS 설계</a></li>
+      <li><a href="#최소-시간-구하기-설계">최소 시간 구하기 설계</a></li>
+    </ul>
+  </li>
+  <li><a href="#정답-코드">정답 코드</a></li>
+  <li><a href="#추가-공부">추가 공부</a>
+    <ul>
+      <li><a href="#백트레킹-개념">백트레킹 개념</a></li>
+      <li><a href="#백트레킹--부분-집합">백트레킹 : 부분 집합</a></li>
+      <li><a href="#백트레킹--순열">백트레킹 : 순열</a></li>
+      <li><a href="#백트래킹--동전-거스름돈-문제">백트래킹 : 동전 거스름돈 문제</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="생각">생각</h2>
+
+<p>이 문제에 대해서 한 3시간 넘게 시간을 쓰면서 코드를 짰다. 문제를 읽고 생각을 해보고 방법을 코드로 옮기고, TC 돌리고 커버 못하는 TC가 있으면 이를 다시 보완하는
+방법을 생각해서 코드에 추가하고.. 이렇게 하나보니까 너무 시간이 오래 걸린다. 4시간 안에 하나 풀면 다행일까? 이렇게 공부하면 시험장가서 운좋게 생각을 잘 하면 통과고 아니면 통과를 못할 것 같다. 그래서 한 문제를 풀어도 제대로 풀어야한다는 생각을 다시 했고, SWEA의 해설을 보면서 체화하는 과정을 가져보도록 하였다.</p>
+
+<h2 id="2-목표-포작">2. 목표 포작</h2>
+
+<p>먼저 계단의 갯수가 최대 2개라는 점에서 착안하여, 각 사람이 어느 계단을 사용할 것인지 결정해야 합니다. 사람의 수는 최대 10명이므로 $O(10^{2})$의 시간 복잡도로 가장 많은 경우에도 충분히 완전탐색을 할 수 있음을 알 수 있습니다. 모든 경우를 커버하는 완전탐색을 DFS로 구현해 보겠습니다.</p>
+
+<h3 id="dfs-설계">DFS 설계</h3>
+
+<ol>
+  <li>재귀 변수 결정 : 재귀 함수의 입력에 해당하는 변수</li>
+  <li>시작 조건 결정 : 초기의 함수 호출 시, 재귀 함수 인자가 가지는 값</li>
+  <li>종료 조건 결정 : 함수가 재귀 호출을 그만하고, 종료할 조건</li>
+  <li>재귀 호출 조건 결정 : 재귀 호출을 수행할 조건 결정</li>
+</ol>
+
+<p>이 문제를 본 문제에 적용하면 다음과 같습니다.</p>
+
+<ol>
+  <li>재귀 변수 결정 : 각 사람의 번호를 나타내는 변수가 필요합니다.</li>
+  <li>시작 조건 결정 : 사람의 번호가 0번부터 M-1번까지라면, 0을 함수 호출시에 넘어줍니다.</li>
+  <li>종료 조건 결정 : M-1번이 사람까지 모두 계산한 뒤 함수를 종료합니다.</li>
+  <li>재귀 호출 조건 결정 : 현재 재귀 변수가 가리키는 사람이 사용할 계단을 결정하면, 이후 남은 사람은 재귀 호출을 통해 결정할 수 있습니다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#define MAX 10
+</span><span class="kt">int</span> <span class="n">match</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+<span class="c1">//match[x] = y : x번째 사람이 y계단을 이용하도록 결정된 상태</span>
+
+<span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//모든 사람이 계단을 이용하는 최소 시간을 구함</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">person_idx</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//모든 사람이 이용할 계단이 결정되면</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">person_idx</span> <span class="o">==</span> <span class="n">MAX</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">update</span><span class="p">();</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">stair_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">stair_idx</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">stair_idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">match</span><span class="p">[</span><span class="n">person_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">stair_idx</span><span class="p">;</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="n">person_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//DFS 시작</span>
+<span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="최소-시간-구하기-설계">최소 시간 구하기 설계</h3>
+
+<p>각 사람이 어떤 계단을 이용할지가 결정된 특정 상태가 되었습니다. 이제 이 상태에 대해서, 사람들이 계단을 내려가는데 걸리는 최소 시간 T를 구하려고 합니다. $T_{0}$과 $T_{1}$를 각각 첫 번째와 두 번째 계단을 이용해서 사람들이 내려가는데 걸리는 시간이라고 할 떄, 모든 사람이 전체 계단을 내려가는데 걸리는 시간 T는 $T = MAX( T_{0}, T_{1})$입니다. 그리고 각 상태 S에 대해서 계산된 T의 최솟값을 구하면 됩니다.</p>
+
+<p>그런데 각 계단을 이용하는데 걸리는 시간은 독립적입니다. 계단 1을 이용하는 것은 계단 2를 이용하는 것에 영향을 주지 않습니다. 그리고 반대의 상황에서도 영향을 주지 않습니다. 즉, 일반적인 상황에서 계단을 이용해서 내려가는 최소시간을 구하는 함수를 하나만 만들고 이를 계단 A에 대해서 그리고 B에 대해서 사용하면 됩니다.</p>
+
+<p>생각해보면 각 계단에 대해서는 먼저 도착하는 사람이 먼저 계단을 내려가면 최소 시간을 구할 수 있습니다. 이는 귀류법으로 증명이 가능합니다. 만약 먼저 도착한 사람이 바로 계단을 이용하지 않고 최적의 시간 $T_{opt}$를 구할 수 있다면, 기다리는 시간을 없애고 바로 이용할 때 구할 수 있는 최적의 시간  $T_{sub}$는  $T_{opt}$보다 작을 수 있기 때문입니다. 따라서 먼저 도착하는 사람이 먼저 내려가면 최소 시간을 구할 수 있습니다.</p>
+
+<p>N은 맵의 가로 크기, M은 전체 사람의 수라고 가정하겠습니다. 각 사람이 계단에 도착하기까지 걸리는 시간을 $t_{i}$라고 할 때, 최악의 $t_{i}$는, 전체 맵에서 한 쪽 구석에서 반대편 구석까지 가는데 걸리는 시간은, $2 * N$보다 작고, 한 사람이 계단을 내려가는데 걸리는 시간도 $M &lt;=10$으로 작기 때문에 $t_{i} = O(2<em>N+10</em>M)$으로 작은 값을 가집니다.  $t_{i}$의 값이 매우 작기 때문에 이를 $O(n)$에 정렬하는 counting-sort를 사용해서 정렬합니다.</p>
+
+<p>[카운팅 소트 강의]<a href="https://swexpertacademy.com/main/learn/course/subjectDetail.do?subjectId=AV183wv6I7QCFAZN">https://swexpertacademy.com/main/learn/course/subjectDetail.do?subjectId=AV183wv6I7QCFAZN</a></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//카운팅 소트 예제</span>
+<span class="cp">#include &lt;cstdio&gt;
+</span><span class="kt">int</span><span class="o">*</span> <span class="nf">countSort</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="p">{</span>
+	<span class="k">static</span> <span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,};</span> <span class="c1">//arr의 길이가 8</span>
+	<span class="kt">int</span> <span class="n">count</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">};</span> <span class="c1">//가장 큰 원소+1만큼 길이를 할당</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">count</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="o">--</span><span class="n">count</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="p">;</span>
+		<span class="n">temp</span><span class="p">[</span><span class="n">count</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span> <span class="p">};</span>
+	<span class="kt">int</span> <span class="o">*</span><span class="n">arr2</span> <span class="o">=</span> <span class="n">countSort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">arr2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위와 같은 counting-sort를 아래와 같이 적용합니다. 특정 계단에 대해서 어떤 사람이 몇 초에 도착하는지가 중요한 것이 아니기 때문에 각 사람에 대해서
+정해진 계단까지 가는데 걸리는 시간을 기준으로 정렬을 해줍니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include &lt;algorithm&gt;
+</span>
+<span class="kt">int</span> <span class="nf">dist</span><span class="p">(</span><span class="kt">int</span> <span class="n">person_idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">stair_idx</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">person_idx</span><span class="p">].</span><span class="n">r</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">stair_idx</span><span class="p">].</span><span class="n">r</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">person_idx</span><span class="p">].</span><span class="n">c</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">stair_idx</span><span class="p">].</span><span class="n">c</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">arrival_time</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+<span class="c1">//arrival_time[x] = y; x시간에 계단에 도착하는 사람의 수는 y 명</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">person_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">person_idx</span> <span class="o">&lt;</span> <span class="n">number_of_people</span><span class="p">;</span> <span class="n">person_idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">person_idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">stair_idx</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">arrival_time</span><span class="p">[</span><span class="n">dist</span><span class="p">(</span><span class="n">person_idx</span><span class="p">,</span> <span class="n">stair_idx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//idx가 0부터 시작하므로 +1에 주의</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>특정 상태에서 각 계단에 몇 초에 몇 명이 도착하는지가 결정이 되었다면, 한 명씩 내려보내면서 그 사람이(어느 좌표에 있던 사람인지는 중요하지 않음) 계단 밑으로 도착하는 시간이 언제인지 기록하고 이를 계속해서 갱신합니다. 이와 같은 방법으로 각 계단에 대해서 독립적으로, 각 사람에 대해서 나누어서 생각해서 복잡하지 않게 코드를 짤 수 있습니다.</p>
+
+<h2 id="정답-코드">정답 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">PT</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+	<span class="n">PT</span><span class="p">()</span> <span class="p">{}</span>
+	<span class="n">PT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_c</span><span class="p">)</span> <span class="o">:</span> <span class="n">r</span><span class="p">(</span><span class="n">_r</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="n">_c</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span><span class="n">people</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">stair</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="n">map</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">match</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//match[x]=y : x번째 사람이 이용할 계단은 y</span>
+<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">dist</span><span class="p">(</span><span class="kt">int</span> <span class="n">pidx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sidx</span><span class="p">)</span> <span class="p">{</span><span class="c1">//person_idx, stair_idx</span>
+	<span class="kt">int</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">pidx</span><span class="p">].</span><span class="n">r</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">r</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">dc</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">pidx</span><span class="p">].</span><span class="n">c</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">c</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">dr</span> <span class="o">+</span> <span class="n">dc</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//각 사람이 이용할 계단이 정해져있는 상태, 두 개의 계단을 독립적으로 판단</span>
+	<span class="kt">int</span> <span class="n">one_state_end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sidx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sidx</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">sidx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">//stair_idx</span>
+		<span class="kt">int</span> <span class="n">arrive</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//arrive[x] = y : x분에 계단에 도착하는 사람의 수 y</span>
+		<span class="kt">int</span> <span class="n">on</span><span class="p">[</span><span class="mi">35</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//on[x] = y : x분에 계단에 타고 있는 사람의 수 y</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">sidx</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//sidx 계단을 이용하고 있는 사람을 찾기</span>
+				<span class="n">arrive</span><span class="p">[</span><span class="n">dist</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">sidx</span><span class="p">)]</span><span class="o">++</span><span class="p">;</span><span class="c1">//이 사람이 몇 초에 sidx 계단에 도착하는지 계산해서 count</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="kt">int</span> <span class="n">one_person_end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">;</span> <span class="n">t</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">// t초 일 때의 상황</span>
+			<span class="c1">//t초에 도착하는 사람이 있으면 이들을 모두 계단에 내려보내면서 각자가 끝나는 시간을 갱신</span>
+			<span class="kt">int</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//도착한 후 1분 뒤부터 내려간다</span>
+			<span class="k">while</span> <span class="p">(</span><span class="n">arrive</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//x분에 계단을 내려가기 시작하는 사람 중 한 명씩 한 명씩 내려감</span>
+				<span class="n">arrive</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="kt">int</span> <span class="n">slen</span> <span class="o">=</span> <span class="n">map</span><span class="p">[</span><span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">r</span><span class="p">][</span><span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">c</span><span class="p">];</span> <span class="c1">//계단의 길이 </span>
+				<span class="k">while</span> <span class="p">(</span><span class="n">slen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//계단의 길이만큼</span>
+					<span class="c1">//계단에 있는 사람이 3명이하이면 </span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">on</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">on</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="n">slen</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">slen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//계단을 모두 내려가면 그 사람이 도착한 시간을 갱신</span>
+							<span class="n">one_person_end</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">one_person_end</span><span class="p">,</span> <span class="n">ct</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//slen만큼 내려가서 1분 뒤에!!!!! 완료</span>
+							<span class="n">ct</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//초기화!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="n">ct</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">one_state_end</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">one_state_end</span><span class="p">,</span> <span class="n">one_person_end</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">one_state_end</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">tans</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">tans</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sidx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sidx</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">sidx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//stair_idx</span>
+		<span class="n">match</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">sidx</span><span class="p">;</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">tcase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tcase</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">tc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="n">tcase</span><span class="p">;</span> <span class="n">tc</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="mh">0xFFFFFF</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">people</span><span class="p">[</span><span class="n">M</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">PT</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">stair</span><span class="p">[</span><span class="n">S</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">PT</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"#%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="추가-공부">추가 공부</h2>
+
+<h3 id="백트레킹-개념">백트레킹 개념</h3>
+
+<p>아래 사이트에서 공부를 합니다. 너무 잘 정리되어 있어서 옮기는 것이 무의미하다고 생각됩니다.</p>
+
+<p><a href="https://swexpertacademy.com/main/learn/course/subjectDetail.do?courseId=AVuPDYSqAAbw5UW6&amp;subjectId=AV3Fvw66AAYBBARB">SWEA 백트레킹 페이지</a></p>
+
+<h3 id="백트레킹--부분-집합">백트레킹 : 부분 집합</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define MAX 3
+</span><span class="kt">char</span> <span class="n">arr</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'A'</span><span class="p">,</span><span class="sc">'B'</span><span class="p">,</span><span class="sc">'C'</span><span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">order</span><span class="p">[],</span><span class="kt">bool</span> <span class="n">check</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//printf("DFS K is %d, n is %d\n", k, n);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">n</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"{"</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%c "</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"}</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">order</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">order</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+	<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="p">};</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//결과</span>
+<span class="p">{}</span>
+<span class="p">{</span><span class="n">C</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">B</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">B</span> <span class="n">C</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">A</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">A</span> <span class="n">C</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">A</span> <span class="n">B</span> <span class="p">}</span>
+<span class="p">{</span><span class="n">A</span> <span class="n">B</span> <span class="n">C</span> <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="백트레킹--순열">백트레킹 : 순열</h3>
+
+<p>‘A’,’B’,’C’,’D’로 만들 수 있는 모든 순열을 출력하는 코드.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//SWEA의 강의 코드</span>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define MAX 4
+</span><span class="kt">char</span> <span class="n">arr</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="sc">'A'</span><span class="p">,</span><span class="sc">'B'</span><span class="p">,</span><span class="sc">'C'</span><span class="p">,</span><span class="sc">'D'</span> <span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">order</span><span class="p">[],</span><span class="kt">bool</span> <span class="n">check</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%c "</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span>
+		<span class="n">memset</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="o">*</span> <span class="n">MAX</span><span class="p">);</span> <span class="c1">//일단 모두 선택하지 않은 것으로</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">check</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">//k개만큼 앞에서부터 선택했다고 표시</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">order</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">order</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+	<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="p">};</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//좀 더 기억하기 쉬울 내 코드</span>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define MAX 4
+</span><span class="kt">char</span> <span class="n">arr</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="sc">'A'</span><span class="p">,</span><span class="sc">'B'</span><span class="p">,</span><span class="sc">'C'</span><span class="p">,</span><span class="sc">'D'</span> <span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">order</span><span class="p">[],</span><span class="kt">bool</span> <span class="n">check</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%c "</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="n">order</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">order</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+	<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="p">};</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//결과</span>
+<span class="n">A</span> <span class="n">B</span> <span class="n">C</span> <span class="n">D</span>
+<span class="n">A</span> <span class="n">B</span> <span class="n">D</span> <span class="n">C</span>
+<span class="n">A</span> <span class="n">C</span> <span class="n">B</span> <span class="n">D</span>
+<span class="n">A</span> <span class="n">C</span> <span class="n">D</span> <span class="n">B</span>
+<span class="n">A</span> <span class="n">D</span> <span class="n">B</span> <span class="n">C</span>
+<span class="n">A</span> <span class="n">D</span> <span class="n">C</span> <span class="n">B</span>
+<span class="n">B</span> <span class="n">A</span> <span class="n">C</span> <span class="n">D</span>
+<span class="n">B</span> <span class="n">A</span> <span class="n">D</span> <span class="n">C</span>
+<span class="n">B</span> <span class="n">C</span> <span class="n">A</span> <span class="n">D</span>
+<span class="n">B</span> <span class="n">C</span> <span class="n">D</span> <span class="n">A</span>
+<span class="n">B</span> <span class="n">D</span> <span class="n">A</span> <span class="n">C</span>
+<span class="n">B</span> <span class="n">D</span> <span class="n">C</span> <span class="n">A</span>
+<span class="n">C</span> <span class="n">A</span> <span class="n">B</span> <span class="n">D</span>
+<span class="n">C</span> <span class="n">A</span> <span class="n">D</span> <span class="n">B</span>
+<span class="n">C</span> <span class="n">B</span> <span class="n">A</span> <span class="n">D</span>
+<span class="n">C</span> <span class="n">B</span> <span class="n">D</span> <span class="n">A</span>
+<span class="n">C</span> <span class="n">D</span> <span class="n">A</span> <span class="n">B</span>
+<span class="n">C</span> <span class="n">D</span> <span class="n">B</span> <span class="n">A</span>
+<span class="n">D</span> <span class="n">A</span> <span class="n">B</span> <span class="n">C</span>
+<span class="n">D</span> <span class="n">A</span> <span class="n">C</span> <span class="n">B</span>
+<span class="n">D</span> <span class="n">B</span> <span class="n">A</span> <span class="n">C</span>
+<span class="n">D</span> <span class="n">B</span> <span class="n">C</span> <span class="n">A</span>
+<span class="n">D</span> <span class="n">C</span> <span class="n">A</span> <span class="n">B</span>
+<span class="n">D</span> <span class="n">C</span> <span class="n">B</span> <span class="n">A</span>
+</code></pre></div></div>
+
+<h3 id="백트래킹--동전-거스름돈-문제">백트래킹 : 동전 거스름돈 문제</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//SWEA의 강의 코드</span>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define MAX 3
+</span><span class="c1">//int change[MAX] = { 500, 400, 100, 50, 10 }; //각 동전의 가격</span>
+<span class="kt">int</span> <span class="n">change</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span> <span class="c1">//각 동전의 가격</span>
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">select</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">rest</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">select</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">//k번째 동전 선택</span>
+	<span class="kt">int</span> <span class="n">most_selected</span> <span class="o">=</span> <span class="n">rest</span> <span class="o">/</span> <span class="n">change</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">most_selected</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">select</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">j</span><span class="p">;</span>
+		<span class="n">rest</span> <span class="o">-=</span> <span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">j</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">rest</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//마지막 동전으로 다 털 수 있으면 그만</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+			<span class="n">select</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-=</span> <span class="n">j</span><span class="p">;</span> <span class="c1">//int* 타입은  재귀에서도 하나의 메모리에만 접근하기 때문에 되돌려 주어야 한다.</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rest</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">dfs</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> 
+			<span class="n">select</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-=</span> <span class="n">j</span><span class="p">;</span>
+			<span class="n">rest</span> <span class="o">+=</span> <span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">j</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">select</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span><span class="c1">//각 동전에 몇 개 선택되었는지</span>
+	<span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="p">};</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//결과</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">2</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">8</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//각 동전을 고르는 갯수가 중복해서 나오는 코드</span>
+<span class="c1">//SWEA의 강의 코드</span>
+<span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define MAX 3
+</span><span class="c1">//int change[5] = { 500, 400, 100, 50, 10 }; //각 동전의 가격</span>
+<span class="kt">int</span> <span class="n">change</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span> <span class="c1">//각 동전의 가격</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">select</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">rest</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">rest</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">select</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">select</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">rest</span> <span class="o">-=</span> <span class="n">change</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">rest</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">dfs</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">rest</span><span class="p">);</span>
+		<span class="n">select</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">rest</span> <span class="o">+=</span> <span class="n">change</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">select</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span><span class="c1">//각 동전에 몇 개 선택되었는지</span>
+	<span class="n">dfs</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="mi">800</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//각 동전이 몇 개씩 선택되었는지를 나타내는 결과</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">2</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">8</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#dfs" class="page__taxonomy-item" rel="tag">DFS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#solution" class="page__taxonomy-item" rel="tag">Solution</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#swea" class="page__taxonomy-item" rel="tag">SWEA</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-11T00:00:00+09:00">August 11, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B2383%5D+%EC%A0%90%EC%8B%AC+%EC%8B%9D%EC%82%AC%EC%8B%9C%EA%B0%84%20http%3A%2F%2Flocalhost%3A4000%2Fswea%2FSolution-2383-Lunch-Time%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fswea%2FSolution-2383-Lunch-Time%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fswea%2FSolution-2383-Lunch-Time%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/swea/2383-Lunch-Time/" class="pagination--pager" title="[2383] 점심 식사시간
+">Previous</a>
+    
+    
+      <a href="/review/NAVER-Developer-Open-Class-Apply/" class="pagination--pager" title="[NAVER] Open Class 지원
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

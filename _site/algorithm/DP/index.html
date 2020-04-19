@@ -1,0 +1,760 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[DP] 다이나믹 프로그래밍 - NiklasJang’s Blog</title>
+<meta name="description" content="Dynamic Programming 개념 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[DP] 다이나믹 프로그래밍">
+<meta property="og:url" content="http://localhost:4000/algorithm/DP/">
+
+
+  <meta property="og:description" content="Dynamic Programming 개념 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-04T04:34:30+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/DP/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DP] 다이나믹 프로그래밍">
+    <meta itemprop="description" content="Dynamic Programming 개념">
+    <meta itemprop="datePublished" content="2019-05-04T04:34:30+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DP] 다이나믹 프로그래밍
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#개념">개념</a></li>
+  <li><a href="#큰-문제를-작은-문제로-나눠서-푸는-두-개의-알고리즘">큰 문제를 작은 문제로 나눠서 푸는 두 개의 알고리즘</a></li>
+  <li><a href="#dp의-두가지-속성">DP의 두가지 속성</a>
+    <ul>
+      <li><a href="#overlapping-subproblem">Overlapping Subproblem</a></li>
+      <li><a href="#optiaml-substructure">Optiaml Substructure</a></li>
+    </ul>
+  </li>
+  <li><a href="#피보나치-수">피보나치 수</a>
+    <ul>
+      <li><a href="#시간-복잡도">시간 복잡도</a></li>
+    </ul>
+  </li>
+  <li><a href="#다이나믹을-푸는-두-가지-방법">다이나믹을 푸는 두 가지 방법</a>
+    <ul>
+      <li><a href="#top-down--재귀함수">Top-down : 재귀함수</a></li>
+      <li><a href="#bottom-up--for문">Bottom-up : for문</a></li>
+      <li><a href="#-bottom-up">? Bottom-up?</a>
+        <ul>
+          <li><a href="#문제-풀이-전략-1--bottom-up">문제 풀이 전략 1 : Bottom-up</a></li>
+          <li><a href="#문제-풀이-전략-2--top-down">문제 풀이 전략 2 : Top-down</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="개념">개념</h2>
+
+<p>큰 문제를 작은 문제로 나눠서 풀고, 다시 원래 큰 문제를 푸는 알고리즘</p>
+
+<p>Dynamic Programming이라는 이름은 그냥 멋있어서 붙혀졌다고 합니다.</p>
+
+<h2 id="큰-문제를-작은-문제로-나눠서-푸는-두-개의-알고리즘">큰 문제를 작은 문제로 나눠서 푸는 두 개의 알고리즘</h2>
+
+<blockquote>
+  <p>DP : 작은 문제가 여러번 나온다. <strong>여러번 나오는 문제</strong>의 정답이 항상 같다는 것을 이용해 각각의 문제를 한 번씩 푼다.<br />
+분할 정복 알고리즘 : 모든 작은 문제가 <strong>한 번씩</strong> 나와서 그냥 모든 문제를 한 번씩 푼다.</p>
+</blockquote>
+
+<h2 id="dp의-두가지-속성">DP의 두가지 속성</h2>
+
+<ol>
+  <li>Overlapping Subproblem : 부분 문제가 겹친다. 부분 문제를 여러번 구해야하는 경우가 발생한다.</li>
+  <li>Optiaml Substructure : 부분 문제의 정답이 항상 같다. 작은 동일한 문제가 나오면 이 두 문제의 정답은 항상 같아야 한다. 따라서 부분 문제의 값을 저장해어서 실행시간을 줄인다.</li>
+</ol>
+
+<h3 id="overlapping-subproblem">Overlapping Subproblem</h3>
+
+<p>피보나치 수</p>
+
+<blockquote>
+  <p>$F_{0} = 0$<br />
+$F_{1} = 1$<br />
+$F_{n} = F_{n-1} + F_{n-2}$</p>
+</blockquote>
+
+<ol>
+  <li>크기 n 문제를 n-1과 n-2 문제로 나워서 풀고 이들을 더해서 큰 문제를 푼다.</li>
+  <li>다음으로 작은 문제들이 겹치는지를 체크</li>
+  <li>n-1 문제를 풀 때 n-2와 n-3을 구해야 함</li>
+  <li>n-2 문제를 풀 때 n-3와 n-4을 구해야 함</li>
+  <li>n-3 문제가 중복해서 발생함.</li>
+  <li>즉, 큰 문제를 작은 문제로 쪼갤 수 있고 큰 문제와 작은 문제를 푸는 방법이 같다.</li>
+</ol>
+
+<h3 id="optiaml-substructure">Optiaml Substructure</h3>
+
+<p>문제의 정답을 작은 문제의 정답에서 구할 수 있다.  1</p>
+
+<p>서울에서 부산갈 때 제일 빠른 길 (가정): 서울 -&gt; 대전 -&gt; 대구 -&gt; 부산<br />
+대구에서 부산갈 때 제일 빠른 길 : 대전 -&gt; 대구 -&gt; 부산<br />
+알고보니 울산도 갈 수 있는 도시였다고 할 때,<br />
+대구에서 부산갈 때 제일 빠른 길 : 대전 -&gt; 울산 -&gt; 부산 으로 바뀌었다.  <strong>이런 경우는 없음. 즉, 큰 문제의 정답을 구할 때 작은 문제의 정답이 꼭 사용 되어야한다.</strong></p>
+
+<p>10 번째 피보나치 수를 구하면서 4번째 피보나치 수를 구해야한다.<br />
+9 번째 피보나치 수를 구하면서 4번째 피보나치 수를 구해야한다.<br />
+4 번째 피보나치 수를 구하면서 4번째 피보나치 수를 구해야한다.<br />
+4 번째 피보나치 수는 변하지 않는다.</p>
+
+<p>-&gt; 한 번 작은 문제를 풀어두고 이 문제의 정답을 어디에 저장해두자!</p>
+
+<h2 id="피보나치-수">피보나치 수</h2>
+
+<p>메모를 하지 않는다면, 시간 복잡도 $O(2^{n})</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="n">fino</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>메모를 한다면, 시간 복잡도는 $O(N)$</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">memo</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span>  <span class="n">fino</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="시간-복잡도">시간 복잡도</h3>
+
+<p>모든 문제는 한 번씩만 푼다. 함수 호출은 n번 이루어 진다. 함수 호출은 메모에 적혀있지 않아서 메모를 구하는데 사용되는 호출을 의미한다. 즉, 함수 호출 시간은 $O(1)$이 걸린다. 따라서 전체 시간 복잡도는 $O(n)$이다.</p>
+
+<h2 id="다이나믹을-푸는-두-가지-방법">다이나믹을 푸는 두 가지 방법</h2>
+
+<h3 id="top-down--재귀함수">Top-down : 재귀함수</h3>
+<p>큰 문제를 점점 쪼개면서 작은 문제로 가는 것. 이전에 했던 방법.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="n">fino</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="bottom-up--for문">Bottom-up : for문</h3>
+
+<p>작은 문제가 점점 합쳐지면서 큰 문제를 풀게 되는 것</p>
+
+<ol>
+  <li>문제를 크기가 작은 문제부터 차례대로 푼다.</li>
+  <li>문제의 크기를 조금씩 크게 만든다.</li>
+  <li>작은 문제를 풀면서 왔기 때문에 큰 문제는 항상 풀 수 있다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="-bottom-up">? Bottom-up?</h3>
+
+<p>대부분 Top-down으로도 Bottom-up으로도 풀 수 있다. 전자가 stack에 넣고 빼야해서 느릴 수도 있고, 후자가 전자는 필요없는 모든 경우를 다 풀어야해서 느릴 수도 있다. 일반적으로 뭐가 더 좋은지는 정해져있지 않고, 전자와 후자로 풀 떄 모두 시간 복잡도는 같게 나올 것이다.</p>
+
+<h4 id="문제-풀이-전략-1--bottom-up">문제 풀이 전략 1 : Bottom-up</h4>
+
+<ol>
+  <li>문제를 크기가 작은 문제부터 차례대로 푼다.</li>
+  <li>문제의 크기를 조금씩 크게 만든다.</li>
+  <li>작은 문제를 풀면서 왔기 때문에 큰 문제는 항상 풀 수 있다.</li>
+</ol>
+
+<p>답을 구하는 점화식을 정의하고, 점화식을 코딩한다.</p>
+
+<ol>
+  <li>D[N]을 구해야한다는 것을 정한다.</li>
+  <li>N을 N-1과 N-2로 나누는 법을 생각한다.</li>
+  <li>D[N] = D[N-1] + D[N-2]를 짠다.</li>
+</ol>
+
+<h4 id="문제-풀이-전략-2--top-down">문제 풀이 전략 2 : Top-down</h4>
+
+<ol>
+  <li>문제에서 구하고자 하는 답을 문장으로 나타낸다.</li>
+  <li>EX ) N 번째 피보나치 수</li>
+  <li>Bottom-up : 이제 이 문장에 나와있는 변수의 갯수만큼 메모하는 배열을 만든다.</li>
+  <li>Top-Down : 이제 이 문장에 나와있는 변수의 갯수 = 재귀호출 인자의 갯수</li>
+  <li>문제를 작은 문제로 나누고, 수식을 이용해서 문제를 표현해야 한다.</li>
+</ol>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#boj" class="page__taxonomy-item" rel="tag">BOJ</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#dp" class="page__taxonomy-item" rel="tag">DP</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-04T04:34:30+09:00">May 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDP%5D+%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDP%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDP%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FDP%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/Flood-Fill/" class="pagination--pager" title="[Flood Fill] 플루드 필
+">Previous</a>
+    
+    
+      <a href="/boj/BFS-practice-2/" class="pagination--pager" title="BFS 문제 풀이 - 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

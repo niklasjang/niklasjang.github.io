@@ -1,0 +1,846 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[C++] 기본 Syntax 4  - NiklasJang’s Blog</title>
+<meta name="description" content="#if #endif #ifndef 조건부 컴파일, getter,setter ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[C++] 기본 Syntax 4">
+<meta property="og:url" content="http://localhost:4000/cpp/cpp-basic-syntax-4/">
+
+
+  <meta property="og:description" content="#if #endif #ifndef 조건부 컴파일, getter,setter ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-06T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/cpp/cpp-basic-syntax-4/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[C++] 기본 Syntax 4">
+    <meta itemprop="description" content="#if #endif #ifndef 조건부 컴파일, getter,setter">
+    <meta itemprop="datePublished" content="2019-09-06T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[C++] 기본 Syntax 4
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#else의-삽입--if-ifdef-ifndef-에만-해당">#else의 삽입 : #if, #ifdef, #ifndef-에만 해당</a></li>
+  <li><a href="#헤더파일의-중복-삽입-막기">헤더파일의 중복 삽입 막기</a></li>
+  <li><a href="#getter-setter">Getter, Setter</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <ol>
+  <li>조건부 컴파일이란 코드의 일부분을 상황에 따라서 컴파일 하고/안하고를 구분하는 방법이다.</li>
+  <li>출력문을 출력할지 말지를 결정할 수도 있고, 헤더파일의 중복 삽입을 막을 수도 있다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#define ADD 1
+#define MIN 0
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#if ADD
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#endif
+</span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"456"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//-출력-
+123
+456
+</code></pre></div></div>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">//#define ADD 1</span>
+<span class="cp">#define MIN 0
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#ifdef ADD
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#endif
+</span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"456"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//-출력-
+456
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="c1">//#define ADD 1</span>
+<span class="cp">#define MIN 0
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#ifndef ADD
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#endif
+</span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"456"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//-출력-
+123
+456
+</code></pre></div></div>
+
+<h2 id="else의-삽입--if-ifdef-ifndef-에만-해당">#else의 삽입 : #if, #ifdef, #ifndef-에만 해당</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#define ADD 2
+#define MIN 0
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#if ADD==1
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#else
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#endif
+</span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"456"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//-출력-
+123123
+456
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#elif :#if에만 해당-
+</span>
+<span class="cp">#include &lt;iostream&gt;
+#define ADD 2
+#define MIN 0
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#if ADD==1
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#elif ADD ==2
+</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"123123"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="cp">#endif
+</span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"456"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//-출력-
+123123
+456
+</code></pre></div></div>
+
+<p>​</p>
+<h2 id="헤더파일의-중복-삽입-막기">헤더파일의 중복 삽입 막기</h2>
+
+<p>//main.cpp
+#include “car.h”</p>
+
+<p>int main(void) {
+	Car run99;
+	run99.InitMemvers(“nam2312e”, 100);
+	run99.Accel();
+	run99.Accel();
+	run99.ShowCarState();</p>
+
+<p>}
+ //Car.h
+#ifndef <strong>car_h</strong>
+#define <strong>car_h</strong>
+namespace CAR_CONSTANT {
+	enum {
+		ID_LEN = 20,
+		MAX_SPD = 200,
+		FUEL_STEP = 2,
+		ACC_STEP = 10,
+		BRK_STEP = 10
+	};
+}</p>
+
+<p>class Car {
+private:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char gamerId[CAR_CONSTANT::ID_LEN];
+int fuelGauge;
+int curSpeed; public:
+void InitMemvers(const char* ID, int fuel);
+void ShowCarState();
+void Accel();
+</code></pre></div></div>
+
+<p>};</p>
+
+<p>inline void Car::Accel() {
+	if (fuelGauge &lt;= 0) {
+		return;
+	}
+	else {
+		fuelGauge -= CAR_CONSTANT::FUEL_STEP;
+	}</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (curSpeed + CAR_CONSTANT::ACC_STEP &gt;= CAR_CONSTANT::MAX_SPD) {
+	curSpeed = CAR_CONSTANT::MAX_SPD;
+	return;
+}
+curSpeed += CAR_CONSTANT::ACC_STEP; } #endif  1. 인라인 함수는 헤더파일에 넣는다
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>cpp파일들에서는 각각의 cpp파일에 필요한 헤더파일들을 전부 #include 하고, 헤더파일에서는 시작 부분에 #ifndef __이름_h__형태를 통해서 헤더파일의 중복 삽입을 막는다. 코드가 중복해서 포함되는 것이 문제가 안될 수도 있지만, 구조체의 정의 같은 경우는 중복 삽입되면 안되기 때문에 이와 같은 형태로 막아주어야한다.</p>
+  </li>
+  <li>
+    <p>#endif도 꼭 적어주어야 컴파일이 되며, #endif의 경우 이하의 내용이 무조건 컴파일 된다.</p>
+  </li>
+</ol>
+
+<p>//Car.cpp
+#include <iostream>
+#include <cstring></cstring></iostream></p>
+
+<p>#include “car.h”
+using namespace std;</p>
+
+<p>void Car::ShowCarState() {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cout &lt;&lt; gamerId &lt;&lt; endl;
+cout &lt;&lt; curSpeed &lt;&lt; endl;
+cout &lt;&lt; fuelGauge &lt;&lt; endl; }
+</code></pre></div></div>
+
+<p>void Car::InitMemvers(const char * ID, int fuel) {
+	strcpy_s(gamerId, ID);
+	fuelGauge = fuel;
+	curSpeed = 0;
+}</p>
+
+<h2 id="getter-setter">Getter, Setter</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "PointHeader.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">Point</span> <span class="n">point</span><span class="p">;</span>
+	<span class="n">point</span><span class="p">.</span><span class="n">InitMembers</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">point</span><span class="p">.</span><span class="n">GetX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">point</span><span class="p">.</span><span class="n">GetY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">point</span><span class="p">.</span><span class="n">SetX</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+	<span class="n">point</span><span class="p">.</span><span class="n">SetY</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">point</span><span class="p">.</span><span class="n">GetX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">point</span><span class="p">.</span><span class="n">GetY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cp">#pragma once
+</span><span class="c1">//PointHeader.h</span>
+<span class="cp">#ifndef __POINT_H__
+#define __POINT_H__
+</span>
+<span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="kt">bool</span> <span class="n">InitMembers</span><span class="p">(</span><span class="kt">int</span> <span class="n">xpos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ypos</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">GetX</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">GetY</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+	<span class="kt">bool</span> <span class="n">SetX</span><span class="p">(</span><span class="kt">int</span> <span class="n">xpos</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">SetY</span><span class="p">(</span><span class="kt">int</span> <span class="n">ypos</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//point.cpp</span>
+
+<span class="cp">#include &lt;iostream&gt;
+#include "PointHeader.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="n">Point</span><span class="o">::</span><span class="n">InitMembers</span><span class="p">(</span><span class="kt">int</span> <span class="n">xpos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ypos</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">xpos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">ypos</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"position under Zero Error"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="n">xpos</span><span class="p">;</span>
+	<span class="n">y</span> <span class="o">=</span> <span class="n">ypos</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Point</span><span class="o">::</span><span class="n">GetX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Point</span><span class="o">::</span><span class="n">GetY</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">Point</span><span class="o">::</span><span class="n">SetX</span><span class="p">(</span><span class="kt">int</span> <span class="n">xpos</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">xpos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">xpos</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"position under Zero Error"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="n">xpos</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">Point</span><span class="o">::</span><span class="n">SetY</span><span class="p">(</span><span class="kt">int</span> <span class="n">ypos</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">ypos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">ypos</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"position under Zero Error"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">y</span> <span class="o">=</span> <span class="n">ypos</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#cpp" class="page__taxonomy-item" rel="tag">cpp</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#cpp" class="page__taxonomy-item" rel="tag">CPP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-06T00:00:00+09:00">September 6, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BC%2B%2B%5D+%EA%B8%B0%EB%B3%B8+Syntax+4+%20http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cpp/cpp-basic-syntax-3/" class="pagination--pager" title="[C++] 기본 Syntax 3
+">Previous</a>
+    
+    
+      <a href="/cpp/cpp-basic-syntax-5/" class="pagination--pager" title="[C++] 기본 Syntax 5
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

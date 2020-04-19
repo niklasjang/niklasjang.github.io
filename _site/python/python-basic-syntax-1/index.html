@@ -1,0 +1,970 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>기본 Python sysntax 정리 Part 1. - NiklasJang’s Blog</title>
+<meta name="description" content="Try! Hello world정리 Part 1.~ 9. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="기본 Python sysntax 정리 Part 1.">
+<meta property="og:url" content="http://localhost:4000/python/python-basic-syntax-1/">
+
+
+  <meta property="og:description" content="Try! Hello world정리 Part 1.~ 9. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-30T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/python/python-basic-syntax-1/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="기본 Python sysntax 정리 Part 1.">
+    <meta itemprop="description" content="Try! Hello world정리 Part 1.~ 9.">
+    <meta itemprop="datePublished" content="2019-05-30T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">기본 Python sysntax 정리 Part 1.
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#part-1-시작하기">PART 1 시작하기</a>
+    <ul>
+      <li><a href="#01-파이썬-설치하기">01 파이썬 설치하기</a></li>
+      <li><a href="#02-편집기-설치하기">02 편집기 설치하기</a></li>
+      <li><a href="#03-hello-world-출력하기">03 Hello World! 출력하기</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-2-변수와-계산">PART 2 변수와 계산</a>
+    <ul>
+      <li><a href="#04-변수">04 변수</a></li>
+      <li><a href="#05-주석">05 주석</a></li>
+      <li><a href="#07-repl-사용하기">07 REPL 사용하기</a></li>
+      <li><a href="#08-셸-사용하기">08 셸 사용하기</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-3-조건문">PART 3 조건문</a>
+    <ul>
+      <li><a href="#09-if문">09 if문</a></li>
+      <li><a href="#10-조건식">10 조건식</a></li>
+      <li><a href="#11-블록">11 블록</a></li>
+      <li><a href="#12-if-else">12 if-else</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-4-함수">PART 4 함수</a>
+    <ul>
+      <li><a href="#13-함수">13 함수</a></li>
+      <li><a href="#14-매개변수">14 매개변수</a></li>
+      <li><a href="#15-함수의-값">15 함수의 값</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-5">PART 5</a>
+    <ul>
+      <li><a href="#16-format">16 format</a></li>
+      <li><a href="#17-문자열">17 문자열</a></li>
+      <li><a href="#18-정수와-실수">18 정수와 실수</a></li>
+      <li><a href="#19-사용자-입력받기">19 사용자 입력받기</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-6-리스트">PART 6 리스트</a>
+    <ul>
+      <li><a href="#20-리스트">20 리스트</a></li>
+      <li><a href="#21-리스트-수정">21 리스트 수정</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-7-for-반복문">PART 7 for 반복문</a>
+    <ul>
+      <li><a href="#22-for-in-list">22 for in list</a></li>
+      <li><a href="#23-for-in-range">23 for in range</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-8-모듈">PART 8 모듈</a>
+    <ul>
+      <li><a href="#24-모듈">24 모듈</a></li>
+      <li><a href="#25-모듈-만들기">25 모듈 만들기</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-9-활용하기">PART 9 활용하기</a>
+    <ul>
+      <li><a href="#26-검색하기">26 검색하기</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="part-1-시작하기">PART 1 시작하기</h2>
+
+<h3 id="01-파이썬-설치하기">01 파이썬 설치하기</h3>
+
+<ul>
+  <li>www.python.org</li>
+</ul>
+
+<h3 id="02-편집기-설치하기">02 편집기 설치하기</h3>
+
+<ul>
+  <li>노트패드++ 설치 권장</li>
+  <li>새 파일 만들어서 내 문서에 확장자 .py로 저장</li>
+  <li>파워셸 실행 win + R</li>
+</ul>
+
+<h3 id="03-hello-world-출력하기">03 Hello World! 출력하기</h3>
+
+<ul>
+  <li>() : 어떤 글자를 출력할지 알려 주는 역할</li>
+  <li>’’ 또는 “” 사용</li>
+  <li>파워셸에서 python 실행 후 <code class="language-plaintext highlighter-rouge">exit()</code>로 종료</li>
+</ul>
+
+<h2 id="part-2-변수와-계산">PART 2 변수와 계산</h2>
+
+<h3 id="04-변수">04 변수</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">identity</span> <span class="o">=</span> <span class="s">'지구인'</span>
+<span class="n">number_of_legs</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'안녕 나는'</span><span class="p">,</span> <span class="n">identity</span> <span class="p">,</span><span class="s">'이야.'</span><span class="p">,</span><span class="s">'나는 다리가 '</span><span class="p">,</span><span class="n">number_of_legs</span><span class="p">,</span><span class="s">'개 있어.'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="05-주석">05 주석</h3>
+
+<ul>
+  <li>한 줄만 주석 : #</li>
+  <li>여러 줄 주석 :
+<code class="language-plaintext highlighter-rouge">py''' ~ '''</code> or <code class="language-plaintext highlighter-rouge">py""" ~ """</code>
+-숫자를 ‘’ 안에 넣으면 문자열로 인식한다. 
+-거듭제곱의 꼴은 A ** B로 나타낸다. 
+-두 수를 그냥 더하면 두 수의 합이 출력되고, 숫자를 ‘‘로 감싸고 +를 하면 그대로 붙혀진다.</li>
+</ul>
+
+<h3 id="07-repl-사용하기">07 REPL 사용하기</h3>
+
+<ul>
+  <li>셸에서 python + enter</li>
+  <li>REPL : Read valuate/valuation Print Loop (python 대화형 창)</li>
+  <li>문자열에 숫자를 곱하면 문자열이 숫자만큼 출력된다.</li>
+</ul>
+
+<h3 id="08-셸-사용하기">08 셸 사용하기</h3>
+
+<ul>
+  <li>운영체제가 사용자와 소통하는 방법, 일반적으로 보이는 화면은 그래픽 셸</li>
+  <li>window power shell을 명령줄 셸이라고 칭함.</li>
+  <li>명령어의 종류</li>
+</ul>
+
+<pre><code class="language-txt">pwd : print working directory : 현재 작업중인 디렉터리를 출력하는 명령어
+        흔히 쓰는 폴더(foder)와 같은 의미이지만 명령줄 셸에서는 디렉터리라고 하기.
+ls : list segments(부분, 영역) : 현재 디렉터리에 담긴 구성물을 목록형태로 보여줌.
+cd : change directory : 현재 작업 중인 디렉터리를 이동할 떄 쓰는 명령어.
+    상위 디렉터리로 나가려면 cd .. +enter
+cp : copy : 파일 복사 명령어 ex) cp test.py test2.py(test =원본파일이름, test2= 새 파일 이름)
+rm : remove : 파일을 삭제할 때 쓰는 명령어 ex) rm test2.py
+</code></pre>
+
+<h2 id="part-3-조건문">PART 3 조건문</h2>
+
+<h3 id="09-if문">09 if문</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="err">조건식</span><span class="p">)</span> <span class="p">:</span>               <span class="c1"># : 까먹으면 오류난다.
+</span>    <span class="c1">#TODO
+</span></code></pre></div></div>
+
+<h3 id="10-조건식">10 조건식</h3>
+
+<ul>
+  <li>== , &lt;= , &gt;= , !=</li>
+  <li>if True: or if False: 형태로 쓸 수 있음.</li>
+  <li>and, or , not 모두 연산자임.</li>
+</ul>
+
+<h3 id="11-블록">11 블록</h3>
+
+<ul>
+  <li>파이썬 코드에서 콜론 다음에 들여 쓴 코드를 ‘블록’이라고 부름.</li>
+  <li>같은 실행 흐름에서 순서대로 실행되는 코드 덩어리</li>
+</ul>
+
+<h3 id="12-if-else">12 if-else</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">:</span>
+    <span class="c1">#TODO
+</span><span class="k">elif</span><span class="p">:</span>
+    <span class="c1">#TODO
+</span><span class="k">else</span><span class="p">:</span>
+    <span class="c1">#TODO
+</span></code></pre></div></div>
+
+<h2 id="part-4-함수">PART 4 함수</h2>
+
+<h3 id="13-함수">13 함수</h3>
+
+<ul>
+  <li>root 는 a ** 0.5 형태로 구현 #제곱근 = square root  # square = 제곱</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">:</span>   <span class="c1">#함수 정의
+</span>    <span class="c1">#TODO 1
+</span>    <span class="c1">#TODO 2
+</span>
+<span class="n">foo</span><span class="p">()</span>         <span class="c1">#함수 실행
+</span></code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'해는 {} 또는 {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">))</span> <span class="c1"># 해는 1 또는 2
+</span></code></pre></div></div>
+
+<h3 id="14-매개변수">14 매개변수</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_root</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">:</span>         <span class="c1"># 1번
+</span>    <span class="k">print</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>              <span class="c1"># 2번
+</span>    <span class="n">print_root</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">,</span> <span class="n">num3</span><span class="p">)</span> <span class="c1"># 3번
+</span></code></pre></div></div>
+
+<ul>
+  <li>1번의 a ,b, c는 매개변수(<code class="language-plaintext highlighter-rouge">parameter</code>)라고 부른다.</li>
+  <li>3번의 num1,num2,num3는 실행인자(<code class="language-plaintext highlighter-rouge">argument</code>)라고 부른다.</li>
+  <li>매개변수(parameter)의 갯수와 실행인자(argument)의 갯수를 맞추지 않으면 오류가 난다.</li>
+  <li>영어이름 parameter 와 argument 는 error code 를 이해하기 위해서 암기해두기.</li>
+</ul>
+
+<h3 id="15-함수의-값">15 함수의 값</h3>
+
+<ul>
+  <li>이 책에서 retrun이 공식적으로 처음 나오는 부분.</li>
+  <li>return이 2개라면 두 개 중에 먼저실행한 return 값이 출력됨.</li>
+  <li>return이 실행된 즉시 함수 실행을 끝내버린다.</li>
+  <li>함수를 빨리 끝낼 때는 if를 사용해서 흐름을 분기한 후에 return을 사용하고, 프로그램의 종료를 원할 때는 exit() 과 sys.exit()을 상황에 맞게 사용한다.</li>
+  <li>파이썬에서 return 은 두 개 이상의 값을 동시에 return 할 수 있다 E.g) retrun num1, num2</li>
+  <li><strong>실행인자 argument가 3개여도 result1, result2 = print_root(A,B,C)형태로 가능.</strong></li>
+</ul>
+
+<h2 id="part-5">PART 5</h2>
+
+<h3 id="16-format">16 format</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 아래와 같이 base를 따로 저장하고 다음 줄에서 base.format형태로 쓸 수 있다.
+</span><span class="n">base</span> <span class="o">=</span> <span class="s">'{}번 손님, {}. {}에 오신 것을 {}!'</span>
+<span class="n">new_way</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">greeting</span><span class="p">,</span> <span class="n">place</span><span class="p">,</span> <span class="n">welcome</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>base 뒤의 . 은 format이 base에 속함을 의미하는 함수.</li>
+  <li>문자열에 포함된 {} 개수와 foramt 안의 {} 갯수가 달라도 오류가 나지 않을 수 있음.
+    <ul>
+      <li>문자열의 {} &gt; format의 {} : 오류 발생</li>
+      <li>문자열의 {} &lt; format의 {} : 오류 발생하지 않음! 알아서 잘 찾기!</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="17-문자열">17 문자열</h3>
+
+<ul>
+  <li>따옴표가 영어로 quote.</li>
+  <li>책에서 추상적으로 다룰 때는 ‘텍스트’, 코드 안에서는 ‘문자열’이라고 표현하겠음.</li>
+  <li>'’와 ““를 쓰는 결과에서는 아무런 차이가 없음</li>
+  <li>'’를 문자열에 포함시키고 싶으면 “”, ““를 문자열에 포함시키고 싶으면 ‘‘를 사용.</li>
+  <li>문자열 안에 ‘‘와 ““를 모두 포함시키고 싶을 때는 str1= ‘’’( ‘‘와 “” )’'’or”””(‘‘와 “”)”"”로 쓰기</li>
+  <li>str1 = “”” 문자열이 길어서 다음 줄에<br />
+          넘어갈 때는 이렇게 세 개를 사용한다.”””</li>
+</ul>
+
+<h3 id="18-정수와-실수">18 정수와 실수</h3>
+
+<ul>
+  <li>a // b : a를 b로 나눈 몫을 출력</li>
+  <li>int : integer 정수</li>
+  <li>float : floating point : 부동소수점</li>
+  <li>print((int)5.0)  #정수로 바꾸기</li>
+  <li>print((float)5) #실수로 바꾸기</li>
+</ul>
+
+<h3 id="19-사용자-입력받기">19 사용자 입력받기</h3>
+<ul>
+  <li>print()의 ()안에 end=’ ‘ 나오는데 이는 일단 출력 텍스트를 깔끔하게 하는 용도라고만 이해하기. #TODO 튜플 배우고 다시 오기.</li>
+  <li>input은 사용자 입력을 받는 기능과 더불어 간단한 print 기능까지 갖고 있다.</li>
+  <li>사용자 입력을 여러개 받아야하는 상황에서 불가피하게 빠져나오려면 Ctrl + C 를 입력한다.</li>
+</ul>
+
+<h2 id="part-6-리스트">PART 6 리스트</h2>
+
+<h3 id="20-리스트">20 리스트</h3>
+
+<ul>
+  <li>list : 다른 변수를 담을 수 있는 변수</li>
+  <li>값을 여러 개 저장할 때 한번에 다루면서 ‘세 번쨰 변수’처럼 위치를 지정할 수도 있음.</li>
+  <li>list = [37, ‘안경’, ‘바위’]  #각각의 값을 선택해서 지정 : list[0], list[1], list[2]</li>
+  <li>list [0] = ‘note’ # 값 변경</li>
+  <li>print(list[3]) : 리스트에 든 항목의 개수보다 큰 값을 넣으면 오류가 발생한다.</li>
+  <li>list [-1] #-1 뒤에서 첫 번째라는 뜻이다.</li>
+  <li>list [-4] # -4 뒤로도 한 바퀴 이상을 지정하면 오류가 발생한다.</li>
+</ul>
+
+<h3 id="21-리스트-수정">21 리스트 수정</h3>
+
+<ul>
+  <li>list2= [3, 23, 42, 22, 44, 12]</li>
+  <li>list2.append(16) # 리스트에 새로운 값을 추가하기.</li>
+  <li>print (list2) # 출력값: [3, 23, 42, 22, 44, 12, 16]</li>
+  <li>list3 = list2 + [16] #리스트를 합치기</li>
+  <li>in 연산 : ownership = 23 in list3 #ownership = False 대입됨. (리스트에 해당 값이 있는지 없는지 판별한다. True/False return)</li>
+  <li>del : del list3[12] # list3에 있는 13번 째 값을 지운다!</li>
+  <li>list3.remove(40) # 이 값이 리스트 안에 여러 개 들어 있어도 가장 먼저 나오는 값 하나만 지운다.</li>
+  <li>.append 와 .remove는 ()를 사용하고,  del과 +는 [ ]를 사용한다.</li>
+  <li>del은 지금까지 하던대로 del(listp[3])처럼 괄호를 사용해도 된다.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># +는 리스트끼리 더하는 것이므로 []를 사용한다.
+# .append 는 .이 있으므로 ()를 사용한다.
+# .remove는 .이 있으므로 ()를 사용한다.
+# del은 print()와 같이 ()를 붙히는 것으로 암기하자. 단 지우는 값은 [index]로 지정한다.
+</span></code></pre></div></div>
+
+<h2 id="part-7-for-반복문">PART 7 for 반복문</h2>
+<h3 id="22-for-in-list">22 for in list</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span>  <span class="p">:</span>       <span class="c1">#pattern에 patterns의 값을 하나씩 넣으면서 실핸한다. :도 필수!
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>                <span class="c1"># 착각하고 있었는데 pattern +=1이 아니다. index없어도 계속 바뀜
+#for-in : in 뒤의 리스트의 크기에 관계없이 항상 모든 리스트에 대해 코드를 사용할 수 있는 장점.
+</span></code></pre></div></div>
+
+<h3 id="23-for-in-range">23 for in range</h3>
+
+<ul>
+  <li>리스트의 크기가 클 경우 for in list를 사용하면 for in [0,0,0,0,0,,0,0,0,0``````]와 같이 다 적어주어야 한다.</li>
+  <li>for in range(5) :  # 0부터 순서대로 총 숫자가 5개 든 리스트와 비슷한(나중에 나올듯) 것을 만듦</li>
+  <li>리스트에 번호를 붙일 때 유용하다.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                       <span class="c1">#name이라는 변수에 첫 번째 인자를 넣음
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'{}번: {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>   <span class="c1"># i+1로써 X번째 임을 출력
+</span></code></pre></div></div>
+
+<ul>
+  <li>리스트에 새로운 값을 입력하려면 일일이 매번 list와 range()의 값을 일일이 바꿔주어야한다.</li>
+  <li>len()함수는 실행인자(argument)로 전달반은 변수에 항목이 몇 개 들어 있는지 개수를 반환함.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">))</span> <span class="p">:</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{}번은 {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>enumerate : 순서와 리스트 안의 값을 한꺼번에 만들어 냄.</strong></li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'{}번 : {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+<span class="c1"># 값을 두 개 받을 떄 쉼표를 쓰는 것은 함수에서 값 두개를 return 할 때 쉼표를 쓰는 것과 동-원리
+</span><span class="o">-</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11172</span><span class="p">)</span> <span class="p">:</span> 
+<span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">44032</span> <span class="o">+</span> <span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span> <span class="s">' '</span><span class="p">)</span> <span class="c1"># 실행결과 한글 쫘아아아악 다 나옴.
+</span></code></pre></div></div>
+
+<ul>
+  <li>for in list : 이미 내가 사용할 값의 목록이 정해져 있고, 그 목록에서 값을 하나씩 꺼내 쓰기만 할 때</li>
+  <li>for in range : 횟수가 정해져 있거나 1씩 증가하는 숫자를 써야 할 때 # i += 1 이 여기서 나오네.</li>
+</ul>
+
+<h2 id="part-8-모듈">PART 8 모듈</h2>
+
+<h3 id="24-모듈">24 모듈</h3>
+
+<ul>
+  <li>module : 다른 기능을 가져와 쓰는 방법</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="c1"># 출력값은 3 , 올림
+</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="c1"># 출력값은 2, 내림
+# 반올림하는 round는 math 모듈에 업다. 그냥 round(3.5)하면 되고 math.round(3.5)는 오류뜸
+</span></code></pre></div></div>
+
+<ul>
+  <li>REPL에서 철자를 잘못 입력했을 경우 ‘화살표 위’를 누르면 이전에 입력한 코드가 나온다.</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s">'가위'</span><span class="p">,</span><span class="s">' 바위 '</span><span class="p">,</span><span class="s">' 보'</span><span class="p">]</span>
+<span class="n">selected</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+<span class="c1">#random.choice(candidates)는리스트에서 하나를 무작위로 고르는 함수.
+</span></code></pre></div></div>
+
+<ul>
+  <li>import <모듈이름>.<모듈 안의="" 구성="" 요소=""> 와 같이 사용하며, math.pi와 같이 안에 구성요소가 아닌 변수가 들어있는 경우도 있다.</모듈></모듈이름></li>
+</ul>
+
+<h3 id="25-모듈-만들기">25 모듈 만들기</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이 코드를 짠 다음에 my_module.py로 저장한다.
+</span><span class="k">def</span> <span class="nf">random_rsp</span><span class="p">()</span> <span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s">'가위'</span><span class="p">,</span><span class="s">' 바위'</span><span class="p">,</span><span class="s">' 보'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<ul>
+  <li>새 창에서 <code class="language-plaintext highlighter-rouge">import my_module</code> 이라고 적는다. import my_module<code class="language-plaintext highlighter-rouge">.py</code>가 아니다!</li>
+  <li>모듈 안의 함수를 사용할 때는 random_value = <code class="language-plaintext highlighter-rouge">my_module.random_rsp()</code>와 같이 쓰면 된다.</li>
+  <li>print (a ==b)를 하면 a와 b가 같은지에 대한 True/False가 출력된다.</li>
+  <li>파이썬의 기본 모듈과 달리 my_module은 그 모듈을 사용할 파일과 같은 폴더에 들어있어야 한다.</li>
+  <li>물론 다른 파일에 있는 모듈도 불러올 수 있지만 지금에서는 이 책의 범위를 벗어난다.</li>
+</ul>
+
+<h2 id="part-9-활용하기">PART 9 활용하기</h2>
+
+<h3 id="26-검색하기">26 검색하기</h3>
+
+<ol>
+  <li>검색은 항상 구글에서 한다.</li>
+  <li>python3/python2/python/파이썬3/파이썬2/파이썬을 붙힌다.</li>
+  <li>영어로 검색한다.</li>
+  <li>stackoverflow.com을 이용한다.</li>
+  <li>google에서  검색어 뒤에 site:python.org를 붙여서 검색한다.</li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#syntax" class="page__taxonomy-item" rel="tag">syntax</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-30T00:00:00+09:00">May 30, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B8%B0%EB%B3%B8+Python+sysntax+%EC%A0%95%EB%A6%AC+Part+1.%20http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fpython%2Fpython-basic-syntax-1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/review/SHAKE-Qualifying/" class="pagination--pager" title="2019 경인지역 6개대학 연합 프로그래밍 경시대회 예선 후기
+">Previous</a>
+    
+    
+      <a href="/python/python-basic-syntax-2/" class="pagination--pager" title="기본 Python sysntax 정리 Part 2.
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,906 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>에지 검출의 기초부터 선분검출까지 - NiklasJang’s Blog</title>
+<meta name="description" content="오일석 - Computer Vision Chapter 3. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="에지 검출의 기초부터 선분검출까지">
+<meta property="og:url" content="http://localhost:4000/opencv/opencv-chapter-3/">
+
+
+  <meta property="og:description" content="오일석 - Computer Vision Chapter 3. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-03T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/opencv/opencv-chapter-3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="에지 검출의 기초부터 선분검출까지">
+    <meta itemprop="description" content="오일석 - Computer Vision Chapter 3.">
+    <meta itemprop="datePublished" content="2019-06-03T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">에지 검출의 기초부터 선분검출까지
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  11 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cgv-2018-오일석-03장-에지-검출---2017-cv-자료pptx">CGV-2018-오일석-03장 에지 검출 - 2017 CV 자료.pptx</a>
+     -  <a href="#의미-및-목적">의미 및 목적</a>
+     -  <a href="#한계">한계</a>
+    <ul>
+      <li><a href="#31-에지-검출의-기초">3.1. 에지 검출의 기초</a>
+        <ul>
+          <li><a href="#계딴-에지와-램프-에지">계딴 에지와 램프 에지</a></li>
+          <li><a href="#램프-에지에서-미분의-반응">램프 에지에서 미분의 반응</a></li>
+          <li><a href="#현실에서-발생하는-잡음을-어떻게-해결할까">현실에서 발생하는 잡음을 어떻게 해결할까</a></li>
+          <li><a href="#에지-강도와-에지-방향">에지 강도와 에지 방향</a></li>
+        </ul>
+      </li>
+      <li><a href="#32-영교차-이론">3.2 영교차 이론</a>
+        <ul>
+          <li><a href="#log-필터">LOG 필터</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-캐니-에지">3 캐니 에지</a>
+        <ul>
+          <li><a href="#비최대-억제와-이력-임계값">비최대 억제와 이력 임계값</a></li>
+          <li><a href="#컬러-에지">컬러 에지</a></li>
+        </ul>
+      </li>
+      <li><a href="#선분-검출">선분 검출</a>
+        <ul>
+          <li><a href="#에지-연결과-선분-근사">에지 연결과 선분 근사</a></li>
+          <li><a href="#세선화---spta">세선화  : SPTA</a></li>
+          <li><a href="#에지-추적">에지 추적</a></li>
+          <li><a href="#선분-근사">선분 근사</a></li>
+          <li><a href="#허프-변환">허프 변환</a></li>
+          <li><a href="#허프-변환에서의-주의사항">허프 변환에서의 주의사항</a></li>
+          <li><a href="#보다-자세하게-설명하는-허프-변환">보다 자세하게 설명하는 허프 변환</a></li>
+        </ul>
+      </li>
+      <li><a href="#ransac--random-sample-consensus">RANSAC : RANdom SAmple Consensus</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="cgv-2018-오일석-03장-에지-검출---2017-cv-자료pptx">CGV-2018-오일석-03장 에지 검출 - 2017 CV 자료.pptx</h1>
+
+<h3 id="의미-및-목적">의미 및 목적</h3>
+
+<p>에지는 물체의 경계를 표시해준다. 이 에지를 대상의 매칭에 유용한 선분이나 곡선으로 변환할 수 있다.</p>
+
+<h3 id="한계">한계</h3>
+
+<p>실종된 에지 또는 거짓된 에지를 가질 수 있다. 이들을 각각</p>
+
+<ol>
+  <li>false negative : 에지가 아닌데 에지라고 추출된 에지</li>
+  <li>false positive : 에지인데 에지가 아니라고 판단된 에지
+라고 부른다.</li>
+</ol>
+
+<h2 id="31-에지-검출의-기초">3.1. 에지 검출의 기초</h2>
+
+<p>물체의 내부나 배경은 변화가 없거나 작고, 물체의 경계는 변화가 크다. 이 원리에 따라 에지 검출 알고리즘은 명암, 컬러 또는 텍스쳐의 변화량을 측정하고 변화량이 큰 곳을 에지라고 검출한다.</p>
+
+<p>연속된 공간에서의 미분 (식 3.1)</p>
+
+<p>디지털 공간에서의 미분 (식 3.2)</p>
+
+<p>디지열 영상 f가 있을 때 도함수 f’와 2차도함수 f’‘는 인접한 값의 차이로 계산한다.</p>
+
+<h3 id="계딴-에지와-램프-에지">계딴 에지와 램프 에지</h3>
+
+<p>인접한 값의 차이가 커서 그래프를 그릴 때 계단처럼 그려지는 것을 <code class="language-plaintext highlighter-rouge">계단에지</code>라고 부르고, 값의 변화량이 작아서 기울어진 그래프가 그려지는 경우는 <code class="language-plaintext highlighter-rouge">램프 에지</code>라고 부른다. <code class="language-plaintext highlighter-rouge">계단에지</code>이 확실한 차이를 보이는 에지이므로 이상적인 에지라고 할 수 있다. 하지만 현실에서는 <code class="language-plaintext highlighter-rouge">램프에지</code>가 주로 추출된다.</p>
+
+<p>2차 미분 (식 3.2)를 정리하면 이에 해당하는 마스크 [1, -2, 1]을 얻을 수 있다.</p>
+
+<h3 id="램프-에지에서-미분의-반응">램프 에지에서 미분의 반응</h3>
+
+<p>(그림 3-4)</p>
+
+<p>원래 영상 f가 주어졌을 때 인접한 값들의 차를 이용해서 도함수를 그리면 봉우리의 형태를 얻을 수 있다. 봉우리는 에지의 존재 유무를 판단하는데 사용된다. 정확한 에지의 위치는 위 그림에서 7~10 사이 어디에서든 존재할 수 있기 때문에 판단할 수 없다. 다시 한번 도함수를 구해서 0교차가 이루어지도록 변형한다. 2차 도함수의 값이 음수에서 양수로, 혹은 그 반대로 구해지는 경우 이 0교차가 발생하는 지역에서 에지를 가질 확률이 높다는 것을 알 수 있다. 하지민 이것만으로는 정확한 에지의 위치를 찾는 것은 어렵다.</p>
+
+<p>정리하면 에지를 검출하는 과정에는 세 가지 방법이 있다.</p>
+
+<ol>
+  <li>1차 미분에서 봉우리를 찾기</li>
+  <li>2차 미분에서 0교차를 찾기</li>
+  <li>두꺼운 에지에서 위치 찾기 (뒤에서 설명할 내용)</li>
+</ol>
+
+<h3 id="현실에서-발생하는-잡음을-어떻게-해결할까">현실에서 발생하는 잡음을 어떻게 해결할까</h3>
+
+<p>이상적인 값이 100 100 100 100 170 170 170 일 때 잡음이 껴서 98 97 101 102 168 170 169와 같은 측정값을 얻었을 때 <code class="language-plaintext highlighter-rouge">스무딩 연산</code>을 적용해서 이를 해결한다.<br />
+그런데 스무딩 연산은 3X3 이상의 연산자를 사용한다. 앞에서 본 2차 미분식의 연산자 [1,-2,1]은 3X3에 비해서 너무 작은 연산자이다.</p>
+
+<p>연산자를 적당한 크기의 2차원으로 확장하기 전에 [1,-2,1]을 변형할 필요가 있다. 이를 위해서 (식 3,4)를 사용한다 $\delta X=2$ 미분 연산자를 사용한다. 실제의 영상에서는 램프 에지가 주로 나타나기 때문에 값이 2인 값이 더 좋다는 연구 결과가 있다.</p>
+
+<p>(식 3.4)를 보면 화소를 중심으로 대칭된 마스크를 사용한다. 이 식에 대응하는 마스크는 [-1,0,1]이다.</p>
+
+<p>2차원으로 확장하기 위해서 x와 y에 대해서 편미분을 적용하여 (식 3.5)를 얻는다. 이로부터 X 축 마스크 [-1,0,1]과 y축 마스크 [-1,0,1]을 얻는다. 이들을 정방형으로 확장하면 (그림 3-5)와 같은 잘 알려진 마스크를 얻을 수 있다.</p>
+
+<h3 id="에지-강도와-에지-방향">에지 강도와 에지 방향</h3>
+
+<p>그레디언트는 벡터이므로 에지 강도와 에지 방향을 구할 수 있다. (식 3.6)은 그레디언트 f에 대해서 에지 강도와 그래디언트 방향을 계산하는 방법을 설명한다. <strong>에지 강도는 화소가 에지일 가능성 또는 신뢰도를 나타내는 값</strong>이다.</p>
+
+<p>식(3.6)</p>
+
+<p>그림(3,6)</p>
+
+<p>에지 방향은 그레디언트 방향에 수직이다. (그림 3-6-a)는 이런 관계를 설명한다. 이 그림은 어두운 배경에서 밝은 물체가 놓여있다고 가정한다. 그리고 표시된 경계선 상의 한 점을 살펴보자. 이 점에 그림(3-5)의 $M_{x}$ 마스크를 적용하면 음수가 되어 $d_{x}$는 음수가 되어 왼쪽을 가리키고, $d_{y}$는 양수가 되어 아래쪽을 가리킨다.</p>
+
+<p>이러한 <strong>dx와 dy에 의해서 그레디언트의 방향이 결정되고, 이에 수직으로 에지 방향이 결정된다.</strong> 여기서 에지 방향은 그 방향을 바라보고 섰을 때 왼쪽은 밝고 오른쪽은 어두운 것으로 정하자. 이렇게 구한 에지 방향은 0~360도 범위를 갖는데, 이 범위는 보통 8 방향으로 양자화된다. 그림(3-6-b)는 양자화 과정을 설명한다. 360도의 가능성을 범위를 나누어서 0~7의 값에 대응시킨다는 의미이다.</p>
+
+<p>(예제 3-1)</p>
+
+<p>다시 상기해보면,<strong>에지 강도는 화소가 에지일 가능성 또는 신뢰도를 나타내는 값</strong> 이므로 확실한 에지에 대해서는 강한 에지를 상대적으로 불확실한 에지에 대해서는 약한 에지를 그린다고 생각할 수 있다.</p>
+
+<h2 id="32-영교차-이론">3.2 영교차 이론</h2>
+
+<p>영교차 이론이 1980년에 발표되기 전까지 에지 검출은 1차 도함수만을 사용했다. Marr와 Hildreth가 발표한 논문에서는 2차 미분을 사용하였다. 그런데 이들은 미분을 적용하기 전에 전처리 과정으로서 <code class="language-plaintext highlighter-rouge">가우시안 스무딩</code>을 중요시하였다.</p>
+
+<p>가우시안 스무딩은 두 사기 효과를 가진다.</p>
+
+<ol>
+  <li>잡음에 대처할 수 있다. 특히 2차 미분은 미분을 두 번 수행하므로 잡음의 증폭이 더욱 심하다. 이렇게 증폭되는 잡음은 그림(3.9)에서 볼 수 있다.</li>
+  <li>가우시안의 매개변수 $\ramda$를 조절해서 <code class="language-plaintext highlighter-rouge">다중 스케일</code>효과를 얻을 수 있다.</li>
+</ol>
+
+<p>그림(3.10)은 어두운 배경에 폭이 2,4,8인 물체가 놓인 아주 간단한 1차원 영상(3-10-a)이다.  $\ramda$가 0.5일 때 1차 미분과 2차 미분의 결과를 살펴보면, 물체의 크기에 상관없이 1차 미분에서 봉우리와 2차 미분에서 0교차가 선명하게 나타난다. (여기서 봉우리는 검은색 배경에 흰 선이 생기는 것을 말한다. 그리고 0교차는 그림이 어떤 값을 기준으로 그려졌는지 상관없이 두 흰색 에지 사이에 검은 색이 그려지는 것을 볼 수 있다.)</p>
+
+<p>하지만 $\ramda$의 값이 커짐에 따라서 폭이 작은 물체의 에지는 약해지는 것을 볼 수 있다. 이러한 관찰을 통해서 $\ramda$ 값을 조절하면서 에지 검출에 변화를 줄 수 있다.</p>
+
+<p>정리하면</p>
+<ol>
+  <li>가우시안 스무딩에서 $\ramda$가 커질수록 영상의 디테일이 사라져 큰 물체의 에지만 추출된다.</li>
+  <li>가우시안 스무딩에서 $\ramda$가 작아질수록 물체의 디테일에 해당하는 에지까지 추출할 수 있다.</li>
+</ol>
+
+<p>가우시안 스무딩에 대해서 조금 더 구체적으로 정리해보고 넘어간다. 그림(3-11-a)를 보면 $\ramda$가 클수록 가우시안의 영향력 볌위는 넓다. 그림(3-11-b)는 $\ramda$가 클수록 1차 도함수와 2차 도함수에 대해서 영향력의 범위가 넓은 것을 보여준다.</p>
+
+<p>그림(3-11-b)를 보면 눈대중으로 $[-6:+6]$ 바깥부분의 값은 0에 가까우므로 크기가 13정도인 마스크를 사용하면 가우시안 함수의 미분의 전체의 곡선을 모두 커버할 수 있다. 대력적인 규칙으로는 <strong>마스크 크기를 $6 * \ramda$와 같거나 큰 정수 중에서 가장 작은 홀수</strong>를 마스크 크기로 취한다. 예) σ = 1.0이면, 7 x 7 마스크 사용한다.</p>
+
+<h3 id="log-필터">LOG 필터</h3>
+
+<ol>
+  <li>$/ramda$ 크기의 가우시안으로 영상 f를 스무딩한다.</li>
+  <li>결과 영상에서 라플라시안 연산자를 적용하여 2차 미분을 구한다.</li>
+  <li>결과 영상에서 영교차를 찾아 에지로 설정하고 나머지는 비에지로 설정한다.</li>
+</ol>
+
+<p>위 알고리즘에서 <code class="language-plaintext highlighter-rouge">라플라시안 연산</code>은 아직 설명이 안됐다. 어떤 함수 $f(y,x)$의 라플라시안은 y와 x의 2차 편도함수를 더한 것으로 식(3.9)와 같이 정의할 수 있다.<br />
+식(3.9)<br />
+식(3.10)</p>
+
+<p>1.~3.의 알고리즘에서 3번은 뒤에서 설명하는 것으로 하고, 1.과 2.의 문제점을 생각해보자. 먼저 가우시안 이산필터로 근사화하고 다시 라플라시안을 이산필터로 근사화했다. 즉 두 번에 걸쳐서 오차를 감수하는 근사화를 진행했다. 게다가 컨볼루션도 두 번이나 실행하기 때문에 (2차 미분) 계산 효율도 낮다. 즉, 느리다. 이를 해결하는 방법으로는 가우시안과 라플라시안을 한 번에 적용하는 것을 생각할 수 있다. 한 번에 적용하는 것을 식으로 표현하면 아래와 같다.</p>
+
+<p>식(3.11)</p>
+
+<p>이렇게 두 개의 과정을 하나로 합친 것을 LOG 필터라고 한다. 그리고 아래와 같은 모습이다.</p>
+
+<p>그림(3-13)</p>
+
+<p>영교차 알고리즘을 이해해보자. 이론적으로는 LOG 필터를 적용한 결과를 $g$라고 할 때, $g(i,j) = 0$중에서 마주보는 이웃이 서로 다른 부호를 가진 것을 영교차 점으로 보고 $b(i,j) = 1$이라고 설정하면 된다. 하지만 이렇게 하면 좋은 결과를 얻을 수 없다.(이유는 책 127페이지 참고) 따라서 보다 현실적으로 아래와 같은 규칙을 적용한다.</p>
+
+<ol>
+  <li>여덟 개의 이웃 중에서 마주보는 동-서, 남-북, 북동-남서, 북서-남동의 화소 쌍 네 개를 조사한다. 그들 중 두 개 이상이 서로 다른 부호를 가진다.</li>
+  <li>부호가 다른 두 개 이상의 쌍의 값 차이가 임계값을 넘는다.</li>
+</ol>
+
+<p>그림(3.15)에서 T는 Thresh Hold로 임계값을 의미한다.
+그림(3.15)</p>
+
+<h2 id="3-캐니-에지">3 캐니 에지</h2>
+
+<p>지금까지 설명한 내용은 모두 그럴듯한 연산자를 사용했는데 1986년에 캐니가 혁신적인 방법을 발표하였다. 이 방법이 현재 가장 널리 사용되고 있는 방법이다. 캐니는 에지 검출 문제를 <code class="language-plaintext highlighter-rouge">최적화 문제</code>로 해결하였다. 그리고 좋은 알고리즘에 대해서 세 가지 기준을 제시하였다.</p>
+
+<ol>
+  <li>최소 오류율 : 거짓 긍정과 거짓 부정이 최소여야 한다. 즉 없는 에지가 생성되거나 있는 에지를 못 찾는 경우를 최소화해야 한다.</li>
+  <li>위치 정확도 : 검출된 에지는 실제 에지의 위치와 가급적 가까워야 한다.</li>
+  <li>에지 두께 : 실제 에지에 해당하는 곳에는 한 두께의 에지만 생성해야 한다.</li>
+</ol>
+
+<p>간단히 설명하면 세 가지 조건을 모두 갖추는 것은 불가능하다. 그는 먼저 가우시안에 1차 미분을 적용한 연산자가 최적임을 수학적으로 증명했다. 그리고 이것을 1차원에서 2차원으로 확장하는 과정을</p>
+
+<p>그림(3-5) //로버츠 프레윗 소벨 마스크를 적용해서 에지 강도와 그래디언트 방향을 구했던 근사화 방법</p>
+
+<p>위와 같은 마스크를 이용하여 그레이디언트 방향을 구하는 것이 허용가능한 오차 범위에 있는 대안이라는 것을 증명했다. 이렇게 구한 에지의 두께를 얇게 바꾸는 비최대 억제라는 단계를 추가하였다. 이 과정을 슈도코드로 쓰면 다음와 같다.</p>
+
+<ol>
+  <li>입력 영상 f에 $\delta$ 크기의 가우시안 스무딩을 적용한다.</li>
+  <li>결과 영상에 소벨 연산자를 적용하여 에지 강도와 에지 방향 맵을 구한다.</li>
+  <li>비최대 억제를 적용하여 얇은 두께 에지 맵을 만든다.</li>
+  <li>이력 임계값을 적용하여 거짓 긍정을 제거한다.</li>
+</ol>
+
+<p>1.과 2.의 과정은 앞에서 설명되었고, 3.과4.에 대해서 알아보자.</p>
+
+<h3 id="비최대-억제와-이력-임계값">비최대 억제와 이력 임계값</h3>
+
+<p>이 연산은 그래디언트 방향의 두 이웃 화소 보다 에지 강도가 크지 않으면 억제된다. 즉, 에지가 아닌 것으로 간주된다.</p>
+
+<p>아래 그림은 에지 방향을 기준으로 두 이웃 화소를 보여준다. 에지 방향이 화살표고 회색으로 처리된 부분이 두 이웃화소이다.</p>
+
+<p>그림(3-17)</p>
+
+<p>예를 들어, 에지 방향이 1인 경우는 북동과 남서에 있는 두 화소가 이웃이다. 비최대 억제는 화소 $p$에 대해 두 이웃 화소를 조사하는데, $p$의 에지 강도가 그레디언트 방향의 두 이웃보다 크면 에지가 되고 그렇지 않으면 억제된다. 결국 지역 최대점만 에지로 검출되므로 얇은 두께의 에지 영상을 생성한다.</p>
+
+<p>거짓 긍정이 많이 포함되는 문제는 임계값 $T$를 설정해 놓고 에지 화소 $p$의 에지 강도 $S(P)$에 대해서 $S(P)&lt;T$이면 그것을 거짓 긍정으로 보고 제거하는 것이다. 보통 거짓 긍정의 $S(P)$값이 진짜 에지의 그것보다 작다는 사실을 이용한 것이다.</p>
+
+<ol>
+  <li>T를 높게 설명하면, 거짓 긍정은 제거를 잘하지만, 에지 강도가 낮은 진짜 에지를 제거하는 거짓 부정 문제를 낳는다.</li>
+  <li>T를 낮게 설명하면, 반대로 거짓 긍정이 그대로 남는 문제가 있다.</li>
+</ol>
+
+<p>이 문제점은 이전 상태를 보지 않고 각 화소를 독립적으로 취급하는 것으로 해결한다.</p>
+
+<p><strong>캐니 알고리즘은 두 개의 임계값 $T_{low}$와 $T_{high}$를 사용한다.</strong> 상한과 하한의 한계값을 두어 상한을 초과하는 경우 무조건 에지로 선택하고, 하한의 미만의 경우는 에지에서 제외시킨다. 상한과 하한 사이의 값은 주변에 자신 이상인 것이 있을 때 에지로 삼는다.</p>
+
+<h3 id="컬러-에지">컬러 에지</h3>
+
+<p>RGB 채널에 독립적으로 적용 후 $OR$ 결합을 한다. 이 때 에지 불일치가 발생할 수 있다. 하나의 채널에서는 에지라고 검출되었는데 다른 채널에서는 에지로 검출이 되지 않은 경우를 말한다.</p>
+
+<p>그림(3-19)<br />
+그림(3-20)</p>
+
+<p>이를 해결하기 위해서 디 젠조 방법이라는 것을 사용해서 3 채널의 에지 강도들을 통합할 수 있다.</p>
+
+<p>식(3-13)<br />
+식(3-14)</p>
+
+<h2 id="선분-검출">선분 검출</h2>
+
+<p>에지를 검출한 뒤에 에지 맵을 그릴 때는 에지 화소를 1, 비에지 화소를 0으로 표시한다. 대부분은 에지를 만든 후에 에지 화소를 연결해서 에지 토막으로 만들어 응용하는 경우가 대부분이다. 또는 에지 토막을 직선으로 근사화하여 선분으로 변환해야하는 응용도 많다.</p>
+
+<h3 id="에지-연결과-선분-근사">에지 연결과 선분 근사</h3>
+
+<p>에지를 연결하는 알고리즘을 공부하기 전에 연결된 에지를 어떻게 표현할지를 생각해보자. 쉽게 생각나는 방법은 화소 좌표를 순서대로 배열에 저장하는 것이다. 이러한 방법을 <code class="language-plaintext highlighter-rouge">에지 열</code>이라고 부른다. 그림(3-22)에서 @는 에지의 양 끝점을, 분기점은 +으로 표시한다. 총 5개의 에지 토막을 검출할 수 있고 이 중 두 개는 폐곡선을 이룬다.</p>
+
+<p>그림(3-22)</p>
+
+<p>메모리를 덜 쓰는 효율적인 <code class="language-plaintext highlighter-rouge">체인 코드</code>라는 방법도 있는데, 이 방법은 시작점만 좌표로 표현하고 그 이후는 0~7 사이의 방향 코드로 표시한다. 즉 에지의 시작점을 저장하고 다음 에지로의 방향을 x,y좌표를 모두 저장하는 것이 아니라 방향을 나타내는 하나의 값만을 저장하는 방법이다. 체인 코드는 1.에지 토막마다 2. 에지의 시작 시점은 x,y를 모두 표현하고 3. 이후의 인접 에지는 0~7로 표현하는 방법이다.</p>
+
+<p>지금까지 배운 알고리즘은 대부분 얇은 두께의 에지를 생성하지만 두께가 2~3인 에지를 만들어 내기도 한다. 0교차 알고리즘을 사용해도 이러한 경우가 나타난다. 이런 상황에서 에지를 추적해서 에지 토막을 만들면 두께가 2~3인 곳에서 혼란이 발생할 수 있다. 이는 이전 단계에서 생성한 정보를 적절히 활용해서 이 문제를 쉽게 해결할 수 있다.</p>
+
+<h3 id="세선화---spta">세선화  : SPTA</h3>
+
+<p>여기서는 일반적인 이진 에지 영상에 적용할 수 있는 알고리즘을 제시한다. 이 알고리즘은 먼저 <code class="language-plaintext highlighter-rouge">세선화</code>과정을 적용해서 에지의 두께가 1이 아닌 영상을 1인 영상으로 바꾼다. <code class="language-plaintext highlighter-rouge">세선화</code>를 진행하는 여러 알고리즘 중 <code class="language-plaintext highlighter-rouge">SPTA</code>라는 알고리즘을 소개한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SPTA</code>알고리즘은 그림(3-23)의 3X3 마스크를 현재 조사하고 있는 에지 화소 $p$에 씌운다.</p>
+
+<p>(그림 3-23)</p>
+
+<p>마스크의 0은 비에지, 1은 에지를 뜻하고, x는 0과 1 어느 것이라도 상관없다는 기호이다. 이 네 개의 마스크는 하나의 그룹을 형성하는데 그림(3-23)은 화소 $p$의 이웃 $n_{4}$가 0인 그룹이다. 이 그룹은 $n_{4}$가 0이고 <strong>네 개의 마스크 중 어느 것과도 매치가 안되면 그 화소를 제거 대상으로 표시한다.</strong> 그런데 계산을 효율적으로 하기 위해 네 개의 마스크를 일일이 검사하는 대신, 그 밑에 있는 논리식 $S_{4}$를 검사해도 같은 결과가 나온다. 이 식에서 $n_{i}$가 1(에지)이면 참, 0(비에지)이면 거짓을 뜻하며 $n’<em>{i}$는 부정, $+$는 $or$, $.$는 $and$이다. 논리식 <strong>$S_{4}$가 참이면 네 개 마스크 어느 것과도 매치가 안된 셈이다.</strong> 이 과정을 $S</em>{0}$ , $S_{2}$ , $S_{6}$ 이 0인 그룹에 각각 적용하여 어느 그룹에서라도 제거 대상이라고 표시되면 $p$를 비에지로 바꾼다.</p>
+
+<p>이 과정을 한번 적용하면 바깥쪽에서 한 화소 두께를 벗기는 셈이 되는데, 원래 SPTA에서는 변화가 더이상 없을 때까지 여러번 반복한다. 하지만 에지 영상은 두께가 두꺼워도 2~3뿐이므로 두 번만 적용해도 충분하다.</p>
+
+<p>알고리즘 (3-5)</p>
+
+<h3 id="에지-추적">에지 추적</h3>
+
+<p>이제 세선화를 통해서 에지의 두께가 1이라는 것이 보장되었으므로 (최소 8 연결성을 만족한다.근처에 있는 에지는 8방향 중 최소 하나의 지점 중 하나에 위치한다.) 에지를 연결하는 방법을 고안해보자.</p>
+
+<p>에지 토막 검출 알고리즘(3-6)</p>
+
+<p>분기점을 골라내는 규칙 그림(3-25)</p>
+
+<ol>
+  <li>에지 영상 e에 대해서 모든 $e(i,j)$의 모든 값을 탐색한다. 각 지점마다 <code class="language-plaintext highlighter-rouge">전환 횟수</code>(화소를 중심으로 시계 방향으로 스캔할 때, 에지-&gt;비에지 전환 숫자를 센다.)를 세어 이 값이 1이거나 3이상인 경우를 찾는다.</li>
+  <li>현 지점에서 8방향을 조사해서 8방향 중 edge가 있는 지점을 찾는다.</li>
+  <li>현 지점을 나타내는 i,j와 8방형 중 edge가 있는 방향을 나타내는 dir을 q.push(tuple(i,j,dir))한다.</li>
+  <li>q에서 하나씩 꺼내면서 모든 q가 빌 때까지 아래의 과정을 반복한다.</li>
+  <li>세그먼트를 생성하고 화소와 인접 방향의 화소를 삽입한다.</li>
+  <li>현재 구하고 있는 에지가 화소와 인접 방향의 화소만으로 구성된 두-점-화소인 경우는 제외한다.</li>
+  <li>인접 방향의 화소의 8방향에 대해서 세그먼트에 추가할 화소를 찾아서 추가한다.</li>
+  <li>7에서 끝점을 추가하는 경우 알고리즘이 종료된다.</li>
+</ol>
+
+<h3 id="선분-근사">선분 근사</h3>
+
+<p>알고리즘 (3-6)으로 검출한 에지 토막을 직선으로 근사화할 수 있다.  그림 (3-27)에 나와있듯이, 양 끝점을 연결한 직선으로부터 에지 토막의 가장 먼 점까지의 거리 h를 계산한다. 이것이 임계값보다 크면 가장 먼 점을 중심으로 두 토막으로 분할하고 두 토막의 각각에 같은 과정을 재귀적으로 적용한다. 임계값 이내가 된 토막은 분할을 멈춘다.</p>
+
+<p>그림 (3-27)</p>
+
+<h3 id="허프-변환">허프 변환</h3>
+
+<p>앞에서 알아본 방법은 비교적 에지를 잘 연결할 수 있는 상황에 대한 것이다. 현실에서는 에지를 잘 연결 할 수 없는 경우(잡음으로 인해서 에지들이 무수히 많은 조각들로 나뉜 경우)도 종종 마주한다. 허프는 이러한 과정에서 <strong>에지의 연결 없이 바로 직선을 찾아내는</strong> <code class="language-plaintext highlighter-rouge">허프 변환</code>을 고안하였다. 이 방법은 전체 공간을 조사하는 전역 연산이다. 또한 사람이 일직선 상에 있다고 지각하는 점들을 한 곳으로 모으는 원리를 사용하므로 일종의 <code class="language-plaintext highlighter-rouge">지각 군집화</code>라도 볼 수 있다.</p>
+
+<p>그림(3-28)</p>
+
+<p>x-y 좌표 상에 세 개의 점이 있을 때 이들이 하나의 직선을 이루는지 여부와 이 직선의 방정식을 알고 싶다. ($y_{i}$,$x_{i}$)를 지나는 직선을 $y_{i} = ax_{i}+b$라고 표현할 수 있다. x-y 좌표에서 세 개의 점들이 하나의 직선상에 위치할 수 있다면, a-b 공간에서 이들에 해당하는 세 개의 직선이 한 점에서 만나야 한다. 왜냐하면 y-x 공간에서 세 점이 이루는 직선은 같은 기울기와 같은 절편을 가지고 있기 때문이다.</p>
+
+<p>책 146페이지 필기 캡쳐</p>
+
+<p>이 원리에 따라서 직선을 검출하는 알고리즘을 설명하면 아래와 같다.</p>
+
+<ul>
+  <li>y-x 공간(영상 공간)에 있는 각각의 에지 점($y_{i}$,$x_{i}$)에 대해서 대응하는 $-b = x_{i}a+y_{i}$방정식을 a-b 공간에 그린다. a-b 공간에서 자취가 짙은 점 ($b_{j}$, $a_{j}$)를 추출한다. 이 점은 y-x 공간에서 $y = ax_{j}+b_{j} 직선이다.</li>
+</ul>
+
+<h3 id="허프-변환에서의-주의사항">허프 변환에서의 주의사항</h3>
+
+<ul>
+  <li>수직선의 기울기 처리</li>
+</ul>
+
+<p>앞에서 직선의 방정식을 사용했는데 y-x 공간의 수직선은 기울기가 무한대가 되므로 문제가 발생한다. 이 문제는 식(3.16)을 직선의 방정식으로 삼으면 간단히 해결된다.</p>
+
+<p>식(3.16)<br />
+그림(3.29)</p>
+
+<ul>
+  <li>세 점이 완벽하게 동일한 직선 위에 놓여있다고 가정하는데 실제로는 그렇지 못하다는 점</li>
+</ul>
+
+<p>어느 정도의 오차는 필연적으로 발생한다. 이 오차는 $\theta$와 $p$를 적절한 범위에 놓아서 처리한다.</p>
+
+<h3 id="보다-자세하게-설명하는-허프-변환">보다 자세하게 설명하는 허프 변환</h3>
+
+<p>알고리즘(3-7)</p>
+
+<ol>
+  <li>2차원 누적 배열 A를 0으로 초기화한다. 이 때 배열 A의 차원은 직선의 방정식을 구성하는 $/theta$와 $p$가 양 축이다.</li>
+  <li>에지 영상 e에 있는 모든 에지 화소에 대해서 식(3.16)의 직선의 방정식을 지나는 모든 칸을 1만큼 증사키신다.</li>
+  <li>A에서 임계값을 넘는 지역 최대점을 모두 찾아서 직선으로 취한다.</li>
+</ol>
+
+<p>이 방법은 A의 두 차원의 간격을 얼마로 결정할 것인가에 대한 문제를 발생시킨다. 너무 거칠거나 너무 촘촘하게 간격을 조정하면 원하는 결과를 얻지 못할 것이다.</p>
+
+<p>허프 변환은 방정식으로 표현할 수 있는 어떠한 도형이라도 검출할 수 있다. 원의 방정식을 사용해서 원을 검출할 수도 있다. 다만 아래와 같이 원의 방정식을 사용하면 차원이 3개인 배열을 사용해야 한다.</p>
+
+<p>식(3.17)</p>
+
+<h2 id="ransac--random-sample-consensus">RANSAC : RANdom SAmple Consensus</h2>
+
+<p>이 방법은 여러개의 점들이 주어졌을 때 직선의 방정식을 구성하는 두 개의 파라미터를 임의의 숫자로 결정한 뒤, 실제로 몇 개의 점들과 인접한지를 센다. 그리고 초기에 주어지는 N번만큼 이 과정을 실행하고 가장 최적의 결과를 return 한다. 같은 param을 주어도 실행할 때마다 결과가 다를 수 있다.</p>
+
+<p>알고리즘 3-8</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#opencv" class="page__taxonomy-item" rel="tag">opencv</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#opencv" class="page__taxonomy-item" rel="tag">Opencv</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-03T00:00:00+09:00">June 3, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%97%90%EC%A7%80+%EA%B2%80%EC%B6%9C%EC%9D%98+%EA%B8%B0%EC%B4%88%EB%B6%80%ED%84%B0+%EC%84%A0%EB%B6%84%EA%B2%80%EC%B6%9C%EA%B9%8C%EC%A7%80%20http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/opencv/opencv-chapter-2/" class="pagination--pager" title="히스토그램부터 모폴로지까지
+">Previous</a>
+    
+    
+      <a href="/opencv/opencv-final-exam-assignment/" class="pagination--pager" title="Opencv 과제 ppt 공부할 내용 정리
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,702 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>지역 특징점 검출부터 스케일 불변 특징점 검출까지 - NiklasJang’s Blog</title>
+<meta name="description" content="오일석 - Computer Vision Chapter 4. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="지역 특징점 검출부터 스케일 불변 특징점 검출까지">
+<meta property="og:url" content="http://localhost:4000/opencv/opencv-chapter-4/">
+
+
+  <meta property="og:description" content="오일석 - Computer Vision Chapter 4. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-04T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/opencv/opencv-chapter-4/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="지역 특징점 검출부터 스케일 불변 특징점 검출까지">
+    <meta itemprop="description" content="오일석 - Computer Vision Chapter 4.">
+    <meta itemprop="datePublished" content="2019-06-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">지역 특징점 검출부터 스케일 불변 특징점 검출까지
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cgv-2019-오일석-04장-지역-특징-검출---필기pptx">CGV-2019-오일석-04장 지역 특징 검출 - 필기.pptx</a>
+    <ul>
+      <li><a href="#preview">Preview</a></li>
+      <li><a href="#지역-특징-검출의-기초">지역 특징 검출의 기초</a>
+        <ul>
+          <li><a href="#특징점-검출의-역사--지역-특징의-대두">특징점 검출의 역사 : 지역 특징의 대두</a></li>
+          <li><a href="#지역-특징의-성질">지역 특징의 성질</a></li>
+          <li><a href="#지역-특징-점출의-원리">지역 특징 점출의 원리</a></li>
+          <li><a href="#매칭점은-어떤-영역이-적당할까--ppt-내용">매칭점은 어떤 영역이 적당할까? : PPT 내용</a></li>
+        </ul>
+      </li>
+      <li><a href="#이동과-회전에-불변한-특징점-검출">이동과 회전에 불변한 특징점 검출</a>
+        <ul>
+          <li><a href="#모라벡-알고리즘">모라벡 알고리즘</a></li>
+          <li><a href="#헤리스-코너">헤리스 코너</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="cgv-2019-오일석-04장-지역-특징-검출---필기pptx">CGV-2019-오일석-04장 지역 특징 검출 - 필기.pptx</h1>
+
+<h2 id="preview">Preview</h2>
+
+<p><code class="language-plaintext highlighter-rouge">대응점</code> 혹은 <code class="language-plaintext highlighter-rouge">matching points</code> 찾기 : Key, Feature, corner point를 찾으면 된다. 같은 장면을 다른 시점에서 찍은 두 영상에서 대응하는 점의 쌍을 찾는 문제에 적용된다. 파노라마, 물체 인식/추적, 스테레오 등 컴퓨터 비전의 중요한 문제 해결의 단초이다.</p>
+
+<p>Mathing을 위한 세 단계는 아래와 같다.</p>
+
+<ol>
+  <li>검출 Chapter 4</li>
+  <li>기술 Chapter 6</li>
+  <li>매칭 Chapter 7</li>
+</ol>
+
+<h2 id="지역-특징-검출의-기초">지역 특징 검출의 기초</h2>
+
+<h3 id="특징점-검출의-역사--지역-특징의-대두">특징점 검출의 역사 : 지역 특징의 대두</h3>
+
+<p>3장에서 공부한 에지는 물체의 경계를 나타내는데 이를 특징점으로 적합하다고 할 수 없다. 에지 강도와 에지 방향에 불과해 매칭에 참여하기에는 턱없이 부족한 정보이다.</p>
+
+<p>특징점을 검출하는 기본 원리는 에지 토막에서 <code class="language-plaintext highlighter-rouge">곡률</code>이 큰 지점을 찾고 그곳을 <code class="language-plaintext highlighter-rouge">코너</code> 특징점으로 취하는 것이다. 이때 에지 토막은 디지털 공간에 정의된 곡선이므로 곡률을 계산하는데 어려움이 발생한다.</p>
+
+<p>이 장에서는 <strong><code class="language-plaintext highlighter-rouge">지역 특징</code></strong>을 에지에 의존하지 않고 <code class="language-plaintext highlighter-rouge">명암 영상</code>에서 직접 검출한다. 따라서 다른 곳과 두드러지게 다르고 풍부한 정보를 가진 위치를 찾는 정교한 연산자를 설계하는 일이 핵심이다. 에지에 의존하던 첫 번째 접근 방법은 검출된 코너가  실제 물체의 코너에 해당해야 한다는 입장이었지만, 새롭게 나타난 의견은 영상에서 검출된 특징이 다른 영상에서도 검출되기만 한다면 된다는 유한 입장을 보였다.</p>
+
+<h3 id="지역-특징의-성질">지역 특징의 성질</h3>
+
+<p>지역 특징은 종류에 보통 위치, 스케일, 방향, 특징 벡터 정보로 구성된다. <code class="language-plaintext highlighter-rouge">검출단계</code>는 위치와 스케일, <code class="language-plaintext highlighter-rouge">기술 단계</code>는 방향과 특징 벡터를 알아낸다.</p>
+
+<p>이 때 <code class="language-plaintext highlighter-rouge">검출</code>은 여러 변환에 <code class="language-plaintext highlighter-rouge">공변covariant</code>이어야 한다. 물체가 이동 또는 회전하거나 스케일이 달라지면 그에 따라 위치 , 스케일, 방향 정보도 변해야하기 때문이다. 하지만 물체 입장에서보면 같은 곳이므로 불변이다. 이러한 의미에서 <code class="language-plaintext highlighter-rouge">공변</code>이라는 용어를 사용하였다. 이 포스팅에서는 <code class="language-plaintext highlighter-rouge">공변</code>보다는 <code class="language-plaintext highlighter-rouge">불변invariant</code>이라는 더 쉬운 용어로 대체해서 사용한다.</p>
+
+<p>특징 벡터를 추출하는 <code class="language-plaintext highlighter-rouge">기술</code> 단계는 불변이어야 한다. 매칭 알고리즘은 특징 벡터를 비교하여 비슷한 경우 대응점으로 판단하기 때문이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">지역 특징</code>이 만족해야하는 특성을 다음과 같다. 이들 특성은 Trade-off 관계에 있다.</p>
+
+<ol>
+  <li>반복성: 재현성</li>
+  <li>분별력: 특징점이 구별</li>
+  <li>지역성: 주변영역</li>
+  <li>정확성: 위치</li>
+  <li>적당한 양: 응용에 사용하기에 충분한 숫자</li>
+  <li>계산 효율: 신속</li>
+</ol>
+
+<h3 id="지역-특징-점출의-원리">지역 특징 점출의 원리</h3>
+
+<p>그림(4-2)</p>
+
+<p>a,b,c 중에서 a가 가장 매칭하기 쉽고 c가 가장 어렵다. 에지에 수직인 그레디언트 방향으로 큰 <code class="language-plaintext highlighter-rouge">밝기 변화</code>가 일어나기 때문이다. 사람이 찾기 쉬운 곳이 컴퓨터에게도 쉽다.</p>
+
+<h3 id="매칭점은-어떤-영역이-적당할까--ppt-내용">매칭점은 어떤 영역이 적당할까? : PPT 내용</h3>
+
+<ul>
+  <li>기본적으로는 코너로 매칭을 한다.</li>
+</ul>
+
+<p>코너는 어느 방향으로 움직여도 화소값의 변화가 크게 일어나는 위치를 의미한다.. Edge를 따라서 움직이면 화소값의 큰 변화가 없다. Flat한 부분에서는 움직여도 화소값의 변화가 없다. 코너는 뒤집고 회전해도 코너이다.</p>
+
+<p>PPT 그림 16페이지</p>
+
+<ul>
+  <li>모델과 매칭할 객체가 크기가 같고 방향이 같다면 쉽다. 영상을 순회하면서 모델과 매칭할 객체 영상의 <code class="language-plaintext highlighter-rouge">차분 영상</code>을 구하여 본다. 차분 영상에서 <code class="language-plaintext highlighter-rouge">MSE(Mean Squared Error)</code>을 구해본다. MSE가 0이 되거나 최소가 되는 지점이 객체가 있는 위치이다.</li>
+  <li>만약 객체가 Scale이 변화하고 Rotation이 적용되었다면 어떻게 해야할까? 다양한 스케일 및 해상도를 만들어 <code class="language-plaintext highlighter-rouge">이미지 피라미드</code>를 구성한다. 그리고 각 영상으로부터 특징점을 찾는다.</li>
+  <li>Rotation 회전 문제의 해결 : 특징점의 방향을 <code class="language-plaintext highlighter-rouge">표준 방향</code>으로 통일한다. 여기서 표준 방향은 수평 에지가 가장 많은 방형을 의미한다.</li>
+</ul>
+
+<p>PPT 11페이지 그림</p>
+
+<h2 id="이동과-회전에-불변한-특징점-검출">이동과 회전에 불변한 특징점 검출</h2>
+
+<p>지금까지는 특징이 무엇이고 어떤 성능 기준을 만족해야하는지, 어떤 곳이 특징으로 삼기 좋은지를 이야기 했다. 이제 어떻게 특징점을 찾을지를 얘기한다.</p>
+
+<h3 id="모라벡-알고리즘">모라벡 알고리즘</h3>
+
+<p>식(4.1)</p>
+
+<p>이 식은 제곱차의 합이라고 부르는 식이다. $f$는 입력 영상이고 $w$는 마스크이다. 이 식에서는 현재 처리 중인 화소가 수식에 명시적으로 나타나지 않는다. 마스크 $w(y,x)$는 암시적으로 정해져있는 현재 화소를 중심으로 실제 계산에 참여할 곳을 지정한다. $w(y,x)$는 현재 화소에 씌운 박스형 마스크인데, 박스 내의 화소는 1, 그 외의 모든 화소는 0을 갖는다. 박스 내의 화소에 대해서만 계산을 하는 셈이다. 컨볼루션은 현재 화소에서 한 개의 값만 생성하는 반면, <code class="language-plaintext highlighter-rouge">모라벡 알고리즘</code>을 사용하면 $(u,v)$의 값을 변화시켜 마스크 화소 각각에 대해 값을 생성한다. 잘 이해가 안된다. 아래 예제를 보자.</p>
+
+<p>예제 4-1)</p>
+
+<p>[1 1 0]    [0 1 1]   [1 0 -1]<br />
+[1 1 1] - [0 1 1] = [1 0  0] -&gt; 제곱합 4 = $S(0,1)$<br />
+[1 1 1]    [0 1 1]   [1 0  0]</p>
+
+<p>이렇게 계산한 값은 $S$의 3X3 중 1개의 component를 계산한 값이다. 이를 반복적용해서 아래와 같은 마스크를 얻는다.</p>
+
+<p>그림4-3</p>
+
+<ul>
+  <li>a: 모든 방향에서 큰 값을 가진다.</li>
+  <li>b: 경계에 위치한 값으로 에지 방향으로는 낮은 값을 가지고, 에지에 수직인 반향으로는 큰 값을 가진다.</li>
+  <li>c: 화소의 변화가 전혀 없는 것으로 아홉개의 요소 모두 0을 갖는다.</li>
+  <li><strong>값의 클 수록 마스크를 출력했을 때의 결과가 밝다.</strong></li>
+</ul>
+
+<p>모라벡은 3*3크기의 박스형 마스크를 사용하였으며, 이 중 상-하-좌-우 네 개의 방향만을 사용하고 이들의 방향이 <strong>모두 변화가 클 때</strong> 지역 특징점일 가능성이 있는 값으로 간주하였다. 혹은 S-MAP 상에서 어느 방향으로 움직여도 크게 나타나면 특징점으로 간주한다. 아래 식은 모라벡이 정의한 <code class="language-plaintext highlighter-rouge">특징 가능성</code>값이다.</p>
+
+<p>식(4.2)</p>
+
+<p>이 알고리즘은 다음과 같은 의문을 남긴다.</p>
+
+<ol>
+  <li>화소를 한 화소만 이동시키는 것은 적절한가?</li>
+  <li>동서남북 네 방향만을 본석은 적절한가?</li>
+  <li>실제 영상에서 발생하는 잡음은 어떻게 해결할 것인가?</li>
+</ol>
+
+<h3 id="헤리스-코너">헤리스 코너</h3>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#opencv" class="page__taxonomy-item" rel="tag">opencv</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#opencv" class="page__taxonomy-item" rel="tag">Opencv</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-04T00:00:00+09:00">June 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%A7%80%EC%97%AD+%ED%8A%B9%EC%A7%95%EC%A0%90+%EA%B2%80%EC%B6%9C%EB%B6%80%ED%84%B0+%EC%8A%A4%EC%BC%80%EC%9D%BC+%EB%B6%88%EB%B3%80+%ED%8A%B9%EC%A7%95%EC%A0%90+%EA%B2%80%EC%B6%9C%EA%B9%8C%EC%A7%80%20http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fopencv%2Fopencv-chapter-4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/opencv/opencv-final-exam-assignment/" class="pagination--pager" title="Opencv 과제 ppt 공부할 내용 정리
+">Previous</a>
+    
+    
+      <a href="/opencv/opencv-chapter-8/" class="pagination--pager" title="기계학습
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

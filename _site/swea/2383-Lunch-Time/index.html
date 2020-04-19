@@ -1,0 +1,880 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[2383] 점심 식사시간 - NiklasJang’s Blog</title>
+<meta name="description" content="[모의 SW 역량테스트] 뿌시기 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[2383] 점심 식사시간">
+<meta property="og:url" content="http://localhost:4000/swea/2383-Lunch-Time/">
+
+
+  <meta property="og:description" content="[모의 SW 역량테스트] 뿌시기 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-08-11T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/swea/2383-Lunch-Time/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[2383] 점심 식사시간">
+    <meta itemprop="description" content="[모의 SW 역량테스트] 뿌시기">
+    <meta itemprop="datePublished" content="2019-08-11T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[2383] 점심 식사시간
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#풀이">풀이</a></li>
+  <li><a href="#코드">코드</a></li>
+  <li><a href="#처음에-3시간-넘게짜고-기본-tc도-통과-못한-코드">처음에 3시간 넘게짜고 기본 TC도 통과 못한 코드</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="풀이">풀이</h2>
+
+<ol>
+  <li>SWEA의 해설을 보면서 풀이를 정리했다.</li>
+  <li>두 개의 계단에 대해서 독립적으로 코드를 작성하면서 코드 길이르 줄이고, 에러도 줄인다.</li>
+  <li>각 사람에 대해서 몇 초에 계단을 다 내려갈 수 있는지를 구하는 코드를 여러번 쓰면서 코드를 줄인다.</li>
+  <li>자세한 풀이는 [모의 SW 역량테스트 해설]포스팅에 정리하였다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">PT</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+	<span class="n">PT</span><span class="p">()</span> <span class="p">{}</span>
+	<span class="n">PT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_c</span><span class="p">)</span> <span class="o">:</span> <span class="n">r</span><span class="p">(</span><span class="n">_r</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="n">_c</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span><span class="n">people</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">stair</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="n">map</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">match</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//match[x]=y : x번째 사람이 이용할 계단은 y</span>
+<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">dist</span><span class="p">(</span><span class="kt">int</span> <span class="n">pidx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sidx</span><span class="p">)</span> <span class="p">{</span><span class="c1">//person_idx, stair_idx</span>
+	<span class="kt">int</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">pidx</span><span class="p">].</span><span class="n">r</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">r</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">dc</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">pidx</span><span class="p">].</span><span class="n">c</span> <span class="o">-</span> <span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">c</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">dr</span> <span class="o">+</span> <span class="n">dc</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//각 사람이 이용할 계단이 정해져있는 상태, 두 개의 계단을 독립적으로 판단</span>
+	<span class="kt">int</span> <span class="n">one_state_end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sidx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sidx</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">sidx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">//stair_idx</span>
+		<span class="kt">int</span> <span class="n">arrive</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//arrive[x] = y : x분에 계단에 도착하는 사람의 수 y</span>
+		<span class="kt">int</span> <span class="n">on</span><span class="p">[</span><span class="mi">35</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span> <span class="c1">//on[x] = y : x분에 계단에 타고 있는 사람의 수 y</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">sidx</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//sidx 계단을 이용하고 있는 사람을 찾기</span>
+				<span class="n">arrive</span><span class="p">[</span><span class="n">dist</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">sidx</span><span class="p">)]</span><span class="o">++</span><span class="p">;</span><span class="c1">//이 사람이 몇 초에 sidx 계단에 도착하는지 계산해서 count</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="kt">int</span> <span class="n">one_person_end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">;</span> <span class="n">t</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="c1">// t초 일 때의 상황</span>
+			<span class="c1">//t초에 도착하는 사람이 있으면 이들을 모두 계단에 내려보내면서 각자가 끝나는 시간을 갱신</span>
+			<span class="kt">int</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//도착한 후 1분 뒤부터 내려간다</span>
+			<span class="k">while</span> <span class="p">(</span><span class="n">arrive</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//x분에 계단을 내려가기 시작하는 사람 중 한 명씩 한 명씩 내려감</span>
+				<span class="n">arrive</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="kt">int</span> <span class="n">slen</span> <span class="o">=</span> <span class="n">map</span><span class="p">[</span><span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">r</span><span class="p">][</span><span class="n">stair</span><span class="p">[</span><span class="n">sidx</span><span class="p">].</span><span class="n">c</span><span class="p">];</span> <span class="c1">//계단의 길이 </span>
+				<span class="k">while</span> <span class="p">(</span><span class="n">slen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//계단의 길이만큼</span>
+					<span class="c1">//계단에 있는 사람이 3명이하이면 </span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">on</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">on</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="n">slen</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="k">if</span> <span class="p">(</span><span class="n">slen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">//계단을 모두 내려가면 그 사람이 도착한 시간을 갱신</span>
+							<span class="n">one_person_end</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">one_person_end</span><span class="p">,</span> <span class="n">ct</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//slen만큼 내려가서 1분 뒤에!!!!! 완료</span>
+							<span class="n">ct</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//초기화!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+							<span class="k">break</span><span class="p">;</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="n">ct</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">one_state_end</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">one_state_end</span><span class="p">,</span> <span class="n">one_person_end</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">one_state_end</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">tans</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">tans</span><span class="p">);</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sidx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">sidx</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">sidx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//stair_idx</span>
+		<span class="n">match</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">sidx</span><span class="p">;</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">tcase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tcase</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">tc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="n">tcase</span><span class="p">;</span> <span class="n">tc</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="mh">0xFFFFFF</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">people</span><span class="p">[</span><span class="n">M</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">PT</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">stair</span><span class="p">[</span><span class="n">S</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">PT</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"#%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="처음에-3시간-넘게짜고-기본-tc도-통과-못한-코드">처음에 3시간 넘게짜고 기본 TC도 통과 못한 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define  _CRT_SECURE_NO_WARNINGS
+</span><span class="cm">/*
+2019-00-00
+장환석
+
+*/</span>
+<span class="cp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;deque&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">person</span><span class="p">{</span>
+	<span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">onstair</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">dst_a</span><span class="p">;</span> <span class="c1">//계단 a까지와의 거리</span>
+	<span class="kt">int</span> <span class="n">dst_b</span><span class="p">;</span> <span class="c1">//계단 b까지와의 거리</span>
+	<span class="n">person</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">onstair</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">dst_a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">dst_b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">person</span><span class="p">(</span><span class="kt">int</span> <span class="n">_r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_onstair</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_dst_a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_dst_b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="n">_r</span><span class="p">;</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="n">_c</span><span class="p">;</span>
+		<span class="n">onstair</span> <span class="o">=</span> <span class="n">_onstair</span><span class="p">;</span>
+		<span class="n">dst_a</span> <span class="o">=</span> <span class="n">_dst_a</span><span class="p">;</span>
+		<span class="n">dst_b</span> <span class="o">=</span> <span class="n">_dst_b</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">stair</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+	<span class="n">stair</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">stair</span><span class="p">(</span><span class="kt">int</span> <span class="n">_r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_len</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="n">_r</span><span class="p">;</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="n">_c</span><span class="p">;</span>
+		<span class="n">len</span> <span class="o">=</span> <span class="n">_len</span><span class="p">;</span>
+	<span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">map</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">person</span><span class="o">&gt;</span> <span class="n">people</span><span class="p">;</span>
+<span class="n">stair</span> <span class="n">sa</span><span class="p">,</span> <span class="n">sb</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">person</span><span class="o">&gt;</span> <span class="n">wait_a</span><span class="p">,</span> <span class="n">wait_b</span><span class="p">;</span> <span class="c1">//계단 a와 b를 기다리고 있는 사람들</span>
+<span class="n">deque</span><span class="o">&lt;</span><span class="n">person</span><span class="o">&gt;</span> <span class="n">on_a</span><span class="p">,</span> <span class="n">on_b</span><span class="p">;</span><span class="c1">//계단 a와 b에 타고 있는 사람들</span>
+
+<span class="kt">bool</span> <span class="nf">compareA</span><span class="p">(</span><span class="n">person</span> <span class="n">a</span><span class="p">,</span> <span class="n">person</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">dst_a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">.</span><span class="n">dst_a</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">dst_a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">dst_a</span><span class="p">;</span>
+	<span class="k">else</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">compareB</span><span class="p">(</span><span class="n">person</span> <span class="n">a</span><span class="p">,</span> <span class="n">person</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">dst_b</span> <span class="o">!=</span> <span class="n">b</span><span class="p">.</span><span class="n">dst_b</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">dst_b</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">dst_b</span><span class="p">;</span>
+	<span class="k">else</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">goDown</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//여기에서 wait_a를 sort해버려서 문제가 발생했었다. </span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">person</span><span class="o">&gt;</span> <span class="n">wa</span><span class="p">,</span> <span class="n">wb</span><span class="p">;</span> <span class="c1">//계단 a와 b를 기다리고 있는 사람들</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"===A===</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">wait_a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">wa</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">wait_a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">wa</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">r</span><span class="p">,</span> <span class="n">wa</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"===B===</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">wait_b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">wb</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">wait_b</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d, %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">wb</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">r</span><span class="p">,</span> <span class="n">wb</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">//wait_a 계단 거리별로 sort</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">wa</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">wa</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">compareA</span><span class="p">);</span>
+	<span class="c1">//wait_b 계단 거리별로 sort</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">wb</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">wb</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">compareB</span><span class="p">);</span>
+	<span class="c1">//계단 내려 보내기 진행</span>
+	<span class="kt">int</span> <span class="n">curr_t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">person</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it_a</span><span class="p">,</span> <span class="n">it_b</span><span class="p">;</span>
+	<span class="n">it_a</span> <span class="o">=</span> <span class="n">wa</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+	<span class="n">it_b</span> <span class="o">=</span> <span class="n">wb</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+	<span class="c1">//마지막 사람까지 다 탔고, 타고 있는 사람 없으면</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">curr_t</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"============curr_t %d초 째에=========</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">curr_t</span><span class="p">);</span>
+		<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">on_a</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">on_a</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">onstair</span> <span class="o">==</span> <span class="n">sa</span><span class="p">.</span><span class="n">len</span> <span class="p">))</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"A 내리게 하기</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_a</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+		<span class="p">}</span>
+		<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">on_b</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">on_b</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">onstair</span> <span class="o">==</span> <span class="n">sb</span><span class="p">.</span><span class="n">len</span> <span class="p">))</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"B 내리게 하기</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_b</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+		<span class="p">}</span>
+		<span class="c1">//wait_a에 사람이 있고, on_a에 더 태울 수 있고, 다음에 탈 사람이 도착한 상태이면</span>
+		<span class="k">while</span> <span class="p">(</span><span class="n">it_a</span> <span class="o">!=</span> <span class="n">wa</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&amp;&amp;</span>  <span class="n">on_a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">*</span><span class="n">it_a</span><span class="p">).</span><span class="n">dst_a</span> <span class="o">&lt;=</span> <span class="n">curr_t</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"A에 사람 태우고</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">it_a</span><span class="p">);</span>
+			<span class="o">++</span><span class="n">it_a</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">while</span> <span class="p">(</span><span class="n">it_b</span> <span class="o">!=</span> <span class="n">wb</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">on_b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">*</span><span class="n">it_b</span><span class="p">).</span><span class="n">dst_b</span> <span class="o">&lt;=</span> <span class="n">curr_t</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"B에 사람 태우고</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">it_b</span><span class="p">);</span>
+			<span class="o">++</span><span class="n">it_b</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="c1">//계단 내려가게 하고 다 내려가면 내리게 하기 //첫 째사람이 항상 가장 많이 계단을 내려갔을 것이다.</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">on_a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"A 계단에서 내려가게 하기</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_a</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">onstair</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">on_b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">"B 계단에서 내려가게 하기</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">on_b</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">onstair</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="n">it_a</span> <span class="o">==</span> <span class="n">wa</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">it_b</span> <span class="o">==</span> <span class="n">wb</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">on_a</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">on_b</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"REUTNR %d</span><span class="se">\n\n</span><span class="s">"</span><span class="p">,</span> <span class="n">curr_t</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">curr_t</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">setStair</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">//각 계단에 할당된 사람들을 내려보내기</span>
+		 <span class="kt">int</span> <span class="n">tans</span> <span class="o">=</span> <span class="n">goDown</span><span class="p">();</span>
+		 <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">&gt;</span> <span class="n">tans</span> <span class="o">?</span> <span class="n">tans</span> <span class="o">:</span> <span class="n">ans</span><span class="p">;</span>
+		 <span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">//x번째 사람이 계단 a를 사용하는 경우</span>
+	<span class="n">wait_a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+	<span class="n">setStair</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="n">wait_a</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+	<span class="c1">//x번째 사람이 계단 b를 사용하는 경우</span>
+	<span class="n">wait_b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+	<span class="n">setStair</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="n">wait_b</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">tcase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tcase</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">tc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tc</span> <span class="o">&lt;=</span> <span class="n">tcase</span><span class="p">;</span> <span class="n">tc</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">people</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="n">sa</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">};</span>
+		<span class="n">sb</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">};</span>
+		<span class="n">wait_a</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="n">wait_b</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="n">on_a</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="n">on_b</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+		<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mh">0xFFFFFFF</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">people</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">person</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+					<span class="c1">//printf("%d, %d 위치에 있는 사람 push\n", i, j);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">sa</span><span class="p">.</span><span class="n">r</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">sa</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+						<span class="n">sa</span><span class="p">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+						<span class="n">sa</span><span class="p">.</span><span class="n">len</span> <span class="o">=</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+						<span class="c1">//printf("%d, %d, %d 위치에 있는 계단 세팅\n",sa.r, sa.c, sa.len);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="n">sb</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+						<span class="n">sb</span><span class="p">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+						<span class="n">sb</span><span class="p">.</span><span class="n">len</span> <span class="o">=</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+						<span class="c1">//printf("%d, %d, %d 위치에 있는 계단 세팅\n", sb.r, sb.c, sb.len);</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">dst_a</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">r</span> <span class="o">-</span> <span class="n">sa</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c</span> <span class="o">-</span> <span class="n">sa</span><span class="p">.</span><span class="n">c</span><span class="p">);</span>
+			<span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">dst_b</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">r</span> <span class="o">-</span> <span class="n">sb</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">abs</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c</span> <span class="o">-</span> <span class="n">sb</span><span class="p">.</span><span class="n">c</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="n">setStair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">people</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">ans</span><span class="p">);</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"#%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#sample-test" class="page__taxonomy-item" rel="tag">Sample-Test</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#simulation" class="page__taxonomy-item" rel="tag">Simulation</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#swea" class="page__taxonomy-item" rel="tag">SWEA</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-11T00:00:00+09:00">August 11, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B2383%5D+%EC%A0%90%EC%8B%AC+%EC%8B%9D%EC%82%AC%EC%8B%9C%EA%B0%84%20http%3A%2F%2Flocalhost%3A4000%2Fswea%2F2383-Lunch-Time%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fswea%2F2383-Lunch-Time%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fswea%2F2383-Lunch-Time%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/swea/4014-Constructing-Rail-Road/" class="pagination--pager" title="[4014] 활주로 건설
+">Previous</a>
+    
+    
+      <a href="/swea/Solution-2383-Lunch-Time/" class="pagination--pager" title="[2383] 점심 식사시간
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

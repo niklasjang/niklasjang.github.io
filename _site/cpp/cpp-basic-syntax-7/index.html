@@ -1,0 +1,980 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[C++] 기본 Syntax 7 - NiklasJang’s Blog</title>
+<meta name="description" content="member initializer, destructor, Object Array객체 배열 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[C++] 기본 Syntax 7">
+<meta property="og:url" content="http://localhost:4000/cpp/cpp-basic-syntax-7/">
+
+
+  <meta property="og:description" content="member initializer, destructor, Object Array객체 배열 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-06T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/cpp/cpp-basic-syntax-7/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[C++] 기본 Syntax 7">
+    <meta itemprop="description" content="member initializer, destructor, Object Array객체 배열">
+    <meta itemprop="datePublished" content="2019-09-06T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[C++] 기본 Syntax 7
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#멤버-이니셜라이져를-통한-const-변수의-초기화">멤버 이니셜라이져를 통한 const 변수의 초기화</a></li>
+  <li><a href="#멤버변수에-참조자를-넣을-경우">멤버변수에 참조자를 넣을 경우</a></li>
+  <li><a href="#파괴자">파괴자</a></li>
+  <li><a href="#소멸자의-역할">소멸자의 역할</a></li>
+  <li><a href="#객체-배열의-이해">객체 배열의 이해</a></li>
+  <li><a href="#사용자-정의를-위해서-일일이-초기화-하는-예">사용자 정의를 위해서 일일이 초기화 하는 예</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rectangle</span><span class="o">::</span><span class="n">Rectangle</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">x1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">y1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">x2</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">y2</span><span class="p">)</span>
+ <span class="o">:</span> <span class="n">upLeft</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">lowRight</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//Empty</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이전 포스트에서 위와 같은 멤버 이니셜라이져를 공부했습니다. 멤버 이니셜라이져는 앞서 본 예제처럼 객체를 초기화할 때도 사용할 수 있지만, 기본적으로는 멤버의 초기화에도 사용할 수 있습니다.</p>
+
+<p>​</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="cp">#include "SoSimple.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//SoSimple.h</span>
+<span class="cp">#pragma once
+#ifndef __SOSIMPLE_H__
+#define __SOSIMPLE_H__
+</span><span class="k">class</span> <span class="nc">SoSimple</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">num1</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">num2</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">SoSimple</span><span class="p">(</span><span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="p">)</span> <span class="o">:</span><span class="n">num1</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">num2</span> <span class="o">=</span> <span class="n">n2</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<ol>
+  <li>:num1(n1) 이 문장의 의미는 num1의 값을 n1의 값으로 초기화하라는 뜻입니다.</li>
+  <li>멤버 변수를 초기화할 때는 생성자의 몸체에서 초기화하거나(num2 = n2;라고 적은 부분), 멤버 이니셜라이져로 초기화할 수 있다.</li>
+  <li>많은 C++ 프로그래머는 초기화 대상을 명확히 인식할 수 있다는 점, 성능에서 약간의 이점이 있다는 부분에서 이미셜라이져를 더 선호한다.</li>
+  <li>
+    <ol>
+      <li>에서 언급한 전자는 int num2; num2=n2;의 두 문장을 의미하고, 후자는 int num1=n1;의 한 문장을 의미한다고 볼 수 있다.</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>를 다른 말로 설명하면 이니셜라이저를 이용하면 선언과 동시에 초기화가 이뤄지는 형태로 바이너리 코드가 생성된다.고 할 수 있다.</li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="멤버-이니셜라이져를-통한-const-변수의-초기화">멤버 이니셜라이져를 통한 const 변수의 초기화</h2>
+
+<p>SoSimple(int n1, int n2) :num1(n1)에서  num1(n1)는 아래와 같은 뜻을 가지고 있다.</p>
+
+<p>int num1 = n1;</p>
+
+<p>따라서 아래와 같이 멤버변수가 const로 선언되었더라도 멤버 이니셜라이져를 통해서 초기화가 가능하다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//SoSimple.h</span>
+<span class="cp">#pragma once
+#ifndef __SOSIMPLE_H__
+#define __SOSIMPLE_H__
+</span><span class="k">class</span> <span class="nc">SoSimple</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="k">const</span> <span class="kt">int</span> <span class="n">num1</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">num2</span><span class="p">;</span> <span class="c1">//가능!</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">num3</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">SoSimple</span><span class="p">(</span><span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n3</span><span class="p">)</span> <span class="o">:</span><span class="n">num1</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//가능!</span>
+		<span class="n">num2</span> <span class="o">=</span> <span class="n">n2</span><span class="p">;</span> 
+	    <span class="n">num3</span> <span class="o">=</span> <span class="n">n3</span><span class="p">;</span> <span class="c1">//Error!</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p>SoSimple의 생성자의 몸체 부분에서 num3 = n3; 부분에서 const 변수가 이미 초기화 되어 있어서 바꿀 수 없다는 에러가 뜬다.</p>
+
+<h2 id="멤버변수에-참조자를-넣을-경우">멤버변수에 참조자를 넣을 경우</h2>
+
+<p>멤버변수에 참조자를 잘 넣지는 않지만 넣는 경우 Member Initializer를 사용해서 초기화 해야한다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="cp">#include "SoSimple.h"
+#include "AAA.h"
+#include "BBB.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="n">AAA</span> <span class="n">aaa</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+	<span class="n">BBB</span> <span class="n">bbb</span><span class="p">(</span><span class="n">aaa</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+	<span class="n">bbb</span><span class="p">.</span><span class="n">ShowContents</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//AAA.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#pragma once
+#ifndef __AAA_H__
+#define __AAA_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">AAA</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">AAA</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"I am AAA"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">ShowYourName</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"my num is "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"I'm class AAA"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//BBB.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#pragma once
+#include "AAA.h"
+#ifndef __BBB_H__
+#define __BBB_H__
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">BBB</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="n">AAA</span> <span class="o">&amp;</span><span class="n">ref</span><span class="p">;</span>
+	<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">BBB</span><span class="p">(</span><span class="n">AAA</span> <span class="o">&amp;</span><span class="n">rr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span><span class="n">ref</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
+		<span class="c1">//Empty</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">ShowContents</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">ref</span><span class="p">.</span><span class="n">ShowYourName</span><span class="p">();</span>
+	<span class="p">}</span>
+
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p>‘main.cpp 에서 정의한 aaa’와 ‘bbb.h파일의 rr’ ‘bbb.h파일의 ref’ 모두 같은 객체 aaa를 가리킨다.</p>
+
+<h2 id="파괴자">파괴자</h2>
+
+<p>객체생성시 반드시 호출되는 것이 생성자라면, 객체 소멸시 반드시 호출되는 것은 소멸자이다.</p>
+
+<ol>
+  <li>소멸자는 이름 앞에 ~가 붙은 형태의 이름을 갖는다.</li>
+  <li>반환형이 선언되지 않으며, 실제로 반환하지 않는다.</li>
+  <li>매개변수는 void형으로 선언되어야 하기 때문에 오버로딩도, 디폴트 값 설정도 불가능하다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~</span><span class="n">AAA</span><span class="p">()</span> <span class="p">{</span> 
+   <span class="p">...</span> 
+<span class="p">};</span> 
+</code></pre></div></div>
+<ol>
+  <li>디폴트 소멸자도 디폴트 생성자와 같이 정의되지 않아도 실행된다.</li>
+</ol>
+
+<p>두 개의 클래스 정의는 똑같은 기능을 한다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AAA</span><span class="p">{</span>
+   <span class="c1">//Empty class</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AAA</span><span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+   <span class="n">AAA</span><span class="p">()</span> <span class="p">{}</span>
+   <span class="o">~</span><span class="n">AAA</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="소멸자의-역할">소멸자의 역할</h2>
+
+<p>대게 생성자애서 할당한 리소스의 소멸에 사용된다. 예를 들어서 생성사 내에서 new 연산을 이용해서  동적 할당해 놓은 메모리 공간이 있으면, 소멸자에서 delete  연산자를 이용해서 이 메모리 공간을 소멸한다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "AAA.h"
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">AAA</span> <span class="n">aaa</span><span class="p">(</span><span class="s">"niklasjang"</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+	<span class="n">aaa</span><span class="p">.</span><span class="n">ShowWhayYouGot</span><span class="p">();</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//AAA.h</span>
+<span class="cp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+</span>
+<span class="cp">#pragma once
+#ifndef __AAA_H__
+#define __AAA_H__
+</span>
+<span class="k">class</span> <span class="nc">AAA</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">name</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">AAA</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">myName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">myAge</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+		<span class="n">strcpy_s</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">myName</span><span class="p">);</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="n">myAge</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">ShowWhayYouGot</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">age</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="o">~</span><span class="n">AAA</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">delete</span><span class="p">[]</span><span class="n">name</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<h2 id="객체-배열의-이해">객체 배열의 이해</h2>
+
+<p>객체의 배열도 기본자료형의 배열 선언 방식과 동일하다. 하지만 객체의 생성자에 관해서 조금 주의할 점이 있다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "SimpleClass.h"
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">SimpleClass</span> <span class="n">sc</span><span class="p">;</span>
+	<span class="n">sc</span><span class="p">.</span><span class="n">ShowWhatYouGot</span><span class="p">();</span>
+
+	<span class="n">SimpleClass</span> <span class="n">sc2</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+	<span class="n">sc2</span><span class="p">.</span><span class="n">ShowWhatYouGot</span><span class="p">();</span>
+
+	<span class="n">SimpleClass</span> <span class="o">*</span> <span class="n">scPtr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleClass</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span> <span class="c1">//객체 배열 생성, default 생성자 20회 실행</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">scPtr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ShowWhatYouGot</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="c1">//SimpleClass * scPtr = new SimpleClass(40)[20]; //생성자에 인자 전달 불가능</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>객체의 배열 할당 과정도 기본 자료형과 동일하다. 하지만 객체 배열이 할당될 때 배열의 길이만큼 기본 생성자가 실행이 되며, 생성자에 인자를 전달하는 방식으로 객체  배열 선언과 동시에 임의의 값으로 맴버 변수를 초기화하는 것이 불가능하다.</li>
+  <li>사용자가 정의하는 값으로 초기화하기 위해서는 이후에 초기화를 다시 진행해야 한다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//SimpleClass.h</span>
+<span class="cp">#pragma once
+#include &lt;iostream&gt;
+#ifndef __SIMPLECLASS_H__
+#define __SIMPLECALSS_H__
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SimpleClass</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">SimpleClass</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" default constructor"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">SimpleClass</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" constructor with one param"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">ShowWhatYouGot</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<h2 id="사용자-정의를-위해서-일일이-초기화-하는-예">사용자 정의를 위해서 일일이 초기화 하는 예</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "SimpleClass.h"
+#include "person.h"
+#define NAME_LEN 20
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">//char * name; //Error!</span>
+	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_LEN</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">namePtr</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+	<span class="n">person</span> <span class="n">man</span><span class="p">;</span>
+	<span class="n">person</span> <span class="o">*</span><span class="n">manPtr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">person</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"name?"</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"age?"</span><span class="p">;</span>  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">age</span><span class="p">;</span>
+		<span class="n">namePtr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+		<span class="n">strcpy_s</span><span class="p">(</span><span class="n">namePtr</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+		<span class="n">manPtr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">SetPersonInfo</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">);</span>   <span class="c1">//고정된 길이(NAME_LEN)으로 넘기기</span>
+		<span class="n">manPtr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">PrintName</span><span class="p">();</span>
+		<span class="n">manPtr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">SetPersonInfo</span><span class="p">(</span><span class="n">namePtr</span><span class="p">,</span> <span class="n">age</span><span class="p">);</span><span class="c1">//이름의 길이에 맞춰서 줄인 다음에 넘기기</span>
+		<span class="n">manPtr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">PrintName</span><span class="p">();</span>
+
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위의 코드는 객체 배열을 동적할당하는 방법을 사용했다. ( 아래에서는 객체 포인터 배열을 사용)</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//person.h</span>
+<span class="cp">#ifndef __PERSON_H__
+#define __PERSON_H__
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">person</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">name</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">person</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">person</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">myName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">myAge</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+		<span class="n">strcpy_s</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">myName</span><span class="p">);</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="n">myAge</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">SetPersonInfo</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">myName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">myAge</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="n">myName</span><span class="p">;</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="n">myAge</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">PrintName</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"name is ..."</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p>또는 객체 포인터 배열을 사용해서 만들 수도 있다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//main.cpp</span>
+<span class="cp">#include &lt;iostream&gt;
+#include "SimpleClass.h"
+#include "person.h"
+#define NAME_LEN 20
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">person</span> <span class="o">*</span> <span class="n">manPtr</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_LEN</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">namePtr</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"name?"</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"age?"</span><span class="p">;</span>  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">age</span><span class="p">;</span>
+		<span class="n">namePtr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+		<span class="n">strcpy_s</span><span class="p">(</span><span class="n">namePtr</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+		<span class="n">manPtr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">person</span><span class="p">(</span><span class="n">namePtr</span><span class="p">,</span> <span class="n">age</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//person.h</span>
+<span class="cp">#ifndef __PERSON_H__
+#define __PERSON_H__
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">person</span> <span class="p">{</span>
+<span class="nl">private:</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">name</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">person</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">person</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">myName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">myAge</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+		<span class="n">strcpy_s</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">myName</span><span class="p">);</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="n">myAge</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">SetPersonInfo</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">myName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">myAge</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="n">myName</span><span class="p">;</span>
+		<span class="n">age</span> <span class="o">=</span> <span class="n">myAge</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">PrintName</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"name is ..."</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="o">~</span><span class="n">person</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">delete</span><span class="p">[]</span> <span class="n">name</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Person Destructor!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#cpp" class="page__taxonomy-item" rel="tag">cpp</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#cpp" class="page__taxonomy-item" rel="tag">CPP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-06T00:00:00+09:00">September 6, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BC%2B%2B%5D+%EA%B8%B0%EB%B3%B8+Syntax+7%20http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-7%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-7%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcpp%2Fcpp-basic-syntax-7%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cpp/cpp-basic-syntax-6/" class="pagination--pager" title="[C++] 기본 Syntax 6
+">Previous</a>
+    
+    
+      <a href="/cpp/cpp-basic-syntax-8/" class="pagination--pager" title="[C++] 기본 Syntax 8
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1048 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>BFS 문제 풀이 - 1 - NiklasJang’s Blog</title>
+<meta name="description" content="최단거리 알고리즘으로서의 BFS ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="BFS 문제 풀이 - 1">
+<meta property="og:url" content="http://localhost:4000/boj/BFS-practice/">
+
+
+  <meta property="og:description" content="최단거리 알고리즘으로서의 BFS ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-04T04:34:30+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/boj/BFS-practice/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="BFS 문제 풀이 - 1">
+    <meta itemprop="description" content="최단거리 알고리즘으로서의 BFS">
+    <meta itemprop="datePublished" content="2019-05-04T04:34:30+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">BFS 문제 풀이 - 1
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#goal--최단거리-알고리즘으로서의-bfs를-내-손이-멋대로-짜게-한다">Goal : 최단거리 알고리즘으로서의 BFS를 내 손이 멋대로 짜게 한다.</a></li>
+  <li><a href="#개념">개념</a></li>
+  <li><a href="#bfs를-이용해서-해결할-수-있는-문제의-조건">BFS를 이용해서 해결할 수 있는 문제의 조건</a></li>
+  <li><a href="#백준-2178번--미로-탐색">백준 2178번 : 미로 탐색</a>
+    <ul>
+      <li><a href="#문제">문제</a></li>
+      <li><a href="#풀이">풀이</a></li>
+      <li><a href="#코드">코드</a></li>
+    </ul>
+  </li>
+  <li><a href="#백준-7576-문제-토마토">백준 7576 문제 토마토</a>
+    <ul>
+      <li><a href="#풀이-">풀이 :</a></li>
+    </ul>
+  </li>
+  <li><a href="#1697번-숨바꼭질-1">1697번 숨바꼭질 1</a>
+    <ul>
+      <li><a href="#풀이--1">풀이 :</a></li>
+    </ul>
+  </li>
+  <li><a href="#백준-14226-이모티콘">백준 14226 이모티콘</a></li>
+  <li><a href="#풀이--2">풀이 :</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="goal--최단거리-알고리즘으로서의-bfs를-내-손이-멋대로-짜게-한다">Goal : 최단거리 알고리즘으로서의 BFS를 내 손이 멋대로 짜게 한다.</h2>
+
+<h2 id="개념">개념</h2>
+<p>BFS는 임의의 정점에서 모든 정점을 한 번씩만 방문하는 알고리즘입니다. 이런 BFS가 아래의 조건일 때는 <code class="language-plaintext highlighter-rouge">최단거리 알고리즘</code>으로 사용됩니다.</p>
+
+<p><strong>모든 가중치가 1일 때</strong></p>
+
+<h2 id="bfs를-이용해서-해결할-수-있는-문제의-조건">BFS를 이용해서 해결할 수 있는 문제의 조건</h2>
+
+<ol>
+  <li>최소 비용의 문제이어야 한다.</li>
+  <li>간선의 가중치가 1이어야 한다.</li>
+  <li>정점과 간선의 갯수가 적어야 한다. (적다는 것은 문제의 조건에 맞추어서 해결할 수 있을 정도로 작다라는 의미)(시간 제한 + 메모리 제한)</li>
+</ol>
+
+<p>즉, 최소 비용의 의미가 간선의 가중치를 의미해야 합니다.</p>
+
+<h2 id="백준-2178번--미로-탐색">백준 2178번 : 미로 탐색</h2>
+
+<h3 id="문제">문제</h3>
+<p>(1,1)에서 (N,M)으로 가는 가장 빠른 길을 구하는 문제.</p>
+
+<h3 id="풀이">풀이</h3>
+<p>가장 빠른 길은 방문한 칸의 수가 제일 적은 것을 의미합니다.</p>
+<ol>
+  <li>x와 y 혹은 w와 h의 좌표를 헷갈리면 안됩니다.</li>
+  <li>queue를 queue&lt;pair&lt;int,int» type으로 선언해야합니다.</li>
+  <li>queue.front의 pair를 사용해서 다름 BFS의 depth를 계산해야합니다.</li>
+</ol>
+
+<h3 id="코드">코드</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+2019-05-06
+장환석
+문제
+N×M크기의 배열로 표현되는 미로가 있다.
+
+1	0	1	1	1	1
+1	0	1	0	1	0
+1	0	1	0	1	1
+1	1	1	0	1	1
+미로에서 1은 이동할 수 있는 칸을 나타내고, 0은 이동할 수 없는 칸을 나타낸다. 이러한 미로가 주어졌을 때, (1, 1)에서 출발하여 (N, M)의 위치로 이동할 때 지나야 하는 최소의 칸 수를 구하는 프로그램을 작성하시오. 한 칸에서 다른 칸으로 이동할 때, 서로 인접한 칸으로만 이동할 수 있다.
+
+위의 예에서는 15칸을 지나야 (N, M)의 위치로 이동할 수 있다. 칸을 셀 때에는 시작 위치와 도착 위치도 포함한다.
+
+입력
+첫째 줄에 두 정수 N, M(2 ≤ N, M ≤ 100)이 주어진다. 다음 N개의 줄에는 M개의 정수로 미로가 주어진다. 각각의 수들은 붙어서 입력으로 주어진다.
+
+출력
+첫째 줄에 지나야 하는 최소의 칸 수를 출력한다. 항상 도착위치로 이동할 수 있는 경우만 입력으로 주어진다.
+*/</span>
+
+<span class="cp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+</span>
+
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">];</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">check</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">];</span>
+		<span class="c1">//   상 하 좌 우</span>
+<span class="cm">/*
+	|
+----+---------------&gt; x 축
+	|(0,0) (0,1),(0,2)
+	|(1,0) (1,1),(1,2)
+	y축
+*/</span>
+<span class="kt">int</span> <span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">dy</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">count</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+	<span class="c1">//printf("push %d %d\n", i, j);</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">));</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">nx</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nx</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="n">ny</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">ny</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">ny</span> <span class="o">&gt;=</span> <span class="n">M</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+				<span class="c1">//printf("push %d\n",a[nx][ny]);</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">));</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">"%1d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+	<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="o">++</span><span class="n">count</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">check</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="백준-7576-문제-토마토">백준 7576 문제 토마토</h2>
+
+<h3 id="풀이-">풀이 :</h3>
+<ol>
+  <li>전체를 한 번 돌면서 bfs를 시작해야하는 지점을 모두 q에 다 넣고 시작합니다.</li>
+  <li>한번 pop할 때마다 pop된 값에서 근처에 있는 값들 중 안익었다가 익게된 토마토를 다시 q에 넣습니다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+2019-03-21
+장환석
+
+문제
+철수의 토마토 농장에서는 토마토를 보관하는 큰 창고를 가지고 있다. 토마토는 아래의 그림과 같이 격자 모양 상자의 칸에 하나씩 넣어서 창고에 보관한다.
+
+
+
+창고에 보관되는 토마토들 중에는 잘 익은 것도 있지만, 아직 익지 않은 토마토들도 있을 수 있다. 보관 후 하루가 지나면, 익은 토마토들의 인접한 곳에 있는 익지 않은 토마토들은 익은 토마토의 영향을 받아 익게 된다. 하나의 토마토의 인접한 곳은 왼쪽, 오른쪽, 앞, 뒤 네 방향에 있는 토마토를 의미한다. 대각선 방향에 있는 토마토들에게는 영향을 주지 못하며, 토마토가 혼자 저절로 익는 경우는 없다고 가정한다. 철수는 창고에 보관된 토마토들이 며칠이 지나면 다 익게 되는지, 그 최소 일수를 알고 싶어 한다.
+
+토마토를 창고에 보관하는 격자모양의 상자들의 크기와 익은 토마토들과 익지 않은 토마토들의 정보가 주어졌을 때, 며칠이 지나면 토마토들이 모두 익는지, 그 최소 일수를 구하는 프로그램을 작성하라. 단, 상자의 일부 칸에는 토마토가 들어있지 않을 수도 있다.
+
+입력
+첫 줄에는 상자의 크기를 나타내는 두 정수 M,N이 주어진다. M은 상자의 가로 칸의 수, N 은 상자의 세로 칸의 수를 나타낸다. 단, 2 ≤ M,N ≤ 1,000 이다. 둘째 줄부터는 하나의 상자에 저장된 토마토들의 정보가 주어진다. 즉, 둘째 줄부터 N개의 줄에는 상자에 담긴 토마토의 정보가 주어진다. 하나의 줄에는 상자 가로줄에 들어있는 토마토의 상태가 M개의 정수로 주어진다. 정수 1은 익은 토마토, 정수 0은 익지 않은 토마토, 정수 -1은 토마토가 들어있지 않은 칸을 나타낸다.
+
+출력
+여러분은 토마토가 모두 익을 때까지의 최소 날짜를 출력해야 한다. 만약, 저장될 때부터 모든 토마토가 익어있는 상태이면 0을 출력해야 하고, 토마토가 모두 익지는 못하는 상황이면 -1을 출력해야 한다.
+*/</span>
+
+<span class="cp">#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">1000</span><span class="p">][</span><span class="mi">1000</span><span class="p">];</span>
+
+<span class="c1">//           상 하 좌 우</span>
+<span class="kt">int</span> <span class="n">dh</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">dw</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">};</span>
+
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">nw</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nh</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		
+		<span class="c1">//하나 뽑고 </span>
+		<span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="c1">//사방 넣고</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">//index 예외처리</span>
+			<span class="n">nh</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="o">+</span> <span class="n">dh</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nh</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nh</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="n">nw</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="o">+</span> <span class="n">dw</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nw</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nw</span> <span class="o">&gt;=</span> <span class="n">M</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="c1">//안익었으면 익히고 day++</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">nh</span><span class="p">][</span><span class="n">nw</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">a</span><span class="p">[</span><span class="n">nh</span><span class="p">][</span><span class="n">nw</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">day</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span> <span class="n">nw</span><span class="p">));</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="c1">//다시 뽑고</span>
+	<span class="p">}</span>
+
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="kt">bool</span> <span class="n">noZero</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>  <span class="c1">//모든 토마토가 익어있는 상태 : 0이 하나도 없는 상태이면 false 아니면 true</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+				<span class="n">noZero</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">//모든 토마토가 익어있는 상태면</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">noZero</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"0</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">//전체를 돌면서 step1에서 안익은 토마토를 q에 다 넣는다</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">));</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">bfs</span><span class="p">();</span>
+
+	<span class="c1">//익지 못하는 경우가 있으면</span>
+	<span class="kt">bool</span> <span class="n">isAllNotRippable</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">isAllNotRippable</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">isAllNotRippable</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"-1</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">day</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="1697번-숨바꼭질-1">1697번 숨바꼭질 1</h2>
+
+<h3 id="풀이--1">풀이 :</h3>
+
+<p>BFS를 이용해서 해결할 수 있는 문제의 조건을 모두 만족하므로 BFS 문제입니다.</p>
+
+<ol>
+  <li>최소 비용의 문제이어야 한다.</li>
+  <li>간선의 가중치가 1이어야 한다.</li>
+  <li>정점과 간선의 갯수가 적어야 한다. (적다는 것은 문제의 조건에 맞추어서 해결할 수 있을 정도로 작다라는 의미)(시간 제한 + 메모리 제한)</li>
+</ol>
+
+<p>N부터 시작해서 N+1, N-1, 2<em>N의 세 방향으로 BFS를 진행한다고 생각하면 됩니다. 주의할 점은 행렬의 길이가 2</em>N을 커버하기 위해서 200,000이 되어야한다는 점입니다.
+그리고 마지막 출력은 check[K]를 통해서 바로 할 수 있습니다.</p>
+
+<p>아래의 코드에서 check의 값 0은 아직 방문하지 않았음을, N은 N초 후에 도달할 수 있음을 의미합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/*
+2019-05-08
+장환석
+
+숨바꼭질
+시간 제한	메모리 제한	제출	정답	맞은 사람	정답 비율
+2 초	128 MB	52572	14518	8972	24.719%
+문제
+수빈이는 동생과 숨바꼭질을 하고 있다. 수빈이는 현재 점 N(0 ≤ N ≤ 100,000)에 있고, 동생은 점 K(0 ≤ K ≤ 100,000)에 있다. 수빈이는 걷거나 순간이동을 할 수 있다. 만약, 수빈이의 위치가 X일 때 걷는다면 1초 후에 X-1 또는 X+1로 이동하게 된다. 순간이동을 하는 경우에는 1초 후에 2*X의 위치로 이동하게 된다.
+
+수빈이와 동생의 위치가 주어졌을 때, 수빈이가 동생을 찾을 수 있는 가장 빠른 시간이 몇 초 후인지 구하는 프로그램을 작성하시오.
+
+입력
+첫 번째 줄에 수빈이가 있는 위치 N과 동생이 있는 위치 K가 주어진다. N과 K는 정수이다.
+
+출력
+수빈이가 동생을 찾는 가장 빠른 시간을 출력한다.
+
+*/</span>
+
+<span class="cp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">check</span><span class="p">[</span><span class="mi">200000</span><span class="p">];</span> <span class="c1">//0은 방문하지 않음. 시작은 1 다음 step은 2 ~~~ 총 step 갯수는 최대값 -1</span>
+<span class="kt">int</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">temp</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">200000</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">temp</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">200000</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">temp</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">200000</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">check</span><span class="p">[</span><span class="n">temp</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+				<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">K</span><span class="p">);</span>
+	<span class="n">bfs</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">check</span><span class="p">[</span><span class="n">K</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/boj/bfs.jpg" alt="bfs-img" /></p>
+
+<p><img src="/assets/images/boj/bfs2.jpg" alt="bfs-img2" /></p>
+
+<p>위 B와 아래의 B가 다르다고 한 기준은 파란 간선의 사용한 횟수입니다. 따라서 정점을 파란 간선을 사용한 횟수로 나눌 수 있다.</p>
+
+<p><img src="/assets/images/boj/bfs3.jpg" alt="bfs-img3" /></p>
+
+<p>파란 간선을 한 번 사용하면 X1의 노드로만 움직일 수 있는 그래프를 의미합니다.</p>
+
+<h2 id="백준-14226-이모티콘">백준 14226 이모티콘</h2>
+
+<h2 id="풀이--2">풀이 :</h2>
+<p>queue를 만들 때 pair&lt;int,int&gt; type으로 만드는데 앞의 int는 <code class="language-plaintext highlighter-rouge">현재 screen에 적혀있는 이모티콘의 수</code>, 뒤의 int는 <code class="language-plaintext highlighter-rouge">클립보드에 저장되어 있는 이모티콘의 수</code>를 나타냅니다.
+코드에서 보이는 것처럼 3가지의 모든 경우에 대해서 push를 하고 BFS를 돌리면 됩니다. 이 떄 주의할 점은 현재 스크린에 하나의 이모티콘이 적혀있어도, 클립보드에 저장되어있는 이모티콘의
+수에 따라서 다른 상태로 본다는 점입니다.</p>
+
+<p>check 배열은  방문하지 않았으면 0, 최초 방문은 1, 다음 방문은 <code class="language-plaintext highlighter-rouge">이전에 방문했던 Node의 check + 1</code>이 저장됩니다.</p>
+
+<p><strong>curr.first + curr.second &lt;= S</strong> 코드는 <code class="language-plaintext highlighter-rouge">현재 screen에 적혀있는 이모티콘의 수</code>와  <code class="language-plaintext highlighter-rouge">클립보드에 저장되어 있는 이모티콘의 수</code>의 합이 S를 넘지 않게해줍니다.
+혹은 index가 배열의 범위를 넘어가서 runtime error가 나지 않도록 해줍니다.</p>
+
+<p>check[i][j]에서 J의 상한은 i와 j가 pair로써 <code class="language-plaintext highlighter-rouge">1대1 대응</code>되기 때문에 i와 j의 상한이 같습니다. 더 정확하게는 부여된 의미에 따라서 j는 i의 상한과 같습니다.
+이제 i의 상한을 결정해야합니다. 결론부터 말하면 문제에서 S의 상한이 i의 상한이 됩니다. 만약 입력되는 S의 최대값이 3이라면 queue에는 (4,0) (4,1) 등의 (4,*)값을 저장(체크)할 필요가 없기 때문입니다.</p>
+
+<p>조금 더 자세히 보겠습니다. queue에 push되는 pair를 (s,c)라고할 때, c는 이전 c의 값을 그대로 유지하거나, s의 값을 가져올 수밖에 없습니다. 그런데 이전의 c값도 이전이전의 값을
+그대로 갖고 있거나 s의 값을 가져올 수밖에 없습니다. 따라서 $1&lt;= c &lt;= S$라는 범위가 나옵니다. 그러면 현재 (s,c)라는 pair를 가지고 있을 때 s가 제일 빨리 커질 수 있는 방법은
+(s,c) =&gt; (s,s) -&gt; (s+s, s)입니다. 즉 가중치 1과 1을 지나서 s를 2배로 만드는 방법이 제일 빠르게 s를 증가시키는 방법입니다.</p>
+
+<p>우리는 (1,0)에서 시작해서 (s,<em>)까지 가고 싶습니다. 앞의 숫자가 s면 뒤의 숫자가 0이든 1이든 상관없습니다. 
+(s,</em>) pair가 딱 구해질 때까지만 진행할 것이기 때문입니다. 그래서
+(s,<em>) 이후에 (s,s) / (s+</em>, <em>) / (s-1, *) 으로의 진행을 진행하지 않습니다. 그런데 생각해보면 (s,</em>)가 될 수 있는 방법은 아래와 같은 경우뿐입니다.</p>
+
+<ol>
+  <li>(s’,<em>) -&gt; (s’+</em> , <em>) = (s,</em>) // E.g. ( s/2 , * ) -&gt; (s/2,s/2) -&gt; (s, s/2)</li>
+  <li>(s+1, <em>) -&gt; (s,</em>)</li>
+</ol>
+
+<p>그런데 2번의 경우는 불가능합니다. 왜냐하면 s를 구하기 위해서 s+1를 먼저 구한다는 방법인데, s보다 큰 수를 s+1보다 빨리 구할 수는 없기 떄문입니다.</p>
+
+<p><img src="/assets/images/boj/14226.jpg" alt="14226" /></p>
+
+<p>그림 설명은 다음과 같습니다.</p>
+<ol>
+  <li>가장 빨리 S를 키우는 방법은 <code class="language-plaintext highlighter-rouge">클립보드에 전체를 저장 -&gt; 붙혀넣기</code> 를 반복하는 행위입니다.</li>
+  <li>이렇게 구하면 2,4,6,8,10 ~ 번째에서 2배씩 커지는 s를 구할 수 있습니다.</li>
+  <li>하지만 3,5,7,9에서는 현재 구한 s보다 더 큰 s를 구할 수 있을 것 같습니다.</li>
+  <li>빨간색 선을 보면, 이전 t의 s,c를 더해서 현재 t의 s를 구하는 것이 (붙혀넣기) 3,5,7,9번째 시도에서 가장 큰 s를 구할 수 있는 것으로 보입니다.(아직 확실하지는 않음)</li>
+  <li>파간색 선을 보면, 4번에서 구한 답보다 더 확실하게 3,5,7,9에서 가질 수 있는 가장 큰 s를 구하기 위해서는 이전 t의 s와 c를 더하는 것인데, 이전 t의 최대 값은 2번에서 구한 값이 확실합니다. 따라서 <strong>이전-이전 t의 s를 이전 t의 c로 옮긴 뒤, 이전 t의 s와 c를 더해</strong>서 현재 t의 s의 가장 큰 s가 될 것입니다. 이렇게 구한 3,5,7,9의 s는 사실 불가능한 값일 수도
+있습니다. <strong>굵은 글씨</strong>로 표시한 부분이 가능한지 증명이 되지 않았기 때문입니다. 하지만 이렇게까지 아마도 불가능한 경우의 가능성까지 포함했을 때도 안되면, 실제로 가능한 경우만 따져
+봤을 때는 분명히 안될 것이다. 라는 논리를 사용하겠습니다.</li>
+  <li>초록색 네모를 보면, 5번에서 수정한 각 t에서의 최대 s를 순서대로 보면 계속 오름차순입니다. 즉, S가 t번째에서 구해진다고 했을 때, S보다 큰 수를 t-1번째에서 먼저 구하는 것은
+불가능하다는 의미입니다.</li>
+</ol>
+
+<p>따라서</p>
+
+<ol>
+  <li>(s’,<em>) -&gt; (s’+</em> , <em>) = (s,</em>) // E.g. ( s/2 , * ) -&gt; (s/2,s/2) -&gt; (s, s/2)</li>
+  <li>(s+1, <em>) -&gt; (s,</em>)</li>
+</ol>
+
+<p>에서의 2번 경우는 고려하지 않아도 됩니다.</p>
+
+<p>이러한 이유로 1번의 경우만 고려하면 되기 때문에 코드에서 <strong>curr.first + curr.second &lt;= S</strong>를 사용합니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">S</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">check</span><span class="p">[</span><span class="mi">1002</span><span class="p">][</span><span class="mi">1002</span><span class="p">];</span> <span class="c1">//[해당 step에서 화면에 있는 이모티콘 수][클립보드에 있는 이모티콘 수]</span>
+
+<span class="kt">int</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">start</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+	<span class="n">check</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+		<span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+		<span class="c1">//클릭보드 갱신</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">!=</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">==</span> <span class="n">S</span><span class="p">)</span> <span class="k">return</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+			<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">,</span> <span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">));</span>
+		<span class="p">}</span>
+		<span class="c1">//붙혀넣기</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;=</span> <span class="n">S</span> <span class="o">&amp;&amp;</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="n">S</span><span class="p">)</span> <span class="k">return</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+			<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">,</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
+		<span class="p">}</span>
+		<span class="c1">//하나 빼기</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">S</span><span class="p">)</span> <span class="k">return</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+			<span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">curr</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">clip</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">clip</span> <span class="o">=</span> <span class="n">bfs</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">check</span><span class="p">[</span><span class="n">S</span><span class="p">][</span><span class="n">clip</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#14226" class="page__taxonomy-item" rel="tag">14226</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#1697" class="page__taxonomy-item" rel="tag">1697</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#2178" class="page__taxonomy-item" rel="tag">2178</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#7576" class="page__taxonomy-item" rel="tag">7576</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#bfs" class="page__taxonomy-item" rel="tag">BFS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#boj" class="page__taxonomy-item" rel="tag">BOJ</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#boj" class="page__taxonomy-item" rel="tag">BOJ</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-04T04:34:30+09:00">May 4, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=BFS+%EB%AC%B8%EC%A0%9C+%ED%92%80%EC%9D%B4+-+1%20http%3A%2F%2Flocalhost%3A4000%2Fboj%2FBFS-practice%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fboj%2FBFS-practice%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fboj%2FBFS-practice%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/boj/BFS-practice-3/" class="pagination--pager" title="BFS 문제 풀이 - 3
+">Previous</a>
+    
+    
+      <a href="/algorithm/Binary-Search/" class="pagination--pager" title="[이분탐색] Binary search tree
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

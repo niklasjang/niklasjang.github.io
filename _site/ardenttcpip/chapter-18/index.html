@@ -1,0 +1,945 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[열혈TCP/IP] 18 멀티쓰레드 기반의 서버 구현 - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[열혈TCP/IP] 18 멀티쓰레드 기반의 서버 구현">
+<meta property="og:url" content="http://localhost:4000/ardenttcpip/chapter-18/">
+
+
+  <meta property="og:description" content="반갑습니다. niklas jang입니다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-01-13T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ardenttcpip/chapter-18/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[열혈TCP/IP] 18 멀티쓰레드 기반의 서버 구현">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2020-01-13T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[열혈TCP/IP] 18 멀티쓰레드 기반의 서버 구현
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#18-멀티쓰레드-기반의-서버-구현">18 멀티쓰레드 기반의 서버 구현</a>
+    <ul>
+      <li><a href="#18-2-쓰레드의-생성및-실행">18-2 쓰레드의 생성및 실행</a></li>
+      <li><a href="#18-3-쓰레드의-문제점과-임계영역">18-3 쓰레드의 문제점과 임계영역</a></li>
+      <li><a href="#18-4-쓰레드-동기화">18-4 쓰레드 동기화</a>
+        <ul>
+          <li><a href="#세마포어-semaphore">세마포어 Semaphore</a></li>
+        </ul>
+      </li>
+      <li><a href="#18-5-쓰레드의-소멸과-멀티쓰레드-기반의-다중접속-서버의-구현">18-5 쓰레드의 소멸과 멀티쓰레드 기반의 다중접속 서버의 구현</a>
+        <ul>
+          <li><a href="#쓰레드를-소멸하는-두-가지-방법">쓰레드를 소멸하는 두 가지 방법</a></li>
+          <li><a href="#멀티쓰레드-기반의-다중접속-서버의-구현">멀티쓰레드 기반의 다중접속 서버의 구현</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="18-멀티쓰레드-기반의-서버-구현">18 멀티쓰레드 기반의 서버 구현</h1>
+
+<p>쓰레드를 사용하는 이유 = 멀티프로세스 기반의 단점</p>
+<ol>
+  <li>프로세스 생성이 무거운 과정이다.</li>
+  <li>IPC를 사용해서 프로세스간 통신을 하는 것이 복잡하다.</li>
+  <li>context switching에 따른 부담이 굉장히 크다. = 둘 이상의 실행흐름을 갖기 위해서 프로세스가 유지하고 있는 메모리 영역을 통째로 복사한는 과정이 부담스럽다</li>
+</ol>
+
+<p>쓰레드와 프로세스의 차이점</p>
+
+<ol>
+  <li>프로세스 : Text Data Heal Stack에서 DHS가 모두 독립적으로 구성됨
+    <ul>
+      <li>운영체제 관점에서 별도의 실행흐름을 구성하는 단위</li>
+    </ul>
+  </li>
+  <li>쓰레드 : Data 영역과  Heap 영역을 공유함
+    <ul>
+      <li>프로세스 관점에서 별도의 실행흐름을 구성하는 단위</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="18-2-쓰레드의-생성및-실행">18-2 쓰레드의 생성및 실행</h2>
+
+<p>pthread_create()을 사용한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+</span><span class="kt">void</span><span class="o">*</span> <span class="nf">thread_main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> 
+<span class="p">{</span>
+	<span class="n">pthread_t</span> <span class="n">t_id</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">thread_param</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_id</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_main</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">thread_param</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">"pthread_create() error"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">};</span> 	
+	<span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="n">puts</span><span class="p">(</span><span class="s">"end of main"</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="o">*</span> <span class="nf">thread_main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">cnt</span><span class="o">=*</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">cnt</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="n">puts</span><span class="p">(</span><span class="s">"running thread"</span><span class="p">);</span>	 
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>만약 main 의 sleep(10)을 sleep(2)로 바꾸면 메인이 종료되면서 Thread가 다 죽기 때문에 Thread가 5초동안 다 돌지 않는다. thread가 종료되는 것을 일일이 예측할 수 없기 때문에 pthread_join()을 사용한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+</span><span class="kt">void</span><span class="o">*</span> <span class="nf">thread_main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> 
+<span class="p">{</span>
+	<span class="n">pthread_t</span> <span class="n">t_id</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">thread_param</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+	<span class="kt">void</span> <span class="o">*</span> <span class="n">thr_ret</span><span class="p">;</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_id</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_main</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">thread_param</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">"pthread_create() error"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">};</span> 	
+
+	<span class="k">if</span><span class="p">(</span><span class="n">pthread_join</span><span class="p">(</span><span class="n">t_id</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">thr_ret</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">"pthread_join() error"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">};</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Thread return message: %s </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">thr_ret</span><span class="p">);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">thr_ret</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="o">*</span> <span class="nf">thread_main</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">cnt</span><span class="o">=*</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">);</span>
+	<span class="kt">char</span> <span class="o">*</span> <span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="mi">50</span><span class="p">);</span>
+	<span class="n">strcpy</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s">"Hello, I'am thread~ </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">cnt</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="n">puts</span><span class="p">(</span><span class="s">"running thread"</span><span class="p">);</span>	 
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>여러 개의 thread가 동시에 접근하는 메모리는 thread_safe하지 않는다. 일반적으로 구현된 함수들 중에서도 안전하지 않은 함수가 있는데, 이런 위험한 함수들을 자동으로 안전한 함수로 바꿔주기 위해서 컴파일을 할 때 아래와 같이 한다.</p>
+
+<blockquote>
+  <p>gcc -D_REENTRANT mythread -o mthread -lpthread</p>
+</blockquote>
+
+<p>따라서 앞으로 쓰레드 관련 코드가 삽입되어 있는 예제를 컴파일 할 때는 -D_REENTRANT 옵션을 항상 추가한다.</p>
+
+<p>아래는 두 개의 쓰레드로 1~10의 합을 나눠서 진행하는 코드이다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+</span><span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_summation</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span> 
+
+<span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">pthread_t</span> <span class="n">id_t1</span><span class="p">,</span> <span class="n">id_t2</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">range1</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+	<span class="kt">int</span> <span class="n">range2</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">};</span>
+	
+	<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id_t1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_summation</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">range1</span><span class="p">);</span>
+	<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id_t2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_summation</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">range2</span><span class="p">);</span>
+
+	<span class="n">pthread_join</span><span class="p">(</span><span class="n">id_t1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">pthread_join</span><span class="p">(</span><span class="n">id_t2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"result: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_summation</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">start</span><span class="o">=</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">end</span><span class="o">=</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+
+	<span class="k">while</span><span class="p">(</span><span class="n">start</span><span class="o">&lt;=</span><span class="n">end</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">sum</span><span class="o">+=</span><span class="n">start</span><span class="p">;</span>
+		<span class="n">start</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>위 예제는 55가 잘 출력되지만 아래의 예제는 결과가 0이 출력되어야 하는데 엉뚱한 값이 나온다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+#include &lt;process.h&gt;
+#define NUM_THREAD	100
+</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_inc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_des</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> 
+<span class="p">{</span>
+	<span class="n">HANDLE</span> <span class="n">thread_id</span><span class="p">[</span><span class="n">NUM_THREAD</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"sizeof long long: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">));</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NUM_THREAD</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_inc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+		<span class="k">else</span>
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_des</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>	
+	<span class="p">}</span>	
+
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NUM_THREAD</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">pthread_join</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"result: %lld </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_inc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">50000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">num</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_des</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">50000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">num</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이는 다음 절에서 해결할 수 있는 문제이다.</p>
+
+<h2 id="18-3-쓰레드의-문제점과-임계영역">18-3 쓰레드의 문제점과 임계영역</h2>
+
+<p>하나의 변수에 둘 이상의 쓰레드가 동시에 접근하는 것이 문제이다. 값의 증가는 CPU가 처리하는 연산이고 이를 위해서 Thread는 변수의 값을 직접 증가시키는 것이 아니라 일단 참조하고 -&gt; 값을 변화시키고 -&gt; 다시 할당하는 과정을 거치기 때문에 이 순서가 mutex를 통해서 보장되어야 한다.</p>
+
+<h2 id="18-4-쓰레드-동기화">18-4 쓰레드 동기화</h2>
+
+<p>뮤텍스는 화장실 사용방법에서 자물쇠의 역할을 한다.</p>
+
+<ol>
+  <li>화장실의 접근보호를 위해서 들어갈 때 문을 잠그고 나올 때는 문을 연다.</li>
+  <li>화장실이 사용 중이라면 밖에서 대기한다.</li>
+  <li>대기중인 사람이 둘 이상이 될 수 있고, 이들은 대기순서에 따라서 화장실에 들어간다.</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">pthread_mutex_init()</code>과 <code class="language-plaintext highlighter-rouge">pthread_mutex_destroy()</code>를 초기화와 소멸에 사용된다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pthread_mutex</span> <span class="n">mutex</span><span class="p">;</span>
+<span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+<span class="cm">/*
+임계영역
+*/</span>
+<span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>이를 이전 예제에 적용하면 다음과 같다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+#define NUM_THREAD	100
+</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_inc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_des</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">pthread_mutex_t</span> <span class="n">mutex</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> 
+<span class="p">{</span>
+	<span class="n">pthread_t</span> <span class="n">thread_id</span><span class="p">[</span><span class="n">NUM_THREAD</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	
+	<span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NUM_THREAD</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_inc</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+		<span class="k">else</span>
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">thread_des</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>	
+	<span class="p">}</span>	
+
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">NUM_THREAD</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">pthread_join</span><span class="p">(</span><span class="n">thread_id</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">"result: %lld </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">);</span>
+	<span class="n">pthread_mutex_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_inc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span> 
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">50000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">num</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+	<span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">thread_des</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">50000000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+		<span class="n">num</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+swyoon@com:~/tcpip$ gcc mutex.c -D_REENTRANT -o mutex -lpthread
+swyoon@com:~/tcpip$ ./mutex
+result: 0 
+
+*/</span>
+</code></pre></div></div>
+
+<p>임계 영역을 [0,50000000]의 합이 진행되는 전체 영역을 넓게 감싸는데 이 동안에는 다른 Thread는 돌지 못한다. 임계 영역의 범위는 상황에 따라서 잘 조절한다.</p>
+
+<h3 id="세마포어-semaphore">세마포어 Semaphore</h3>
+
+<p>바이너리 세마포로 설명을 진행한다. <code class="language-plaintext highlighter-rouge">sem_init()</code> 함수가 호출되면 운영체제에 의해서 세마포어 오브젝트가 생성된다. 이곳에는 세마포어 값이라 불리는 정수가 하나 기록된다. 이 값은 <code class="language-plaintext highlighter-rouge">sem_post</code>가 호출되면 +1되고 <code class="language-plaintext highlighter-rouge">sam_wait</code>가 호출되면 -1이 된다. 하지만 세마포어 값은 0보다 작아질 수 없기 때문에 현재 0인 상태에서 sem_wait가 호출되면 호춣나 쓰레드는 함수가 반환되지 않아서 블로킹 사태에 들어간다. 다른 쓰레드가 sem_post를 호출하면 값이 1로 바뀌고, 이 값으 1에서 0으로 바구면서 블로킹 상태에서 빠져나간다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sem_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem</span><span class="p">);</span>
+<span class="cm">/*
+임계 영역
+*/</span>
+<span class="n">sem_post</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>아래의 코드는 “쓰레드 A가 프로그램 사용자로부터 값을 입력 받아서 전역변수 num에 저장하면, 쓰레드 B는 이 값을 가져다가 누적해 나간다. 이 과정은 총 5회 진행이 되고, 진행이 완료되면 총 누적 금액을 출력하면서 프로그램이 종료한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//semaphore.c</span>
+<span class="cp">#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;semaphore.h&gt;
+</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">read</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">accu</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">);</span>
+<span class="k">static</span> <span class="n">sem_t</span> <span class="n">sem_one</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">sem_t</span> <span class="n">sem_two</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">pthread_t</span> <span class="n">id_t1</span><span class="p">,</span> <span class="n">id_t2</span><span class="p">;</span>
+	<span class="n">sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_one</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_two</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+	<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id_t1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">id_t2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">accu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="n">pthread_join</span><span class="p">(</span><span class="n">id_t1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">pthread_join</span><span class="p">(</span><span class="n">id_t2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+	<span class="n">sem_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_one</span><span class="p">);</span>
+	<span class="n">sem_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_two</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">read</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">fputs</span><span class="p">(</span><span class="s">"Input num: "</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+
+		<span class="n">sem_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_two</span><span class="p">);</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">);</span>
+		<span class="n">sem_post</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_one</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>	
+<span class="p">}</span>
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">accu</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">sem_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_one</span><span class="p">);</span>
+		<span class="n">sum</span><span class="o">+=</span><span class="n">num</span><span class="p">;</span>
+		<span class="n">sem_post</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sem_two</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Result: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="18-5-쓰레드의-소멸과-멀티쓰레드-기반의-다중접속-서버의-구현">18-5 쓰레드의 소멸과 멀티쓰레드 기반의 다중접속 서버의 구현</h2>
+
+<h3 id="쓰레드를-소멸하는-두-가지-방법">쓰레드를 소멸하는 두 가지 방법</h3>
+
+<p>pthread_join()으로 쓰레드를 소멸시킬 수 있지만 이 함수는 쓰레드가 종료될 때까지 블로킹 상태에 놓이게 된다는 문제가 있다.</p>
+
+<blockquote>
+  <p>pthraed_detach() : 성공시 0, 실패시 0이외의 값 반환을 사용하는 것이 더 낫다.</p>
+</blockquote>
+
+<h3 id="멀티쓰레드-기반의-다중접속-서버의-구현">멀티쓰레드 기반의 다중접속 서버의 구현</h3>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ardenttcpip" class="page__taxonomy-item" rel="tag">ArdentTCPIP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-13T00:00:00+09:00">January 13, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%97%B4%ED%98%88TCP%2FIP%5D+18+%EB%A9%80%ED%8B%B0%EC%93%B0%EB%A0%88%EB%93%9C+%EA%B8%B0%EB%B0%98%EC%9D%98+%EC%84%9C%EB%B2%84+%EA%B5%AC%ED%98%84%20http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-18%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-18%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-18%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ardenttcpip/chapter-17/" class="pagination--pager" title="[열혈TCP/IP] 17 Not Yet Implemented
+">Previous</a>
+    
+    
+      <a href="/ardenttcpip/chapter-6/" class="pagination--pager" title="[열혈TCP/IP] 06 UDP는 생략
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Lecture 15. Readers-Writers-Priority - NiklasJang’s Blog</title>
+<meta name="description" content="좀 어려운 부분 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="Lecture 15. Readers-Writers-Priority">
+<meta property="og:url" content="http://localhost:4000/os/LN-15-Readers-Writers-Prioritymd/">
+
+
+  <meta property="og:description" content="좀 어려운 부분 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-16T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/os/LN-15-Readers-Writers-Prioritymd/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Lecture 15. Readers-Writers-Priority">
+    <meta itemprop="description" content="좀 어려운 부분">
+    <meta itemprop="datePublished" content="2019-06-16T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Lecture 15. Readers-Writers-Priority
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#the-readerswriters-problem">The Readers/Writers Problem</a></li>
+  <li><a href="#readers--writers">Readers &amp; Writers</a>
+    <ul>
+      <li><a href="#readers-설명">Readers 설명</a></li>
+      <li><a href="#writer-설명">writer 설명</a></li>
+    </ul>
+  </li>
+  <li><a href="#readers--writers-priority">Readers &amp; Writers Priority</a>
+    <ul>
+      <li><a href="#using-semaphor">Using semaphor</a></li>
+      <li><a href="#using-lock--condition-variable-solution-1">Using Lock &amp; condition Variable Solution 1</a></li>
+      <li><a href="#using-lock--condition-variable-solution-2">Using Lock &amp; condition Variable Solution 2</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="the-readerswriters-problem">The Readers/Writers Problem</h2>
+
+<p>항공기 예약 시스템을 볼 때 여러 명의 사람들이 공유 데이터를 읽을 수도 있고 여러 사람이 공유 데이터를 쓸 수 있어야 합니다. 하지만 반드시 한 명의 Writer가 공유 데이터의 값을 변경하고 있을 때는 다른 어떤 사람도 해당 데이터에 접근하면 안됩니다.</p>
+
+<ul>
+  <li>RRR(OK)</li>
+  <li>RWW(NOT-OK)</li>
+  <li>RWR(NOT-OK)</li>
+</ul>
+
+<p>이를 해결하기 위해서는 R과 W의 우선순위를 정해야합니다.</p>
+
+<ul>
+  <li>R이 W보다 우선 순위가 높다.</li>
+  <li>W이 R보다 우선 순위가 높다.</li>
+  <li>대부분의 경우 우선순위가 없는 집단은 starvation을 피하기 어렵습니다.</li>
+</ul>
+
+<h2 id="readers--writers">Readers &amp; Writers</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//READERS</span>
+<span class="n">P</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+<span class="n">readers</span><span class="o">++</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">readers</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+
+<span class="n">read</span> <span class="n">database</span>
+
+<span class="nf">P</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+<span class="n">readers</span><span class="o">--</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">readers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//WRITERS</span>
+<span class="n">P</span><span class="p">(</span><span class="n">Write</span><span class="p">);</span>
+<span class="n">write</span> <span class="n">database</span><span class="p">;</span>
+<span class="n">V</span><span class="p">(</span><span class="n">write</span><span class="p">);</span>
+</code></pre></div></div>
+<h3 id="readers-설명">Readers 설명</h3>
+
+<ol>
+  <li>reader 변수에 대해서 MUTEX한 접근이 보장되어야 합니다.  그래서 P(MUTEX)와 V(MUTEX)가 사용됩니다.</li>
+  <li>하지만 database를 읽고 있는 도중에는 MUTEX가 보장될 필요가 없습니다.</li>
+  <li>만약 reader가 맨 처음의 reader라면, P(Write)를 진행합니다. Semaphor P()는 현재 CS에 누가 들어가 있으면 기다리고, CS에 있는 Thread가 semaphor V()를 진행하면서 깨워주는 것을 기다리는 명령입니다. CS에 아무도 없다면 CS에 들어갑니다.</li>
+  <li>만약 다른 Thread가 read하려고 한다면 P(MUTEX);에서 기다리게 됩니다.</li>
+  <li>최초의 Thread가 data base를 읽고 있을 때, 다른 Thread가 따라온다면 database를 같이 읽을 수 있습니다.</li>
+  <li>마짐가 Reading Thread가 끝날 때, waiting writer가 있다면 이 중 하나를 반드시 깨워야 합니다.</li>
+</ol>
+
+<h3 id="writer-설명">writer 설명</h3>
+
+<ol>
+  <li>active writer가 있다면 뒤늦게 온 writer는 기다려야 합니다.</li>
+  <li>active reader가 있다면 writer는 기다려야 합니다.</li>
+  <li>write는 data base에 active reader와 active writer가 모두 없을 때 쓸 수 습니다.</li>
+  <li>writer가 쓰기 작업을 끝낸다면, Reader나 writer 상관 없이 하나를 깨워야 합니다.</li>
+  <li>만약 Reader가 next가 된다면,  P(write);에서 나와서  V(MUTEX);를 지나 read database를 합니다.</li>
+  <li>read database를 하는 최초의 Thread가 V(MUTEX);를 나오면 다른 Thread들은 P(MUTEX) 와  V(MUTEX)를 바로 통과해서 다같이 read database를 할 수 있습니다.</li>
+</ol>
+
+<h2 id="readers--writers-priority">Readers &amp; Writers Priority</h2>
+
+<h3 id="using-semaphor">Using semaphor</h3>
+
+<ul>
+  <li>AW : Active Writer</li>
+  <li>WW : Waiting Writer</li>
+  <li>AR : Active Reader</li>
+  <li>WR : Waiting Writer</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Readers</span>
+<span class="n">P</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">AW</span> <span class="o">+</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span> <span class="c1">//만약 기다리거나 활동중이 Writer가 있으면</span>
+    <span class="n">WR</span><span class="o">++</span><span class="p">;</span>        <span class="c1">//기다립니다.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>           <span class="c1">//만약 기다리거나 활동중이 Writer가 없으면</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">OKToRead</span><span class="p">);</span> <span class="c1">//따라 들어온 Thread도 한 번에 읽을 수 있게 미리 -1해눕니다.</span>
+    <span class="n">AR</span><span class="o">++</span><span class="p">;</span>        <span class="c1">//읽습니다.</span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>        <span class="c1">//최초의 Read가 V(MUTEX)를 진행하면 다른 Thread도 따라 들어옵니다.</span>
+<span class="n">P</span><span class="p">(</span><span class="n">OKToRead</span><span class="p">);</span>     <span class="c1">//-1 한 결과가 음수가 아니므로 따라 들어온 Thread도 동시에 read database 합니다.</span>
+
+<span class="n">read</span> <span class="n">database</span><span class="p">;</span>
+
+<span class="n">AR</span><span class="o">--</span><span class="p">;</span>            <span class="c1">//읽기를 종료합니다.</span>
+<span class="k">if</span><span class="p">(</span><span class="n">AR</span><span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span><span class="c1">//마지막 쓰레드가 끝나고 기다리고 있는 writer가 있으면</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span> <span class="c1">// 설명 1</span>
+    <span class="n">WW</span><span class="o">--</span><span class="p">;</span>        <span class="c1">// 기다리지 말고</span>
+    <span class="n">AW</span><span class="o">++</span><span class="p">;</span>        <span class="c1">// active 하라고 말합니다.</span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//writers</span>
+<span class="n">P</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">AW</span> <span class="o">+</span> <span class="n">AR</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span> <span class="c1">//만약 기다리거나 활동중인 Thread가 있으면</span>
+    <span class="n">WW</span><span class="o">++</span><span class="p">;</span>        <span class="c1">//기다립니다.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>           <span class="c1">//활동 중인게 없으면</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span> <span class="c1">// + 1</span>
+    <span class="n">AW</span><span class="o">++</span><span class="p">;</span>        <span class="c1">//활동을 시작합니다. </span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>        <span class="c1">// AW++ 했기 때문에 P(MUTEX)에서 들어와도 if(AW+AR &gt; 0)를 통과 못합니다.</span>
+<span class="n">P</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span>    <span class="c1">// - 1</span>
+
+<span class="n">Write</span> <span class="n">database</span><span class="p">;</span>
+
+<span class="n">AW</span><span class="o">--</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>     <span class="c1">// writer의 우선순위가 read보다 높기 때문에 writer 먼저</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span><span class="c1">// 설명 1</span>
+    <span class="n">AW</span><span class="o">++</span><span class="p">;</span>        <span class="c1">// Active writer를 올립니다.</span>
+    <span class="n">WW</span><span class="o">--</span><span class="p">;</span>        <span class="c1">// 기다리고 있는 writer 줄입니다.</span>
+<span class="p">}</span><span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">WR</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span><span class="c1">// 우선순위가 낮은 R은 WW가 없을 때 깨어납니다.</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">OKToRead</span><span class="p">);</span> <span class="c1">// 설명 2</span>
+    <span class="n">AR</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">WR</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">V</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>설명 1 : write가 여러번 줄 서서 들어오려고 할 수 있습니다. 이 때 미리 +1을 해두지 않으면 P를 실행할 때 OKToWrite &lt; 0인 경우가 발생해서 불필요한 wait를 할 수 있습니다. 이를 막기 위해서 미리 + 1을 해두는 부분입니다.</li>
+  <li>설명 2 : 설명 1의 과정을 reader에게도 적용하는 부분입니다.</li>
+</ol>
+
+<h3 id="using-lock--condition-variable-solution-1">Using Lock &amp; condition Variable Solution 1</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Readers</span>
+<span class="n">acquire</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+<span class="k">while</span><span class="p">(</span><span class="n">AW</span> <span class="o">+</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>   <span class="c1">// 우선순위가 더 높은 writer가 있을 때</span>
+    <span class="n">WR</span><span class="o">++</span><span class="p">;</span>             <span class="c1">// Reader는 일단 기다렸다가</span>
+    <span class="n">wait</span><span class="p">(</span><span class="n">OKToRead</span><span class="p">);</span>   <span class="c1">// 읽어도 되면</span>
+    <span class="n">WR</span><span class="o">--</span><span class="p">;</span>             <span class="c1">// wait 줄이고</span>
+<span class="p">}</span>
+<span class="n">AR</span><span class="o">++</span><span class="p">;</span>                 <span class="c1">// active로 전환</span>
+<span class="n">release</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+
+<span class="n">read</span> <span class="n">database</span><span class="p">;</span>        <span class="c1">// writer가 하나도 없으면 여러 Thread 동시에 읽기 가능</span>
+
+<span class="n">acquire</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+<span class="n">AR</span><span class="o">--</span><span class="p">;</span>                 <span class="c1">// 하나씩 끝내고</span>
+<span class="k">if</span><span class="p">(</span><span class="n">AR</span><span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span> <span class="c1">// 읽는 마지막 Thread 사라질 때 WW 있으면</span>
+    <span class="n">signal</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span><span class="c1">//  깨우기</span>
+<span class="p">}</span> 
+<span class="n">release</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//writers</span>
+<span class="n">acquire</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+<span class="k">while</span><span class="p">(</span><span class="n">AW</span> <span class="o">+</span> <span class="n">AR</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>   <span class="c1">// Active가 하나라도 있으면</span>
+    <span class="n">WW</span><span class="o">++</span><span class="p">;</span>             <span class="c1">// 기다렸다가</span>
+    <span class="n">wait</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span>  <span class="c1">// 써도 되면</span>
+    <span class="n">WW</span><span class="o">--</span><span class="p">;</span>             <span class="c1">// 기다리는거 줄이고</span>
+<span class="p">}</span>
+<span class="n">AW</span><span class="o">++</span><span class="p">;</span>                 <span class="c1">// Active 늘리기</span>
+<span class="n">release</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+
+<span class="n">Write</span> <span class="n">database</span><span class="p">;</span>       <span class="c1">// WW를 올려도 AW+AR &gt; 0은 변함이 없어서 하나만 Write 가능</span>
+
+<span class="n">acquire</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>       <span class="c1">// Just for MUTEX, Use LOCK</span>
+<span class="n">AW</span><span class="o">--</span><span class="p">;</span>                 <span class="c1">// AW를 줄이는 순간 다른 Writer 들어올 수 있음</span>
+<span class="k">if</span><span class="p">(</span> <span class="n">WW</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>          <span class="c1">// 종료할 때 WW있으면</span>
+    <span class="n">signal</span><span class="p">(</span><span class="n">OKToWrite</span><span class="p">);</span><span class="c1">// 깨우고</span>
+<span class="p">}</span><span class="k">else</span> <span class="p">{</span>               <span class="c1">// WW 없으면</span>
+    <span class="n">broadCast</span><span class="p">(</span><span class="n">OKToRead</span><span class="p">);</span> <span class="c1">// WR 모두 깨우기</span>
+<span class="p">}</span>
+<span class="n">Release</span><span class="p">(</span><span class="n">MUTEX</span><span class="p">);</span>        <span class="c1">// Just for MUTEX, Use LOCK</span>
+</code></pre></div></div>
+
+<h3 id="using-lock--condition-variable-solution-2">Using Lock &amp; condition Variable Solution 2</h3>
+
+<ol>
+  <li>i &gt; 0 : i counts number of active readers</li>
+  <li>i == 0: no one is accessing the data</li>
+  <li>i &lt; 0 : there is an active writer</li>
+</ol>
+
+<p>이정도는 이제 바로 이해할 수 있을 것입니다.</p>
+
+<p>``cpp
+acquire(MUTEX);
+while(i&lt;0){
+    wait(access);
+}
+i++;
+release(MUTEX);</p>
+
+<p>read database;</p>
+
+<p>acquire(MUTEX);
+i–;
+if(i==0){
+    signal(access);
+}
+release(MUTEX);</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```cpp
+acquire(MUTEX);
+while( i != 0){
+    wait(access);
+}
+i--;
+release(MUTEX);
+
+write database;
+
+acquire(MUTEX);
+i = 0;
+broadCast(access); //Reader와 Writer 모두 깨운다.
+release(MUTEX);
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#os" class="page__taxonomy-item" rel="tag">OS</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#os" class="page__taxonomy-item" rel="tag">OS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-16T00:00:00+09:00">June 16, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Lecture+15.+Readers-Writers-Priority%20http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-15-Readers-Writers-Prioritymd%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-15-Readers-Writers-Prioritymd%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fos%2FLN-15-Readers-Writers-Prioritymd%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/os/LN-11-12-Semaphor/" class="pagination--pager" title="Lecture 11.~12. Semaphor
+">Previous</a>
+    
+    
+      <a href="/os/LN-16-18-Scheduling/" class="pagination--pager" title="Lecture 16.~18. Scheduling
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

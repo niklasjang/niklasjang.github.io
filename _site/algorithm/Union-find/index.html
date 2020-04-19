@@ -1,0 +1,785 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Union-find] 유니온 파인드  - NiklasJang’s Blog</title>
+<meta name="description" content="특정 에지가 싸이클을 구성하는지 확인하는 알고리즘 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[Union-find] 유니온 파인드">
+<meta property="og:url" content="http://localhost:4000/algorithm/Union-find/">
+
+
+  <meta property="og:description" content="특정 에지가 싸이클을 구성하는지 확인하는 알고리즘 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-06T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/Union-find/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Union-find] 유니온 파인드">
+    <meta itemprop="description" content="특정 에지가 싸이클을 구성하는지 확인하는 알고리즘">
+    <meta itemprop="datePublished" content="2019-06-06T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Union-find] 유니온 파인드
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#정의">정의</a></li>
+  <li><a href="#구조">구조</a></li>
+  <li><a href="#활용">활용</a></li>
+  <li><a href="#기본적인-구현">기본적인 구현</a></li>
+  <li><a href="#find를-최적화-시킨-코드">find()를 최적화 시킨 코드</a></li>
+  <li><a href="#union을-최적화-시킨-코드">union()을 최적화 시킨 코드</a></li>
+  <li><a href="#두-원소가-속한-트리의-전체-노드의-수를-구하는-경우">두 원소가 속한 트리의 전체 노드의 수를 구하는 경우</a></li>
+  <li><a href="#참조">참조</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="정의">정의</h2>
+
+<ul>
+  <li>Disjoint-set</li>
+</ul>
+
+<p>서로 중복되지 않는 부분 집합들로 나눠진 원소들에 대해 정보를 저장하고 조작하는 자료구조입니다.</p>
+
+<p>즉, 공통 원소가 없는(<code class="language-plaintext highlighter-rouge">서로소</code>인, 상호배타적인, 교집합이 공집합인) 부분 집합들로 나눠진 원소들을 다루는 방법입니다.</p>
+
+<ul>
+  <li>Union-Find</li>
+</ul>
+
+<p>Disjoint-Set을 표현할 때 사용하는 알고리즘 입니다.</p>
+
+<h2 id="구조">구조</h2>
+
+<p>집합을 구현하는데 벡터, 배열, 연결 리스트 등을 이용할 수 있으나 그 중 가장 효율적인 방법은 <code class="language-plaintext highlighter-rouge">트리</code>를 사용하는 것입니다. <strong>이유는 다른 구조보다 아래의 연산을 진행하는데 더 적은 시간복잡도가 소요되기 때문입니다.</strong> Union-find는 Disjoint-set을 표현하기 위해서 아래 3개의 연산을 사용합니다.</p>
+
+<ul>
+  <li>make-set(x)
+초기화를 진행합니다. x를 유일한 원소로 하는 새로운 집합을 만듭니다.</li>
+  <li>union(x,y)
+합하는 연산입니다. x가 속한 집합과 y가 속한 집합을 합칩니다. <code class="language-plaintext highlighter-rouge">시간복잡도</code>는 $O(N)$보다 작습니다. 한쪽 트리를 구성하는 노드들을 다른 한쪽 트리의 구성원으로 넣는 연산을 진행하며 됩니다. 처음부터 두 개의 트리를 다시 만드는 것이 아닙니다.</li>
+  <li>find(x)
+x가 속한 집합의 대표값(Root 노드)을 반환합니다. 즉, x가 어떤 집합에 속해있는지 찾는 연산입니다. 밑에 있는 코드와 설명을 보면 알게되겠지만 <strong>find 함수의 시간 복잡도에 의해서 전체의 시간 복잡도가 결정됩니다.</strong></li>
+</ul>
+
+<p><img src="/assets/images/algorithm/union-find-1.jpg" alt="union-find-1" /></p>
+
+<h2 id="활용">활용</h2>
+
+<ul>
+  <li>
+    <p>에지 싸이클 판단
+Kruskal 알고리즘에서 그리디 탐색으로 최저 가중치를 가지는 에지를 Minimum spanning tree에 추가할 수 있는지 여부를 판별할 때, 싸이클이 생기는지를 판단해야합니다. 이때 union-find가 사용됩니다. 새로 추가하려는 에지의 양 끝 노드의 최고 루트가 같다면 이미 이어져있는 두 노드를 다시 연결하려는 꼴이 되는 것입니다.</p>
+  </li>
+  <li>
+    <p>같은 네트워크에 속해있는가?</p>
+  </li>
+  <li>
+    <p>특정 연산에 대해서 결과가 닫혀있는가? 등등</p>
+  </li>
+</ul>
+
+<h2 id="기본적인-구현">기본적인 구현</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//트리 생성</span>
+<span class="kt">int</span> <span class="n">root</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+
+<span class="c1">//초기화 : 각 노드의 루트는 자신</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+<span class="cm">/* find(x): 재귀 이용 */</span>
+<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 루트 노드는 부모 노드 번호로 자기 자신을 가진다.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// 각 노드의 부모 노드를 찾아 올라간다.</span>
+        <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* union(x, y) */</span>
+<span class="kt">void</span> <span class="nf">union</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="c1">// 각 원소가 속한 트리의 루트 노드를 찾는다.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+    <span class="n">root</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>코드를 보면 x가 포함되 union의 leaf에 y의 root를 연결시키는 것이 아니라, 그저 y의 root를 x가 포함된 union의 root로 만드는 것뿐임을 알 수 있습니다. 쉽고, 확실하게 특정 노드의 root를 바꿀 수 있는 방법입니다. Union A와 Union B에는 각 노드가 a개 b개 들어있다고 생각해보겠습니다. a&lt;=b를 만족하는 상황에서 A와 B를 합치기 위해서는 더 적은 수의 노드가 들어있는 A의 노드들의 Root를 Union B의 Root로 교체하는 O(a)의 연산이 필요합니다. a&lt;=b를 만족하면서 가장 a가 큰 경우는 a+b일 때 a = N/2 이므로 시간복잡도 O(N/2)가 걸립니다.</p>
+
+<p>하지만 이렇게 하면 모든 union(x,y)의 연산이 반복되어서 결국 모든 노드를 1 &lt;- 2 &lt;- 3 &lt;- 4  &lt;- 5  &lt;-6 과 같이 일렬로 만든다면 연결 리스트의 형태가 됩니다. 이는 아래와 같은 문제점을 가집니다.</p>
+
+<ul>
+  <li>트리의 높이가 최대가 된다. 따라서 특정 노드의 find()함수의 시간복잡도가 $O(N)$이 될 수 있다.</li>
+</ul>
+
+<p>1 &lt;- 2 &lt;- 3 &lt;- 4  &lt;- 5  &lt;-6 는 결국 2~6의 루트가 1임을 알고 싶은데, 이를 알 수 있는 자료구조를 쉽게(위의 코드처럼) 구현하다보니 생긴 문제입니다. 이런 연결 리스트처럼 생긴 긴 트리가 아니라 <strong>짧고 넓은</strong>트리의 형태로 만들어도 결국 모든 노드의 Root를 빠르게 찾을 수 있습니다. 결국 트리가 저장되는 구조는 배열이기 때문에 가로로 넓어지는 것은 전혀 상관이 없습니다.</p>
+
+<p><img src="/assets/images/algorithm/union-find-2.jpg" alt="union-find-2" /></p>
+
+<p>이 경우 Find()함수의 시간 복잡도를 $O(logN)$으로 줄일 수 있습니다.</p>
+
+<h2 id="find를-최적화-시킨-코드">find()를 최적화 시킨 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/* 초기화 */</span>
+<span class="kt">int</span> <span class="n">root</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">root</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* find(x): 재귀 이용 */</span>
+<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="c1">// "경로 압축(Path Compression)"</span>
+      <span class="c1">// find 하면서 만난 모든 값의 부모 노드를 root로 만든다.</span>
+      <span class="k">return</span> <span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>제 입장에서는 코드가 신기합니다. return에서 find()함수를 호출합니다. 이 호출은 root[x]==x까지 계속되다가 x의 최종 Root를 return 하겠지요. 다음으로 root[x]에 바로 최상이 Root를 대입시켜서 <code class="language-plaintext highlighter-rouge">가로로 긴 트리</code>를 만듭니다. 그리고 대입 연산의 결과 = 의 오른쪽에 있는 값이 최종적으로 return 됩니다. C++ 재밌네요!</p>
+
+<h2 id="union을-최적화-시킨-코드">union()을 최적화 시킨 코드</h2>
+
+<ol>
+  <li><strong>union-by-rank</strong>(union-by-height)</li>
+  <li>rank에 트리의 높이를 저장한다.</li>
+  <li>항상 높이가 더 낮은 트리를 높은 트리 밑에 넣는다.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/* 초기화 */</span>
+<span class="kt">int</span> <span class="n">root</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">rank</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span> <span class="c1">// 트리의 높이를 저장할 배열</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">root</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 트리의 높이 초기화</span>
+<span class="p">}</span>
+
+<span class="cm">/* find(x): 재귀 이용 */</span>
+<span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 동일</span>
+<span class="p">}</span>
+
+<span class="cm">/* union1(x, y): union-by-rank 최적화 */</span>
+<span class="kt">void</span> <span class="nf">union</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+   <span class="n">y</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+   <span class="c1">// 두 값의 root가 같으면(이미 같은 트리) 합치지 않는다.</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+     <span class="k">return</span><span class="p">;</span>
+
+   <span class="c1">// "union-by-rank 최적화"</span>
+   <span class="c1">// 항상 높이가 더 낮은 트리를 높이가 높은 트리 밑에 넣는다. 즉, 높이가 더 높은 쪽을 root로 삼음</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">rank</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+     <span class="n">root</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="c1">// x의 root를 y로 변경</span>
+   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+     <span class="n">root</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// y의 root를 x로 변경</span>
+
+     <span class="k">if</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">rank</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+       <span class="n">rank</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 만약 높이가 같다면 합친 후 (x의 높이 + 1)</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="두-원소가-속한-트리의-전체-노드의-수를-구하는-경우">두 원소가 속한 트리의 전체 노드의 수를 구하는 경우</h2>
+
+<p>이런 아이디어가 있다. 정도로 보고 넘어갑니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/* union2(x, y): 두 원소가 속한 트리의 전체 노드의 수 구하기 */</span>
+<span class="kt">int</span> <span class="n">nodeCount</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+   <span class="n">nodeCount</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">union2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+   <span class="n">y</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+   <span class="c1">// 두 값의 root가 같지 않으면</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">root</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// y의 root를 x로 변경</span>
+       <span class="n">nodeCount</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">nodeCount</span><span class="p">[</span><span class="n">y</span><span class="p">];</span> <span class="c1">// x의 node 수에 y의 node 수를 더한다.</span>
+       <span class="n">nodeCount</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// x에 붙은 y의 node 수는 1로 초기화</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">nodeCount</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="c1">// 가장 root의 node 수 반환</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="참조">참조</h2>
+
+<ol>
+  <li><a href="https://gmlwjd9405.github.io/2018/08/31/algorithm-union-find.html">gmlwjd9405.github.io</a></li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#cycle" class="page__taxonomy-item" rel="tag">Cycle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#kruskal" class="page__taxonomy-item" rel="tag">Kruskal</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#mst" class="page__taxonomy-item" rel="tag">MST</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#union-find" class="page__taxonomy-item" rel="tag">Union-find</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-06T00:00:00+09:00">June 6, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BUnion-find%5D+%EC%9C%A0%EB%8B%88%EC%98%A8+%ED%8C%8C%EC%9D%B8%EB%93%9C+%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FUnion-find%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FUnion-find%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FUnion-find%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/Kruskal/" class="pagination--pager" title="[Kruskal] 크루스칼 최소신장트리
+">Previous</a>
+    
+    
+      <a href="/algorithm/Mimimum-spanning-tree/" class="pagination--pager" title="[최소 신장 트리] Mimimum spanning tree
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

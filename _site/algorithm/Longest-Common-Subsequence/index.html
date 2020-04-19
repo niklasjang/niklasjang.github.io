@@ -1,0 +1,738 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[LCS] 최장 공통 부분 서열  - NiklasJang’s Blog</title>
+<meta name="description" content="Longest Common Subsequence ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[LCS] 최장 공통 부분 서열">
+<meta property="og:url" content="http://localhost:4000/algorithm/Longest-Common-Subsequence/">
+
+
+  <meta property="og:description" content="Longest Common Subsequence ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-02T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/Longest-Common-Subsequence/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[LCS] 최장 공통 부분 서열">
+    <meta itemprop="description" content="Longest Common Subsequence">
+    <meta itemprop="datePublished" content="2019-06-02T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[LCS] 최장 공통 부분 서열
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#정의">정의</a></li>
+  <li><a href="#알고리즘">알고리즘</a>
+    <ul>
+      <li><a href="#완전-탐색">완전 탐색</a></li>
+      <li><a href="#dp">DP</a></li>
+    </ul>
+  </li>
+  <li><a href="#시간복잡도">시간복잡도</a></li>
+  <li><a href="#코드--dp">코드 : DP</a></li>
+  <li><a href="#코드--recursive">코드 : Recursive</a></li>
+  <li><a href="#비슷한-문제--금화-모으기">비슷한 문제 : 금화 모으기</a></li>
+  <li><a href="#금화-모으기-코드">금화 모으기 코드</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="정의">정의</h2>
+
+<ul>
+  <li>
+    <p>부분 서열 (subsequence) : 주어진 서열에서 0개, 또는 그 이상의 글자를 지워서 얻을 수 있는 서열</p>
+  </li>
+  <li>
+    <p>공통 부분 서열 (common subsequence) : 두 서열이 주어졌을 때, 두 서열에 공통인 부분 서열</p>
+  </li>
+  <li>
+    <p>최장 공통 부분 서열 (LCS) : 공통 부분 서열 중 가장 길이가 긴 것</p>
+  </li>
+</ul>
+
+<h2 id="알고리즘">알고리즘</h2>
+
+<h3 id="완전-탐색">완전 탐색</h3>
+
+<p>길이가 $N$인 서열은 $2^{N}$개의 부분 서열이 존재한다. 각 문자가 들어가고 안들어갈 수 있는 경우 두 가지가 있기 때문이다.</p>
+
+<h3 id="dp">DP</h3>
+
+<p>만약 두 문자열의 길이가 1이라면, 두 문자가 같을 때 LCS의 길이는 1이고 두 문자가 다를 때 0이다.</p>
+
+<p>두 문자열의 길이가 1 이상일 때는 마지막에 덧붙히는 문자에 따라서 LCS의 결과가 달라진다. A 문자열에서 i 번째까지 B 문자열에서 j까지 비교해서 현재까지 얻은 LCS에서
+각각 i+1와 j+1번째의 문자를 붙힐 때, 이 두 문자가 같으면 LCS가 +1되고 아니라면 그대로 남는다.</p>
+
+<p><img src="/assets/images/algorithm/lcs-1.jpg" alt="lcs1" /></p>
+
+<p>위 그림은 DP 테이블입니다. 각 칸은 A문자열에서 0~i번째까지 문자열과 B문자열에서 0~j까지 문자열의 LCS의 길이를 의미합니다. 지금 0으로 적힌 부분은 모두 ‘\0’ 널문자와의 LCS의 길이가 0이기 때문에 0으로 표기했습니다. ‘\0’을 넣은 것은 DP 테이블 전체에 대해서 아래에서 설명할 알고리즘을 일관되게 적용하기 위함입니다.</p>
+
+<p><img src="/assets/images/algorithm/lcs-2.jpg" alt="lcs2" /></p>
+
+<p>위 그림은 DP 테이블을 채운 형태입니다. 채우는 알고리즘은 오른쪽에 그려져있는 1,2,3,4를 보면 나와있습니다.</p>
+
+<ol>
+  <li>1번에 적혀있는 숫자를 4번으로 옮기는 경우에는 +1을 합니다.</li>
+  <li>1번의 경우는 마지막에 덧붙힌 두 문자가 서로 같은 경우입니다.</li>
+  <li>1.~2.번이 실패할 경우 2번과 3번 중 큰 값을 4번에 적습니다.</li>
+  <li>0이 아닌 모든 숫자를 적는 경우에 대해서 1,2,3 중 어느 방향의 값을 보고 4번의 값을 적었는지 화살표로 표시해둡니다. 이 화살표는 LCS의 길이를 구한 후 LCS가 어떤 문자들로 구성되는지 확인할 때 사용합니다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/lcs-3.jpg" alt="lcs3" /></p>
+
+<p>이 사진은 4.번에서 그려분 화살표를 보고 LCS를 구성하는 문자가 “iter”임을 찾은 모습입니다. 화살표를 따라가면서 1.~2.번 알고리즘에 의해서 숫자가 커진 곳을 찾습니다. 해당 칸의 row와 col을 보면 <strong>이번 비교에서 추가된 문자가 같음</strong>을 확인할 수 있습니다. 이러한 방식으로 LCS를 구성하는 문자들을 뒤에서부터 찾을 수 있습니다.</p>
+
+<h2 id="시간복잡도">시간복잡도</h2>
+
+<p>D[i][j]를 구하기 위해서는 세 값 D[i-1][j], D[i][j-1],D[i-1][j-1]을 구해야 하고, 셋 중에 제일 큰 값을 구해야 하므로 O(1) 시간. 이 비교를 두 문자열의 길이의 곱만큼 진행하므로
+$O(|T1||T2|)$시간.</p>
+
+<h2 id="코드--dp">코드 : DP</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//두 문자열과 두 문자열의 길이를 Param으로 전달</span>
+<span class="kt">int</span> <span class="nf">lcs</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="c1">//L은 LCS를 의미함</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="코드--recursive">코드 : Recursive</h2>
+
+<p>Recursive로 푸는 경우 이미 구한 칸의 답을 다시 구하는 경우가 존재하므로 DP로 푸는 것이 최적입니다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;string&gt;
+</span><span class="kt">int</span> <span class="nf">lcs</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">Y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">lcs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">lcs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">lcs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">X</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"AGGTAB"</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">Y</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"GXTXAYB"</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">Y</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Length of LCS is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">lcs</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="비슷한-문제--금화-모으기">비슷한 문제 : 금화 모으기</h2>
+
+<p><img src="/assets/images/algorithm/lcs-4.jpg" alt="lcs4" /></p>
+
+<p>위 알고리즘이 3칸의 값을 확인했다면, 금화 모으기 문제는 왼쪽과 아래의 두 칸의 정보만 확인합니다. 그리고 현재의 칸에 금화가 있다면 <em>두 값의 최대값+1</em> 없다면 그냥 <em>두 값의 최대값</em>을 적습니다.</p>
+
+<ul>
+  <li>if (i, j)에 금화 : D[i][j] = max(D[i-1][j], D[i][j-1]) + 1</li>
+  <li>if (i, j)에 금화 : D[i][j] = max(D[i-1][j], D[i][j-1]) + 0</li>
+</ul>
+
+<h2 id="금화-모으기-코드">금화 모으기 코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">coins</span><span class="p">;</span>
+  <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span> <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+  <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+  <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+  <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span> <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+  <span class="n">coins</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+  <span class="kt">int</span> <span class="n">m</span><span class="p">[</span><span class="mi">9</span><span class="p">][</span><span class="mi">9</span><span class="p">];</span> <span class="c1">//</span>
+  <span class="kt">int</span> <span class="n">D</span><span class="p">[</span><span class="mi">9</span><span class="p">][</span><span class="mi">9</span><span class="p">];</span>
+
+  <span class="c1">//배열 초기화</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">//모든 코인의 위치 저장</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">c</span><span class="o">:</span> <span class="n">coins</span><span class="p">){</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">c</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+
+  <span class="c1">//DP 테이블 채우기</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+     <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+  
+  <span class="c1">//최우상단 값 출력</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">D</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">8</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#dp" class="page__taxonomy-item" rel="tag">DP</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#lcs" class="page__taxonomy-item" rel="tag">LCS</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-02T00:00:00+09:00">June 2, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BLCS%5D+%EC%B5%9C%EC%9E%A5+%EA%B3%B5%ED%86%B5+%EB%B6%80%EB%B6%84+%EC%84%9C%EC%97%B4+%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FLongest-Common-Subsequence%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FLongest-Common-Subsequence%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FLongest-Common-Subsequence%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/Edit-Distance/" class="pagination--pager" title="[Edit distance] 편집거리
+">Previous</a>
+    
+    
+      <a href="/algorithm/Maximum-Square/" class="pagination--pager" title="[Idea] Maximum Square 구하기
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

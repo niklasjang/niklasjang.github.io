@@ -1,0 +1,667 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[모듈러 역원] 나머지 연산의 곱셈의 역원 - NiklasJang’s Blog</title>
+<meta name="description" content="나눗셈은 곱셈의 역원을 구하는 과정 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[모듈러 역원] 나머지 연산의 곱셈의 역원">
+<meta property="og:url" content="http://localhost:4000/algorithm/Identity-Element/">
+
+
+  <meta property="og:description" content="나눗셈은 곱셈의 역원을 구하는 과정 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-07-22T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/Identity-Element/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[모듈러 역원] 나머지 연산의 곱셈의 역원">
+    <meta itemprop="description" content="나눗셈은 곱셈의 역원을 구하는 과정">
+    <meta itemprop="datePublished" content="2019-07-22T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[모듈러 역원] 나머지 연산의 곱셈의 역원
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#항등원">항등원</a></li>
+  <li><a href="#곱셈의-역원">곱셈의 역원</a></li>
+  <li><a href="#나머지-연산의-곱셈의-역원--정의">나머지 연산의 곱셈의 역원 : 정의</a></li>
+  <li><a href="#나머지-연산의-곱셈의-역원--특징">나머지 연산의 곱셈의 역원 : 특징</a></li>
+  <li><a href="#나머지-연산의-곱셈의-역원--구하는-방법">나머지 연산의 곱셈의 역원 : 구하는 방법</a></li>
+  <li><a href="#나머지-연산의-곱셈의-역원--예시-1">나머지 연산의 곱셈의 역원 : 예시 1</a></li>
+  <li><a href="#나머지-연산의-곱셈의-역원--예시-2">나머지 연산의 곱셈의 역원 : 예시 2</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="항등원">항등원</h2>
+
+<p>항등원이란 집합 내의 어떤 원소와 어떤 연산을 취해도 자기 자신이 되게 하는 원소를 말한다.</p>
+
+<pre><code class="language-txt">집합 S와 S에 대해 닫혀 있는 이항연산 *로 이루어진 마그마 (S, *)가 주어졌을 때,  
+  
+S의 모든 원소 a에 대해 eL * a = a가 성립한다면, eL을 좌항등원이라 한다.  
+S의 모든 원소 a에 대해 a * eR = a가 성립한다면, eR을 우항등원이라 한다.  
+만약 좌항등원과 우항등원이 같다면, e = eL = eR을 항등원이라 한다.  
+</code></pre>
+
+<p>일반적으로 a의 곱셈의 항등원은 1이다. a * 1 = a 이기 때문이다.</p>
+
+<h2 id="곱셈의-역원">곱셈의 역원</h2>
+
+<p>어떤 수의 곱셈의 역원은  그 수와 곱하면 곱셈의 항등원이 되는 수를 말한다.</p>
+
+<p>일반적으로 a의 곱셈의 역원은 1/a이다. a * (1/a) = 1이기 때문이다.</p>
+
+<h2 id="나머지-연산의-곱셈의-역원--정의">나머지 연산의 곱셈의 역원 : 정의</h2>
+
+<p>(a/b) % m을 구하고 싶은데 이를 +,-,x와 같은 방식으로 정의하기에는 일관된 결과를 기대할 수 없습니다.</p>
+
+<p><a href="/assets/images/algorithm/modular-1.jpg">modular</a></p>
+
+<p>많이 고민해보았는데, 나머지 연산의 곱셈의 역원을 위에서 설명한 항등원과 역원의 개념으로 이해하면 너무 복잡해집니다.</p>
+
+<p>따라서 나머지 연산의 곱셈의 역원인 $a_{-1}$을 또 다른 하나의 정의라고 생각합니다.</p>
+
+<p><strong>$a * a^{-1} \equiv 1 (mod m), 양 변은 modular 연산에 의한 결과가 같다.$</strong> 또는 <strong>$a * a^{-1} (mod m) = 1$</strong></p>
+
+<h2 id="나머지-연산의-곱셈의-역원--특징">나머지 연산의 곱셈의 역원 : 특징</h2>
+
+<p>(a/b) mod m을 구하고 싶을 때, b과 m이 서로소인 경우에만 정의가 됩니다??? 만약 b와 m이 서로소가 아닌 경우, 예를 들어서 배수 관계인 경우</p>
+
+<ol>
+  <li>$a/b mod m \equiv x$</li>
+  <li>$a/b = x (mod m)$</li>
+  <li>$a = bx (mod m)$</li>
+  <li>$a = 0$</li>
+</ol>
+
+<p>즉, a가 0인 경우에만 성립하여 나머지 연산을 진행하는 것이 의미가 없어집니다.  $0 % m = 0$이니까요.</p>
+
+<h2 id="나머지-연산의-곱셈의-역원--구하는-방법">나머지 연산의 곱셈의 역원 : 구하는 방법</h2>
+
+<p>[한 번 보기]<a href="https://ko.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/modular-inverses">https://ko.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/modular-inverses</a></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>0에서 m까지의 i에 대해서 $a * i (mod m) == 1$을 만족하는 i가 a (mod m)의 모듈러 역수입니다.</li>
+  <li>$a^{-1} \equiv x (mod m)$</li>
+</ol>
+
+<h2 id="나머지-연산의-곱셈의-역원--예시-1">나머지 연산의 곱셈의 역원 : 예시 1</h2>
+
+<p>a =3, m = 7일 때 (1/3) mod 7을 구하고 싶습니다. 이 값을 x라고 하겠습니다.</p>
+
+<p>$1/3 mod 7 = x$<br />
+$1/3 \equiv x (mod 7)$<br />
+$1 \equiv 3x (mod 7)$</p>
+
+<p>x = 5일 때 3 * 5 (mod 7) = 1이므로 <strong>3의 모듈러 역수</strong> x는 5가 됩니다.</p>
+
+<h2 id="나머지-연산의-곱셈의-역원--예시-2">나머지 연산의 곱셈의 역원 : 예시 2</h2>
+
+<p>a =3, m = 7일 때 (1/3) mod 7을 구하고 싶습니다. 이 값을 x라고 하겠습니다.</p>
+
+<p>$1/3 mod 7 = x$<br />
+$1/3 \equiv x (mod 7)$<br />
+$1 \equiv 3x (mod 7)$</p>
+
+<p>x = 5일 때 3 * 5 (mod 7) = 1이므로 <strong>3의 모듈러 역수</strong> x는 5가 됩니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#identical-element" class="page__taxonomy-item" rel="tag">Identical-Element</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#inverse" class="page__taxonomy-item" rel="tag">Inverse</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-07-22T00:00:00+09:00">July 22, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%AA%A8%EB%93%88%EB%9F%AC+%EC%97%AD%EC%9B%90%5D+%EB%82%98%EB%A8%B8%EC%A7%80+%EC%97%B0%EC%82%B0%EC%9D%98+%EA%B3%B1%EC%85%88%EC%9D%98+%EC%97%AD%EC%9B%90%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FIdentity-Element%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FIdentity-Element%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FIdentity-Element%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/Extended-Euclidean-Algorithm/" class="pagination--pager" title="[확장 유클리드 알고리즘]
+">Previous</a>
+    
+    
+      <a href="/algorithm/GCD-LCM/" class="pagination--pager" title="[GCD, LCM]최대 공약수, 최소 공배수
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

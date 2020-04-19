@@ -1,0 +1,673 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Convex Hull] 컨벡스 헐  - NiklasJang’s Blog</title>
+<meta name="description" content="CCW를 사용한 구현 ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[Convex Hull] 컨벡스 헐">
+<meta property="og:url" content="http://localhost:4000/algorithm/Convex-Hull/">
+
+
+  <meta property="og:description" content="CCW를 사용한 구현 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-08T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/Convex-Hull/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Convex Hull] 컨벡스 헐">
+    <meta itemprop="description" content="CCW를 사용한 구현">
+    <meta itemprop="datePublished" content="2019-06-08T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Convex Hull] 컨벡스 헐
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#목적">목적</a></li>
+  <li><a href="#동작-원리">동작 원리</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="목적">목적</h2>
+
+<p>모든 노드들을 감싸는 가장 작은 볼록 다각형을 구한다.</p>
+
+<h2 id="동작-원리">동작 원리</h2>
+
+<p><img src="/assets/images/algorithm/convex-hull-1.jpg" alt="convex-hull-1" /><br />
+하나의 기준 노드를 설정한다. 보통 y축 좌표가 가장 낮은 점(1번 노드)을 선택한다.</p>
+
+<p><img src="/assets/images/algorithm/convex-hull-2.jpg" alt="convex-hull-2" /><br />
+가장 선택한 가장 낮은 점을 기준으로 그린 x축에 대해서 각이 작은 순서대로 정렬한다.</p>
+
+<p><img src="/assets/images/algorithm/convex-hull-3.jpg" alt="convex-hull-3" /><br />
+정렬된 노드들 중 1번과 2번은 항상 Convex-hull의 구성요소가 된다. 모든 노드들을 감싸는 가장 작은 볼록다각형의 정의를 가지므로, convex-hull은 1번과 2번을 반드시 포함한다. convex-hull을 구할 때 노드A에서 노드B로 가는 에지를 생각하기 보다는 어떤 노드가 convex-hull을 구성하기 위해서 사용되는지 여부를 판단한다고 생각하면 된다.</p>
+
+<p>convex-hull을 구성하는 모든 노드들을 stack 넣을 것이다. 위 그림에서 가로로 긴 파란 사각형은 stack을 의미한다. 가장 위의 stack에서 몇 개의 노드를 뺀 상태가 그 아래의 파란 stack이고, 다시 몇 개의 노드를 넣은 모습이 가장 아래의 파란 stack이다. 파란 사각형의 왼쪽이 Bottom이고 가장 오른쪽을 stack의 top 이 가리키고 있다.</p>
+
+<p>다음으로는 아래의 연산을 진행한다.</p>
+
+<ol>
+  <li>stack에서 가장 top에 있는 두 개의 값을 꺼내서 First와 Second로  설정한다.</li>
+  <li>그리고 아직 Stack에 들어간 적이 없는 가장 작은 노드를 Next로 설정한다.</li>
+  <li>First에서 Second로, Second에서 Next로 가는 두 개의 에지에 대해서 CCW를 적용한다. 결과가 양수(좌회전)이면 First,Second,Next를 모두 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-4.jpg" alt="convex-hull-4" /></p>
+
+<ol>
+  <li>Stack에서 가장 top에 있는 두 개를 꺼내서 First와 Second로 설정했다. 현재 Stack에는 1만 남아있다.</li>
+  <li>아직 Stack에 들어간 적이 없는 가장 작은 노드 4번을 Next로 설정한다.</li>
+  <li>CCW의 결과가 좌회전이므로 2,3,4를 모두 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-5.jpg" alt="convex-hull-5" /></p>
+
+<ol>
+  <li>Stack에서 3과 4를 꺼내서 각각 first와 Second로 설정한다.</li>
+  <li>아직 Stack에 들어간 적이 없는 가장 작은 노드 5를 Next로 설정한다.</li>
+  <li>CCW의 결과 우회전하므로 First는 Stack에 넣고, Second는 버린다.</li>
+  <li>Next는 아직 Stack에 들어간 적이 없다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-6.jpg" alt="convex-hull-6" /></p>
+
+<ol>
+  <li>Stack에서 2와 3을 꺼내서 각각 First와 Second로 설정한다.</li>
+  <li>아직 Stack에 들어간 적이 없는 가장 작은 노드 5번을 Next로 설정한다.</li>
+  <li>CCW의 결과가 양수이므로 따라서 2,3,5를 모두 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-7.jpg" alt="convex-hull-7" /></p>
+
+<ol>
+  <li>앞에서와 같이 CCW의 결과가 양수이므로 3,5,6을 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-8.jpg" alt="convex-hull-8" /></p>
+
+<ol>
+  <li>CCW의 결과가 음수이므로 First만 Stack에 넣는다. Second는 버린다.</li>
+  <li>7은 아직 Stack에 들어간 적이 없다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-9.jpg" alt="convex-hull-9" /></p>
+
+<ol>
+  <li>앞에서와 같이 CCW의 결과가 양수이므로  3,5,7을 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-10.jpg" alt="convex-hull-10" /></p>
+
+<ol>
+  <li>앞에서와 같이 CCW의 결과가 양수이므로 5,7, 8을 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-11.jpg" alt="convex-hull-11" /></p>
+
+<ol>
+  <li>앞에서와 같이 CCW의 결과가 양수이므로 7,8,9을 Stack에 넣는다.</li>
+</ol>
+
+<p><img src="/assets/images/algorithm/convex-hull-12.jpg" alt="convex-hull-12" /></p>
+
+<ol>
+  <li>앞에서와 같이 CCW의 결과가 양수이므로 8,9,1을 Stack에 넣는다.</li>
+  <li>
+    <p>첫 번쨰 노드는 처음에 넣고 시작했으므로 첫 번째 노드를 넣는 순간을 감지해서 알고리즘을 종료한다. 
+<img src="/assets/images/algorithm/convex-hull-13.jpg" alt="convex-hull-13" /></p>
+  </li>
+  <li>Stack에 들어있는 노드들을 모두 연결하면 Convex-hull이 된다. 그림에서는 Bottom에서 Top으로 화살표가 이어지는데 (잘못그렸다.) 어쨌든 convex-hull에 들어가는 모든 노드들을 찾았다.</li>
+</ol>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#kruskal" class="page__taxonomy-item" rel="tag">Kruskal</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#mst" class="page__taxonomy-item" rel="tag">MST</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-08T00:00:00+09:00">June 8, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BConvex+Hull%5D+%EC%BB%A8%EB%B2%A1%EC%8A%A4+%ED%97%90+%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FConvex-Hull%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FConvex-Hull%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FConvex-Hull%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/boj/2448-Draw-Star-11/" class="pagination--pager" title="[2448] 별찍기 - 11
+">Previous</a>
+    
+    
+      <a href="/algorithm/STL-sort/" class="pagination--pager" title="[sort] 정렬
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

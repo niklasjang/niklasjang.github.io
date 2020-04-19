@@ -1,0 +1,836 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[열혈TCP/IP] 12 IO 멀티플렉싱 Multiplexing - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다. ">
+
+
+  <meta name="author" content="Niklas Jang">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="NiklasJang's Blog">
+<meta property="og:title" content="[열혈TCP/IP] 12 IO 멀티플렉싱 Multiplexing">
+<meta property="og:url" content="http://localhost:4000/ardenttcpip/chapter-12/">
+
+
+  <meta property="og:description" content="반갑습니다. niklas jang입니다. ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-01-13T00:00:00+09:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ardenttcpip/chapter-12/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="NiklasJang's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          NiklasJang's Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile0.jpg" alt="Niklas Jang" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Niklas Jang</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>뜻이 있는 곳에 길이 있다.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:niklajang@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[열혈TCP/IP] 12 IO 멀티플렉싱 Multiplexing">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2020-01-13T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[열혈TCP/IP] 12 IO 멀티플렉싱 Multiplexing
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#12-io-멀티플렉싱-multiplexing">12 IO 멀티플렉싱 Multiplexing</a>
+    <ul>
+      <li><a href="#12-2-select-함수의-이해와-서버의-구현">12-2 select 함수의 이해와 서버의 구현</a>
+        <ul>
+          <li><a href="#파일-디스크립터의-설정">파일 디스크립터의 설정</a></li>
+          <li><a href="#검사관찰의-범위지정과-타임아웃의-설정">검사(관찰)의 범위지정과 타임아웃의 설정</a></li>
+          <li><a href="#select-함수호출-이우의-결과-확인">select 함수호출 이우의 결과 확인</a></li>
+          <li><a href="#멀티플렉싱-서버의-구현">멀티플렉싱 서버의 구현</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="12-io-멀티플렉싱-multiplexing">12 IO 멀티플렉싱 Multiplexing</h1>
+
+<p>멀티프로세스 서버의 단점과 대안</p>
+
+<p>프로세스의 생성에는 상당히 많은 대가를 지불한다. 많은 양의 연산이 요구되고, 필요한 메모리 공간도 비교적 크다. 그리고 프로세스마다 별도의 메모리 공간을 유지하기 때문에 상호간에 데이터를 주고받으려면 다소 복잡한 방법을 택할 수밖에 없다. (Inter Process Communicatino ICP는 복잡한 통신방법이다) 그리고 이의 대안이 바로 멀티플렉싱이다.</p>
+
+<p>멀티플렉싱이라는 단어의 이해</p>
+
+<ul>
+  <li>하나의 통신채널을 통해서 둘 이상의 데이터(시그널)를 전송하는데 사용되는 기술</li>
+  <li>
+    <p>물리적 장치의 효율성을 높이기 위해서 최소한의 물리적 요소만 사용해서 최대한의 데이터를 전달하기 위해 사용되는 기술</p>
+  </li>
+  <li>멀티플렉싱 OFF : 종이컵-실 전화기 모델에서 각 사용자는 다른 사용자와 종이컵-실-종이컵 전화기를 한대씩 모두 연결한다.</li>
+  <li>멀티플렉싱 ON : 종이컵-실 전화기 모델에서 각 사용자가 하나씩 종이컵을 가지고 실을 한 곳으로 모아서 연결한다.</li>
+  <li>종이컵과 실이 절약되고, 여러 사람이 동시에 하나의 실로 대화하기 위해서 시분할/주파수분할의 개념이 도입도입되어야 한다.</li>
+</ul>
+
+<p>멀티플렉싱의 개념을 서버에 적용하기</p>
+
+<p>멀티플렉싱 기술을 서버에 적용하면 필요한 프로세스의 수를 줄일 수 있다. 클라이언트의 숫자와 상관없이 서버에서 서비스를 제공하는 프로세스의 수는 딱 하나이다. 이제 하나의 프로세스에서 둘 이상의 클라이언트에게 서비스를 제공하는 방법에 대해서 고민하면 된다.</p>
+
+<h2 id="12-2-select-함수의-이해와-서버의-구현">12-2 select 함수의 이해와 서버의 구현</h2>
+
+<p>select()함수를 이용하는 것이 멀티플렉싱 서버의 구현에 있어서 가장 대표적인 방법이다.</p>
+
+<p>select()함수의 기능과 호출순서</p>
+
+<p>select()함수를 사용하면 한곳에 여러 개의 fd를 모아놓고 동시에 이들을 관찰할 수 있다. 이때 관찰할 수 있는 항목은 다음과 같다.</p>
+
+<ul>
+  <li>수신한 데이터를 지니고 있는 소켓이 존재하는가?</li>
+  <li>블로킹되지 않고 데이터의 전송이 가능한 소켓은 무엇인가?</li>
+  <li>예외상황이 발생한 소켓은 무엇인가?</li>
+</ul>
+
+<p>위 3가지 항목을 각각 event라고 한다. 관찰항목에 속하는 상황이 발생했을 때, 이벤트가 발생했다라고 표현한다. 이벤트라고 표현하는 것은 매우 일반적인 표현이니 꼭 알고 있어야 한다.</p>
+
+<p>select 함수의 호출과정은 일반 함수와 비교했을 때 복잡하다.</p>
+
+<ol>
+  <li>1단계 :
+    <ol>
+      <li>파일 디스크립터의 설정</li>
+      <li>검사의 범위 지정</li>
+      <li>타입아웃의 설정</li>
+    </ol>
+  </li>
+  <li>2단계 :
+    <ol>
+      <li>select()함수의 호출</li>
+    </ol>
+  </li>
+  <li>3단계 :
+    <ol>
+      <li>호출 결과 확인</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="파일-디스크립터의-설정">파일 디스크립터의 설정</h3>
+
+<p>select 함수를 사용하면 여러 개의 fd를 동시에 관찰할 수 있다. 물론 fd의 관찰은 소켓의 관찰로 해석할 수 있다. 그렇다면 먼저 관찰하려는 fd를 모아야 한다. 모을 때도 관찰항목(수신,전송,예외)에 다라서 구분해서 모아야 한다. 즉, 1~3단계 항목별로 구분해서 세 묶음으로 모아야 한다.</p>
+
+<p>fd를 세 묶음으로 모을 때 사용되는 것이 <code class="language-plaintext highlighter-rouge">fd_set()</code>형 변수이다. 이는 0과 1로 표현되는, 비트 단위로 이뤄진 배열이라고 생각하면 된다.</p>
+
+<ul>
+  <li>fd0 fd1 fd2 fd3 …</li>
+  <li>0   1   0   1  …</li>
+</ul>
+
+<p>위 그림의 배열에서 가장 왼쪽 비트는 fd0을 나타내는 위치이다. 이 비트가 1로설정되면 fd가 관찰의 대상임을 의미한다. 위 그림에서는 1과 3이 관찰의 대상이다. fd_set형 변수의 조작은 다음 메크로 함수의 도움을 받는다.</p>
+
+<ul>
+  <li>FD_ZERO(fd_set fdset) : 인자로 전달된 주소의 fd_set형 변수의 모든 비트를 0으로 초기화한다.</li>
+  <li>FD_SET(int fd, fd_set *fdset): 매개변수 fdset으로 전달된 주소에 매개변수 fd로 전달된 파일 디스크립터 정보를 등록한다.</li>
+  <li>FD_CLR (int fd, fd_set *fdset) : 매개변수 fdset으로 전달된 주소에 매개변수 fd로 전달된 파일 디스크립터 정보를 삭제한다.</li>
+  <li>FD_ISSUE fdset(int fd, fd_set *fdset) : 매개변수 fdset으로 전달된 주소에 매개변수 fd로 전달된 파일 디스크립터 정보가 있으면 양수를 반환한다. 이는 select 함수의 호출결과를 확인하는 용도로 사용된다.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">fd_set</span> <span class="n">set</span><span class="p">;</span>        <span class="c1">//fd0 fd1 fd2 fd3</span>
+    <span class="n">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">set</span><span class="p">);</span>     <span class="c1">// 0   0   0   0</span>
+    <span class="n">FD_SET</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">set</span><span class="p">);</span>   <span class="c1">// 0   1   0   0</span>
+    <span class="n">FD_SET</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">set</span><span class="p">);</span>   <span class="c1">// 0   1   1   0</span>
+    <span class="n">FD_CLR</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">set</span><span class="p">);</span>   <span class="c1">// 0   1   0   0</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="검사관찰의-범위지정과-타임아웃의-설정">검사(관찰)의 범위지정과 타임아웃의 설정</h3>
+
+<p>select 함수는 세가지 관찰황목의 변화를 확인하는데 사용된다. 이 세가지 관찰항목별로 fd_set형 변수를 선언해서 fd 정보를 등록하고, 이 변수의 주소 값을 select()의 인자로 전달한다. 그래서 select()함수의 호출 이전에 두 가지를 설정해야 한다.</p>
+
+<ol>
+  <li>fd의 관찰 범위</li>
+  <li>select 함수의 timeout 시간</li>
+</ol>
+
+<p>fd의 값은 0부터 시작하고 하나씩 생길 때마다 1씩 증가하기 때문에 가장 큰 fd + 1를 첫 번째 인자로 전달한다.(페이지279쪽 하단) 타임아웃은 아래의 변수를 선언해서 전달한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">timeval</span><span class="p">{</span>
+    <span class="kt">long</span> <span class="n">tv_sec</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">tv_usec</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>select 함수는 관찰중인 파일 디스크립터에 변화가 생겨야 반환을 한다. 때문에 변화가 생기지 않으면 무한정 블로킹 상태에 머물게 된다. 초단위와 마이크로 초 단위 정보를 지정하고 select를 호출할 때 전달하면 된다.</p>
+
+<h3 id="select-함수호출-이우의-결과-확인">select 함수호출 이우의 결과 확인</h3>
+
+<p>select 함수의 반환값이 0이 아닌 양수가 반환이 되면, 그 수만큼 fd에 변화가 발생했음을 의미한다. 여기서의 변화는 등록된 fd에 해당 관심에 관련된 변화가 생겼음을 의미한다. 즉, select 함수의 두 번째 인자를 통해서 데이터 수신여부의 관찰대상에 포함된 fd로 수신된 데이터가 존재하는 경우가 fd에 변화가 발생한 경우이다.</p>
+
+<p>fd_set을 select의 인자로 전달했는데, 변화가 발생한 fd에 해당하는 비트는 그대로 1로 남아있고 나머지는 0으로 바뀐 것을 가지고 fd에 변화가 발생했다고 판단할 수 있다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/time.h&gt;
+#include &lt;sys/select.h&gt;
+</span>
+<span class="cp">#define BUF_SIZE 30
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">fd_set</span> <span class="n">reads</span><span class="p">,</span> <span class="n">temps</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">result</span><span class="p">,</span> <span class="n">str_len</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">BUF_SIZE</span><span class="p">];</span>
+	<span class="k">struct</span> <span class="n">timeval</span> <span class="n">timeout</span><span class="p">;</span>
+
+	<span class="n">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span>
+	<span class="n">FD_SET</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span> <span class="c1">// 0 is standard input(console)</span>
+
+	<span class="cm">/*
+	timeout.tv_sec=5;
+	timeout.tv_usec=5000;
+	*/</span>
+
+	<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">temps</span><span class="o">=</span><span class="n">reads</span><span class="p">;</span>
+		<span class="n">timeout</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+		<span class="n">timeout</span><span class="p">.</span><span class="n">tv_usec</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="n">result</span><span class="o">=</span><span class="n">select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">temps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">timeout</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">puts</span><span class="p">(</span><span class="s">"select() error!"</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">puts</span><span class="p">(</span><span class="s">"Time-out!"</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> 
+		<span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">FD_ISSET</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">temps</span><span class="p">))</span> 
+			<span class="p">{</span>
+				<span class="n">str_len</span><span class="o">=</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">BUF_SIZE</span><span class="p">);</span>
+				<span class="n">buf</span><span class="p">[</span><span class="n">str_len</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+				<span class="n">printf</span><span class="p">(</span><span class="s">"message from console: %s"</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="멀티플렉싱-서버의-구현">멀티플렉싱 서버의 구현</h3>
+
+<p>다음 예제는 멀티플렉싱 기반의 에코 서버이다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/time.h&gt;
+#include &lt;sys/select.h&gt;
+</span>
+<span class="cp">#define BUF_SIZE 100
+</span><span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">serv_sock</span><span class="p">,</span> <span class="n">clnt_sock</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_adr</span><span class="p">,</span> <span class="n">clnt_adr</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">timeval</span> <span class="n">timeout</span><span class="p">;</span>
+	<span class="n">fd_set</span> <span class="n">reads</span><span class="p">,</span> <span class="n">cpy_reads</span><span class="p">;</span>
+
+	<span class="n">socklen_t</span> <span class="n">adr_sz</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">fd_max</span><span class="p">,</span> <span class="n">str_len</span><span class="p">,</span> <span class="n">fd_num</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">BUF_SIZE</span><span class="p">];</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="o">!=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Usage : %s &lt;port&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">serv_sock</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">));</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">;</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="o">=</span><span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_ANY</span><span class="p">);</span>
+	<span class="n">serv_adr</span><span class="p">.</span><span class="n">sin_port</span><span class="o">=</span><span class="n">htons</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_adr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_adr</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"bind() error"</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="n">error_handling</span><span class="p">(</span><span class="s">"listen() error"</span><span class="p">);</span>
+
+	<span class="n">FD_ZERO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span>
+	<span class="n">FD_SET</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span>
+	<span class="n">fd_max</span><span class="o">=</span><span class="n">serv_sock</span><span class="p">;</span>
+
+	<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cpy_reads</span><span class="o">=</span><span class="n">reads</span><span class="p">;</span>
+		<span class="n">timeout</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+		<span class="n">timeout</span><span class="p">.</span><span class="n">tv_usec</span><span class="o">=</span><span class="mi">5000</span><span class="p">;</span>
+
+		<span class="k">if</span><span class="p">((</span><span class="n">fd_num</span><span class="o">=</span><span class="n">select</span><span class="p">(</span><span class="n">fd_max</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cpy_reads</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">timeout</span><span class="p">))</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
+			<span class="k">break</span><span class="p">;</span>
+		
+		<span class="k">if</span><span class="p">(</span><span class="n">fd_num</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+			<span class="k">continue</span><span class="p">;</span>
+
+		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">fd_max</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">FD_ISSET</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cpy_reads</span><span class="p">))</span>
+			<span class="p">{</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">serv_sock</span><span class="p">)</span>     <span class="c1">// connection request!</span>
+				<span class="p">{</span>
+					<span class="n">adr_sz</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">clnt_adr</span><span class="p">);</span>
+					<span class="n">clnt_sock</span><span class="o">=</span>
+						<span class="n">accept</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">clnt_adr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">adr_sz</span><span class="p">);</span>
+					<span class="n">FD_SET</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span>
+					<span class="k">if</span><span class="p">(</span><span class="n">fd_max</span><span class="o">&lt;</span><span class="n">clnt_sock</span><span class="p">)</span>
+						<span class="n">fd_max</span><span class="o">=</span><span class="n">clnt_sock</span><span class="p">;</span>
+					<span class="n">printf</span><span class="p">(</span><span class="s">"connected client: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">clnt_sock</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span>    <span class="c1">// read message!</span>
+				<span class="p">{</span>
+					<span class="n">str_len</span><span class="o">=</span><span class="n">read</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">BUF_SIZE</span><span class="p">);</span>
+					<span class="k">if</span><span class="p">(</span><span class="n">str_len</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>    <span class="c1">// close request!</span>
+					<span class="p">{</span>
+						<span class="n">FD_CLR</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reads</span><span class="p">);</span>
+						<span class="n">close</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+						<span class="n">printf</span><span class="p">(</span><span class="s">"closed client: %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span>
+					<span class="p">{</span>
+						<span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">str_len</span><span class="p">);</span>    <span class="c1">// echo!</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">close</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">fputs</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">fputc</span><span class="p">(</span><span class="sc">'\n'</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+	<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>머티플렉싱 서버에서 select 이후 FD_ISSUE를 통해서 원하는 이벤트가 들어왔는지 판단하고 이를 파싱해서 사용하는 예제이다. 책 285페이지</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ardenttcpip" class="page__taxonomy-item" rel="tag">ArdentTCPIP</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-13T00:00:00+09:00">January 13, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%97%B4%ED%98%88TCP%2FIP%5D+12+IO+%EB%A9%80%ED%8B%B0%ED%94%8C%EB%A0%89%EC%8B%B1+Multiplexing%20http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-12%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-12%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fardenttcpip%2Fchapter-12%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ardenttcpip/chapter-11/" class="pagination--pager" title="[열혈TCP/IP] 11 프로세스간 통신 Inter Process communication
+">Previous</a>
+    
+    
+      <a href="/ardenttcpip/chapter-13/" class="pagination--pager" title="[열혈TCP/IP] 13 다양한 입출력 함수들
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/dfs-0/" rel="permalink">[PS][완전탐색][DFS] Chapter 0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DFS 문제 익히기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-3/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-1/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 문제에 적용하기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ps/back-tracking-n-digit-k-decimal-2/" rel="permalink">[PS][완전탐색][N자리 K진수] Chapter 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">N자리 K진수 또 다른 접근 방법, 고른다/안고른다
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/niklasjang" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 NiklasJang's Blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

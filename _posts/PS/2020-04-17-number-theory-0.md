@@ -1,7 +1,7 @@
 ---
 title: "[PS][정수론] Chapter 0"
 excerpt: ""
-date: 2020-04-09
+date: 2020-04-17
 categories:
   - PS
 tags:

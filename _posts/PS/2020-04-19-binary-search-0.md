@@ -40,6 +40,7 @@ toc_sticky: true
 문제의 조건에 따라서 o o o o o o o x x x x x와 같이 된다/안된다의 경계가 확실한 문제는 parametric search라고 부릅니다.
 parametric search 문제는 전체가 o이거나 전체가 x인 경우의 대응을 고민해야 합니다. 이 문제해서는 아래와 같이 두 가지 방법으로 접근합니다.  
 
+
 1. maxRight와 minLeft의 초기화
 	1. 방법 1 : maxRight = -1, minLeft = n으로 초기화
 	1. 방법 2 : 문제 입력의 범위보다 작은 값과 큰 값을 배열에 넣고 m += 2를 해주면, maxRight와 minLeft의 초기화는 문제되지 않는다. 항상 입력으로 주어지는 값보다 작고, 큰 값이 들어간 채로 정렬되기 때문이다.  

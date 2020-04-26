@@ -22,7 +22,7 @@ toc_sticky: true
 
 ### [낚시왕](https://www.acmicpc.net/problem/17143)
 
-문제의 정답은 [여기](https://gist.github.com/niklasjang/6c1147b8511dc35032c2367a2bd6144a)에서 확인할 수 있습니다. 
+문제의 정답은 [여기](https://gist.github.com/niklasjang/62123bafe459e58ad0344681a7240f92)에서 확인할 수 있습니다. 
 
 1. 상어 구조체 생성하기
 1. map에 상어 배열의 index만 저장하기

@@ -923,16 +923,100 @@ var store = [{
         "url": "http://localhost:4000/database/Fundatmental-Database-3/",
         "teaser": null
       },{
+        "title": "[NNStreamer] 공개 SW 컨트리뷰톤 시작하기 ",
+        "excerpt":"발대식 공개 SW 컨트리뷰톤 2019에 참가하게 되었습니다. 삼성전자 리서치 소속의 멘토님이 이끌어주시는 NNstreamer 프로젝트에 선발되었습니다. 발대식 당일에는 20개팀 전체 200명정도 되는 멘토,멘티 그리고 관계자분들이 많이 참석하셨습니다. 태풍 링링으로 우산이 뒤집혀지는 날씨였는데도 많이 참석해주셨습니다. 현장에서는 오픈소스 장인분들이 엄청 많았습니다. 저는 잘 이해가 안되는 말도 먼저 알고 오신 멘티분들도 많았습니다. 전년도 컨트리뷰톤에서...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Setting-Up-VirtualBox/",
+        "teaser": null
+      },{
         "title": "[DB System] 2장 계속 2",
         "excerpt":"2.5 Centralized and Client/Server Architectures for DBMSs 2.5.1 Centralized DBMSs Architecture 하나의 컴퓨터 안에 DBMS, OS 모두 깔려있고 사용자는 이것을 사용하기만 하는 것을 Centrialized라고 함. 모든 유저는 단말기를 사용해서 중앙의 DBMS를 사용하는 것. 2.5.2 Basic Client/Server Architectures 서버들이 수행하는 역할을, 하나의 서버가 하나의 역할만 하도록 구분하게 되었다. File Servers, Printer...","categories": ["Database"],
         "tags": ["database"],
         "url": "http://localhost:4000/database/Fundatmental-Database-4/",
         "teaser": null
       },{
+        "title": "[NNStreamer] Gstreamer 설치 및 테스트 실행 ",
+        "excerpt":"본 포스팅은 여기를 참조합니다. Gstreamer 이해하기 Gstreamer 설치 gstreamer공식 페이지에서 설치 명령어를 찾아서 실행합니다. $ apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio development environment 구축하기 gstreamer를 사용하기 위한 환경으로는 gcc compiler와 texteditor가 있습니다. GCC란? 그리고 GNU란? GCC의 정의를 찾아보면 아래와 같이...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Installing-Gstreamer/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 1",
+        "excerpt":"본 포스팅은 여기를 참조합니다. 목표 새로운 library를 접할 때 Hello World를 찍는 것보다 더 큰 첫 인상은 없을 것입니다. 하지만 저희가 사용하려고 하는 Gstreamer는 multimedia framework이기 때문에 hello world 대신에 비디오를 실행시켜보겠습니다. 아래의 코드가 너무 많아보여도 겁먹지 마세요. 실제로 동작하는 코드는 단 4줄뿐이고, 나머지는 cleanup code 그리고 verbose에 관한 것입니다....","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-1/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 2",
+        "excerpt":"목표 이전 포스팅에서는 pipeline을 자동으로 생성했는데 이번에는 각 요소들을 instantiating하면서 manual하게 pipeline을 만들어 보겠습니다. Gstreamer 요소를 만드는 방법 각 요소를 연결하는 방법 각 요소의 behavior를 커스텀하는 방법 bus를 에러 컨디션과 메시지를 얻기 위해서 watch하는 방법 Manual Hello World //basic-tutorial-2.c #include &lt;gst/gst.h&gt; int main(int argc, char *argv[]) { GstElement *pipeline, *source,...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-2/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 3",
+        "excerpt":"본 포스팅은 여기를 참조합니다. 목표 파이프 라인을 즉석에서(on the fly) building 하는 방법에 대해서 알아봅니다. Introduction 파이프라인은 playing state가 되기 전에는 완벽하게 build된 상태가 아닙니다. 만약 playing state로 설정하지 않으면 데이터는 pipeline의 end에 도달해서 error msg를 띄우고 멈출 것입니다. 이 예제에서 우리는 container file에서 오디오와 비디오가 함께 저장된(multiplxed, muxed)된 파일을...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-3/",
+        "teaser": null
+      },{
         "title": "[DB System] 5장",
         "excerpt":"5.1.2 Characteristics of Relations Ordering of tuples in a relation r(R) 관계는 튜플들의 집합이기 때문에 원소의 순서는 중요하지 않다고 본다. {1,2,3} = {3,2,1} 따라서 ![Figure 5.2]는 동일한 표로 간주한다. attribute의 순서에 대해서 원래의 관계의 정의를 보아도 ordered list로 순서가 있는 것처럼 보여진다. 수학적 정의를 넓혀보면 어떻게 정의를 내릴 수 있냐면,...","categories": ["Database"],
         "tags": ["database"],
         "url": "http://localhost:4000/database/Fundatmental-Database-5/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 4",
+        "excerpt":"본 포스팅은 여기를 참조합니다. 목표 이번 튜토리얼에서는 시간에 관련된 facialities들을 알아봅니다. 파이프라인에게 stream position과 duration에 관련된 질문을 하는 방법 하나의 stream 안에서 다른 position을 seek(jump)하는 방법 Introduction GstQuery는 element나 pad에게 일부 정보를 요청하도록 허락하는 매커니즘입니다. 이 예제에서는 파이프라인에게 seeking을 해도 되는지 아닌지를 물어보도록 하겠습니다. seeking이 허용되지 않는 경우로는 live streams...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-4/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 5",
+        "excerpt":"본 포스팅은 여기를 참조합니다. 목표 이 튜토리얼에서는 Gstreamer에서 어떻게 GUI를 integration하는지 알아보겠습니다. 기본적으로 Gstreamer는 GUI를 사용해서 미디어의 재생을 케어합니다. 가장 흥미로운 부분은 GUI와 Gstreamer의 두 libraries가 상호작용을 하는 부분입니다. 이는 Gstreamer를 GTK+ window에 출력하도록 하고 사용자의 행동을 Gstreamer에 보냄으로서 이루어집니다. Gstreamer에게 특정한 윈도우로 비디오 출력을 보내라고 하는 방법 (Gstreamer의 window를...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-5/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] GTK+ 설치 및 이해하기 ",
+        "excerpt":"소개 GTK 또는 GIMP은 멀티 플랫폼에서 GUI를 생성하기 위한 toolkit입니다. 완전한 집합의 widgets을 지원하고 작은 프로젝트에서부터 큰 프로젝트까지 모두 커버할 수 있습니다. GTK는 C로 작성되었지만 C/C++ 뿐만 아니라 다양한 언어를 지원합니다. Perl이나 python을 사용한다면 효과적인 방법으로 어플리케이선 개발을 할 수 있을 것입니다. GTK는 GNU project의 오픈소스 프로젝트 입니다. 구조 GTK는...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gtk+"],
+        "url": "http://localhost:4000/nnstreamer/Installing-And-Understanding-GTK+/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] 첫 번째 미팅 정리",
+        "excerpt":"제일 먼저 기본적인 Building에 대해서 설명해주셨습니다. How to Build basic terminology build란? compile이란? link란? 가장 기본적인 의미는 프로그래밍 언어를 기계어로 바꾸어주는 과정입니다. 먼저 C나 java 같은 native code에서 (native/managed 코드의 자세한 구분은 후술) *.o파일을 만드는 것을 컴파일이라고 합니다. (이는 개발자가 작성한 소스코드를 binary code로 변환하는 과정을 의미합니다.) 그리고 *.o파일에서 .exe파일을...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","meeting"],
+        "url": "http://localhost:4000/nnstreamer/1st-meeting/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] NNStreamer 둘러보기 ",
+        "excerpt":"본 포스팅은 공식 Repo와 공식 Repo의 getting-started를 참조합니다. 소개 NNStreamer는 오래된 CPI와 적은 메모리 용량을 가지고 있는 컴퓨터 기반의 서버를 지원하기 위해 만들어진 오픈소스 library입니다. Gstreamer의 개발자들에게는 neural network 모델을 쉽고 효율적으로 적용할 수 있게 도와줍니다. neural network 개발자에게는 stream pipeline과 그들의 filter를 쉽고 효율적으로 관리할 수 있도록 도와줍니다. 이...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer"],
+        "url": "http://localhost:4000/nnstreamer/Understanding-NNStreamer/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] meson build tutorial ",
+        "excerpt":"https://mesonbuild.com/Tutorial.html를 참조해서 포스팅합니다. meson build system 이해하기 먼저 GTK 개발도구가 설치되어 있다는 가정하에 tutorial을 시작합니다. $ sudo apt install libgtk-3-dev $ sudo apt install meson 그리고 프로젝트 디렉토리를 만들고 소스파일과 meson.build 파일을 같은 디렉토리에 생성합니다. cd ~ mkdir meson_tutorial &amp; cd meson_tutorial gedit main.c gedit meson.build //main.c #include&lt;stdio.h&gt; int main(int...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","meson"],
+        "url": "http://localhost:4000/nnstreamer/meson-build-tutorial/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer]Smart Reply 이해하기 ",
+        "excerpt":"Demo APK 설치 여기에서 (demo APK here)를 클릭해서 APK를 받아서 설치합니다. 이 앱은 텍스트를 입력하면 적절한 대답을 생성해주는 기능을 합니다. Model 이해하기 문맥에 따라 관련있는 대답을 one-touch로 작성할 수 있도록 도와주는 기능 device 내부적으로 동작하여 인터넷 연결이 필요없다. ms 단위의 평균 latency를 가질만큼 빠르다. 메모리를 적게 먹는다. 유저 데이터를 유출하지...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","smart-reply"],
+        "url": "http://localhost:4000/nnstreamer/basic-Tflie-model-smart-reply/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 7",
+        "excerpt":"Goal How to create new threads of execution for some parts of the pipeline What is the Pad Availability How to replicate streams Introduction Multithreading GStreamer is a multithreaded framework. This means that, internally, it creates and destroys threads as it needs them, for example, to decouple streaming from the...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer","tee"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-Gstreaamer-7/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Gstreamer 기본 튜토리얼 10",
+        "excerpt":"Goal How to build and run GStreamer pipelines from the command line, without using C at all! How to find out what GStreamer elements you have available and their capabilities. How to discover the internal structure of media files. Introduction $ sudo apt install gstreamer1.0-tools This tool accepts a textual...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer","gst-launch-1.0"],
+        "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-Gstreamer-10/",
         "teaser": null
       },{
         "title": "[DB] Chapter 7.1절  ",
@@ -945,6 +1029,12 @@ var store = [{
         "excerpt":"과제 리뷰 주의! table 갯수가 n개이면 join condition은 n-1개가 반드시 나와야 합니다. 7.1.11 Discussion and Summary of SQL Queries query evaluation 순서는 FROM - WHERE - GROUP BY - HAVING - ORDER BY 순서이다. FWGAO로 외우자. 이렇게 순서가 정해진 것에는 장점과 단점이 존재합니다. 장점 : 각 사용자는 자신이 익숙한 쿼리...","categories": ["Database"],
         "tags": ["database"],
         "url": "http://localhost:4000/database/Fundatmental-Database-7/",
+        "teaser": null
+      },{
+        "title": "[NNStreamer] Style Transfer pipelie",
+        "excerpt":"nnstreamer-example/bash_script/gst-launch-object-detection-tflite.sh 먼저 nnstreamer-example/bash_script에 있는 예제부터 분석해보겠습니다. 잘 모르는 pipeline element가 있다면 여기서 찾아보았습니다. #!/usr/bin/env bash gst-launch-1.0 \\ v4l2src ! videoconvert ! videoscale ! video/x-raw,width=640,height=480,format=RGB,framerate=30/1 ! tee name=t \\ t. ! queue ! videoscale ! video/x-raw,width=300,height=300,format=RGB ! tensor_converter ! \\ tensor_transform mode=arithmetic option=typecast:float32,add:-127.5,div:127.5 ! \\ tensor_filter framework=tensorflow-lite model=tflite_model/ssd_mobilenet_v2_coco.tflite ! \\ tensor_decoder...","categories": ["NNstreamer"],
+        "tags": ["nnstreamer","gstreamer","gst-launch-1.0"],
+        "url": "http://localhost:4000/nnstreamer/Style-Transfer-Pipeline/",
         "teaser": null
       },{
         "title": "[DB] Chapter 1,2,5,6,7,10 정리 ",
@@ -987,18 +1077,6 @@ var store = [{
         "excerpt":"05 TCP 기반 서버 / 클라이언트 2 챕터 4의 마지막에 언급했던 문제는 echo_server에는 없고, echo_client에만 있다. 에코_클라는 read() 호출을 통해서 잣니이 전송한 문자열 데이터를 한방에 수신하기를 원하고 있다. 이를 문자열 데이터가 전송되었을 때 이를 모두 읽어서 출력하는 것으로 해결하면 된다. 즉, 클라가 수신해야할 데이터의 크기를 미리 알고 있기 때문에 이를...","categories": ["ArdentTCPIP"],
         "tags": [],
         "url": "http://localhost:4000/ardenttcpip/chapter-5/",
-        "teaser": null
-      },{
-        "title": "[ps][백트래킹][문제] 퇴사",
-        "excerpt":"퇴사 백트레킹 1번 개념 풀이 백트레킹 1번 개념으로만 풀어여하는 문제가 있을 수 있다. 이 문제의 경우 특정 날짜의 일을 한다 안한다의 개념이 확실하므로 1번 개념으로만 풀 수 있다. 백트레킹 0번 개념으로 풀이를 하면 어떤 일들을 할지 선택하고, 선택한 일들을 실제로 수행할 수 있는지를 판단하는 isCorrect()를 짜야한다. 그런데 이 과정이 너무...","categories": ["PS"],
-        "tags": ["ps","back-tracking","problem"],
-        "url": "http://localhost:4000/ps/back-tracking-problem-6/",
-        "teaser": null
-      },{
-        "title": "[ps][백트래킹][개념] 2차원 백트레킹(소문난 칠공주)",
-        "excerpt":"소문난 칠공주 백트레킹 2번 개념 풀이 2차원 백트레킹은 구조가 비슷해서 아래의 코드를 보면서 이해한다. [x][y]에서 항상 [x][y+1]로 이동한다고 가정한다 : 1차원 백트레킹으로 생각 recur()로 백트래킹을 호출할 때는 항상 1차원 백트래킹처럼 생각하고, 가치지기와 기저(return;)부분에서 2차원으로 바꾸는 코드를 넣는다. if (selected[i][j] &amp;&amp; !visited[i][j] &amp;&amp; dfs(i, j) != 7) return false;의 경우는 설명할...","categories": ["PS"],
-        "tags": ["ps","back-tracking","problem"],
-        "url": "http://localhost:4000/ps/back-tracking-concept-2/",
         "teaser": null
       },{
         "title": "[열혈TCP/IP] 10 멀티프로세스 기반의 서버 구현",
@@ -1115,9 +1193,171 @@ var store = [{
         "url": "http://localhost:4000/ps/back-tracking-n-digit-k-decimal-3/",
         "teaser": null
       },{
+        "title": "[PS][완전탐색][N자리 K진수] Chapter 4",
+        "excerpt":"소문난 칠공주 문제의 정답은 여기에서 확인할 수 있습니다. 이 문제는 1차원 백트레킹을 2차원으로 확장해서 적용해야하는 문제입니다. 반대로 생각하면 2차원의 입력을 1차원으로 바꿔서 생각하면 백트레킹으로 접근할 수 있게 됩니다. 일단 25개의 좌표 중에서 7개를 선택합니다. 7개 중 ‘S’가 4개 이상 선택되었는지 판단하고 7개에 대해서 connected component의 갯수가 1인지 판단합니다. 여기까지 통과하면...","categories": ["PS"],
+        "tags": ["ps","back-tracking"],
+        "url": "http://localhost:4000/ps/back-tracking-n-digit-k-decimal-4/",
+        "teaser": null
+      },{
         "title": "[PS][완전탐색][DFS] Chapter 0",
         "excerpt":"완전탐색의 두 번째 알고리즘 DFS 문제를 풀어보겠습니다. DFS는 개념은 생략하고 코드에서의 스킬을 학습하겠습니다. DFS : 코드 DFS : 기본 코드 DFS의 기본 코드는 여기에서 확인할 수 있습니다. 일반적으로는 DFS를 하나의 노드에서 시작해서 갈 수 있는 마지막 노드까지 진행합니다. DFS : 모든 DFS 경로 마지막 노드까지 진행하고 백트래킹 방식을 적용해서 또...","categories": ["PS"],
         "tags": ["ps","dfs"],
         "url": "http://localhost:4000/ps/dfs-0/",
+        "teaser": null
+      },{
+        "title": "[PS][완전탐색][DFS] Chapter 1",
+        "excerpt":"완전탐색의 두 번째 알고리즘 DFS 문제를 풀어보겠습니다. 친구 문제의 정답은 여기에서 확인할 수 있습니다. 딱 보면 bfs 문제이지만 dfs로 풀기 위해서는 방문했던 노드도 다시 방문해야합니다. 아래와 같이 싸이클이 있는 경우 5에서 3으로 방문하고, 3에서 4로 방문하면 싸이클은 모두 커버할 수 있습니다. 하지만 5 - 4 - 6으로 이어지는 6은 방문하지...","categories": ["PS"],
+        "tags": ["ps","dfs"],
+        "url": "http://localhost:4000/ps/dfs-1/",
+        "teaser": null
+      },{
+        "title": "[PS][완전탐색][DFS] Chapter 2",
+        "excerpt":"완전탐색의 두 번째 알고리즘 DFS 문제를 풀어보겠습니다. 욕심쟁이 판다 문제의 정답은 여기에서 확인할 수 있습니다. 위 링크에서 댓글에 있는 시간초과 코드부터 생각해보겠습니다. dfs는 기본적으로 모든 노드를 한 번씩만 확인하는 코드입니다. 노드를 방문할 때마다 visited를 true로 바꾸어줍니다. 만약 visted를 다시 false로 바꾸는 경우가 없다면 모든 노드를 한 번씩만 방문합니다. 그런데 위...","categories": ["PS"],
+        "tags": ["ps","dfs"],
+        "url": "http://localhost:4000/ps/dfs-2/",
+        "teaser": null
+      },{
+        "title": "[PS][완전탐색][BFS] Chapter 0",
+        "excerpt":"완전탐색의 세 번째 알고리즘 BFS 문제를 풀어보겠습니다. BFS는 개념은 생략하고 코드에서의 스킬을 학습하겠습니다. BFS : 문제 BFS는 바로 간단한 문제로 접근하겠습니다. 2차원 BFS : 기본 코드 미로 탐색 문제의 정답은 여기에서 확인할 수 있습니다. 2차원 BFS : 가지 치기 미로탐색 문제는 2차원 BFS의 기본 조건만 가지고 있는 문제라서 위 정답...","categories": ["PS"],
+        "tags": ["ps","dfs"],
+        "url": "http://localhost:4000/ps/bfs-0/",
+        "teaser": null
+      },{
+        "title": "[PS][완전탐색][BFS] Chapter 1",
+        "excerpt":"완전탐색의 세 번째 알고리즘 BFS 문제를 풀어보겠습니다. 토마토 문제의 정답은 여기에서 확인할 수 있습니다. cin으로 입력받으면 200ms 걸리고, scanf로 받으면 100ms 걸립니다. bfs를 시작할 때 1인 경우를 모두 queue에 넣고 bfs()를 진행하는 것이 핵심입니다. 자잘한 조건을 효율적으로 맞춰주는 방법을 생각해봅니다. 벽 부수고 이동하기 문제의 정답은 여기에서 확인할 수 있습니다. while(size–)를...","categories": ["PS"],
+        "tags": ["ps","dfs"],
+        "url": "http://localhost:4000/ps/bfs-1/",
+        "teaser": null
+      },{
+        "title": "[PS][시뮬레이션] Chapter 0",
+        "excerpt":"시뮬레이션입니다. 구현력을 높이는 과정이 길고 힘들 것 같습니다. 이동시키기 두 개의 배열을 사용한다. 하나는 객체 저장용, 하나는 중복 제거용. 낚시왕 문제의 정답은 여기에서 확인할 수 있습니다. 상어 구조체 생성하기 map에 상어 배열의 index만 저장하기 한 칸에 겹치는 경우는, 가장 큰 상어의 index만 하나 남기고 상어를 없애면 된다. R,C가 각각 100이고...","categories": ["PS"],
+        "tags": ["ps","simpulation"],
+        "url": "http://localhost:4000/ps/simulation-0/",
+        "teaser": null
+      },{
+        "title": "[PS][DP] Chapter 0",
+        "excerpt":"dp입니다. 쉬운 문제부터 대표적인 유형을 보겠습니다. 최대 최소 문제 최대, 최소를 구하는 문제는 그리디 혹은 DP로 접근하면 풀리는 경우가 많습니다. 1로 만들기 그리딜 접근해보면, 일단 나누기 3을 해보고 안되면 나누기 2를 해보고 안되면 1을 빼는 방법을 생각해봅니다. 하지만 이 경우는 10에서 2로 나누어 떨어지지만 9&gt;3&gt;1로 가는 것이 최소 방벙이기 때문에...","categories": ["PS"],
+        "tags": ["ps","dp"],
+        "url": "http://localhost:4000/ps/dp-0/",
+        "teaser": null
+      },{
+        "title": "[PS][정수론] Chapter 0",
+        "excerpt":"정수론 입니다. 대표적인 유형을 보겠습니다. [n! mod p]](https://www.acmicpc.net/problem/2193) 문제의 정답은 여기에서 확인할 수 있습니다. mod p는 p가 소수일 때만 가능합니다. [소인수 분해]](https://www.acmicpc.net/problem/11653) 문제의 정답은 여기에서 확인할 수 있습니다. mod p는 p가 소수일 때만 가능합니다. 두 번째 풀이 : n을 구성하는 가장 큰 소수가 x라고 할 때, i*i&lt;=n인 2부터 i까지 보면...","categories": ["PS"],
+        "tags": ["ps","dp"],
+        "url": "http://localhost:4000/ps/number-theory-0/",
+        "teaser": null
+      },{
+        "title": "[PS][Greedy] Chapter 0",
+        "excerpt":"그리디 알고리즘 입니다. 대표적인 유형을 보겠습니다. 동전 0 문제의 정답은 여기에서 확인할 수 있습니다. stack을 이용해서 가장 큰 동전부터 접근합니다. (1 ≤ Ai ≤ 1,000,000, A1 = 1, i ≥ 2인 경우에 Ai는 Ai-1의 배수) 조건에 의해서 그리디 알고리즘을 적용할 수 있습니다. 나무 자르기 문제의 정답은 여기에서 확인할 수 있습니다....","categories": ["PS"],
+        "tags": ["ps","dp"],
+        "url": "http://localhost:4000/ps/greedy-0/",
+        "teaser": null
+      },{
+        "title": "[PS][이분탐색] Chapter 0",
+        "excerpt":"그리디 알고리즘 입니다. 대표적인 유형을 보겠습니다. 숫자 카드 문제의 정답은 여기에서 확인할 수 있습니다. s = 정답이 될 가능성이 있는 시작 index. e = 정답이 될 가능성이 있는 마지막 index. 위 정의에 따라서 정답 가능성은 [s,e] 이 문제에서 정답 가능성 = 모든 숫자카드가 저장된 배열의 index if(mid == x)의 조건...","categories": ["PS"],
+        "tags": ["ps","dp"],
+        "url": "http://localhost:4000/ps/binary-search-0/",
+        "teaser": null
+      },{
+        "title": "[ML][GAN] Chapter 0",
+        "excerpt":"Goal : GAN(Generative Adversarial Networks) 개요 ML을 배울 때 처음 접하는 classification이나 image segmentation 모델은 대상을 판별(Discrimiate)라는 네트워크입니다. 이미지를 주고 개/고양이인지 여부를 판단하거나(classification) 각 픽셀이 어떤 class에 속하는지 판단(image segmentation)을 하는 네트워크 모델을 Discriminator model이라고 합니다. Discriminator(이하 D) D는 입력 데이터를 받아서 판단을 하고 출력 데이터를 내보내는 x -&gt; D(x)...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/GAN-0/",
+        "teaser": null
+      },{
+        "title": "[ML][GAN][paper] CGAN",
+        "excerpt":"Goal : CGAN 이해하기 Abstract CNN은 이미 많은 분야에서 공통적으로 사용되는 net가 되었습니다. CNN은 loss function을 최소화하는 방법을 배웁니다. 하지만 학습 과정이 매우 자동적으로 진행될 수 있음에도 사람의 수동적인 노력이 많이 수반되어야 합니다. 만약 우리가 CNN에게 유클리디안 거리를 최소화하라고 알려준다면 굉장히 blur한 이미지를 얻게 됩니다. 왜냐하면 유클리디안 거리는 가능한 모든...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/CGAN/",
+        "teaser": null
+      },{
+        "title": "[ML][CNN] Chapter 0",
+        "excerpt":"Goal : CNN Dropout 신경망의 학습 과정에서 파라미터의 동조화 현상으로 인해 overfitting이 발생하고 결과적으로 학습 효율이 떨어집니다. 이를 피하기 위한 regularization 기법으로써 dropout을 적용합니다. Dropout의 효과는 주로 fully connected layer에 적용하여 효과를 얻었습니다. max/mean pooling pooling은 sub-sampling을 통해서 feature-map의 사이즈를 줄이고, 특징을 추출할 수 있도록 해줍니다. mean pooling의 경우 depp...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/CNN-0/",
+        "teaser": null
+      },{
+        "title": "[ML][CNN] Chapter 1",
+        "excerpt":"Goal : CNN maxout maxout은 dropout의 효과를 극대화시키기 위해 독특한 형태의 활성함수를 고안한 것이라고 볼 수 있습니다. 이 수식은 다음과 같이 사용됩니다. 일반적으로 hidden layer를 그리면 1개의 layer를 그리기 마렵입니다. 위 그림에서 파란색 원을 무시하고 보면 일반적인 1 : 3 : 1 (in/hidden/out)의 fc구조입니다. 그런데 maxout 구조에서 하나의 hidden layer는...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/CNN-1/",
+        "teaser": null
+      },{
+        "title": "[ML][GAN][paper] pix2pix",
+        "excerpt":"Goal : pix2pix 이해하기 Abstract conditional adversarial net은 범용 목적의 image2image 변환 문제에 대한 해답이 될 수 있습니다. 이 네트워크는 입력 이미지에서 출력 이미지로의 mapping을 배우는 것뿐만 아니라, 이 mapping의 loss function을 배웁니다. 이 말은 단순히 training data로부터 mappipng을 배우고 암기하는 것이 아니라, loss function을 학습함으로서 새로운 데이터에 적용할 수...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/pix2pix/",
+        "teaser": null
+      },{
+        "title": "[PS][기출문제] 삼성",
+        "excerpt":"삼성 기출문제입니다. 주사위 윷놀이 문제의 정답은 여기에서 확인할 수 있습니다. map에서 같은 점수를 가진 여러 개의 node가 존재합니다. 따라서 점수별로 구분하는 것이 아니라, 노드에 임의의 idx를 부여해서 구별합니다. horse class를 만들고 겹치는지를 판단합니다. 시작 위치와 마지막 위치에서의 코너 케이스에 주의합니다. 모든 경우의 수에 대해서 백트래킹을 진행하면서 각각의 경우에 대해서 말을...","categories": ["PS"],
+        "tags": ["ps","dp"],
+        "url": "http://localhost:4000/ps/sam-sung-0/",
+        "teaser": null
+      },{
+        "title": "[정보보호이론] Chapter 1 고전암호",
+        "excerpt":"정보보호 개요 정보보호에는 세 가지 원칙이 있습니다. Confidentiality 기밀성 정보의 소유자가 원하는 대로 정보의 비밀이 유지 되어야 한다. 허가되지 않은 사용자에게 정보가 노출되서는 안된다. 반드시 인가된 자에 의해서만 접근이 가능해야 한다. Ex) 접근통제, 암호화 Integrity 무결정 허가되지 않은 사용자에 의한 정보의 변경,삭제, 생성등으로부터 보호해야한다. 이는 정보의 정확성 및 완전성이 보장되어야...","categories": ["BlockChain"],
+        "tags": ["blockcahin"],
+        "url": "http://localhost:4000/blockchain/chapter-0/",
+        "teaser": null
+      },{
+        "title": "[정보보호이론] Chapter 2 현대암호",
+        "excerpt":"단순 DES 교육용 알고리즘 8비트 평문 블럭과 10비트 키를 사용 기본함수 IP : Initial Permutation : 초기 순열 f_{k} 함수 transposition permutation : 전치 substitution : 치환 키 입력에 의존 - SW : swap : 데이터의 두 절반을 상호 교환하는 함수 - f_{k}^{-1} : 초기 순열의 역인 순열 함수 알고리즘...","categories": ["BlockChain"],
+        "tags": ["blockcahin"],
+        "url": "http://localhost:4000/blockchain/chapter-1/",
+        "teaser": null
+      },{
+        "title": "[ML][GAN][paper] InfoGan",
+        "excerpt":"Goal : InfoGAN 이해하기 요약 엔트로피와 상호정보량(mutual information)이라는 “정보이론”에서 사용하는 개념이 있습니다. 이것을 GAN에 반영하여 비지도학습만으로 데이터의 특징을 적절히 표현할 수 있다고 합니다. 예를 들어서 강아지 사진 데이터를 Info GAN에 학습시키면 당연히 기존의 GAN과 마찬가지로 이를 모방하는 샘플을 만들어냅니다. 여기에 Info GAN은 추가적으로 이 데이터들을 잘 설명할 수 있는 변수들을...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/infogan/",
+        "teaser": null
+      },{
+        "title": "[정보보호이론] Chapter 3 일방향 해시함수",
+        "excerpt":"요약 컴퓨터로 처리하는 메시지에 대해서도 지문이 있었으면 할 때가 있습니다. 이 때는 2개의 메시지가 동일한지 아닌지를 조사할 때 메시지를 직접 비교하는 것이 아니라, 메시지의 지문을 비교하여 판정합니다. 일방향 해시 함수 만약 어제의 파일과 오늘의 파일이 같은 파일인지 무결성 점검을 해야한다고 생각해봅니다. 어제의 파일 전체를 안전한 장소에 보존해두고 오늘의 파일과 비교하는...","categories": ["BlockChain"],
+        "tags": ["blockcahin"],
+        "url": "http://localhost:4000/blockchain/chapter-2/",
+        "teaser": null
+      },{
+        "title": "2020 Summer Coding 참여 기업 분석",
+        "excerpt":"2020 Summer Coding - 여름방학 스타트업 인턴 프로그램 발란 명품 최저가 사이트 OS : CenOS, Ubuntu SQL : MariaDB(SQL based) NoSQL : MongoDB(Document based), Redis(key-value based) AWS : AMI(instance를 실행할 때 필요한 정보인 image를 제공) Search Engine : ElasticSearch(data 저장,검색,분석) 외부 API : boutique, 롯데i몰, 네이버 스마트스토어(상품정보 관리, 재고, 가격...","categories": ["Frontend"],
+        "tags": ["frontend"],
+        "url": "http://localhost:4000/frontend/front-end-0/",
+        "teaser": null
+      },{
+        "title": "[RoadMap] Chap 0. Internet(Application layer)",
+        "excerpt":"본 포스팅은 kamranahmedse의 개발자 로드맵을 따라서 진행됩니다. How does the internet work? 구성요소로 본 인터넷 인터넷에 연결되는 모든 장치는 호스트host 혹은 엔드 시스템end system이라고 부릅니다. host는 통신 링크communication link와 패킷 스위치packet switch의 네트워크로 연결됩니다. communication link는 광케이블, 구리선 등의 물리 매체로 구성됩니다. 이때 각각의 link는 다양한 전송률transmission rate과 대역폭bandwidth를 이용해서...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/roadmap-0-0/",
+        "teaser": null
+      },{
+        "title": "[RoadMap] Chap 0. Internet(Transport layer)",
+        "excerpt":"본 포스팅은 kamranahmedse의 개발자 로드맵을 따라서 진행됩니다. Application Layer은 네트워크 애플리케이션과 애플리케이션 계층 프로토콜이 있는 곳이라고 설명했습니다. HTTP가 바로 애플리케이션 계층에서 동작하는 프로토콜입니다.(만약 애플리케이션 계층 프로토콜로 RTMP를 사용하는 경우 목적지 URL이 rtmp://로 시작합니다. 즉, HTTP는 사용되지 않습니다.) 트랜스포트 계층은 클라이언트와 서버 사이에 애플리케이션 계층 메시지를 전달하는 서비스를 제공합니다. 그런데 HTTP와...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/roadmap-0-1/",
+        "teaser": null
+      },{
+        "title": "[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML",
+        "excerpt":"HTML(HyperText Markup Language) 하이퍼텍스트를 가장 중요한 요소로 가지는 Marup라는 형식을 가진 프로그래밍 언어라는 의미입니다. HTML는 사용자와 컴퓨터의 약속이자 웹 페이지를 만드는 명령어입니다. Learn the basics //진하게 &lt;strong&gt; 진하게 &lt;/strong&gt; //header 1 &lt;h1&gt; header 1 &lt;/h1&gt; //새 탭으로 열기 &lt;a href=\"www.github.com/niklasjang\" target=\"_blank\"&gt; niklasjang &lt;/a&gt; //리스트 &lt;ol&gt; //ordered list. list를 묶음 &lt;li&gt;기술소개&lt;/li&gt;...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/roadmap-1-1/",
+        "teaser": null
+      },{
+        "title": "[RoadMap] Chap 1-2. Basic Frontend Knowledge - CSS",
+        "excerpt":"Learn the basics css는 &lt;style&gt; tag를 통해서 html과 함께 사용됩니다. &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;style&gt; h2{color:blue} &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;h1 style=\"color:red\"&gt;Hello World&lt;/h1&gt; &lt;h2&gt;Hello world&lt;/h2&gt; &lt;/body&gt; &lt;/html&gt; //선택자 선언 &lt;style&gt; li{ color:red; text-decoration:underline; } &lt;/style&gt; // 모든 li 태그 li{color:red} //id값이 select인 태그라는 뜻 #select{ font-size:50px; } //조상 자손 선택자 :...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/roadmap-1-2/",
+        "teaser": null
+      },{
+        "title": "[RoadMap] Chap 1-3. Basic Frontend Knowledge - JavaScript",
+        "excerpt":"Syntax and basic Constructs ECMAScript는 Ecma 인터내셔널에 의해 제정된 ECMA-262 기술 규격에 의해 정의된 범용 스크립트 언어입니다. JavaScript는 ECMAScript 사양을 준수하는 범용 스크립팅 언어입니다. ECMAScript 6는 ECMA-262 표준의 제 6판이며, ECMAScript 사양의 주요 변경 사항 및 개선 사항을 명세합니다. 동의어로는 ‘ES6’, ‘ES2015’, ‘ECMAScript 2015’가 있습니다. inline 방식 아래의 코드에서 onclick에...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/roadmap-1-3/",
+        "teaser": null
+      },{
+        "title": "[Spring] ",
+        "excerpt":"스프링이란 무엇인가? 스프링은 자바 엔터프라이즈 애플리케이션 갭라에 사용되는 프레임워크입니다. 앱의 기본 틀 - 스프링 컨테이너 스프링은 스프링 컨테이너 또는 애플리케이선 컨텍스트라고 불리는 스프링 런타임 엔진을 제공합니다. 스프링 컨테이너는 설정 정보를 참고해서 앱을 구성하는 오브젝트를 생성하고 관리합니다. 스프링 컨테이너는 독립적으로 동작할 수도 있지만 보통 웹 모듈에서 동작하는 서비스나 서블릿으로 등록해서 사용합니다....","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/tobby-spring-0/",
         "teaser": null
       }]

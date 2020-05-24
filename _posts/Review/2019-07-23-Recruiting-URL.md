@@ -17,7 +17,7 @@ classes: wide
   - [삼성전자](http://www.samsungcareers.com/rec/apply/ComResumeServlet?cmd=pstMain&gbncd=I) 3.7.4355
   - [네이버](https://recruit.navercorp.com/naver/job/list/developer?searchSysComCd=&entTypeCd=&searchTxt=%EC%9D%B8%ED%84%B4)
   - [SKT](https://careers.sktelecom.com/recruit_user/skIndex/index)  
-  - [SK]](https://www.skcareers.com/POS/TRM2101.aspx)
+  - [SK](https://www.skcareers.com/POS/TRM2101.aspx)
   - [현대](https://www.hyundai.co.kr/Careers/Job-Opening/List.hub)  
   - [KT](https://recruit.kt.com/apply/notifyList)
   - [LG](http://apply.lg.com/app/job/RetrieveJobNotices.rpi)  

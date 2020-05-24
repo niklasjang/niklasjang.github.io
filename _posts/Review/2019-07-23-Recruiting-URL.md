@@ -13,13 +13,8 @@ toc_sticky: true
 classes: wide  
 ---
 
-- NOW
-  - [상시모집][네이버 동영상플랫폼 상시모집](https://recruit.navercorp.com/naver/job/detail/developer?annoId=20003170&classId=&jobId=&entTypeCd=&searchTxt=%EC%9D%B8%ED%84%B4&searchSysComCd=)
-  - [~11/11][현대자동차그룹-연구장학생](https://hmg-scholar.recruiter.co.kr/app/jobnotice/list)
-  - [~11/5][2019 카카오 개발자 겨울 인턴십 - Machine Learning 분야](https://careers.kakao.com/jobs/P-11416)
-  
 - 기업
-  - [삼성](http://www.samsungcareers.com/rec/apply/ComResumeServlet?cmd=pstMain&gbncd=I)
+  - [삼성전자](http://www.samsungcareers.com/rec/apply/ComResumeServlet?cmd=pstMain&gbncd=I) 3.7.4355
   - [네이버](https://recruit.navercorp.com/naver/job/list/developer?searchSysComCd=&entTypeCd=&searchTxt=%EC%9D%B8%ED%84%B4)
   - [SKT](https://careers.sktelecom.com/recruit_user/skIndex/index)  
   - [SK]](https://www.skcareers.com/POS/TRM2101.aspx)
@@ -33,14 +28,31 @@ classes: wide
   - [gsITM](https://www.gsitm.com/recruit-info)
 
 - 은행
-  - [농협](https://with.nonghyup.com/index.jsp)
+  - [한국](http://apply.bok.or.kr/recruit/recruitList.do) 4.2.4963
+  - [농협](https://with.nonghyup.com/index.jsp) 3.6.5023
+  - [신한](https://shinhan.recruiter.co.kr/app/jobnotice/list) 3.3.5287
+  - [기업](https://ibk.incruit.com/hire/viewhire.asp?projectid=102) 3.8.4940
+  - [우리](https://spot.wooribank.com/pot/Dream?withyou=BPHRR0011) 3.2.4333
+  - [KB금융그룹](https://www.kbfg.com/Kor/about/recruit/recruit.jsp) 4.6.4861
+
+- 투자증권
+  - [NH투자증권](https://nhqv.recruiter.co.kr/app/jobnotice/list) 3.7.5045
+  - [신한금융투자](https://recruit.shinhaninvest.com/recruit/list.do) 3.6.4000?
+  - [SK증권](https://sks.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=27726) 3.5.4875
+  - [KB금융그룹](https://www.kbfg.com/Kor/about/recruit/recruit.jsp) 3.3.4866
+  - [미래에셋대우](https://recruit.miraeassetdaewoo.com/) 3.2.4482
+  - [한국투자증권](http://www.jobkorea.co.kr/Recruit/GI_Read/31560273?PageGbn=ST) 3.3.4414 
+  - [삼성증권](https://www.jobkorea.co.kr/Recruit/GI_Read/31485870?Oem_Code=C1&PageGbn=ST) 3.0.4250
+  - [교보증권](https://recruit.iprovest.com/?page_id=7764) 3.5.??
+  - [한양증권](http://m.hygood.co.kr/contents/04/08/040801) 3.4.?
+  - [유안타증권](http://www.yuantakorea.com/index.jsp) 3.1.4086
+  - [하나금융투자](https://hanaw.scout.co.kr/jobinfo/jobinfo_view.asp?ID=1012) 3.0.??
 
 - 장학재단
   - [현대자동차그룹-연구장학생](https://hmg-scholar.recruiter.co.kr/app/jobnotice/list)
   - [정몽구재단](https://www.cmkfoundation-scholarship.org/)
   - [한화](https://www.hanwhain.com/web/apply/notification/list.do)
-
-[hyundai-recruit-1.jpg](/assets/images/review/hyundai-recruit-1.jpg)  
+  - [우리](https://spot.wooribank.com/pot/Dream?withyou=BPHRR0011)
 
 - 게임 회사  
   - [펄어비스](https://recruit.pearlabyss.com/)  
@@ -50,10 +62,3 @@ classes: wide
   - [유니티코리아](https://careers.unity.com/location/seoul)  
   - [토스](https://toss.im/career/?category=data-platform&company=viva&position=devops-engineer)  
 
- 
-
-네이버 연구식 상시 지원
-SKT 31일까지 지원
-넥슨 엄청 많음
-NHN 엄청 많음
-토스 많음

@@ -1,7 +1,7 @@
 ---
-title: "[DB System] 5장"
-excerpt: "2019-09-16"
-date: 2019-09-16
+title: "[DB] Chapter 5 "
+excerpt: ""
+date: 2019-09-02
 categories:
   - Database
 tags:
@@ -13,6 +13,43 @@ toc_sticky: true
 classes: wide
 ---
 
+### 교재
+
+1. 교재는 'Fundamentals of Database System' 7th edition 구글링해서 찾기   
+2. 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음
+
+# Chater 5 : The Relational Data Model and Relational Database Constraints
+
+
+## History of Data Models
+
+정보 검색에 대한 내용은 참고 사항으로만 보기!!  
+
+Relational 형태가 아직까지 쓰이고 이다.라고만 설명하고 넘어감.
+
+1970년에 E.F.Codd라는 박사가 처음 제시되었다. 처음 제시하면서 Relation DB에 대해서 모든 것을 다 설명했다. 뒤에 추가적인 기능이 더해지긴 했지만 기본 골격은 1명이 모두 다 만들었다. 
+
+## Informal Definitions
+
+- `relation` : 값을 가진 표나 텍스트를 의미하면 `flat file`이라고 불리기도 한다. 가장 일반적인 형태의 표를 생각하면 된다. 
+![Figure 5.1]  
+
+각각의 행들은 식별자를 가지고 있다. `identifier`라고 부른다. 각 column에는 들어올 수 있는 값의 범위가 정해져있다. 해당 column이 가질 수 있는 값을 Domain이라고 한다. 이는 Atomic Value로서 더이상 나눠질 수 없는 값이다. 나누는 순간 의미가 사라진다. 미국 번호의 경우 (ddd)ddd-dddd를 나누면 의미가 없어진다. Names의 경우 the set of character strings. Employee_age :15와 80 사이의 int로 정해져있다.  
+
+단순하게 표를 표현하기 위해서 `Relation schema`를 사용한다. $(A1,A2,...,An)$. The Degreee of a relation의미. E.g. STUDENT(Name : string, SSN : int)와 같이 domain을 string/int처럼 써주기도 한다.  
+
+Schema는 relation의 틀을 말하는 것이다. `attribute` = a rol name of a domain. HomePhone과 OfficePhone의 column이 있을 때 Domain: Phone을 사용한다.  
+
+r(R)의미. n-tuple t의미. 
+
+- Cartesian product : 곱을 하면 결과는 각 집합의 tuple로 나온다. 모든 가능한 matching 결과가 나온다. {0,1}과 {a,b,c}의 경우 
+{ <0,a>, <0,b>, <0,c>, <1,a>, <1,b>, <1,c> } 어떤 원소의 집합을 Cardinality라고 한다. 
+
+용어 정의 쭉 읽고 이해하고 외우기  
+
+## Chaacteristic 
+
+다음 시간.
 
 ### 5.1.2 Characteristics of Relations
 

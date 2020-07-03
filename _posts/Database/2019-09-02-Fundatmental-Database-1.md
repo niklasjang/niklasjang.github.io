@@ -1,6 +1,6 @@
 ---
-title: "[DB System] 개론 및 1장"
-excerpt: "Page 0 ~ 47"
+title: "[DB] Chapter 1 Database and Database Users"
+excerpt: ""
 date: 2019-09-02
 categories:
   - Database
@@ -13,32 +13,92 @@ toc_sticky: true
 classes: wide
 ---
 
-## 개요
-
 ### 교재
 
 1. 교재는 'Fundamentals of Database System' 7th edition 구글링해서 찾기   
 2. 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음
 
-# Part 1 : Introduction to Databases
+# Chapter 1 Database and Database Users
 
-일반적으로 물건을 사고 예약을 하는 행위를 하면서 전통적인 database 시스템을 자각을 하지 못하는 사이에도 사용하고 있었다. 요즘에는 SNS를 통해서 비전통적인 데이터(posts, tweets, mages, and video clips)들을 저장하기에 이르렀다. 또한 `GIS`(Geographic informatino systems)는 맵을 저장하고 분석하고 날씨를 위한 위성 이미지를 포함한다.  
+## 개념
 
-### Database Applications
+| 개념 | 의미 | 
+|:--------|:--------|
+|`Data`|함축적인 의미를 가진 저장할 수있는 알려진 사실|
+|`Database`|관련된 Data의 집합. 또는 Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것.| 
+|`mini-world` 또는 `Universe of Discourse`|Database에 어떤 Data가 저장되었는지에 대한 Real World의 일부. (학생을 누구는 가르쳐야하는 대상으로 생각하고 누구는 키워야하는 대상으로 생각할 것이다. 이와 같이 대상을 `보는 관점`이 여러가지가 있을 수 있음을 이야하기 하는 것이다. 같은 대상을 사용하는 목적에 따라서 필요한 데이터가 다르다.)|
+|`database management system (DBMS)`| 전산화된 database를 생성,유지하기 위한 software package |
+|`Database System` | DBMS 소프트웨어와 Data를 함께 지칭하는 용어|
 
-- `Data warehouses` and `online analytical processing (OLAP)` systems are used in many companies to extract and analyze useful business information from very large databases to support decision making. 
-- `Real-time` and `active database` technology is used to control industrial and manufacturing processes. 
-- database `search techniques` are being applied to the `World Wide Web` to improve the search for information that is needed by users browsing the Internet.
+DB는 특정한 목적을 가진 data에 따라서 설계, 운용된다. 즉, data의 특성을 파악한 뒤 이를 반영해서 DB를 설계해야한다. `Metabata`는 Database를 정의하고 설명하는 정보로 `database catalog` 또는 `dictinoary`의 형태로 DBMS에 저장이 된다. 
 
-## 1.1 Introduction
+## DBMS가 제공하는 기능
 
-- `data` : known facts that can be recorded and that have implicit meaning.
-- `database` : a collection of related data.
-- `Mini-world` : A database represents some aspect of the real world, sometimes called the `miniworld`. Changes to the miniworld are reflected in the database.
-  - **Mini-world?** : 학생을 누구는 가르쳐야하는 대상으로 생각하고 누구는 키워야하는 대상으로 생각할 것이다. 이와 같이 대상을 `보는 관점`이 여러가지가 있을 수 있음을 이야하기 하는 것이다. 같은 대상을 사용하는 목적에 따라서 필요한 데이터가 다르다. `Universe of Discourse`라고도 부른다. Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것이 DB이다.  
-- `database management system (DBMS)` : a computerized system that enables users to create and maintain a database. The DBMS is a general-purpose software system that facilitates the processes of defining, constructing, manipulating, and sharing databases among various users and applications.
-  - **DBMS?** : 데이터베이스를 관리하기 위한 모든 기능을 제공하는 a collection of programs  that enables users to create and maintain a DB. 기능이란 defining(데이터를 정의), constrcuting(저장장치에 값을 저장하는 행위), manipulating(데이터를 사용(삭제or검색) 하는 행위), sharing(concurrency control), protecting, maintaining(시간에 따른 백업 및 보관)을 말한다. (`Protection`의 두 가지 기능 : system protecting(HW/SW의 고장으로부터 보호) / security protection(불법적인 사용으로부터 보호))
-  - `Defining` a database involves specifying the data `types`, `structures`, and **`constraints`** of the data to be stored in the database. **The database definition or descriptive information is also stored by the `DBMS`** in the form of a database catalog or dictionary; it is called `meta-data`. Spread Sheet에서 어떤 data type인지와 같은 data의 structure를 정의하는 것.
+| DBMS 특징 | 의미 | 
+|:--------|:--------|
+|Defining|1. 각 파일에 저장된 기록의 `structure`를 특정한다. 2. 각 기록의 데이터 요소의 `type`을 특정한다. 3. 각 데이터 요소의 `constraints`를 특정한다. |
+|Constructing|1. `data`를 적절한 파일에 기록한다. 1. 기록들 간의 `relationship`을 기록한다. |
+|manipulating|1. `querying` 2. `updating` |
+|sharing| |
+|protecting| |
+|maintaining| |
+
+## Database system이 file system과 다른점
+
+1. database는 스스로 묘사하는 특성을 가진다. (self-describing nature)
+1. 프로그램과 data의 분리가 가능하다. 
+1. 데이터 추상화 : 데이터가 어떻게 저장되었는지는 숨기고, 사용자에게 conceptual view를 제공한다. 
+1. 데이터를 다양한 view로 볼 수 있다.
+1. 여러 사용자와 데이터를 공유한다.
+1. 여러 사용자의 transaction을 처리한다.
+
+데이터 추상화의 개념에서 사용되는 것이 data model이다. data model은 다음과 같은 logical concepts를 사용한다. data model에 대해서는 chapter 2에서 알아본다.   
+1. object
+1. object's property
+1. object's relationship
+
+## DBMS를 사용하는 사람들
+
+| DBMS를 사용하는 사람들 | 의미 | 
+|:--------|:--------|
+|actors on the scene|거대한 DB를 매일 사용하는 직업을 가진 사람들|
+|workers behind the scene|DB 시스템을 유지하는 일을 하는 사람들. 하지만 DB 자체(저장된 데이터들)에는 큰 관심을 가지지 않는다.|
+
+actors on the scene의 종류는 다음과 같다.
+1. DBA(Dababase Administrator)
+1. Database Designer : DBA의 직원
+1. End User
+1. System Analysis
+1. Application Programmer
+
+workers behind the scene의 중류는 다음과 같다.
+1. DBMS system designer
+1. implementers
+1. Tool developers
+1. Operators
+1. Maintainance Personnel
+
+## DBMS를 사용할 때의 이점
+
+1. 데이터를 저장할 때의 불필요한 노력을 줄일 수 있다.
+1. 개발과 유지보수의 불필요한 노력을 줄일 수 있다.
+1. 권한이 없는 접근을 막을 수 있다.
+1. 프로그램이 사용할 데이터가 저장될 공간을 영구적으로 제공한다.
+1. 데이터 구조를 표현할 때 필요한 공간을 영구적으로 제공한다.
+1. 효과적인 query를 위한 기술을 제공한다.
+1. 데이터 복원, 회복 기능을 제공한다.
+1. 여러 사용자를 위한 interface를 제공한다.
+1. 데이터들 사이의 복잡한 관계를 표현해준다.
+1. 무결성 제약을 강제한다.
+1. 규칙에 따른 추론과 행동을 가능하게 한다.
+1. 표준을 강제함으로써 얻는 잠재력이 있다.
+1. 개발 시간을 줄여준다.
+1. database 구조에 대한 유연성을 제공한다.
+1. 항상 최신의 데이터를 제공할 수 있다.
+1. 규모의 경제가 적용된다.
+
+이상 PPT 정리 끝.  
+
   - `Constructing` the database is the process of storing the data on some storage medium that is controlled by the DBMS.
     - store `data` as a record in the appropriate file
     - store `relationships` among the records
@@ -121,12 +181,101 @@ gram packages that provide easy-to-use menu-based or graphics-based
 interfaces.  
 
 
+## 1.6 Advantages of Using the DBMS Approach
 
 
+### 1.6.1 Controlling Redundancy
+
+Controlling redundancy in data storage and in development and maintenance efforts. redundancy를 아예 없애지는 않고 성능을 위해서 조금은 허용한다. 최소한의 데이터의 중복을 유지하면서 data의 동일성은 계속 유지해주어야 한다.  
+
+### 1.6.2 Restricting Unauthorized Access 
+
+불법적인 권한에 대해서 제한을 할 수 있다. 
+
+### 1.6.3 Providing Persistent Storage for Program Objects
+
+Databases can be used to provide persistent storage for program objects and data structures. This is one of the main reasons for object-oriented database systems 
+(see Chapter 12).  
+
+### **1.6.8 Enforcing Integrity Constraints**
+
+Most database applications have certain `integrity constraints` that must hold for the data.  A DBMS should provide capabilities for defining and enforcing these constraints. The simplest type of integrity constraint involves specifying a data type for each data item.  
+
+we can specify that every section record must be related to a course record. This is known as a `referential integrity` constraint. `참조 무결성`  
+
+Another type of constraint specifies uniqueness on data item values, such as every course record must have a unique value for Course_number. This is known as a `key` or `uniqueness constraint`.  These constraints are derived from the meaning or semantics of the data and of the miniworld it represents.  It is the 
+responsibility of the database designers to identify `integrity constraints` during database design.  
+
+### 1.6.10  Additional Implications of Using the Database Approach  
+
+1. Potential for Enforcing Standards.
+2. Reduced Application Development Time. 
+3. Flexiblity to change dat structires. 데이터구조 변화에 대한 융통성. 기존의 field를 사용할 때 새로운 row나 col을 추가하는 것이 가능하다. 1개의 row에 대해서만 col을 추가하는 것도 기존의 데이터를 뒤엎지 않고 허용해준다. 
+4. Providing backup and recovery services
+5. Reduced application development time 
+6. Availability of up-to-data information
+
+## 1.7 A Brief History of Database Applications
 
 
+## Hierarchical and Network Systems
 
 
+### 1.7.1  Early Database Applications Using Hierarchical and Network Systems
 
+- early DB applications(60'~80') maintained large numbers of records of similar structure
+  - 계산 위주의 DB를 사용하다가, 어떤 데이터가 어디에 있는지 모르는 상태가 된다. 관리가 안되는 문제가 발생
+- problem -> intermixing of conceptual relationships with the physical storage
+  - 기록들 간의 관계를 표현하는 특별한 방법이 없었다. 트리에서 부모/자식과 같은 관계. 포인터로 지칭하는 방법밖에 없었다. 즉, 기존의 방식에서는 수많은 포인터를 사용해서 실제 디스크 주소를 찾아가서 데이터를 얻었다. 이러한 관계를 Hierarchical and Network Systems라고 부르고 데이터를 옮기면 많은 포인터를 다 바꿔야하는 문제가 있었다.
 
+### 1.7.2  Providing Data Abstraction and Application Flexibility with Relational Databases
 
+- Providing application flexibility : seperate the physical storage of data from its comceptual representation and provide query language.
+- **관계형 DB로 되면서는 주소를 몰라도 관계를 알면 데이터를 찾을 수 있었다. 어떻게 찾는지는 DBMS가 찾아주고 사용자는 어떻게 찾는지는 몰라도 됐다.(가장 큰 차이)**
+
+### 1.7.3  Object-Oriented Applications and the Need for More Complex Databases
+
+- complexity of models and the lack of an early standard -> under 5% of DB market
+- 이 때 객체지향 프로그래밍 language가 나왔다. C++/C#/Object-C이런 것들이 나왔다. C++의 class/object 개념을 가지는 DBMS를 만들기 위해서 노력했지만 어려워서 망했다. 어려워서 사람들이 안써서 market share가 많이 줄어들고 있다.
+
+### 1.7.4  Interchanging Data on the Web for E-Commerce Using XML  
+
+- XML : `eXtended Markup Language`
+- 웹페이지를 DB로 관리하기 어려워서 Web Page를 DB화 관리하기 위한 language가 나타났다. 
+
+### 1.7.5  Extending Database Capabilities for New Applications  
+
+- Scientific applications : 유전자 염기서열 분석 및 재조립  
+- Storage and retrieval of images ans videos : 케이블 TV의 DB에는 영상이 들어가있다. 
+- Data mining applicaations : 
+- Spatial/Time series applications : 시간에 따라 변하면 주식/시간/날씨 등을 처리
+- 더 복잡해지고 새로운 데이터 타입에 새로운 indexing 방식을 사용하게 됨.  
+
+This led DBMS developers to add functionality to their systems. 두 가지 기능이 있는데 하나는 범용 기능. 하나는 특수 기능. Some functionality was general purpose, such as incorporating concepts from object-oriented databases into relational systems. Other functionality was special purpose, in the form of optional modules that could be used for specific applications. For example, users could buy a time series module to use with their relational DBMS for their time series application.  
+
+- general purpose functionality : incorporating concepts from OODB into relational systems. 
+  - OODB의 모든 기능은 모두 reltional DB에 들어가있어서 OODB로 쓰려면 쓸 수 있다.
+- special purpose functionality, in the form of optional modules
+  - E.g, users could buy a time series module to use with their relational DBMS for their time series application
+  - 돈을 주고 옵션을 같이 사면 추가적인 library를 사용할 수 있다. 특수 기능들을 어디서는 module 어디서는 blade라고 부른다.
+
+### 1.7.6  Emergence of Big Data Storage Systems and NOSQL Databases
+
+- social media Web sites, large e-commerce companies, Web search indexes, and cloud storage/backup -> data stored on large DBs and massive servers
+- New types of DB Systems were necessary to mange these huge databases
+  - fast search and retrieval as well as reliable and safe sotrage of nontraditional(동영상 소리 신호 등) types of data, such as social media posts and tweets/
+  - Some of the requirements of these new systems were not compatible with SQL relational DBMSs
+- The term `NOSQL` is generally interpreted as `Not Only SQL`
+  - meaning that in systems than namage large amount of data, **some of the data is stored using SQL systems**, where as **other data would be stored using NOSQL,** depending on the application requirements.
+  - 다양한 뒤죽박죽한 환경에서 미디어를 찾아주기 위한 기능으로서의 의미를 가진다.
+- Main inhibitors costs of using a DBMS :
+  - High initial investment in H/W, S/W, and training
+  - The generality that a DBMS provides for defining and processing data - CAD, GIS
+  - Overhead for prividing security, **concurrency control제일 어렵**, recovery, and integrity functions
+- When a DBMS may be unnecessary :
+  - Simple, well-defined database applications that are not expected to change at all
+    - 한 번짜서 변경이 잘 없으면 DB를 쓰지 않아도 된다.
+  - Stringent, real-time requirements for some application programs that may not be met because of DBMS overhead
+    - Real time 특성이 굉장히 큰 것은 적합하지 않다. 예를 들어서 미사일 발사에서 Transaction 순서가 늦으면 죽는다.
+  - Embeded systems with limited storage capacity, where a general-purpose DBMS would not fit.
+  - No multiple-user access to data

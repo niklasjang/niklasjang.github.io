@@ -1,7 +1,7 @@
 ---
 title: "[myspl 강좌] 1강"
 excerpt: "DATABASE 1&2 - MySQL"
-date: 2019-08-18
+date: 2020-07-10
 categories:
   - Myspl
 tags:
@@ -62,6 +62,8 @@ cmd에서 `C:\Bitnami\wampstack-7.4.7-0\mysql\bin\mysqld.exe`를 실행해야 �
 |DATABASE 삭제|DROP DATABASE opentutorials;|
 |DATABASE 선택|USE opentutorials;|
 |접속 계정 비밀번호 변경|SET PASSWORD = PASSWORD('{new password}');|
+|계정 생성| 1. create user spring5@localhost;|
+|계정 비밀번호 추가| 1. mysql -uroot -p<br>2. use mysql;<br> 3.  alter user spring5@localhost identified with mysql_native_password by 'tjrdl1226';|
 |테이블 생성| CREATE TABLE topic(<br>  id INT(11) NOT NULL AUTO_INCREMENT,<br>  title VARCHAR(100) NOT NULL,<br>  discription TEXT NULL,<br>created DATETIME NOT NULL,<br>  author VARCHAR(3) NULL,<br>  profile VARCHAR(100) NULL,<br>  PRIMARY KEY(id));|
 |테이블 이름 변경|RENAME TABLE topic TO topic_backup;|
 |테이블 목록 출력|SHOW tables;|
@@ -73,6 +75,8 @@ cmd에서 `C:\Bitnami\wampstack-7.4.7-0\mysql\bin\mysqld.exe`를 실행해야 �
 |row 삭제|DELETE FROM topic WHERE id = 4;|
 |테이블 구조와 데이터 복사|1. CREATE TABLE IF NOT EXISTS `복사 테이블` SELECT * FROM `원본 테이블`;<br>2. ALTER TABLE topic ADD PRIMARY KEY(id);<br>3.ALTER TABLE topic MODIFY COLUMN id INT auto_increment;<br> 4. (2.~3.을 한 번에) ALTER TABLE topic MODIFY id INT auto_increment PRIMARY KEY;|
 |column 이름 변경|ALTER TABLE topic CHANGE author author_id INT;|
+|row 갯수 출력| SELECT COUNT(*) as cnt FROM totpic; //갯수를 나타내는 INT return|  
+
 
 ## Mysql Client or Windows
 

@@ -188,6 +188,8 @@ ds.setPassword("tjrdl1226");
 ds.setInitialSize(2);
 //커넥션애서 가져올 수 있는 최대 커넥션의 갯수를 지정한다. 기본값은 100이다.
 ds.setMaxActive(10);
+//최대 유휴 커넥션이 최대 커넥션보다 크면 에러가 발생한다. 
+ds.setMaxIdle(10);
 //커넥션이 풀이 유휴 상태로 있는 동안에 검사할지 여부를 지정한다. 기본값은 false이다.
 ds.setTestWhileIdle(true);
 //커넥션 풀에 유휴 상태로 유지할 최소 시간을 밀리초 단위로 지정한다.
@@ -438,8 +440,10 @@ public class MemberDao{
 
 ### JdbcTemplate의 Exception에서 알아야할 사항
 
-JdbcTemplate의 update() 메서드는 DB 연동을 위해 JDBC API를 사용하는데, JDBC API를 사용하는 과정에서 SQLException이 발생하면 이 익셉션을
-DataAcessException으로 변환해서 발생시킨다. 
+JdbcTemplate의 update() 메서드는 DB 연동을 위해 JDBC API를 사용하는데, JDBC API를 사용하는 과정에서 SQLException이 발생하면 이 익셉션을 DataAcessException으로 변환해서 발생시킨다. 
+
+1. jdbcTemlate#update() : DB 연동을 위해 JDBC API를 사용
+1. JDBC API 사용 중 SQLException이 발생하면 DataAccessException으로 변환해서 발생
 
 ```java
 try{
@@ -449,6 +453,23 @@ try{
 }
 ```
 
-SQLException을 스프링이 제공하는 DataAccessException으로 변환해서 발생시키는 것은 연동 기술에 상관없이 동일하게 익셉션을 처리할 수 있도록 하기 위함이다.
-스프링은 JDBC뿐만 아니라 JPA, 하이버네이트 등에 대한 연동을 지원하고 MyBatis는 자체적으로 스프링 연동 기능을 제공한다. 그런데 각각의 구현기술마다 익셉션ㅇ르 다르게 처리해야 한다면 개발자는 기술마다 익셉션 처리 코드를 작성해야 한다. 각 연동 기술에 따라 발생하는 익셉션을 스프링이 제공하는 익셉션으로 변환함으로써 구현 기술에 상관없이 동일한 코드로 익셉션을 처리할 수 있게 된다.  
+SQLException을 스프링이 제공하는 DataAccessException으로 변환해서 발생시키는 것은 연동 기술에 상관없이 동일하게 익셉션을 처리할 수 있도록 하기 위함이다.  
+
+스프링은 JDBC뿐만 아니라 JPA, 하이버네이트 등에 대한 연동을 지원하고 MyBatis는 자체적으로 스프링 연동 기능을 제공한다. 그런데 각각의 구현기술마다 익셉션을 다르게 처리해야 한다면 개발자는 기술마다 익셉션 처리 코드를 작성해야 한다. 각 연동 기술에 따라 발생하는 익셉션을 스프링이 제공하는 익셉션으로 변환함으로써 구현 기술에 상관없이 동일한 코드로 익셉션을 처리할 수 있게 된다.  
+
+JDBC를 직접 이용하면 try~catch를 이용해서 익셉션을  처리해야하거나 메서드에 throws에 반드시 SQLException을 지정해야한다. 반면에 Spring의 DataAccessException은 RuntimeException이므로 필요한 경우만 익셉션을 처리하면 된다.  
+
+```java
+//jdbc를 직접 이용하는 경우
+try{
+  pstmt = conn.prepareStatement(someQuery);
+}catch(SQLException ex){
+  //SQLException 처리
+}
+```
+
+```java
+//spring을 사용하는 경우 DataAccessException을 필요한 경우에만 try~catch로 처리
+jdbcTemplate.update(someQuery, param1);
+```
 

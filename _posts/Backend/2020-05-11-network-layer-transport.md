@@ -216,12 +216,3 @@ TCP 송신자는 IP 네트워크에서 혼잡 때문에 억제될 수 있습니�
   - 이후에 혼잡회피와 같은 동작을 수행한다. 
 
 [그림 3.52]
-
-//select epoll 비교 : https://ozt88.tistory.com/21
-
-[poll](https://vigorfintech.wordpress.com/2018/10/31/springboot2-0-webflux-eventloop/)
-poll은 거의 select와 동일하지만 다음과 같은 차이가 있다.
-
-관리 file descriptor 무제한.
-좀더 low level의 처리로 system call의 호출이 select보다 적음. 이식성 나쁨.
-접속수가 늘어나면 오히려 fd당 체크 마스크의 크기가 select는 3bit인데 비해, poll은 64bit정도이므로 양이 많아지면 성능이 select보다 떨어짐.

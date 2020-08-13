@@ -23,3 +23,5 @@ classes: wide
 간편한 설정외에도 부트의 최고장점으로 꼽는것이 단독 어플리케이션만으로 배포가 되도록 하는것이다. 이전까지만 하더라도 서버가 새로 구축되면 해당 서버에 기존 프로젝트와 동일한 버전의 Tomcat을 설치하고, Tomcat의 여러 설정 xml값을 수정하고, maven/gradle같은 build 툴을 설치하는 등 서버 하나 확장하는것이 일이였다. 하지만 Boot의 경우 JDK 설치하고, `java -jar ~~~.jar`로 실행시키면 웹서버 구축 끝이다. Tomcat에 대한 설정도 application.properties/yml로 하기 때문이다.  
 
 
+
+

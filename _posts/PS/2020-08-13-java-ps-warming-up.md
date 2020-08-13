@@ -1,5 +1,5 @@
 ---
-title: "[PS][Java] java PS 첫 시작하기"
+title: "[PS][Java] java PS 몸풀기"
 excerpt: "BOJ 1002 터렛"
 date: 2020-08-13
 categories:
@@ -176,6 +176,102 @@ public class Main {
                 System.out.println(0);
             }
         }
+    }
+}
+```
+
+# [어린왕자](boj.kr/1004)
+
+## 풀이
+
+행성계의 진입/탈출은 주어진 원의 경계를 통과하는 것으로 생각할 수 있다. 따라서 출발지점과 도착지점이 주어지는 모든 원의 경계 내부에 있는지 아닌지를 판단하면 된다. 단, 출발지점과 도착지점이 모두 포함되는 원은 진입/탈출하지 않아도 된다. 따라서 출발지점과 도착지점 둘 중 하나만 포함되는 원의 갯수를 세면 된다. 출발/도착 지점에 대해서 각각의 원이 포함되는지 판단하고, 두 지점 모두 포함되는 경우는 세지않기 때문에 xor을 적용하면 된다. xor는 같으면 0, 다르면 1을 return 한다.  
+
+## 코드
+
+```java
+
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public static boolean check(int x, int y, int a, int b, int r){
+        return Math.pow(a-x,2) + Math.pow(b-y,2) < Math.pow(r,2) ? true : false;
+    }
+
+    public static void main(String[] args) throws IOException {
+       BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+       int tc = Integer.parseInt(buf.readLine());
+       StringTokenizer st;
+       int[] points = new int[4];
+       int[] check = new int[3];
+       for(int i=0; i<tc; i++){
+           int ans = 0;
+           st = new StringTokenizer(buf.readLine());
+           points[0] = Integer.parseInt(st.nextToken());
+           points[1] = Integer.parseInt(st.nextToken());
+           points[2] = Integer.parseInt(st.nextToken());
+           points[3] = Integer.parseInt(st.nextToken());
+           st = new StringTokenizer(buf.readLine());
+           int n = Integer.parseInt(st.nextToken());
+           for(int j=0; j<n; j++){
+               st = new StringTokenizer(buf.readLine());
+               check[0] = Integer.parseInt(st.nextToken());
+               check[1] = Integer.parseInt(st.nextToken());
+               check[2] = Integer.parseInt(st.nextToken());
+               boolean t1 = check(points[0], points[1], check[0], check[1], check[2]);
+               boolean t2 = check(points[2], points[3], check[0], check[1], check[2]);
+               if(t1 ^ t2){
+                   ans++;
+               }
+           }
+           System.out.println(ans);
+       }
+    }
+}
+```
+
+# [다리놓기](boj.kr/1010)
+
+## 풀이
+
+n과 m을 입력받아서 mCn을 계산하면 된다. n과 m이 충분히 크기 때문에 BigInteger를 사용한다.
+
+## 코드
+
+```java
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.function.BiFunction;
+
+public class Main {
+    public static BigInteger fact(int n){
+        if(n<=1){
+            return new BigInteger("1");
+        }else{
+            return new BigInteger(Integer.toString(n)).multiply(fact(n-1));
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+       BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+       int tc = Integer.parseInt(buf.readLine());
+       StringTokenizer st;
+       for(int i=0; i<tc; i++){
+           st = new StringTokenizer(buf.readLine());
+           int n = Integer.parseInt(st.nextToken());
+           int m = Integer.parseInt(st.nextToken());
+           System.out.println(fact(m).divide(fact(n).multiply(fact(m-n))));
+       }
     }
 }
 ```

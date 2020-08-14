@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB System] 개론 및 1장 - NiklasJang’s Blog</title>
-<meta name="description" content="Page 0 ~ 47 ">
+<!-- begin _includes/seo.html --><title>[DB] Chapter 1 Database and Database Users - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다.">
 
 
   <meta name="author" content="Niklas Jang">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="NiklasJang's Blog">
-<meta property="og:title" content="[DB System] 개론 및 1장">
+<meta property="og:title" content="[DB] Chapter 1 Database and Database Users">
 <meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-1/">
 
 
-  <meta property="og:description" content="Page 0 ~ 47 ">
+  <meta property="og:description" content="반갑습니다. niklas jang입니다.">
 
 
 
@@ -73,6 +73,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
   <style>
@@ -271,76 +272,212 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB System] 개론 및 1장">
-    <meta itemprop="description" content="Page 0 ~ 47">
+    <meta itemprop="headline" content="[DB] Chapter 1 Database and Database Users">
+    <meta itemprop="description" content="">
     <meta itemprop="datePublished" content="2019-09-02T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 개론 및 1장
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Chapter 1 Database and Database Users
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
+    
 
-  7 minute read
+    
 
-</p>
-          
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        12 minute read
+      
+    
+
+  </p>
+
         </header>
       
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="개요">개요</h2>
-
-<h3 id="교재">교재</h3>
+        <h3 id="교재">교재</h3>
 
 <ol>
   <li>교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기</li>
   <li>6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음</li>
 </ol>
 
-<h1 id="part-1--introduction-to-databases">Part 1 : Introduction to Databases</h1>
+<h1 id="chapter-1-database-and-database-users">Chapter 1 Database and Database Users</h1>
 
-<p>일반적으로 물건을 사고 예약을 하는 행위를 하면서 전통적인 database 시스템을 자각을 하지 못하는 사이에도 사용하고 있었다. 요즘에는 SNS를 통해서 비전통적인 데이터(posts, tweets, mages, and video clips)들을 저장하기에 이르렀다. 또한 <code class="language-plaintext highlighter-rouge">GIS</code>(Geographic informatino systems)는 맵을 저장하고 분석하고 날씨를 위한 위성 이미지를 포함한다.</p>
+<h2 id="개념">개념</h2>
 
-<h3 id="database-applications">Database Applications</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">개념</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Data</code></td>
+      <td style="text-align: left">함축적인 의미를 가진 저장할 수있는 알려진 사실</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Database</code></td>
+      <td style="text-align: left">관련된 Data의 집합. 또는 Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mini-world</code> 또는 <code class="language-plaintext highlighter-rouge">Universe of Discourse</code></td>
+      <td style="text-align: left">Database에 어떤 Data가 저장되었는지에 대한 Real World의 일부. (학생을 누구는 가르쳐야하는 대상으로 생각하고 누구는 키워야하는 대상으로 생각할 것이다. 이와 같이 대상을 <code class="language-plaintext highlighter-rouge">보는 관점</code>이 여러가지가 있을 수 있음을 이야하기 하는 것이다. 같은 대상을 사용하는 목적에 따라서 필요한 데이터가 다르다.)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">database management system (DBMS)</code></td>
+      <td style="text-align: left">전산화된 database를 생성,유지하기 위한 software package</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Database System</code></td>
+      <td style="text-align: left">DBMS 소프트웨어와 Data를 함께 지칭하는 용어</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>DB는 특정한 목적을 가진 data에 따라서 설계, 운용된다. 즉, data의 특성을 파악한 뒤 이를 반영해서 DB를 설계해야한다. <code class="language-plaintext highlighter-rouge">Metabata</code>는 Database를 정의하고 설명하는 정보로 <code class="language-plaintext highlighter-rouge">database catalog</code> 또는 <code class="language-plaintext highlighter-rouge">dictinoary</code>의 형태로 DBMS에 저장이 된다.</p>
+
+<h2 id="dbms가-제공하는-기능">DBMS가 제공하는 기능</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">DBMS 특징</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Defining</td>
+      <td style="text-align: left">1. 각 파일에 저장된 기록의 <code class="language-plaintext highlighter-rouge">structure</code>를 특정한다. 2. 각 기록의 데이터 요소의 <code class="language-plaintext highlighter-rouge">type</code>을 특정한다. 3. 각 데이터 요소의 <code class="language-plaintext highlighter-rouge">constraints</code>를 특정한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Constructing</td>
+      <td style="text-align: left">1. <code class="language-plaintext highlighter-rouge">data</code>를 적절한 파일에 기록한다. 1. 기록들 간의 <code class="language-plaintext highlighter-rouge">relationship</code>을 기록한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">manipulating</td>
+      <td style="text-align: left">1. <code class="language-plaintext highlighter-rouge">querying</code> 2. <code class="language-plaintext highlighter-rouge">updating</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sharing</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">protecting</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">maintaining</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="database-system이-file-system과-다른점">Database system이 file system과 다른점</h2>
+
+<ol>
+  <li>database는 스스로 묘사하는 특성을 가진다. (self-describing nature)</li>
+  <li>프로그램과 data의 분리가 가능하다.</li>
+  <li>데이터 추상화 : 데이터가 어떻게 저장되었는지는 숨기고, 사용자에게 conceptual view를 제공한다.</li>
+  <li>데이터를 다양한 view로 볼 수 있다.</li>
+  <li>여러 사용자와 데이터를 공유한다.</li>
+  <li>여러 사용자의 transaction을 처리한다.</li>
+</ol>
+
+<p>데이터 추상화의 개념에서 사용되는 것이 data model이다. data model은 다음과 같은 logical concepts를 사용한다. data model에 대해서는 chapter 2에서 알아본다.</p>
+<ol>
+  <li>object</li>
+  <li>object’s property</li>
+  <li>object’s relationship</li>
+</ol>
+
+<h2 id="dbms를-사용하는-사람들">DBMS를 사용하는 사람들</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">DBMS를 사용하는 사람들</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">actors on the scene</td>
+      <td style="text-align: left">거대한 DB를 매일 사용하는 직업을 가진 사람들</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">workers behind the scene</td>
+      <td style="text-align: left">DB 시스템을 유지하는 일을 하는 사람들. 하지만 DB 자체(저장된 데이터들)에는 큰 관심을 가지지 않는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>actors on the scene의 종류는 다음과 같다.</p>
+<ol>
+  <li>DBA(Dababase Administrator)</li>
+  <li>Database Designer : DBA의 직원</li>
+  <li>End User</li>
+  <li>System Analysis</li>
+  <li>Application Programmer</li>
+</ol>
+
+<p>workers behind the scene의 중류는 다음과 같다.</p>
+<ol>
+  <li>DBMS system designer</li>
+  <li>implementers</li>
+  <li>Tool developers</li>
+  <li>Operators</li>
+  <li>Maintainance Personnel</li>
+</ol>
+
+<h2 id="dbms를-사용할-때의-이점">DBMS를 사용할 때의 이점</h2>
+
+<ol>
+  <li>데이터를 저장할 때의 불필요한 노력을 줄일 수 있다.</li>
+  <li>개발과 유지보수의 불필요한 노력을 줄일 수 있다.</li>
+  <li>권한이 없는 접근을 막을 수 있다.</li>
+  <li>프로그램이 사용할 데이터가 저장될 공간을 영구적으로 제공한다.</li>
+  <li>데이터 구조를 표현할 때 필요한 공간을 영구적으로 제공한다.</li>
+  <li>효과적인 query를 위한 기술을 제공한다.</li>
+  <li>데이터 복원, 회복 기능을 제공한다.</li>
+  <li>여러 사용자를 위한 interface를 제공한다.</li>
+  <li>데이터들 사이의 복잡한 관계를 표현해준다.</li>
+  <li>무결성 제약을 강제한다.</li>
+  <li>규칙에 따른 추론과 행동을 가능하게 한다.</li>
+  <li>표준을 강제함으로써 얻는 잠재력이 있다.</li>
+  <li>개발 시간을 줄여준다.</li>
+  <li>database 구조에 대한 유연성을 제공한다.</li>
+  <li>항상 최신의 데이터를 제공할 수 있다.</li>
+  <li>규모의 경제가 적용된다.</li>
+</ol>
+
+<p>이상 PPT 정리 끝.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">Data warehouses</code> and <code class="language-plaintext highlighter-rouge">online analytical processing (OLAP)</code> systems are used in many companies to extract and analyze useful business information from very large databases to support decision making.</li>
-  <li><code class="language-plaintext highlighter-rouge">Real-time</code> and <code class="language-plaintext highlighter-rouge">active database</code> technology is used to control industrial and manufacturing processes.</li>
-  <li>database <code class="language-plaintext highlighter-rouge">search techniques</code> are being applied to the <code class="language-plaintext highlighter-rouge">World Wide Web</code> to improve the search for information that is needed by users browsing the Internet.</li>
-</ul>
-
-<h2 id="11-introduction">1.1 Introduction</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">data</code> : known facts that can be recorded and that have implicit meaning.</li>
-  <li><code class="language-plaintext highlighter-rouge">database</code> : a collection of related data.</li>
-  <li><code class="language-plaintext highlighter-rouge">Mini-world</code> : A database represents some aspect of the real world, sometimes called the <code class="language-plaintext highlighter-rouge">miniworld</code>. Changes to the miniworld are reflected in the database.
+  <li><code class="language-plaintext highlighter-rouge">Constructing</code> the database is the process of storing the data on some storage medium that is controlled by the DBMS.
     <ul>
-      <li><strong>Mini-world?</strong> : 학생을 누구는 가르쳐야하는 대상으로 생각하고 누구는 키워야하는 대상으로 생각할 것이다. 이와 같이 대상을 <code class="language-plaintext highlighter-rouge">보는 관점</code>이 여러가지가 있을 수 있음을 이야하기 하는 것이다. 같은 대상을 사용하는 목적에 따라서 필요한 데이터가 다르다. <code class="language-plaintext highlighter-rouge">Universe of Discourse</code>라고도 부른다. Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것이 DB이다.</li>
+      <li>store <code class="language-plaintext highlighter-rouge">data</code> as a record in the appropriate file</li>
+      <li>store <code class="language-plaintext highlighter-rouge">relationships</code> among the records</li>
     </ul>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">database management system (DBMS)</code> : a computerized system that enables users to create and maintain a database. The DBMS is a general-purpose software system that facilitates the processes of defining, constructing, manipulating, and sharing databases among various users and applications.
-    <ul>
-      <li><strong>DBMS?</strong> : 데이터베이스를 관리하기 위한 모든 기능을 제공하는 a collection of programs  that enables users to create and maintain a DB. 기능이란 defining(데이터를 정의), constrcuting(저장장치에 값을 저장하는 행위), manipulating(데이터를 사용(삭제or검색) 하는 행위), sharing(concurrency control), protecting, maintaining(시간에 따른 백업 및 보관)을 말한다. (<code class="language-plaintext highlighter-rouge">Protection</code>의 두 가지 기능 : system protecting(HW/SW의 고장으로부터 보호) / security protection(불법적인 사용으로부터 보호))</li>
-      <li><code class="language-plaintext highlighter-rouge">Defining</code> a database involves specifying the data <code class="language-plaintext highlighter-rouge">types</code>, <code class="language-plaintext highlighter-rouge">structures</code>, and <strong><code class="language-plaintext highlighter-rouge">constraints</code></strong> of the data to be stored in the database. <strong>The database definition or descriptive information is also stored by the <code class="language-plaintext highlighter-rouge">DBMS</code></strong> in the form of a database catalog or dictionary; it is called <code class="language-plaintext highlighter-rouge">meta-data</code>. Spread Sheet에서 어떤 data type인지와 같은 data의 structure를 정의하는 것.</li>
-      <li><code class="language-plaintext highlighter-rouge">Constructing</code> the database is the process of storing the data on some storage medium that is controlled by the DBMS.
-        <ul>
-          <li>store <code class="language-plaintext highlighter-rouge">data</code> as a record in the appropriate file</li>
-          <li>store <code class="language-plaintext highlighter-rouge">relationships</code> among the records</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">Manipulating</code> a database includes functions such as querying the database to retrieve specific data, updating the data-base to reflect changes in the miniworld, and generating reports from the data.</li>
-      <li><code class="language-plaintext highlighter-rouge">Sharing</code> a database allows <strong>multiple users and programs</strong> to access the database <strong>simultaneously</strong>. a sinle repository is maintained and then is accessed by various users.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">Manipulating</code> a database includes functions such as querying the database to retrieve specific data, updating the data-base to reflect changes in the miniworld, and generating reports from the data.</li>
+  <li><code class="language-plaintext highlighter-rouge">Sharing</code> a database allows <strong>multiple users and programs</strong> to access the database <strong>simultaneously</strong>. a sinle repository is maintained and then is accessed by various users.</li>
   <li><code class="language-plaintext highlighter-rouge">Database System</code> : 전체를 다 합쳐서 <code class="language-plaintext highlighter-rouge">DS</code>라고 부른다.</li>
   <li><code class="language-plaintext highlighter-rouge">query</code> typically causes some data to be retrieved</li>
 </ul>
@@ -426,6 +563,147 @@ gram packages that provide easy-to-use menu-based or graphics-based
 interfaces.</li>
 </ul>
 
+<h2 id="16-advantages-of-using-the-dbms-approach">1.6 Advantages of Using the DBMS Approach</h2>
+
+<h3 id="161-controlling-redundancy">1.6.1 Controlling Redundancy</h3>
+
+<p>Controlling redundancy in data storage and in development and maintenance efforts. redundancy를 아예 없애지는 않고 성능을 위해서 조금은 허용한다. 최소한의 데이터의 중복을 유지하면서 data의 동일성은 계속 유지해주어야 한다.</p>
+
+<h3 id="162-restricting-unauthorized-access">1.6.2 Restricting Unauthorized Access</h3>
+
+<p>불법적인 권한에 대해서 제한을 할 수 있다.</p>
+
+<h3 id="163-providing-persistent-storage-for-program-objects">1.6.3 Providing Persistent Storage for Program Objects</h3>
+
+<p>Databases can be used to provide persistent storage for program objects and data structures. This is one of the main reasons for object-oriented database systems 
+(see Chapter 12).</p>
+
+<h3 id="168-enforcing-integrity-constraints"><strong>1.6.8 Enforcing Integrity Constraints</strong></h3>
+
+<p>Most database applications have certain <code class="language-plaintext highlighter-rouge">integrity constraints</code> that must hold for the data.  A DBMS should provide capabilities for defining and enforcing these constraints. The simplest type of integrity constraint involves specifying a data type for each data item.</p>
+
+<p>we can specify that every section record must be related to a course record. This is known as a <code class="language-plaintext highlighter-rouge">referential integrity</code> constraint. <code class="language-plaintext highlighter-rouge">참조 무결성</code></p>
+
+<p>Another type of constraint specifies uniqueness on data item values, such as every course record must have a unique value for Course_number. This is known as a <code class="language-plaintext highlighter-rouge">key</code> or <code class="language-plaintext highlighter-rouge">uniqueness constraint</code>.  These constraints are derived from the meaning or semantics of the data and of the miniworld it represents.  It is the 
+responsibility of the database designers to identify <code class="language-plaintext highlighter-rouge">integrity constraints</code> during database design.</p>
+
+<h3 id="1610--additional-implications-of-using-the-database-approach">1.6.10  Additional Implications of Using the Database Approach</h3>
+
+<ol>
+  <li>Potential for Enforcing Standards.</li>
+  <li>Reduced Application Development Time.</li>
+  <li>Flexiblity to change dat structires. 데이터구조 변화에 대한 융통성. 기존의 field를 사용할 때 새로운 row나 col을 추가하는 것이 가능하다. 1개의 row에 대해서만 col을 추가하는 것도 기존의 데이터를 뒤엎지 않고 허용해준다.</li>
+  <li>Providing backup and recovery services</li>
+  <li>Reduced application development time</li>
+  <li>Availability of up-to-data information</li>
+</ol>
+
+<h2 id="17-a-brief-history-of-database-applications">1.7 A Brief History of Database Applications</h2>
+
+<h2 id="hierarchical-and-network-systems">Hierarchical and Network Systems</h2>
+
+<h3 id="171--early-database-applications-using-hierarchical-and-network-systems">1.7.1  Early Database Applications Using Hierarchical and Network Systems</h3>
+
+<ul>
+  <li>early DB applications(60’~80’) maintained large numbers of records of similar structure
+    <ul>
+      <li>계산 위주의 DB를 사용하다가, 어떤 데이터가 어디에 있는지 모르는 상태가 된다. 관리가 안되는 문제가 발생</li>
+    </ul>
+  </li>
+  <li>problem -&gt; intermixing of conceptual relationships with the physical storage
+    <ul>
+      <li>기록들 간의 관계를 표현하는 특별한 방법이 없었다. 트리에서 부모/자식과 같은 관계. 포인터로 지칭하는 방법밖에 없었다. 즉, 기존의 방식에서는 수많은 포인터를 사용해서 실제 디스크 주소를 찾아가서 데이터를 얻었다. 이러한 관계를 Hierarchical and Network Systems라고 부르고 데이터를 옮기면 많은 포인터를 다 바꿔야하는 문제가 있었다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="172--providing-data-abstraction-and-application-flexibility-with-relational-databases">1.7.2  Providing Data Abstraction and Application Flexibility with Relational Databases</h3>
+
+<ul>
+  <li>Providing application flexibility : seperate the physical storage of data from its comceptual representation and provide query language.</li>
+  <li><strong>관계형 DB로 되면서는 주소를 몰라도 관계를 알면 데이터를 찾을 수 있었다. 어떻게 찾는지는 DBMS가 찾아주고 사용자는 어떻게 찾는지는 몰라도 됐다.(가장 큰 차이)</strong></li>
+</ul>
+
+<h3 id="173--object-oriented-applications-and-the-need-for-more-complex-databases">1.7.3  Object-Oriented Applications and the Need for More Complex Databases</h3>
+
+<ul>
+  <li>complexity of models and the lack of an early standard -&gt; under 5% of DB market</li>
+  <li>이 때 객체지향 프로그래밍 language가 나왔다. C++/C#/Object-C이런 것들이 나왔다. C++의 class/object 개념을 가지는 DBMS를 만들기 위해서 노력했지만 어려워서 망했다. 어려워서 사람들이 안써서 market share가 많이 줄어들고 있다.</li>
+</ul>
+
+<h3 id="174--interchanging-data-on-the-web-for-e-commerce-using-xml">1.7.4  Interchanging Data on the Web for E-Commerce Using XML</h3>
+
+<ul>
+  <li>XML : <code class="language-plaintext highlighter-rouge">eXtended Markup Language</code></li>
+  <li>웹페이지를 DB로 관리하기 어려워서 Web Page를 DB화 관리하기 위한 language가 나타났다.</li>
+</ul>
+
+<h3 id="175--extending-database-capabilities-for-new-applications">1.7.5  Extending Database Capabilities for New Applications</h3>
+
+<ul>
+  <li>Scientific applications : 유전자 염기서열 분석 및 재조립</li>
+  <li>Storage and retrieval of images ans videos : 케이블 TV의 DB에는 영상이 들어가있다.</li>
+  <li>Data mining applicaations :</li>
+  <li>Spatial/Time series applications : 시간에 따라 변하면 주식/시간/날씨 등을 처리</li>
+  <li>더 복잡해지고 새로운 데이터 타입에 새로운 indexing 방식을 사용하게 됨.</li>
+</ul>
+
+<p>This led DBMS developers to add functionality to their systems. 두 가지 기능이 있는데 하나는 범용 기능. 하나는 특수 기능. Some functionality was general purpose, such as incorporating concepts from object-oriented databases into relational systems. Other functionality was special purpose, in the form of optional modules that could be used for specific applications. For example, users could buy a time series module to use with their relational DBMS for their time series application.</p>
+
+<ul>
+  <li>general purpose functionality : incorporating concepts from OODB into relational systems.
+    <ul>
+      <li>OODB의 모든 기능은 모두 reltional DB에 들어가있어서 OODB로 쓰려면 쓸 수 있다.</li>
+    </ul>
+  </li>
+  <li>special purpose functionality, in the form of optional modules
+    <ul>
+      <li>E.g, users could buy a time series module to use with their relational DBMS for their time series application</li>
+      <li>돈을 주고 옵션을 같이 사면 추가적인 library를 사용할 수 있다. 특수 기능들을 어디서는 module 어디서는 blade라고 부른다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="176--emergence-of-big-data-storage-systems-and-nosql-databases">1.7.6  Emergence of Big Data Storage Systems and NOSQL Databases</h3>
+
+<ul>
+  <li>social media Web sites, large e-commerce companies, Web search indexes, and cloud storage/backup -&gt; data stored on large DBs and massive servers</li>
+  <li>New types of DB Systems were necessary to mange these huge databases
+    <ul>
+      <li>fast search and retrieval as well as reliable and safe sotrage of nontraditional(동영상 소리 신호 등) types of data, such as social media posts and tweets/</li>
+      <li>Some of the requirements of these new systems were not compatible with SQL relational DBMSs</li>
+    </ul>
+  </li>
+  <li>The term <code class="language-plaintext highlighter-rouge">NOSQL</code> is generally interpreted as <code class="language-plaintext highlighter-rouge">Not Only SQL</code>
+    <ul>
+      <li>meaning that in systems than namage large amount of data, <strong>some of the data is stored using SQL systems</strong>, where as <strong>other data would be stored using NOSQL,</strong> depending on the application requirements.</li>
+      <li>다양한 뒤죽박죽한 환경에서 미디어를 찾아주기 위한 기능으로서의 의미를 가진다.</li>
+    </ul>
+  </li>
+  <li>Main inhibitors costs of using a DBMS :
+    <ul>
+      <li>High initial investment in H/W, S/W, and training</li>
+      <li>The generality that a DBMS provides for defining and processing data - CAD, GIS</li>
+      <li>Overhead for prividing security, <strong>concurrency control제일 어렵</strong>, recovery, and integrity functions</li>
+    </ul>
+  </li>
+  <li>When a DBMS may be unnecessary :
+    <ul>
+      <li>Simple, well-defined database applications that are not expected to change at all
+        <ul>
+          <li>한 번짜서 변경이 잘 없으면 DB를 쓰지 않아도 된다.</li>
+        </ul>
+      </li>
+      <li>Stringent, real-time requirements for some application programs that may not be met because of DBMS overhead
+        <ul>
+          <li>Real time 특성이 굉장히 큰 것은 적합하지 않다. 예를 들어서 미사일 발사에서 Transaction 순서가 늦으면 죽는다.</li>
+        </ul>
+      </li>
+      <li>Embeded systems with limited storage capacity, where a general-purpose DBMS would not fit.</li>
+      <li>No multiple-user access to data</li>
+    </ul>
+  </li>
+</ul>
 
         
       </section>
@@ -474,14 +752,15 @@ interfaces.</li>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-02T00:00:00+09:00">September 2, 2019</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-02T00:00:00+09:00">September 2, 2019</time></p>
+
+
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+%EA%B0%9C%EB%A1%A0+%EB%B0%8F+1%EC%9E%A5%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Chapter+1+Database+and+Database+Users%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -496,7 +775,7 @@ interfaces.</li>
 ">Previous</a>
     
     
-      <a href="/review/Pearl-Abyss-Written-Test-Preparing/" class="pagination--pager" title="[필기TEST] 펄어비스 게임플레이 프로그래머
+      <a href="/database/Fundatmental-Database-2/" class="pagination--pager" title="[DB] Chapter 2 Database System Concepts and Architecture
 ">Next</a>
     
   </nav>
@@ -519,23 +798,34 @@ interfaces.</li>
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/tobby-spring-0/" rel="permalink">[Spring]
+        <a href="/ps/java-ps-warming-up/" rel="permalink">[PS][Java] java PS 몸풀기
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  1 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">토비의 스프링 3.1 Vol. 1: 스프링의 이해와 원리
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">BOJ 1002 터렛
 </p>
   </article>
 </div>
@@ -548,23 +838,34 @@ interfaces.</li>
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-3/" rel="permalink">[RoadMap] Chap 1-3. Basic Frontend Knowledge - JavaScript
+        <a href="/eip/EIP-Subject-5-2/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  4 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        15 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 IT 프로젝트 정보시스템 구축
 </p>
   </article>
 </div>
@@ -577,23 +878,34 @@ interfaces.</li>
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-2/" rel="permalink">[RoadMap] Chap 1-2. Basic Frontend Knowledge - CSS
+        <a href="/eip/EIP-Subject-5-1/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 1
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  2 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        8 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1장 소프트웨어 개발 방법론 활용
 </p>
   </article>
 </div>
@@ -606,23 +918,34 @@ interfaces.</li>
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-1/" rel="permalink">[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML
+        <a href="/eip/EIP-Subject-3-2/" rel="permalink">[자격증][정처기] 3과목 데이터베이스 구축 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  3 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 물리 데이터베이스 설계
 </p>
   </article>
 </div>
@@ -677,7 +1000,6 @@ interfaces.</li>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 

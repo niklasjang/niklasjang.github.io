@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>[myspl 강좌] 1강 - NiklasJang’s Blog</title>
-<meta name="description" content="DATABASE 1&amp;2 - MySQL ">
+<meta name="description" content="DATABASE 1&amp;2 - MySQL">
 
 
   <meta name="author" content="Niklas Jang">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="http://localhost:4000/myspl/Inflearn-Myspl-Lecture-1/">
 
 
-  <meta property="og:description" content="DATABASE 1&amp;2 - MySQL ">
+  <meta property="og:description" content="DATABASE 1&amp;2 - MySQL">
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-08-18T00:00:00+09:00">
+  <meta property="article:published_time" content="2020-07-10T00:00:00+09:00">
 
 
 
@@ -73,6 +73,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
   <style>
@@ -273,7 +274,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[myspl 강좌] 1강">
     <meta itemprop="description" content="DATABASE 1&amp;2 - MySQL">
-    <meta itemprop="datePublished" content="2019-08-18T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2020-07-10T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
@@ -282,15 +283,26 @@
           <h1 id="page-title" class="page__title" itemprop="headline">[myspl 강좌] 1강
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
+    
 
-  less than 1 minute read
+    
 
-</p>
-          
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
         </header>
       
 
@@ -300,14 +312,27 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-list"></i> Table of contents</h4></header>
               <ul class="toc__menu">
-  <li><a href="#crud">CRUD</a></li>
+  <li><a href="#데이터베이스-기초">데이터베이스 기초</a>
+    <ul>
+      <li><a href="#crud">CRUD</a></li>
+    </ul>
+  </li>
   <li><a href="#database-ranking">Database Ranking</a></li>
+  <li><a href="#binami-wamp를-통해서-mysql-설치">binami WAMP를 통해서 mysql 설치</a></li>
+  <li><a href="#mysql-구조">MYSQL 구조</a></li>
+  <li><a href="#mysql-crud-명령어">MYSQL CRUD 명령어</a></li>
+  <li><a href="#mysql-client-or-windows">Mysql Client or Windows</a></li>
+  <li><a href="#sql-join">SQL JOIN</a></li>
 </ul>
 
             </nav>
           </aside>
         
-        <h2 id="crud">CRUD</h2>
+        <h2 id="데이터베이스-기초">데이터베이스 기초</h2>
+
+<p>모든 데이터베이스는 input과 output을 가진다. input은 Create/Update/Delete로 나눌 수 있고 Output은 Read로 이해할 수 있다.</p>
+
+<h3 id="crud">CRUD</h3>
 
 <ol>
   <li>Create</li>
@@ -323,13 +348,134 @@
 <p><a href="https://db-engines.com/en/ranking">랭킹 확인 사이트</a></p>
 
 <ol>
-  <li>Oracle detailed information	Relational, Multi-model 	1339.48	+18.22	+27.45</li>
-  <li>MySQL detailed information	Relational, Multi-model 	1253.68	+24.16	+46.87</li>
-  <li>Microsoft SQL Server detailed information	Relational, Multi-model</li>
+  <li>Oracle, MySQL, Microsoft SQL Server는 Relational DBMS</li>
+  <li>MongoDB는 Document store</li>
+  <li>Redis는 Key-value Store</li>
+  <li>Elasticsearch는 search engine</li>
+  <li>Cassandra는 Wide column store</li>
 </ol>
 
-<p>Relation은 관계형 데이터베이스 관리 시스템이라는 뜻이다.</p>
+<h2 id="binami-wamp를-통해서-mysql-설치">binami WAMP를 통해서 mysql 설치</h2>
 
+<p><a href="https://bitnami.com/stack/wamp/installer">다운링크</a></p>
+
+<p>설치 후 bitnami manaer를 통해서 MySQL과 Apache Web Server를 제어할 수 있다.</p>
+
+<p>cmd에서 <code class="language-plaintext highlighter-rouge">C:\Bitnami\wampstack-7.4.7-0\mysql\bin\mysqld.exe</code>를 실행해야 한다.</p>
+
+<ol>
+  <li>$ cd C:\Bitnami\wampstack-7.4.7-0\mysql\bin</li>
+  <li>$ mysql -uroot -p //mysql -uroot -p{MY_PASSWORD}를 적어도 되지만 보안상의 이유로 -p까지 친 다음에 enter</li>
+  <li>password 입력</li>
+</ol>
+
+<h2 id="mysql-구조">MYSQL 구조</h2>
+
+<ol>
+  <li>가장 바깥 : Database Server</li>
+  <li>관련된 Table 들의 집합 : Database or Schema</li>
+  <li>관련된 정보들의 집합 : Table</li>
+</ol>
+
+<h2 id="mysql-crud-명령어">MYSQL CRUD 명령어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">기능</th>
+      <th style="text-align: left">명령어</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">DATABASE 생성</td>
+      <td style="text-align: left">CREATE DATABASE opentutorials;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DATABASE 삭제</td>
+      <td style="text-align: left">DROP DATABASE opentutorials;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DATABASE 선택</td>
+      <td style="text-align: left">USE opentutorials;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">접속 계정 비밀번호 변경</td>
+      <td style="text-align: left">SET PASSWORD = PASSWORD(‘{new password}’);</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">계정 생성</td>
+      <td style="text-align: left">1. create user spring5@localhost;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">계정 비밀번호 추가</td>
+      <td style="text-align: left">1. mysql -uroot -p<br />2. use mysql;<br /> 3.  alter user spring5@localhost identified with mysql_native_password by ‘tjrdl1226’;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">테이블 생성</td>
+      <td style="text-align: left">CREATE TABLE topic(<br />  id INT(11) NOT NULL AUTO_INCREMENT,<br />  title VARCHAR(100) NOT NULL,<br />  discription TEXT NULL,<br />created DATETIME NOT NULL,<br />  author VARCHAR(3) NULL,<br />  profile VARCHAR(100) NULL,<br />  PRIMARY KEY(id));</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">테이블 이름 변경</td>
+      <td style="text-align: left">RENAME TABLE topic TO topic_backup;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">테이블 목록 출력</td>
+      <td style="text-align: left">SHOW tables;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">테이블 SCHEMA 출력</td>
+      <td style="text-align: left">DESC topic;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 저장</td>
+      <td style="text-align: left">INSERT INTO topic (title,description,created,author,profile) VALUES (‘PostgreSQL’, ‘PostgreSQL is …’, NOW(), ‘abc’, ‘developer’);</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 검색</td>
+      <td style="text-align: left">SELECT id,title,created,author FROM topic WHERE author=’abc’ ORDER BY id DESC;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 검색</td>
+      <td style="text-align: left">SELECT id,title,created,author FROM topic WHERE author=’abc’ ORDER BY id DESC LIMIT 2;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 수정</td>
+      <td style="text-align: left">UPDATE topic SET author=’aaa’, profile=’designer’ WHERE id = 1;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 삭제</td>
+      <td style="text-align: left">DELETE FROM topic WHERE id = 4;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">테이블 구조와 데이터 복사</td>
+      <td style="text-align: left">1. CREATE TABLE IF NOT EXISTS <code class="language-plaintext highlighter-rouge">복사 테이블</code> SELECT * FROM <code class="language-plaintext highlighter-rouge">원본 테이블</code>;<br />2. ALTER TABLE topic ADD PRIMARY KEY(id);<br />3.ALTER TABLE topic MODIFY COLUMN id INT auto_increment;<br /> 4. (2.~3.을 한 번에) ALTER TABLE topic MODIFY id INT auto_increment PRIMARY KEY;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">column 이름 변경</td>
+      <td style="text-align: left">ALTER TABLE topic CHANGE author author_id INT;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">row 갯수 출력</td>
+      <td style="text-align: left">SELECT COUNT(*) as cnt FROM totpic; //갯수를 나타내는 INT return</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="mysql-client-or-windows">Mysql Client or Windows</h2>
+
+<p>free client는 MySQL Workbench를 사용합니다.</p>
+
+<ol>
+  <li>$ ./mysql -uroot -p -h{database server의 ip주소}</li>
+  <li>mysql의 cli client인 mysql monitor 실행</li>
+</ol>
+
+<p>Mysql workbench에서는 GUI로 명령어를 수행할 수 있도록 해준다.</p>
+
+<h2 id="sql-join">SQL JOIN</h2>
+
+<p>JOIN이 어려울 때는 생활코딩의 JOIN 강의를 보면된다. <a href="https://opentutorials.org/course/3884">강의링크</a></p>
 
         
       </section>
@@ -378,8 +524,9 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-18T00:00:00+09:00">August 18, 2019</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-07-10T00:00:00+09:00">July 10, 2020</time></p>
+
+
       </footer>
 
       <section class="page__share">
@@ -396,11 +543,11 @@
       
   <nav class="pagination">
     
-      <a href="/review/NAVER-Developer-Open-Class-Apply/" class="pagination--pager" title="[NAVER] Open Class 지원
+      <a href="/spring/spring-aop/" class="pagination--pager" title="[Spring] AOP
 ">Previous</a>
     
     
-      <a href="/review/NAVER-Open-Class/" class="pagination--pager" title="[NAVER] Open Class 후기
+      <a href="/spring/spring-preparedstatement/" class="pagination--pager" title="[Spring] PreparedStatement
 ">Next</a>
     
   </nav>
@@ -423,23 +570,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/tobby-spring-0/" rel="permalink">[Spring]
+        <a href="/ps/java-ps-warming-up/" rel="permalink">[PS][Java] java PS 몸풀기
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  1 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">토비의 스프링 3.1 Vol. 1: 스프링의 이해와 원리
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">BOJ 1002 터렛
 </p>
   </article>
 </div>
@@ -452,23 +610,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-3/" rel="permalink">[RoadMap] Chap 1-3. Basic Frontend Knowledge - JavaScript
+        <a href="/eip/EIP-Subject-5-2/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  4 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        15 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 IT 프로젝트 정보시스템 구축
 </p>
   </article>
 </div>
@@ -481,23 +650,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-2/" rel="permalink">[RoadMap] Chap 1-2. Basic Frontend Knowledge - CSS
+        <a href="/eip/EIP-Subject-5-1/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 1
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  2 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        8 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1장 소프트웨어 개발 방법론 활용
 </p>
   </article>
 </div>
@@ -510,23 +690,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-1/" rel="permalink">[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML
+        <a href="/eip/EIP-Subject-3-2/" rel="permalink">[자격증][정처기] 3과목 데이터베이스 구축 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  3 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 물리 데이터베이스 설계
 </p>
   </article>
 </div>
@@ -581,7 +772,6 @@
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 

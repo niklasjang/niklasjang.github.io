@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB System] 5장 - NiklasJang’s Blog</title>
-<meta name="description" content="2019-09-16 ">
+<!-- begin _includes/seo.html --><title>[DB] Chapter 5  - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다.">
 
 
   <meta name="author" content="Niklas Jang">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="NiklasJang's Blog">
-<meta property="og:title" content="[DB System] 5장">
+<meta property="og:title" content="[DB] Chapter 5">
 <meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-5/">
 
 
-  <meta property="og:description" content="2019-09-16 ">
+  <meta property="og:description" content="반갑습니다. niklas jang입니다.">
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-09-16T00:00:00+09:00">
+  <meta property="article:published_time" content="2019-09-02T00:00:00+09:00">
 
 
 
@@ -73,6 +73,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
   <style>
@@ -271,32 +272,86 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB System] 5장">
-    <meta itemprop="description" content="2019-09-16">
-    <meta itemprop="datePublished" content="2019-09-16T00:00:00+09:00">
+    <meta itemprop="headline" content="[DB] Chapter 5">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2019-09-02T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 5장
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Chapter 5
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
+    
 
-  1 minute read
+    
 
-</p>
-          
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
         </header>
       
 
       <section class="page__content" itemprop="text">
         
-        <h3 id="512-characteristics-of-relations">5.1.2 Characteristics of Relations</h3>
+        <h3 id="교재">교재</h3>
+
+<ol>
+  <li>교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기</li>
+  <li>6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음</li>
+</ol>
+
+<h1 id="chater-5--the-relational-data-model-and-relational-database-constraints">Chater 5 : The Relational Data Model and Relational Database Constraints</h1>
+
+<h2 id="history-of-data-models">History of Data Models</h2>
+
+<p>정보 검색에 대한 내용은 참고 사항으로만 보기!!</p>
+
+<p>Relational 형태가 아직까지 쓰이고 이다.라고만 설명하고 넘어감.</p>
+
+<p>1970년에 E.F.Codd라는 박사가 처음 제시되었다. 처음 제시하면서 Relation DB에 대해서 모든 것을 다 설명했다. 뒤에 추가적인 기능이 더해지긴 했지만 기본 골격은 1명이 모두 다 만들었다.</p>
+
+<h2 id="informal-definitions">Informal Definitions</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">relation</code> : 값을 가진 표나 텍스트를 의미하면 <code class="language-plaintext highlighter-rouge">flat file</code>이라고 불리기도 한다. 가장 일반적인 형태의 표를 생각하면 된다. 
+![Figure 5.1]</li>
+</ul>
+
+<p>각각의 행들은 식별자를 가지고 있다. <code class="language-plaintext highlighter-rouge">identifier</code>라고 부른다. 각 column에는 들어올 수 있는 값의 범위가 정해져있다. 해당 column이 가질 수 있는 값을 Domain이라고 한다. 이는 Atomic Value로서 더이상 나눠질 수 없는 값이다. 나누는 순간 의미가 사라진다. 미국 번호의 경우 (ddd)ddd-dddd를 나누면 의미가 없어진다. Names의 경우 the set of character strings. Employee_age :15와 80 사이의 int로 정해져있다.</p>
+
+<p>단순하게 표를 표현하기 위해서 <code class="language-plaintext highlighter-rouge">Relation schema</code>를 사용한다. $(A1,A2,…,An)$. The Degreee of a relation의미. E.g. STUDENT(Name : string, SSN : int)와 같이 domain을 string/int처럼 써주기도 한다.</p>
+
+<p>Schema는 relation의 틀을 말하는 것이다. <code class="language-plaintext highlighter-rouge">attribute</code> = a rol name of a domain. HomePhone과 OfficePhone의 column이 있을 때 Domain: Phone을 사용한다.</p>
+
+<p>r(R)의미. n-tuple t의미.</p>
+
+<ul>
+  <li>Cartesian product : 곱을 하면 결과는 각 집합의 tuple로 나온다. 모든 가능한 matching 결과가 나온다. {0,1}과 {a,b,c}의 경우 
+{ &lt;0,a&gt;, &lt;0,b&gt;, &lt;0,c&gt;, &lt;1,a&gt;, &lt;1,b&gt;, &lt;1,c&gt; } 어떤 원소의 집합을 Cardinality라고 한다.</li>
+</ul>
+
+<p>용어 정의 쭉 읽고 이해하고 외우기</p>
+
+<h2 id="chaacteristic">Chaacteristic</h2>
+
+<p>다음 시간.</p>
+
+<h3 id="512-characteristics-of-relations">5.1.2 Characteristics of Relations</h3>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Ordering of tuples</code> in a relation r(R)
@@ -412,14 +467,15 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-16T00:00:00+09:00">September 16, 2019</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-02T00:00:00+09:00">September 2, 2019</time></p>
+
+
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+5%EC%9E%A5%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Chapter+5+%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -430,11 +486,11 @@
       
   <nav class="pagination">
     
-      <a href="/nnstreamer/Basic-Tutorials-For-GStreamer-3/" class="pagination--pager" title="[NNStreamer] Gstreamer 기본 튜토리얼 3
+      <a href="/database/Fundatmental-Database-4/" class="pagination--pager" title="[DB] Chapter 4 Enhanced Entity-Relationship and Object Modeling
 ">Previous</a>
     
     
-      <a href="/nnstreamer/Basic-Tutorials-For-GStreamer-4/" class="pagination--pager" title="[NNStreamer] Gstreamer 기본 튜토리얼 4
+      <a href="/database/Fundatmental-Database-9/" class="pagination--pager" title="[DB] Chapter 9
 ">Next</a>
     
   </nav>
@@ -457,23 +513,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/tobby-spring-0/" rel="permalink">[Spring]
+        <a href="/ps/java-ps-warming-up/" rel="permalink">[PS][Java] java PS 몸풀기
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  1 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">토비의 스프링 3.1 Vol. 1: 스프링의 이해와 원리
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">BOJ 1002 터렛
 </p>
   </article>
 </div>
@@ -486,23 +553,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-3/" rel="permalink">[RoadMap] Chap 1-3. Basic Frontend Knowledge - JavaScript
+        <a href="/eip/EIP-Subject-5-2/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  4 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        15 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 IT 프로젝트 정보시스템 구축
 </p>
   </article>
 </div>
@@ -515,23 +593,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-2/" rel="permalink">[RoadMap] Chap 1-2. Basic Frontend Knowledge - CSS
+        <a href="/eip/EIP-Subject-5-1/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 1
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  2 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        8 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1장 소프트웨어 개발 방법론 활용
 </p>
   </article>
 </div>
@@ -544,23 +633,34 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-1/" rel="permalink">[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML
+        <a href="/eip/EIP-Subject-3-2/" rel="permalink">[자격증][정처기] 3과목 데이터베이스 구축 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  3 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 물리 데이터베이스 설계
 </p>
   </article>
 </div>
@@ -615,7 +715,6 @@
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 

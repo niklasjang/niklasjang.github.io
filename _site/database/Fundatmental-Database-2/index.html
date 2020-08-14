@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB System] 1장 마무리 및 2장 - NiklasJang’s Blog</title>
-<meta name="description" content="Page 47 ~ 66 ">
+<!-- begin _includes/seo.html --><title>[DB] Chapter 2 Database System Concepts and Architecture - NiklasJang’s Blog</title>
+<meta name="description" content="반갑습니다. niklas jang입니다.">
 
 
   <meta name="author" content="Niklas Jang">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="NiklasJang's Blog">
-<meta property="og:title" content="[DB System] 1장 마무리 및 2장">
+<meta property="og:title" content="[DB] Chapter 2 Database System Concepts and Architecture">
 <meta property="og:url" content="http://localhost:4000/database/Fundatmental-Database-2/">
 
 
-  <meta property="og:description" content="Page 47 ~ 66 ">
+  <meta property="og:description" content="반갑습니다. niklas jang입니다.">
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-09-04T00:00:00+09:00">
+  <meta property="article:published_time" content="2019-09-02T00:00:00+09:00">
 
 
 
@@ -73,6 +73,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
   <style>
@@ -271,211 +272,276 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB System] 1장 마무리 및 2장">
-    <meta itemprop="description" content="Page 47 ~ 66">
-    <meta itemprop="datePublished" content="2019-09-04T00:00:00+09:00">
+    <meta itemprop="headline" content="[DB] Chapter 2 Database System Concepts and Architecture">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2019-09-02T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB System] 1장 마무리 및 2장
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Chapter 2 Database System Concepts and Architecture
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
+    
 
-  10 minute read
+    
 
-</p>
-          
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        21 minute read
+      
+    
+
+  </p>
+
         </header>
       
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="16-advantages-of-using-the-dbms-approach">1.6 Advantages of Using the DBMS Approach</h2>
-
-<h3 id="161-controlling-redundancy">1.6.1 Controlling Redundancy</h3>
-
-<p>Controlling redundancy in data storage and in development and maintenance efforts. redundancy를 아예 없애지는 않고 성능을 위해서 조금은 허용한다. 최소한의 데이터의 중복을 유지하면서 data의 동일성은 계속 유지해주어야 한다.</p>
-
-<h3 id="162-restricting-unauthorized-access">1.6.2 Restricting Unauthorized Access</h3>
-
-<p>불법적인 권한에 대해서 제한을 할 수 있다.</p>
-
-<h3 id="163-providing-persistent-storage-for-program-objects">1.6.3 Providing Persistent Storage for Program Objects</h3>
-
-<p>Databases can be used to provide persistent storage for program objects and data structures. This is one of the main reasons for object-oriented database systems 
-(see Chapter 12).</p>
-
-<h3 id="168-enforcing-integrity-constraints"><strong>1.6.8 Enforcing Integrity Constraints</strong></h3>
-
-<p>Most database applications have certain <code class="language-plaintext highlighter-rouge">integrity constraints</code> that must hold for the data.  A DBMS should provide capabilities for defining and enforcing these constraints. The simplest type of integrity constraint involves specifying a data type for each data item.</p>
-
-<p>we can specify that every section record must be related to a course record. This is known as a <code class="language-plaintext highlighter-rouge">referential integrity</code> constraint. <code class="language-plaintext highlighter-rouge">참조 무결성</code></p>
-
-<p>Another type of constraint specifies uniqueness on data item values, such as every course record must have a unique value for Course_number. This is known as a <code class="language-plaintext highlighter-rouge">key</code> or <code class="language-plaintext highlighter-rouge">uniqueness constraint</code>.  These constraints are derived from the meaning or semantics of the data and of the miniworld it represents.  It is the 
-responsibility of the database designers to identify <code class="language-plaintext highlighter-rouge">integrity constraints</code> during database design.</p>
-
-<h3 id="1610--additional-implications-of-using-the-database-approach">1.6.10  Additional Implications of Using the Database Approach</h3>
+        <h3 id="교재">교재</h3>
 
 <ol>
-  <li>Potential for Enforcing Standards.</li>
-  <li>Reduced Application Development Time.</li>
-  <li>Flexiblity to change dat structires. 데이터구조 변화에 대한 융통성. 기존의 field를 사용할 때 새로운 row나 col을 추가하는 것이 가능하다. 1개의 row에 대해서만 col을 추가하는 것도 기존의 데이터를 뒤엎지 않고 허용해준다.</li>
-  <li>Providing backup and recovery services</li>
-  <li>Reduced application development time</li>
-  <li>Availability of up-to-data information</li>
+  <li>교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기</li>
+  <li>6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음</li>
 </ol>
 
-<h2 id="17-a-brief-history-of-database-applications">1.7 A Brief History of Database Applications</h2>
+<h1 id="chapter-2-database-system-concepts-and-architecture">Chapter 2 Database System Concepts and Architecture</h1>
 
-<h2 id="hierarchical-and-network-systems">Hierarchical and Network Systems</h2>
+<h2 id="data-model--s-o-c">Data Model = (S, O, C)</h2>
 
-<h3 id="171--early-database-applications-using-hierarchical-and-network-systems">1.7.1  Early Database Applications Using Hierarchical and Network Systems</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">개념</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">데이터 추상화</td>
+      <td style="text-align: left">데이터가 어떻게 저장되었는지는 숨기고, 사용자에게 conceptual view를 제공한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Data Model</td>
+      <td style="text-align: left">DB의 구조를 묘사하기 위한 개념들. 그리고 DB가 따라야하는 특정한 제약들.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Data Model은 데이터 추상화를 위해서 필요한 수단들을 제공한다. 
+| Data Model의 수단들 | 의미 | 
+|:——–|:——–|
+|structure|data types, relationships, constraints|
+|a set of operations| querying, update를 위한 기능들|
+|constraints| 제약사항|</p>
+
+<p>database structure를 묘사하기 위해서 사용하는 개념의 종류에 따른 data model 분류</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">types of concepts</th>
+      <th style="text-align: left">같은 뜻</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">High Level data model</td>
+      <td style="text-align: left">Conceptual data model</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">entity</code>, <code class="language-plaintext highlighter-rouge">attribute</code>, <code class="language-plaintext highlighter-rouge">relationship</code>의 개념 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Representational data model</td>
+      <td style="text-align: left">Implementation data model</td>
+      <td style="text-align: left">아래에 설명</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Low Level data model</td>
+      <td style="text-align: left">Physical data model</td>
+      <td style="text-align: left">recored format, recored ordering, access path의 개념 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">types of concepts</th>
+      <th style="text-align: left">활용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">High Level data model</td>
+      <td style="text-align: left">database designer들이 CS 비전공자와 요구사항을 확인할 때 사용. 일반적으로 사용하는 모델은 ER Model</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Representational data model</td>
+      <td style="text-align: left">database의 논리적인 부분을 나타내기 위해서만 사용됨. 물리적인 부분은 나타내지 않음. database의 design 파트에만 집중할 수 있도록 함. 코드 레벨의 구현 관점에서 사용되는 데이터 모델.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Low Level data model</td>
+      <td style="text-align: left">데이터가 물리적으로 저장되는 format과 file에 대한 정보</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Representatinoal data model의 특성</p>
+<ol>
+  <li>CDM 과 PDM의 사이의 개념을 제공</li>
+  <li><code class="language-plaintext highlighter-rouge">recored based data model</code>로서 전통적인 상업 DBMS에 가장 많이 사용됨</li>
+  <li>Relational Data Model, Network and hierarchical Model, OO Models .. etc</li>
+</ol>
+
+<h2 id="schemas-instances-database-state">Schemas, Instances, Database State</h2>
+
+<p><img src="/assets/images/database/1.jpg" alt="1" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">개념</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Database schema</td>
+      <td style="text-align: left">데이터베이스를 묘사하는 것. system catalog에 저장된 meta-data. <code class="language-plaintext highlighter-rouge">Intension</code>이라고도 부름.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Database state</td>
+      <td style="text-align: left">특정  시간에 database에 저장된 data. <code class="language-plaintext highlighter-rouge">Extension</code>이라고도 부름. DB의 <code class="language-plaintext highlighter-rouge">instance</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">valid state</td>
+      <td style="text-align: left">shcema의 structure 와 constraints를 만족하는 상태.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">schema evolution</td>
+      <td style="text-align: left">schema에 적용되어야 하는 변화들</td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
-  <li>early DB applications(60’~80’) maintained large numbers of records of similar structure
+  <li>특정 database에 대해서 각각의 schema 구조는 현재의 instances를 가지고 있다.</li>
+  <li>database는 특정 시점에 대해 current state를 가지고 있다.</li>
+  <li>DBMS는 모든 state가 valid state이도록 보장할 의무가 있다.</li>
+  <li>전체적인 흐름은 다음과 같다.
+    <ol>
+      <li>현실 세계를 반영해서 data model을 생성한다. 이 때 S,O,C를 포함해야 한다.</li>
+      <li>data model은 DBMS에 structure를 제공한다.</li>
+      <li>database의 schema는 현실 세계를 인지한 방법을 표현한다.</li>
+      <li>shema는 instance가 valid state를 가질 수 있도록 규칙을 제공한다.</li>
+      <li>database의 instance는 특정 현실 세계를 묘사한다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="the-three-schema-architecture">The Three-Schema Architecture</h2>
+
+<p>3단계-스키마 아키텍처의 목적은 물리적 데이터베이스로부터 사용자 응용들을 분리하는 것이다. 3단계-스키마 아키텍처는 데이터 독립성의 개념을 설명하기 위해 사용될 수 있다.</p>
+
+<p><img src="/assets/images/database/2.jpg" alt="2" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">level</th>
+      <th style="text-align: left">shema</th>
+      <th style="text-align: left">view</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">External level</td>
+      <td style="text-align: left">external schema</td>
+      <td style="text-align: left">Individual User View</td>
+      <td style="text-align: left">특정 유저 그룹이 관심있는 영역만을 묘사하고 나머지는 숨김.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Conceptual level</td>
+      <td style="text-align: left">conceptual schema</td>
+      <td style="text-align: left">Community(Organization) User View</td>
+      <td style="text-align: left">사용자 커뮤니티를 위한 전체 DB의 구조를 묘사. entity, data types,  relationships, user operations, constraints를 묘사하는데 집중</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">internal level</td>
+      <td style="text-align: left">internal schema</td>
+      <td style="text-align: left">Storage View</td>
+      <td style="text-align: left">database의 물리적인 저장 구조를 묘사</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">level</th>
+      <th style="text-align: left">Implementation example</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">External Schema</td>
+      <td style="text-align: left">Course info(cid:int,cname:string) , student info(id:int. name:string</td>
+      <td>)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Conceptual Shema</td>
+      <td style="text-align: left">Students(id: int, name: string, login: string, age: integer) , Courses(id: int, cname.string, credits:integer) , Enrolled(id: int, grade:string)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Physical Schema</td>
+      <td style="text-align: left">Relations stored as unordered files. Index on the first column of Students.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="data-independence">Data Independence</h2>
+
+<p>한 단계 위의 레벨의 schema의 변경없이 특정 단계의 schema를 변화할 수 있는 가능성</p>
+
+<ol>
+  <li>Physical data independence : conceptual level을 internal/physical level로부터 독립할 수 있는 가능성. 물리적인 구조를 명시할 필요없이 논리적인 묘사를 제공할 수 있게 됨.
     <ul>
-      <li>계산 위주의 DB를 사용하다가, 어떤 데이터가 어디에 있는지 모르는 상태가 된다. 관리가 안되는 문제가 발생</li>
+      <li>새로운 하드드라이브를 사용해도 논리적인 구조를 바꾸지 않아도 됨.</li>
+      <li>파일 시스템의 로직이 바뀌어도 논리적인 구조를 바꾸지 않아도 됨.</li>
+      <li>새로운 데이터 구조를 사용해도 논리적인 구조를 바꾸지 않아도 됨.</li>
+      <li>access method를 바꾸어도 논리적인 구조를 바꾸지 않아도 됨.</li>
+      <li>indexes를 바꾸어도 논리적인 구조를 바꾸지 않아도 됨.</li>
+      <li>comparison technique나 hash algorithm을 바꾸어도 논리적인 구조를 바꾸지 않아도 됨.</li>
     </ul>
   </li>
-  <li>problem -&gt; intermixing of conceptual relationships with the physical storage
+  <li>Logical data independence : external view, api, program을 conceptual schema로부터 독립할 수 있는 가능성.
     <ul>
-      <li>기록들 간의 관계를 표현하는 특별한 방법이 없었다. 트리에서 부모/자식과 같은 관계. 포인터로 지칭하는 방법밖에 없었다. 즉, 기존의 방식에서는 수많은 포인터를 사용해서 실제 디스크 주소를 찾아가서 데이터를 얻었다. 이러한 관계를 Hierarchical and Network Systems라고 부르고 데이터를 옮기면 많은 포인터를 다 바꿔야하는 문제가 있었다.</li>
+      <li>entity,attribute,relationship의 추가,수정,삭제의 논리를 바꾸어도 external view는 바뀌지 않음.</li>
+      <li>record를 merge하고 divide해도 external view는 바뀌지 않음.</li>
     </ul>
   </li>
-</ul>
+</ol>
 
-<h3 id="172--providing-data-abstraction-and-application-flexibility-with-relational-databases">1.7.2  Providing Data Abstraction and Application Flexibility with Relational Databases</h3>
+<h2 id="protection">Protection</h2>
 
-<ul>
-  <li>Providing application flexibility : seperate the physical storage of data from its comceptual representation and provide query language.</li>
-  <li><strong>관계형 DB로 되면서는 주소를 몰라도 관계를 알면 데이터를 찾을 수 있었다. 어떻게 찾는지는 DBMS가 찾아주고 사용자는 어떻게 찾는지는 몰라도 됐다.(가장 큰 차이)</strong></li>
-</ul>
+<p>보호(protection)는 하드웨어 또는 소프트웨어 오동작(또는 붕괴)으로부터 시스템을 보호하는 기능(system protection )과 권한이 없는 또는 악의적인 접근을 하려는 보안 위협으로부터 보호하는 기능(security protection)을 포함한다.</p>
 
-<h3 id="173--object-oriented-applications-and-the-need-for-more-complex-databases">1.7.3  Object-Oriented Applications and the Need for More Complex Databases</h3>
-
-<ul>
-  <li>complexity of models and the lack of an early standard -&gt; under 5% of DB market</li>
-  <li>이 때 객체지향 프로그래밍 language가 나왔다. C++/C#/Object-C이런 것들이 나왔다. C++의 class/object 개념을 가지는 DBMS를 만들기 위해서 노력했지만 어려워서 망했다. 어려워서 사람들이 안써서 market share가 많이 줄어들고 있다.</li>
-</ul>
-
-<h3 id="174--interchanging-data-on-the-web-for-e-commerce-using-xml">1.7.4  Interchanging Data on the Web for E-Commerce Using XML</h3>
-
-<ul>
-  <li>XML : <code class="language-plaintext highlighter-rouge">eXtended Markup Language</code></li>
-  <li>웹페이지를 DB로 관리하기 어려워서 Web Page를 DB화 관리하기 위한 language가 나타났다.</li>
-</ul>
-
-<h3 id="175--extending-database-capabilities-for-new-applications">1.7.5  Extending Database Capabilities for New Applications</h3>
-
-<ul>
-  <li>Scientific applications : 유전자 염기서열 분석 및 재조립</li>
-  <li>Storage and retrieval of images ans videos : 케이블 TV의 DB에는 영상이 들어가있다.</li>
-  <li>Data mining applicaations :</li>
-  <li>Spatial/Time series applications : 시간에 따라 변하면 주식/시간/날씨 등을 처리</li>
-  <li>더 복잡해지고 새로운 데이터 타입에 새로운 indexing 방식을 사용하게 됨.</li>
-</ul>
-
-<p>This led DBMS developers to add functionality to their systems. 두 가지 기능이 있는데 하나는 범용 기능. 하나는 특수 기능. Some functionality was general purpose, such as incorporating concepts from object-oriented databases into relational systems. Other functionality was special purpose, in the form of optional modules that could be used for specific applications. For example, users could buy a time series module to use with their relational DBMS for their time series application.</p>
-
-<ul>
-  <li>general purpose functionality : incorporating concepts from OODB into relational systems.
-    <ul>
-      <li>OODB의 모든 기능은 모두 reltional DB에 들어가있어서 OODB로 쓰려면 쓸 수 있다.</li>
-    </ul>
-  </li>
-  <li>special purpose functionality, in the form of optional modules
-    <ul>
-      <li>E.g, users could buy a time series module to use with their relational DBMS for their time series application</li>
-      <li>돈을 주고 옵션을 같이 사면 추가적인 library를 사용할 수 있다. 특수 기능들을 어디서는 module 어디서는 blade라고 부른다.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="176--emergence-of-big-data-storage-systems-and-nosql-databases">1.7.6  Emergence of Big Data Storage Systems and NOSQL Databases</h3>
-
-<ul>
-  <li>social media Web sites, large e-commerce companies, Web search indexes, and cloud storage/backup -&gt; data stored on large DBs and massive servers</li>
-  <li>New types of DB Systems were necessary to mange these huge databases
-    <ul>
-      <li>fast search and retrieval as well as reliable and safe sotrage of nontraditional(동영상 소리 신호 등) types of data, such as social media posts and tweets/</li>
-      <li>Some of the requirements of these new systems were not compatible with SQL relational DBMSs</li>
-    </ul>
-  </li>
-  <li>The term <code class="language-plaintext highlighter-rouge">NOSQL</code> is generally interpreted as <code class="language-plaintext highlighter-rouge">Not Only SQL</code>
-    <ul>
-      <li>meaning that in systems than namage large amount of data, <strong>some of the data is stored using SQL systems</strong>, where as <strong>other data would be stored using NOSQL,</strong> depending on the application requirements.</li>
-      <li>다양한 뒤죽박죽한 환경에서 미디어를 찾아주기 위한 기능으로서의 의미를 가진다.</li>
-    </ul>
-  </li>
-  <li>Main inhibitors costs of using a DBMS :
-    <ul>
-      <li>High initial investment in H/W, S/W, and training</li>
-      <li>The generality that a DBMS provides for defining and processing data - CAD, GIS</li>
-      <li>Overhead for prividing security, <strong>concurrency control제일 어렵</strong>, recovery, and integrity functions</li>
-    </ul>
-  </li>
-  <li>When a DBMS may be unnecessary :
-    <ul>
-      <li>Simple, well-defined database applications that are not expected to change at all
-        <ul>
-          <li>한 번짜서 변경이 잘 없으면 DB를 쓰지 않아도 된다.</li>
-        </ul>
-      </li>
-      <li>Stringent, real-time requirements for some application programs that may not be met because of DBMS overhead
-        <ul>
-          <li>Real time 특성이 굉장히 큰 것은 적합하지 않다. 예를 들어서 미사일 발사에서 Transaction 순서가 늦으면 죽는다.</li>
-        </ul>
-      </li>
-      <li>Embeded systems with limited storage capacity, where a general-purpose DBMS would not fit.</li>
-      <li>No multiple-user access to data</li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="chapter-2">Chapter 2</h1>
-
-<h2 id="21-data-models-schemas-and-instances">2.1 Data Models, Schemas, and Instances</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Data abstraction</code> generally refers to the suppression of details of data organization and storage, and the highlighting of the essential features for an improved understanding of data. One of the main characteristics of the database approach is to support data abstraction so that different users can perceive data at their preferred level of detail.</p>
-<ul>
-  <li>hiding details of data storage that are not needed by most database users.</li>
-</ul>
-
-<p>A <code class="language-plaintext highlighter-rouge">data model</code> a collection of concepts that can be used to describe the structure of a database—provides the necessary means to achieve this abstraction.</p>
-
-<p>By structure of a database we mean the data types, relationships, and constraints that apply to the data. Most data models also include a set of basic operations for specifying retrievals and updates on the database.</p>
-
-<h3 id="211-categories-of-data-models">2.1.1 Categories of Data Models</h3>
-
-<p>High-level or conceptual data models provide concepts that are close to the way many users perceive data, whereas low-level or physical data models provide concepts that describe the details of how data is stored on the computer storage media, typically magnetic disks.</p>
-
-<p>Conceptual data models use concepts such as entities, attributes, and relationships.</p>
-<ul>
-  <li>An <code class="language-plaintext highlighter-rouge">entity</code> represents a real-world object or concept, such as an employee or a project from the miniworld that is described in the database.</li>
-  <li>An <code class="language-plaintext highlighter-rouge">attribute</code> represents some property of interest that further describes an entity, such as the employee’s name or salary.</li>
-  <li><code class="language-plaintext highlighter-rouge">relationship</code> among two or more entities represents an association among the entities, for example, a works-on relationship between an employee and a project.</li>
-</ul>
-
-<h3 id="212-schemas-instances-and-database-state">2.1.2 Schemas, Instances, and Database State</h3>
-
-<p>In a data model, it is important to distinguish between the description of the database and the database itself. The description of a database is called the database schema, which is specified during database design and is not expected to change frequently.6 Most data models have certain conventions for displaying schemas as diagrams.7 A displayed schema is called a schema diagram.</p>
-
-<p><img src="" alt="Figure 2.1" /></p>
-
-<p>We call each object in the schema—such as STUDENT or COURSE a <code class="language-plaintext highlighter-rouge">schema construct</code>.</p>
-
-<p>The data in the database at a particular moment in time is called a database state or snapshot. It is also called the current set of occurrences or instances in the database.</p>
-
-<p>The distinction between database schema and database state is very important. When we define a new database, we specify its database schema only to the DBMS. At this point, the corresponding database state is the empty state with no data. We get the initial state of the database when the database is first populated or loaded with the initial data.</p>
-
-<p>At any point in time, the database has a current state.8 The DBMS is partly responsible for ensuring that every state of the database is a valid state—that is, a state that satisfies the structure and constraints specified in the schema. Hence, specifying a correct schema to the DBMS is extremely important and the schema must be designed with utmost care. The DBMS stores the descriptions of the schema constructs and constraints—also called the meta-data—in the DBMS catalog so that DBMS software can refer to the schema whenever it needs to. The schema 
-is sometimes called the intension, and a database state is called an extension of the schema.</p>
+<p>이상 ppt 정리 끝.</p>
 
 <h3 id="data-model---soc---structure--operations--constraints제약조건">Data Model = ( S,O,C ) : Structure &amp; Operations &amp; Constraints제약조건</h3>
 
@@ -538,7 +604,7 @@ is sometimes called the intension, and a database state is called an extension o
   <li><strong>the current set of occuences or instances in the DB</strong></li>
 </ul>
 
-<h1 id="schenasm-instances-and-database-state">Schenasm Instances, and Database State</h1>
+<h2 id="schenasm-instances-and-database-state">Schenasm Instances, and Database State</h2>
 
 <ul>
   <li>Define : 정의하는 것</li>
@@ -549,19 +615,281 @@ is sometimes called the intension, and a database state is called an extension o
   <li><strong>Schema Evolution</strong> : changes need to be applied to the schema</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//chapter 1 , 2 review True/False quiz
+<h2 id="21-data-models-schemas-and-instances">2.1 Data Models, Schemas, and Instances</h2>
 
-1. 보호(protection)는 하드웨어 또는 소프트웨어 오동작(또는 붕괴)으로부터 시스템을 보호하는 기능(security protection )과 권한이 없는 또는 악의적인 접근을 하려는 보안 위협으로부터 보호하는 기능(system protection)을 포함한다. False
-2. 어떤 특정 시점에 데이터베이스에 들어 있는 데이터를 데이터베이스 상태(state), 스키마의 내포(intension), 또는 스냅삿(snapshot)이라고 한다. False intension은 아님
-3. 데이터 모델은 데이터 추상화(data abstraction)를 달성하는 데 필요한 수단을 제공한다. 데이터 타입, 관계성(relationship), 데이터에 대한 제약조건 등의 데이터베이스 구조를 기술하는데 필요한 개념을 포함하지만, 기본 연산 집합은 포함하지 않는다. False S,O,C 모두 포함
-4. 데이터베이스 설계자(database designer)는 데이터베이스에 저장될 데이터를 선정하고, 데이터를 나타내고 저장하는 구조를 정의하는 역할을 담당한다.
-5. 3단계-스키마 아키텍처의 목적은 물리적 데이터베이스로부터 사용자 응용들을 분리하는 것이다. 3단계-스키마 아키텍처는 데이터 독립성의 개념을 설명하기 위해 사용될 수 있다.
-6. 데이터베이스는 서로 연관된 데이터들의 모임이다. 데이터는 기록될 수 있으며 어떤 의미를 내포하고 있는, 알려진 사실(fact)이다.
-7. 데이터 모델은 데이터를 구조화하는 스키마에 대한 규칙을 제공하며, 스키마는 현실 세계를 표현하는 데이터 인스턴스가 유효한지를 검증하는 규칙을 제공한다.
-8. DBMS를 접근하는 응용 프로그램들은 데이터 파일의 구조가 응용 프로그램과 분리되어 DBMS 카탈로그에 저장된다. 따라서 데이터 파일의 구조가 변경되어도 응용 프로그램은 거의 변하지 않게 된다. 이러한 성질을 프로그램-데이터 독립성 (program-data independence) 이라 한다.
-9. 표현(representational) 데이터 모델들은 일반 사용자들이 쉽게 이해할 수 있는 개념을 제공하지만, 컴퓨터 저장 장치에서 데이터가 구성되는 방식과는 완전히 무관하다.
-10. 데이터의 중복성(redundancy)은 여러 가지 문제점을 초래한다. 논리적으로는 한 번의 변경이지만 데이터가 중복된 횟수만큼 반복해서 변경해야 하고 메모리 낭비도 초래한다.
-</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">Data abstraction</code> generally refers to the suppression of details of data organization and storage, and the highlighting of the essential features for an improved understanding of data. One of the main characteristics of the database approach is to support data abstraction so that different users can perceive data at their preferred level of detail.</p>
+<ul>
+  <li>hiding details of data storage that are not needed by most database users.</li>
+</ul>
+
+<p>A <code class="language-plaintext highlighter-rouge">data model</code> a collection of concepts that can be used to describe the structure of a database—provides the necessary means to achieve this abstraction.</p>
+
+<p>By structure of a database we mean the data types, relationships, and constraints that apply to the data. Most data models also include a set of basic operations for specifying retrievals and updates on the database.</p>
+
+<h3 id="211-categories-of-data-models">2.1.1 Categories of Data Models</h3>
+
+<p>High-level or conceptual data models provide concepts that are close to the way many users perceive data, whereas low-level or physical data models provide concepts that describe the details of how data is stored on the computer storage media, typically magnetic disks.</p>
+
+<p>Conceptual data models use concepts such as entities, attributes, and relationships.</p>
+<ul>
+  <li>An <code class="language-plaintext highlighter-rouge">entity</code> represents a real-world object or concept, such as an employee or a project from the miniworld that is described in the database.</li>
+  <li>An <code class="language-plaintext highlighter-rouge">attribute</code> represents some property of interest that further describes an entity, such as the employee’s name or salary.</li>
+  <li><code class="language-plaintext highlighter-rouge">relationship</code> among two or more entities represents an association among the entities, for example, a works-on relationship between an employee and a project.</li>
+</ul>
+
+<h3 id="212-schemas-instances-and-database-state">2.1.2 Schemas, Instances, and Database State</h3>
+
+<p>In a data model, it is important to distinguish between the description of the database and the database itself. The description of a database is called the database schema, which is specified during database design and is not expected to change frequently.6 Most data models have certain conventions for displaying schemas as diagrams.7 A displayed schema is called a schema diagram.</p>
+
+<p><img src="" alt="Figure 2.1" /></p>
+
+<p>We call each object in the schema—such as STUDENT or COURSE a <code class="language-plaintext highlighter-rouge">schema construct</code>.</p>
+
+<p>The data in the database at a particular moment in time is called a database state or snapshot. It is also called the current set of occurrences or instances in the database.</p>
+
+<p>The distinction between database schema and database state is very important. When we define a new database, we specify its database schema only to the DBMS. At this point, the corresponding database state is the empty state with no data. We get the initial state of the database when the database is first populated or loaded with the initial data.</p>
+
+<p>At any point in time, the database has a current state.8 The DBMS is partly responsible for ensuring that every state of the database is a valid state—that is, a state that satisfies the structure and constraints specified in the schema. Hence, specifying a correct schema to the DBMS is extremely important and the schema must be designed with utmost care. The DBMS stores the descriptions of the schema constructs and constraints—also called the meta-data—in the DBMS catalog so that DBMS software can refer to the schema whenever it needs to. The schema 
+is sometimes called the intension, and a database state is called an extension of the schema.</p>
+
+<h2 id="22--three-schema-architecture-and-data-independence">2.2  Three-Schema Architecture and Data Independence</h2>
+
+<p>Three of the four important characteristics of the database approach, listed in Section 1.3, are</p>
+<ol>
+  <li>(1) use of a catalog to store the database description (schema) so as to make it self-describing,</li>
+  <li>(2) insulation of programs and data (program-data and program-operation independence), and</li>
+  <li>(3) support of multiple user views.</li>
+</ol>
+
+<p>In this section we specify an architecture for database systems, called the three-schema architecture, that was proposed to help achieve and visualize these characteristics. Then we discuss further the concept of data independence.</p>
+
+<h3 id="221-the-three-schema-architecture">2.2.1 The Three-Schema Architecture</h3>
+
+<p><img src="" alt="Figure 2.2" /></p>
+
+<ol>
+  <li>The internal level has an internal schema, which describes the physical storage structure of the database. The internal schema uses a physical data model and describes the complete details of data storage and access paths for the database.</li>
+  <li>The conceptual level has a conceptual schema, which describes the structure of the whole database for a community of users. The conceptual schema hides the details of physical storage structures and concentrates on describing enties, data types, relationships, user operations, and constraints.</li>
+  <li>The external or view level includes a number of external schemas or user views. Each external schema describes the part of the database that a particular user group is interested in and hides the rest of the database from that user group.</li>
+</ol>
+
+<p>Schema가 있을 때 데이터는 DISK에  물리적 레벨에서 저장되어있는 상태로만 있다. 유저입장에서는 External View만 보고 사용한다. 각 유저는 자신의 schema level을 보고 파악한다. DBMS는 3개의 Schema에 대한 명령을 변환시켜주어서 데이터를 검색하고 검색한 데이터는 internal한 form으로 나온다. 이를 Conceptual -&gt; external 형태로 변환해서 user에게 보여준다.</p>
+
+<p>유저는 ‘SN’을 검색했지만 Conceptual은 ‘SNUMBER’를 검색하는 명령으로 바꿔준다. DBMS는 ‘STORED-STUDENT’라는 BOX 안에 SNO라는 이름으로 4BYTE OFFSET 4바이트를 가지고 있다고  알고 이를 Conceptual scheme에게 보내준다. conceptual은 이를 integer로 바꾸고 C 스타일로 바꿔서 유저에게 보여준다.</p>
+
+<p>위와 같은 명령을 바꾸고, 검색 결과를 바꿔서 전달하는 과정을 mapping이라고 한다. 이러한 과정은 시간도 오래걸리고 비용이 크다. <strong>이렇게 3단계 Schema가 도입된 이유는 데이터의 독립성을 위해서이다.</strong> 어떤 데이터가 수정이 되었을 때 위의 level에는 영향을 주지 않기 위함이다. 어떤 특정레벨에서 Schema가 바뀌면 상위 사용자들에게는 영향을 주지 않는다.</p>
+
+<h3 id="222-data-independence">2.2.2 Data Independence</h3>
+
+<p>conceptual schema가 바뀌어도 external schema에는 영향을 주지 않는다. 이것이 어떻게 가능하냐?? view definition과 mapping만 변하면 된다?</p>
+
+<p>The three-schema architecture can be used to further explain the concept of data independence, which can be defined as the capacity to change the schema at one level of a database system without having to change the schema at the next higher level. We can define two types of data independence:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Logical data independence</code>  is the capacity to change the conceptual schema without having to change external schemas or application programs. We may change the conceptual schema to expand the database (by adding a record type or data item), to change constraints, or to reduce the database 
+(by removing a record type or data item). In the last case, external schemas that refer only to the remaining data should not be affected. mapping 시키는 방법은 DBMS의 책임이고 user의 책임이다. user는 몰라도 된다. 이러한 것을 논리적 데이터 독립성이라 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Physical data independence</code> is the capacity to change the internal schemawithout having to change the conceptual schema. Hence, the external sche mas need not be changed as well. Changes to the internal schema may be needed because some physical files were reorganized. interal schema가 바뀌어도 conceptual/external schemal에 영향을 주지 않는다. 원래 있던 데이터가 똑같이 들어있기만 하면, 구조가 바뀌어도 윗단에 영향을 주지 않는다. mapping만 바뀌면 된다. 실제로는 <code class="language-plaintext highlighter-rouge">LDI</code>, <code class="language-plaintext highlighter-rouge">PDI</code>를 지나고 mapping하면서 시간 손실이 많이 일어난다. 그래서 실제로는 external과 conceputla 두 schema를 합쳐서 제공한다.</li>
+</ol>
+
+<h2 id="23-database-languages-and-interfaces">2.3 Database Languages and Interfaces</h2>
+
+<p>In Section 1.4 we discussed the variety of users supported by a DBMS. The DBMS must provide appropriate languages and interfaces for each category of users. In this section we discuss the types of languages and interfaces provided by a DBMS and the user categories targeted by each interface.</p>
+
+<h3 id="231-dbms-languages">2.3.1 DBMS Languages</h3>
+
+<p>Once the design of a database is completed and a DBMS is chosen to implement the database, the first step is to specify conceptual and internal schemas for the database and any mappings between the two. In many DBMSs where no strict separation of levels is maintained, one language, called the <code class="language-plaintext highlighter-rouge">data definition language (DDL)</code>, is used by the DBA and by database designers to define both schemas. The DBMS will have a DDL compiler whose function is to process DDL statements in order to identify descriptions of the schema constructs and to store the schema description in the DBMS catalog.</p>
+
+<p>일단 DB의 디자인이 완성되면 DBMS는 이를 implement해야한다. 첫 번째로는 conceptual schemas와 internal schema를 명시화하고 이 둘을 연결해주는 mapping을 명시해야한다. 구분되는 레벨이 없는 많은 DBMS에서는 <code class="language-plaintext highlighter-rouge">DDL</code>이라고 불리는 단 하나의 언어만 사용된다. 이 언어는 <code class="language-plaintext highlighter-rouge">DBA</code>와 <code class="language-plaintext highlighter-rouge">DB 디자이너</code>들에 의해서 사용된다.</p>
+
+<p>In DBMSs where a clear separation is maintained between the conceptual and internal levels, the DDL is used to specify the conceptual schema only. Another language, the <code class="language-plaintext highlighter-rouge">storage definition language (SDL)</code>, is used to specify the internal schema. The mappings between the two schemas may be specified in either one of these languages.</p>
+
+<p>반대로 conceptual and internal levels 사이에 분명한 구분이 있는 DBSM에서는 <code class="language-plaintext highlighter-rouge">DDL</code>은 오직 conceptual schema에만 사용된다. 다른 언어인 <code class="language-plaintext highlighter-rouge">SDL</code>이 interaml schema를 위해서 사용된다. 이 둘 사이의 mapping은 이 둘 중 하나의 언어로 명시될 수 있다.</p>
+
+<p>In most relational DBMSs today, there is no specific language that performs the role of SDL. Instead, the internal schema is specified by a combination of functions, parameters, and specifications related to storage of files. These permit the DBA staff to control indexing choices and mapping of data to storage.</p>
+
+<p>많은 대부분의 DBMS에서는 <code class="language-plaintext highlighter-rouge">SDL</code>의 역할을 하는 특정한 언어가 존재하지 않는다. 대신에 internal schema는 함수, 파라미터 그리고 파일과 관련된 specifiation들에 의해서 명시된다.</p>
+
+<p>For a true three-schema architecture, we would need a third language, the <code class="language-plaintext highlighter-rouge">view definition language (VDL)</code>, to specify user views and their mappings to the conceptual schema, but in most DBMSs the DDL is used to define both conceptual and external schemas. In relational DBMSs, SQL is used in the role of VDL to define user or application views as results of predefined queries (see Chapters 6 and 7).</p>
+
+<p>3가지 schema를 가지고 있는 구조에서는 3번째의 언어가 필요하고 이를 <code class="language-plaintext highlighter-rouge">VDL</code>이라고 부른다. 이것은 user view를 명시하고 user와 conceptual schema 사이의 맵핑을 명시한다. 하지만 대부분의 DBMS에서는 <code class="language-plaintext highlighter-rouge">DDL</code>은 conceptual과 external schema를 모두 명시한다. 관계형 DBMS에서는 SQL이 VDL의 역할을 한다.</p>
+
+<p>Once the database schemas are compiled and the database is populated with data, users must have some means to manipulate the database. Typical manipulations include retrieval, insertion, deletion, and modification of the data. The DBMS provides a set of operations or a language called the <code class="language-plaintext highlighter-rouge">data manipulation language (DML)</code> for these purposes.</p>
+
+<p>There are two main types of <code class="language-plaintext highlighter-rouge">DMLs</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">A high-level or nonprocedural DML</code>: can be used on its own홀로 to specify complex database operations concisely. Many DBMSs allow high-level DML statements either to be entered interactively from a display monitor or terminal or to be embedded in a general-purpose programming language. In the latter case, DML statements must be identified within the program so that they can be extracted by a precompiler and processed by the DBMS. High-level DMLs, such as SQL, can specify and retrieve many records in a single DML statement; therefore, they are called set-at-a-time or set-oriented DMLs. (서울출신 모두 일어서, 한 번에 하나의 집합을 처리.) A query in a high-level DML often specifies which data to retrieve rather than how to retrieve it; therefore, such languages are also called <code class="language-plaintext highlighter-rouge">declarative</code>.택시 손님이 목적지 가는 경로를 알려준다?</li>
+  <li><code class="language-plaintext highlighter-rouge">A low- level or procedural DML</code> must be embedded in a general-purpose programming language. This type of DML typically retrieves individual records or objects from the database and processes each separately. Therefore, it needs to use programming language constructs, such as looping, to retrieve and process each record from <code class="language-plaintext highlighter-rouge">a set of records</code>. for문을 돌면서 한 번에 하나의 데이터를 처리할 수 있다. 너 서울 출신이야?</li>
+</ul>
+
+<p>Whenever DML commands, whether high level or low level, are embedded in a general-purpose programming language, that language is called the host language and the DML is called the data sublanguage.10 On the other hand, a high-levelDML used in a standalone interactive manner is called a query language. In gen- eral, both retrieval and update commands of a high-level DML may be used inter-actively and are hence considered part of the query language.</p>
+
+<ol>
+  <li>DML :
+    <ul>
+      <li>A high-level or nonprocedural DMl :</li>
+    </ul>
+    <ul>
+      <li>declarative languages : .</li>
+      <li>set-at-a-time or set-oriented DMLs : 
+      - A low-level or procedural DML</li>
+      <li>recored-at-a-time? :</li>
+    </ul>
+  </li>
+  <li>
+    <p>QUery language :</p>
+  </li>
+  <li>Data sublanguage
+    <ul>
+      <li>host language</li>
+    </ul>
+  </li>
+  <li>SQL
+    <ul>
+      <li>a comprehensive integrated language</li>
+      <li>a combination of DDL, VDL, and DML, as well as statements for constracint specificatino and schema evolution</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="232-dbms-interfaces">2.3.2 DBMS Interfaces</h3>
+
+<p>I/O에 관한 부분은 OS의 기능을 사용한다. buffer management는 많은 DBMS들이 그들 자신의 modeul을 사용한다. 디스크에서 읽고 쓰고 하는 명령을 Stored data manager에서 전담한다.</p>
+
+<h3 id="24-the-database-system-environment">2.4 The Database System Environment</h3>
+
+<p>The database and the DBMS catalog are usually stored on disk. Access to the disk is controlled primarily by the operating system (OS), which schedules disk read/write. Many DBMSs have their own buffer management module to sched- ule disk read/write, because management of buffer storage has a considerable effect on performance. Reducing disk read/write improves performance consid- erably. A higher-level stored data manager module of the DBMS controls access to DBMS information that is stored on disk, whether it is part of the database or the catalog.</p>
+
+<p>Casual users and persons with occasional need for information from the database interact using the <code class="language-plaintext highlighter-rouge">interactive query</code> interface in Figure 2.3. We have not explicitly shown any menu-based or form-based or mobile interactions that are typically used to generate the interactive query automatically or to access canned transactions. These queries are parsed and validated for correctness of the query syntax, the names of files and data elements, and so on by a <code class="language-plaintext highlighter-rouge">query compiler</code> that compiles them into an internal form.</p>
+
+<p>This internal query is subjected to <code class="language-plaintext highlighter-rouge">query optimization</code> (discussed in Chapters 18 and 19). Among other things, the query optimizer is concerned with the rearrangement and possible reordering of operations, elimina- tion of redundancies, and use of efficient search algorithms during execution. It consults the system catalog for statistical and other physical information about the stored data and generates executable code that performs the necessary operations for the query and makes calls on the runtime processor.</p>
+
+<p>Application programmers write programs in host languages such as Java, C, or C++ that are submitted to a precompiler. 하나의 프로그램에 DB SQL명령과 C 명령이 같이 들어있으면 어렵다. precompiler를 지나면 하나는 C코드만 빼고 하나느 SQL 코드를 포함하는 별도의 프로그램으로 나눈다. 그리고 원래의 형태를 함수를 호출하는 부분으로 바꾼다.  The precompiler extracts DML commands from an application program written in a host programming language. These com- mands are sent to the DML compiler for compilation into object code for database access. The rest of the program is sent to the host language compiler. The object codes for the DML commands and the rest of the program are linked, forming a canned transaction whose executable code includes calls to the runtime database processor. It is also becoming increasingly common to use scripting languages such as PHP and Python to write database programs.</p>
+
+<ul>
+  <li>Runtime database processor
+    <ul>
+      <li>handles database access at run time;</li>
+    </ul>
+  </li>
+  <li><strong>Query Compiler + Query Optimizer효율적으로 질의를 하도록 도와줌 : Query Processor 라고도 부름..</strong></li>
+</ul>
+
+<h3 id="242-database-system-utilities">2.4.2 Database System Utilities</h3>
+
+<ul>
+  <li>설명 간단히 하고 넘어감</li>
+</ul>
+
+<p>In addition to possessing the software modules just described, most DBMSs have database utilities that help the DBA manage the database system. Common utili- ties have the following types of functions:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Loading</code>. A loading utility is used to load existing data files—such as text 
+files or sequential files—into the database. Usually, the current (source) for- 
+mat of the data file and the desired (target) database file structure are speci- 
+fied to the utility, which then automatically reformats the data and stores it 
+in the database. With the proliferation of DBMSs, transferring data from 
+one DBMS to another is becoming common in many organizations. Some 
+vendors offer conversion tools that generate the appropriate loading pro- 
+grams, given the existing source and target database storage descriptions 
+(internal schemas).</p>
+
+<h2 id="25--centralized-and-clientserver-architectures-for-dbmss">2.5  Centralized and Client/Server Architectures for DBMSs</h2>
+
+<h3 id="251-centralized-dbmss-architecture">2.5.1 Centralized DBMSs Architecture</h3>
+
+<p><img src="" alt="Figure 2.5" /></p>
+
+<p>하나의 컴퓨터 안에 DBMS, OS 모두 깔려있고 사용자는 이것을 사용하기만 하는 것을 Centrialized라고 함. 모든 유저는 단말기를 사용해서 중앙의 DBMS를 사용하는 것.</p>
+
+<h3 id="252-basic-clientserver-architectures">2.5.2 Basic Client/Server Architectures</h3>
+
+<p>서버들이 수행하는 역할을, 하나의 서버가 하나의 역할만 하도록 구분하게 되었다. File Servers, Printer Servers, Web Servers, DB Servers. Client와 각각의 역할을 하는 서버들을 network를 통해서 연결  : Two tier 아키텍쳐. 각 서버마다 클라이언트, DB, 서버 역할을 할 수도 안할 수도 있다. 최소 한 개의 역할은 하는 것 같다.</p>
+
+<p><img src="" alt="Figure 2.6" /></p>
+
+<h3 id="253-two-tier-clientserver-architectures-for-dbmss">2.5.3 Two-Tier Client/Server Architectures for DBMSs</h3>
+
+<p>In relational database management systems (RDBMSs), many of which started as centralized systems, the system components that were first moved to the client side were the user interface and application programs. Because SQL (see Chapters 6 and 7) provided a standard language for RDBMSs, this created a logical dividing point between client and server. Hence, the query and transaction functionality related to SQL processing remained on the server side. In such an architecture, the server is often called a query server or transaction server because it provides these two functionalities. In an RDBMS, the server is also often called an SQL server.</p>
+
+<h2 id="logical-two-tire-clientserver-architecture">Logical two-tire client/server architecture</h2>
+
+<p>택시타고 일 끝날 때까지 택시 기다리게 하기.</p>
+
+<p>Logical two-tire client/server architecture를 사용하다보면 각 서버마다 서로 다른 종류의 DBMS를 사용할 수도 있다. ORACLE/DB2/MSSQL 등등 사용자가 특정 서버의 DB에 연결하기 위해서는 서로 다른 환경을 조작할 수 있어야 한다. 이런 문제점을 해결하기 위해서 중간에 표준 interface를 추가한다. 사용자는 표준 interface만 알고 요청을 날리고, 이 interface가 oracle/DB2/MSSQL 등의 명령어로 convertion해서 query를 날려줄 수 있다. 사용자는 표준 interface만 알고있으면 되는 것이다. 이 표준 interface가 <code class="language-plaintext highlighter-rouge">ODBC</code>이다.</p>
+
+<ul>
+  <li>ODBC : 모든 유저는 ODBC로 access하면 된다. DB는 자신의 요청을 ODBC API로 받아와서 처리해준다. C/C++를 위한 환경</li>
+  <li>JDBC : Java를 지원하는 ODBC의 기능 지원</li>
+</ul>
+
+<h3 id="254--three-tier-and-n-tier-architectures-for-web-applications">2.5.4  Three-Tier and n-Tier Architectures for Web Applications</h3>
+
+<p>일 끝나고 택시 다시 부르고 왔다 갔다 시간만 돈 내기.</p>
+
+<p>수강신청할 때 DB에 동시에 접근할 수 있는 인원이 3명일 때, 3명이 각자의 권한을 놓을 때까지 나머지 사람들은 queue에서 기다리고 있어야 한다. 그런데 수강신청히 1초에 3000명 정도 로그인을 하는데 우리 학교 DB는 16~32명이 DB에 동시에 접근할 수 있다. 나머지는 모두 waiting을 하고 있다. 16~32명도 화면 띄우고 고민하다가 마지막 0.1초에만 DB에 직접 Access를 한다. 이를 해결하기 위해서 수강신청을 하는 프로그램과 DB에 Access 접근하는 프로그램을 분리한다. 수강신청을 하는 동안에는 DB를 Access하는 권한을 주지 않는다. 따라서 많은 유저가 수강신청 페이지에 Login을 할 수 있는 것이다.</p>
+
+<p><strong>어떻게 3가지로 나눠지는지 이름 외우기</strong></p>
+
+<p>client 입장에서는 GUI로 Web interface를 볼 수 있다. 웹 수강신청 페지이의 Application programs가 있다. 수강신청 페이지에서 Database에 접근할 때 Database management System을 사용한다. 활용시간 100 중에 Data management system을 사용하는 시간은 1정도.</p>
+
+<p>Presentation Layer, Business Logic Layer, DB Layer 중 가은데 것을 Business Rule이라고 부르기도 하는 듯하다.</p>
+
+<ul>
+  <li>N-Tier Arachitectures</li>
+</ul>
+
+<p>Presentation 앞에 Login만 처리하는 Layer를 하나 더 추가해서 Application이 터지지 않도록 한다.</p>
+
+<h2 id="26--classification-of-database-management-systems">2.6  Classification of Database Management Systems</h2>
+
+<p>DBMS를 구분 분류하는 기준</p>
+
+<ul>
+  <li>Data Model
+    <ul>
+      <li>객체지향 DBMS : 객체지향 모델을 지원하는 DBMS</li>
+    </ul>
+  </li>
+  <li>The number of users : 멀티 유저를 지원하는가 안하는가?
+    <ul>
+      <li>single-user systems or not</li>
+    </ul>
+  </li>
+  <li>The number of sites : DB가 얼마나 흩어져있는가?
+    <ul>
+      <li>centralized / distributed DBMS</li>
+      <li>homogeneous / heterogeneous DBMS : 동질형/이질형(여러개의 DB에 대해서 각 DB를 구성하는 모듈이 서로 다른 경우 ORACLE/MSSQL/DB2등으로 다른 경우)</li>
+      <li>autonomous하고 기존에 있는 DB에 접속할 수 있게 도와주는 Federated DBMS 연방 DBMS가 있다. Federated DBMS는 교육부가 여러 곳에 흩어져있는 DB를 모은 것이고 이 곳에 접근하면 모든 정보를 얻을 수 있다. distributed DB는 원래 하나를 여러 상황상 여러 나라에 흩어놓은 것이고, Federated DBMS는 원래 다른 것을 하나의 DBMS에서 볼 수 있도록 하는 차이가 있다.</li>
+    </ul>
+  </li>
+  <li>Cost
+    <ul>
+      <li>꽁짜부터 수백만 Dollar짜리. 돈 내는 방법도 여러가지.</li>
+    </ul>
+  </li>
+  <li>The types of access payh options?</li>
+  <li>Purpose
+    <ul>
+      <li>범용이나 special purpose냐.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>//chapter 1 , 2 review True/False quiz</p>
+
+<ol>
+  <li>보호(protection)는 하드웨어 또는 소프트웨어 오동작(또는 붕괴)으로부터 시스템을 보호하는 기능(security protection )과 권한이 없는 또는 악의적인 접근을 하려는 보안 위협으로부터 보호하는 기능(system protection)을 포함한다. False</li>
+  <li>어떤 특정 시점에 데이터베이스에 들어 있는 데이터를 데이터베이스 상태(state), 스키마의 내포(intension), 또는 스냅삿(snapshot)이라고 한다. False intension은 아님</li>
+  <li>데이터 모델은 데이터 추상화(data abstraction)를 달성하는 데 필요한 수단을 제공한다. 데이터 타입, 관계성(relationship), 데이터에 대한 제약조건 등의 데이터베이스 구조를 기술하는데 필요한 개념을 포함하지만, 기본 연산 집합은 포함하지 않는다. False S,O,C 모두 포함</li>
+  <li>데이터베이스 설계자(database designer)는 데이터베이스에 저장될 데이터를 선정하고, 데이터를 나타내고 저장하는 구조를 정의하는 역할을 담당한다.</li>
+  <li>3단계-스키마 아키텍처의 목적은 물리적 데이터베이스로부터 사용자 응용들을 분리하는 것이다. 3단계-스키마 아키텍처는 데이터 독립성의 개념을 설명하기 위해 사용될 수 있다.</li>
+  <li>데이터베이스는 서로 연관된 데이터들의 모임이다. 데이터는 기록될 수 있으며 어떤 의미를 내포하고 있는, 알려진 사실(fact)이다.</li>
+  <li>데이터 모델은 데이터를 구조화하는 스키마에 대한 규칙을 제공하며, 스키마는 현실 세계를 표현하는 데이터 인스턴스가 유효한지를 검증하는 규칙을 제공한다.</li>
+  <li>DBMS를 접근하는 응용 프로그램들은 데이터 파일의 구조가 응용 프로그램과 분리되어 DBMS 카탈로그에 저장된다. 따라서 데이터 파일의 구조가 변경되어도 응용 프로그램은 거의 변하지 않게 된다. 이러한 성질을 프로그램-데이터 독립성 (program-data independence) 이라 한다.</li>
+  <li>표현(representational) 데이터 모델들은 일반 사용자들이 쉽게 이해할 수 있는 개념을 제공하지만, 컴퓨터 저장 장치에서 데이터가 구성되는 방식과는 완전히 무관하다. False</li>
+  <li>데이터의 중복성(redundancy)은 여러 가지 문제점을 초래한다. 논리적으로는 한 번의 변경이지만 데이터가 중복된 횟수만큼 반복해서 변경해야 하고 메모리 낭비도 초래한다.
+```</li>
+</ol>
 
         
       </section>
@@ -610,14 +938,15 @@ is sometimes called the intension, and a database state is called an extension o
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-04T00:00:00+09:00">September 4, 2019</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-02T00:00:00+09:00">September 2, 2019</time></p>
+
+
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB+System%5D+1%EC%9E%A5+%EB%A7%88%EB%AC%B4%EB%A6%AC+%EB%B0%8F+2%EC%9E%A5%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Chapter+2+Database+System+Concepts+and+Architecture%20http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdatabase%2FFundatmental-Database-2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -628,11 +957,11 @@ is sometimes called the intension, and a database state is called an extension o
       
   <nav class="pagination">
     
-      <a href="/review/Pearl-Abyss-Written-Test-Preparing/" class="pagination--pager" title="[필기TEST] 펄어비스 게임플레이 프로그래머
+      <a href="/database/Fundatmental-Database-1/" class="pagination--pager" title="[DB] Chapter 1 Database and Database Users
 ">Previous</a>
     
     
-      <a href="/cpp/cpp-basic-syntax-1/" class="pagination--pager" title="[C++] 기본 Syntax 1
+      <a href="/database/Fundatmental-Database-3/" class="pagination--pager" title="[DB] Chapter 3 Data Modeling Using the Entity-Relationship Model
 ">Next</a>
     
   </nav>
@@ -655,23 +984,34 @@ is sometimes called the intension, and a database state is called an extension o
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/tobby-spring-0/" rel="permalink">[Spring]
+        <a href="/ps/java-ps-warming-up/" rel="permalink">[PS][Java] java PS 몸풀기
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  1 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">토비의 스프링 3.1 Vol. 1: 스프링의 이해와 원리
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">BOJ 1002 터렛
 </p>
   </article>
 </div>
@@ -684,23 +1024,34 @@ is sometimes called the intension, and a database state is called an extension o
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-3/" rel="permalink">[RoadMap] Chap 1-3. Basic Frontend Knowledge - JavaScript
+        <a href="/eip/EIP-Subject-5-2/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  4 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        15 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 IT 프로젝트 정보시스템 구축
 </p>
   </article>
 </div>
@@ -713,23 +1064,34 @@ is sometimes called the intension, and a database state is called an extension o
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-2/" rel="permalink">[RoadMap] Chap 1-2. Basic Frontend Knowledge - CSS
+        <a href="/eip/EIP-Subject-5-1/" rel="permalink">[자격증][정처기] 5과목 정보시스템 구축 관리 - 1
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  2 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        8 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1장 소프트웨어 개발 방법론 활용
 </p>
   </article>
 </div>
@@ -742,23 +1104,34 @@ is sometimes called the intension, and a database state is called an extension o
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backend/roadmap-1-1/" rel="permalink">[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML
+        <a href="/eip/EIP-Subject-3-2/" rel="permalink">[자격증][정처기] 3과목 데이터베이스 구축 - 2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
+  <p class="page__meta">
 
-
-  3 minute read
-
-</p>
     
-    <p class="archive__item-excerpt" itemprop="description">github.com/kamranahmedse/developer-roadmap
+
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2장 물리 데이터베이스 설계
 </p>
   </article>
 </div>
@@ -813,7 +1186,6 @@ is sometimes called the intension, and a database state is called an extension o
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 

@@ -35,6 +35,12 @@ var store = [{
         "url": "http://localhost:4000/blog/post-link/",
         "teaser": null
       },{
+        "title": "[기업분석] Collabee",
+        "excerpt":"   업부 내역을 문서화해서 공유  ","categories": ["Review"],
+        "tags": ["Collabee"],
+        "url": "http://localhost:4000/review/Company-Analysis-Collabee/",
+        "teaser": null
+      },{
         "title": "WWWWelcome to Jekyll!",
         "excerpt":"You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when...","categories": ["blog"],
         "tags": ["Jekyll","update"],
@@ -618,7 +624,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[링크 정리] 관심 기업 채용 페이지",
-        "excerpt":"NOW [상시모집]네이버 동영상플랫폼 상시모집 [~11/11]현대자동차그룹-연구장학생 [~11/5]2019 카카오 개발자 겨울 인턴십 - Machine Learning 분야 기업 삼성 네이버 SKT [SK]](https://www.skcareers.com/POS/TRM2101.aspx) 현대 KT LG kakao 롯데 포스코 gs에너지 gsITM 은행 농협 장학재단 현대자동차그룹-연구장학생 정몽구재단 한화 hyundai-recruit-1.jpg 게임 회사 펄어비스 넥슨 넷마블 NHN 유니티코리아 토스 네이버 연구식 상시 지원 SKT 31일까지 지원 넥슨...","categories": ["Review"],
+        "excerpt":"은행 한국 4.2.4963 농협 3.6.5023 신한 3.3.5287 기업 3.8.4940 우리 3.2.4333 KB금융그룹 4.6.4861 저축은행 새마을금고 신협 투자증권 NH투자증권 3.7.5045 신한금융투자 3.6.4000? SK증권 3.5.4875 KB금융그룹 3.3.4866 미래에셋대우 3.2.4482 한국투자증권 3.3.4414 삼성증권 3.0.4250 교보증권 3.5.?? 한양증권 3.4.? 유안타증권 3.1.4086 하나금융투자 3.0.?? 기업 삼성전자 3.7.4355 네이버 SKT SK 현대 KT LG kakao 롯데...","categories": ["Review"],
         "tags": ["Recruiting"],
         "url": "http://localhost:4000/review/Recruiting-URL/",
         "teaser": null
@@ -833,12 +839,6 @@ var store = [{
         "url": "http://localhost:4000/review/NAVER-Developer-Open-Class-Apply/",
         "teaser": null
       },{
-        "title": "[myspl 강좌] 1강",
-        "excerpt":"CRUD Create Read Upload Delete 데이터를 관리할 때 중요한 4가지 기능들인데 DB는 이러한 일들을 상황에 맞게 자동으로 처리하는 역할을 해준다. file system의 발전 방향은 file -&gt; Spread Sheet(E.g. excel) -&gt; Data Base이다. Database Ranking 랭킹 확인 사이트 Oracle detailed information Relational, Multi-model 1339.48 +18.22 +27.45 MySQL detailed information Relational, Multi-model...","categories": ["Myspl"],
-        "tags": ["myspl"],
-        "url": "http://localhost:4000/myspl/Inflearn-Myspl-Lecture-1/",
-        "teaser": null
-      },{
         "title": "[NAVER] Open Class 후기 ",
         "excerpt":"NAVER developer Open Class 2019에 다녀왔습니다. 본 행사에서 있었던 내용 중에 기억에 남는 내용을 정리하겠습니다. 본 행사는 5일에 나워서 진행되는 것으로 알고 있고 이번 3차에서는 230명의 사람들을 불렀습니다. 내가 몰랐던 네이버 :: VLive 20대 여성들이 주로 사용하는 VLive라는 서비스가 있습니다. 셀럽들이 개인 방송을 하고 사용자들은 이를 구경합니다. 셀럽 버전 아프리카...","categories": ["Review"],
         "tags": ["naver","developer"],
@@ -851,22 +851,46 @@ var store = [{
         "url": "http://localhost:4000/review/From-7-15-To-8-31/",
         "teaser": null
       },{
-        "title": "[DB System] 개론 및 1장",
-        "excerpt":"개요 교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Part 1 : Introduction to Databases 일반적으로 물건을 사고 예약을 하는 행위를 하면서 전통적인 database 시스템을 자각을 하지 못하는 사이에도 사용하고 있었다. 요즘에는 SNS를 통해서 비전통적인 데이터(posts, tweets, mages,...","categories": ["Database"],
+        "title": "[DB] Chapter 1 Database and Database Users",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chapter 1 Database and Database Users 개념 개념 의미 Data 함축적인 의미를 가진 저장할 수있는 알려진 사실 Database 관련된 Data의 집합. 또는 Mini-world를 관리하기 위해서 관련된 것끼리 모아놓은 것. mini-world...","categories": ["Database"],
         "tags": ["database"],
         "url": "http://localhost:4000/database/Fundatmental-Database-1/",
+        "teaser": null
+      },{
+        "title": "[DB] Chapter 2 Database System Concepts and Architecture",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chapter 2 Database System Concepts and Architecture Data Model = (S, O, C) 개념 의미 데이터 추상화 데이터가 어떻게 저장되었는지는 숨기고, 사용자에게 conceptual view를 제공한다. Data Model DB의 구조를 묘사하기...","categories": ["Database"],
+        "tags": ["database"],
+        "url": "http://localhost:4000/database/Fundatmental-Database-2/",
+        "teaser": null
+      },{
+        "title": "[DB] Chapter 3 Data Modeling Using the Entity-Relationship Model",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chapter 3 Data Modeling Using the Entity-Relationship Model Using High-Level Conceptual Data Models for Database Design data model의 개념에 따라서 나눈 구분 types of concepts 같은 뜻 의미 High Level...","categories": ["Database"],
+        "tags": ["database"],
+        "url": "http://localhost:4000/database/Fundatmental-Database-3/",
+        "teaser": null
+      },{
+        "title": "[DB] Chapter 4 Enhanced Entity-Relationship and Object Modeling ",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chapter 4 Enhanced Entity-Relationship and Object Modeling 새로운 DB Application 두 가지 종류 Enhanced ER or EER model additional semantic data modeling concepts ER Model + specialization/generalization, category class/subclass relationship,...","categories": ["Database"],
+        "tags": ["database"],
+        "url": "http://localhost:4000/database/Fundatmental-Database-4/",
+        "teaser": null
+      },{
+        "title": "[DB] Chapter 5 ",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chater 5 : The Relational Data Model and Relational Database Constraints History of Data Models 정보 검색에 대한 내용은 참고 사항으로만 보기!! Relational 형태가 아직까지 쓰이고 이다.라고만 설명하고 넘어감. 1970년에...","categories": ["Database"],
+        "tags": ["database"],
+        "url": "http://localhost:4000/database/Fundatmental-Database-5/",
+        "teaser": null
+      },{
+        "title": "[DB] Chapter 9 ",
+        "excerpt":"교재 교재는 ‘Fundamentals of Database System’ 7th edition 구글링해서 찾기 6판에서 7판으로 개정되면서 big data 부분이 추가됨. 한글판은 6판까지만 있음 Chater 9 : Relational Database Design ER- and EER-to-Relation Mapping ER과 EER을 Ration으로 mapping하는 과정은 conceptual schema 설계 이후의 logical schema 설계의 과정이다. Relation mapping의 결과 relational database schema가 생성된다....","categories": ["Database"],
+        "tags": ["database"],
+        "url": "http://localhost:4000/database/Fundatmental-Database-9/",
         "teaser": null
       },{
         "title": "[필기TEST] 펄어비스 게임플레이 프로그래머",
         "excerpt":"일정 9월 6일 안양에서 3시간 내외로 직무 관련 필기 TEST를 진행하게 되었다. 직무 관련 필기 면접 2시간, 인성 필기 면접 1시간이다. 후자는 좀 많은 문제를 의식의 흐름따라 쭉 체크하면 될 것으로 생각된다. 한 번도 준비해본 적이 없는 필기 면접, 제대로 준비해보자. 정렬 삽입정렬 #include &lt;cstdio&gt; #define MAX 5 void insert_sort(int...","categories": ["Review"],
         "tags": ["Job-Apply"],
         "url": "http://localhost:4000/review/Pearl-Abyss-Written-Test-Preparing/",
-        "teaser": null
-      },{
-        "title": "[DB System] 1장 마무리 및 2장",
-        "excerpt":"1.6 Advantages of Using the DBMS Approach 1.6.1 Controlling Redundancy Controlling redundancy in data storage and in development and maintenance efforts. redundancy를 아예 없애지는 않고 성능을 위해서 조금은 허용한다. 최소한의 데이터의 중복을 유지하면서 data의 동일성은 계속 유지해주어야 한다. 1.6.2 Restricting Unauthorized Access 불법적인 권한에 대해서 제한을 할 수 있다. 1.6.3...","categories": ["Database"],
-        "tags": ["database"],
-        "url": "http://localhost:4000/database/Fundatmental-Database-2/",
         "teaser": null
       },{
         "title": "[C++] 기본 Syntax 1 ",
@@ -917,22 +941,10 @@ var store = [{
         "url": "http://localhost:4000/cpp/cpp-basic-syntax-8/",
         "teaser": null
       },{
-        "title": "[DB System] 2장 계속 ",
-        "excerpt":"2.2 Three-Schema Architecture and Data Independence Three of the four important characteristics of the database approach, listed in Section 1.3, are (1) use of a catalog to store the database description (schema) so as to make it self-describing, (2) insulation of programs and data (program-data and program-operation independence), and (3)...","categories": ["Database"],
-        "tags": ["database"],
-        "url": "http://localhost:4000/database/Fundatmental-Database-3/",
-        "teaser": null
-      },{
         "title": "[NNStreamer] 공개 SW 컨트리뷰톤 시작하기 ",
         "excerpt":"발대식 공개 SW 컨트리뷰톤 2019에 참가하게 되었습니다. 삼성전자 리서치 소속의 멘토님이 이끌어주시는 NNstreamer 프로젝트에 선발되었습니다. 발대식 당일에는 20개팀 전체 200명정도 되는 멘토,멘티 그리고 관계자분들이 많이 참석하셨습니다. 태풍 링링으로 우산이 뒤집혀지는 날씨였는데도 많이 참석해주셨습니다. 현장에서는 오픈소스 장인분들이 엄청 많았습니다. 저는 잘 이해가 안되는 말도 먼저 알고 오신 멘티분들도 많았습니다. 전년도 컨트리뷰톤에서...","categories": ["NNstreamer"],
         "tags": ["nnstreamer"],
         "url": "http://localhost:4000/nnstreamer/Setting-Up-VirtualBox/",
-        "teaser": null
-      },{
-        "title": "[DB System] 2장 계속 2",
-        "excerpt":"2.5 Centralized and Client/Server Architectures for DBMSs 2.5.1 Centralized DBMSs Architecture 하나의 컴퓨터 안에 DBMS, OS 모두 깔려있고 사용자는 이것을 사용하기만 하는 것을 Centrialized라고 함. 모든 유저는 단말기를 사용해서 중앙의 DBMS를 사용하는 것. 2.5.2 Basic Client/Server Architectures 서버들이 수행하는 역할을, 하나의 서버가 하나의 역할만 하도록 구분하게 되었다. File Servers, Printer...","categories": ["Database"],
-        "tags": ["database"],
-        "url": "http://localhost:4000/database/Fundatmental-Database-4/",
         "teaser": null
       },{
         "title": "[NNStreamer] Gstreamer 설치 및 테스트 실행 ",
@@ -957,12 +969,6 @@ var store = [{
         "excerpt":"본 포스팅은 여기를 참조합니다. 목표 파이프 라인을 즉석에서(on the fly) building 하는 방법에 대해서 알아봅니다. Introduction 파이프라인은 playing state가 되기 전에는 완벽하게 build된 상태가 아닙니다. 만약 playing state로 설정하지 않으면 데이터는 pipeline의 end에 도달해서 error msg를 띄우고 멈출 것입니다. 이 예제에서 우리는 container file에서 오디오와 비디오가 함께 저장된(multiplxed, muxed)된 파일을...","categories": ["NNstreamer"],
         "tags": ["nnstreamer","gstreamer"],
         "url": "http://localhost:4000/nnstreamer/Basic-Tutorials-For-GStreamer-3/",
-        "teaser": null
-      },{
-        "title": "[DB System] 5장",
-        "excerpt":"5.1.2 Characteristics of Relations Ordering of tuples in a relation r(R) 관계는 튜플들의 집합이기 때문에 원소의 순서는 중요하지 않다고 본다. {1,2,3} = {3,2,1} 따라서 ![Figure 5.2]는 동일한 표로 간주한다. attribute의 순서에 대해서 원래의 관계의 정의를 보아도 ordered list로 순서가 있는 것처럼 보여진다. 수학적 정의를 넓혀보면 어떻게 정의를 내릴 수 있냐면,...","categories": ["Database"],
-        "tags": ["database"],
-        "url": "http://localhost:4000/database/Fundatmental-Database-5/",
         "teaser": null
       },{
         "title": "[NNStreamer] Gstreamer 기본 튜토리얼 4",
@@ -1296,7 +1302,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[정보보호이론] Chapter 1 고전암호",
-        "excerpt":"정보보호 개요 정보보호에는 세 가지 원칙이 있습니다. Confidentiality 기밀성 정보의 소유자가 원하는 대로 정보의 비밀이 유지 되어야 한다. 허가되지 않은 사용자에게 정보가 노출되서는 안된다. 반드시 인가된 자에 의해서만 접근이 가능해야 한다. Ex) 접근통제, 암호화 Integrity 무결정 허가되지 않은 사용자에 의한 정보의 변경,삭제, 생성등으로부터 보호해야한다. 이는 정보의 정확성 및 완전성이 보장되어야...","categories": ["BlockChain"],
+        "excerpt":"정보보호 개요 정보보호에는 세 가지 원칙이 있습니다. Confidentiality 기밀성 정보의 소유자가 원하는 대로 정보의 비밀이 유지 되어야 한다. 허가되지 않은 사용자에게 정보가 노출되서는 안된다. 반드시 인가된 자에 의해서만 접근이 가능해야 한다. Ex) 접근통제, 암호화 Integrity 무결정 허가되지 않은 사용자에 의한 정보의 변경,삭제, 생성등으로부터 보호해야한다. 정보의 정확성 및 완전성이 보장되어야 한다는...","categories": ["BlockChain"],
         "tags": ["blockcahin"],
         "url": "http://localhost:4000/blockchain/chapter-0/",
         "teaser": null
@@ -1328,13 +1334,13 @@ var store = [{
         "title": "[RoadMap] Chap 0. Internet(Application layer)",
         "excerpt":"본 포스팅은 kamranahmedse의 개발자 로드맵을 따라서 진행됩니다. How does the internet work? 구성요소로 본 인터넷 인터넷에 연결되는 모든 장치는 호스트host 혹은 엔드 시스템end system이라고 부릅니다. host는 통신 링크communication link와 패킷 스위치packet switch의 네트워크로 연결됩니다. communication link는 광케이블, 구리선 등의 물리 매체로 구성됩니다. 이때 각각의 link는 다양한 전송률transmission rate과 대역폭bandwidth를 이용해서...","categories": ["Backend"],
         "tags": ["Backend"],
-        "url": "http://localhost:4000/backend/roadmap-0-0/",
+        "url": "http://localhost:4000/backend/network-layer-application/",
         "teaser": null
       },{
         "title": "[RoadMap] Chap 0. Internet(Transport layer)",
         "excerpt":"본 포스팅은 kamranahmedse의 개발자 로드맵을 따라서 진행됩니다. Application Layer은 네트워크 애플리케이션과 애플리케이션 계층 프로토콜이 있는 곳이라고 설명했습니다. HTTP가 바로 애플리케이션 계층에서 동작하는 프로토콜입니다.(만약 애플리케이션 계층 프로토콜로 RTMP를 사용하는 경우 목적지 URL이 rtmp://로 시작합니다. 즉, HTTP는 사용되지 않습니다.) 트랜스포트 계층은 클라이언트와 서버 사이에 애플리케이션 계층 메시지를 전달하는 서비스를 제공합니다. 그런데 HTTP와...","categories": ["Backend"],
         "tags": ["Backend"],
-        "url": "http://localhost:4000/backend/roadmap-0-1/",
+        "url": "http://localhost:4000/backend/network-layer-transport/",
         "teaser": null
       },{
         "title": "[RoadMap] Chap 1-1. Basic Frontend Knowledge - HTML",
@@ -1359,5 +1365,257 @@ var store = [{
         "excerpt":"스프링이란 무엇인가? 스프링은 자바 엔터프라이즈 애플리케이션 갭라에 사용되는 프레임워크입니다. 앱의 기본 틀 - 스프링 컨테이너 스프링은 스프링 컨테이너 또는 애플리케이선 컨텍스트라고 불리는 스프링 런타임 엔진을 제공합니다. 스프링 컨테이너는 설정 정보를 참고해서 앱을 구성하는 오브젝트를 생성하고 관리합니다. 스프링 컨테이너는 독립적으로 동작할 수도 있지만 보통 웹 모듈에서 동작하는 서비스나 서블릿으로 등록해서 사용합니다....","categories": ["Backend"],
         "tags": ["Backend"],
         "url": "http://localhost:4000/backend/tobby-spring-0/",
+        "teaser": null
+      },{
+        "title": "[ML][GAN][paper] cycleGAN",
+        "excerpt":"Goal : pix2pix와 cycleGAN 비교하며 이해하기 CycleGAN(이하 싸이클)은 도메인 사이의 style transfer에 사용되는 GAN입니다. 스타일 변환 과정은 비지도학습으로 수행됩니다. 즉, 두 도메인 모두에서 영상을 일대일 매핑하지 않습니다. 싸이클은 Unpaired Data를 사용합니다. pix2pix는 {스케치, 사물이미지}의 paired data를 사용합니다. 사물의 경우 스케치를 그리는 것은 상대적으로 쉽습니다 하지만 싸이클은 style transfer를 하기 위함이기...","categories": ["ML"],
+        "tags": [],
+        "url": "http://localhost:4000/ml/cyclegan/",
+        "teaser": null
+      },{
+        "title": "[Spring] 의존성 투입 DI",
+        "excerpt":"Chapter 01 들어가며 spring 5와 java8을 사용한다. %JAVA_HOME% : C:\\Program Files\\Java\\jdk1.8.0_251 모든 스프링 모듈은 메이븐 중앙 리포지토리를 통해서 배포된다. eclipse에서 jdk path를 못찾는 경우 C:\\Users\\nikla\\eclipse\\java-2020-03\\eclipse\\eclipse.ini의 -vm를 {JAVA_HOME}\\bin으로 수정한다. 프로젝트 루트에 pom.xml을 추가하고, 프로젝트 루트에서 mvn compile을 진행 maven 로컬 repo에서 필요한 .jar가 있는지 확인. 없으면 maven 원격 repo에서 로컬로 다운로드...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-di/",
+        "teaser": null
+      },{
+        "title": "[Spring] AOP",
+        "excerpt":"들어가며 spring framework의 AOP 기능은 spring-aop 모듈이 제공하는데 spring-context 모듈을 의존 대상에 추가하면 spring-aop 모듈도 함께 의존 대상에 포함된다. aspectjweaver 모듈은 AOP를 설정하는데 필요한 annotation을 제공하므로 이 의존을 추가해야 한다. &lt;dependency&gt; &lt;groupId&gt;org.aspectj&lt;/groupId&gt; &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt; &lt;version&gt;1.8.13&lt;/version&gt; &lt;/dependency&gt; 프록시 객체 기존 코드를 변경하지 않고 함수의 실행 시간을 출력할 수 있따. ImpeCalculator 클래스나 RecCalculator...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-aop/",
+        "teaser": null
+      },{
+        "title": "[myspl 강좌] 1강",
+        "excerpt":"데이터베이스 기초 모든 데이터베이스는 input과 output을 가진다. input은 Create/Update/Delete로 나눌 수 있고 Output은 Read로 이해할 수 있다. CRUD Create Read Upload Delete 데이터를 관리할 때 중요한 4가지 기능들인데 DB는 이러한 일들을 상황에 맞게 자동으로 처리하는 역할을 해준다. file system의 발전 방향은 file -&gt; Spread Sheet(E.g. excel) -&gt; Data Base이다. Database...","categories": ["Myspl"],
+        "tags": ["myspl"],
+        "url": "http://localhost:4000/myspl/Inflearn-Myspl-Lecture-1/",
+        "teaser": null
+      },{
+        "title": "[Spring] PreparedStatement",
+        "excerpt":"PreparedStatement란? 아래와 같이 SQL문의 틀을 미리 생성해 놓고 ?를 이용해서 나중에 값을 지정하는 것이 java.sql.PreparedStatement이다. Member member; Connection conn = null; PreparedStatement pstmt = ull; ResultSet rs = null; try{ conn = DriverManager.getConection(\"jdbc:mysql://localhost/spring5fs\", \"spring5\", \"spring5\"); pstmt = conn.prepareStatement(\"select * from MEMBER where EMAIL=?\"); pstmt.setString(1, email); rs = pstmt.executeQuery(); if(rs.next()){ member...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-preparedstatement/",
+        "teaser": null
+      },{
+        "title": "[Spring] JDBC",
+        "excerpt":"들어가며 DB 연동을 처리하는 방법은 JPA, MyBatis 등을 사용하는 방법이 있지만 지금은 JDBC를 통해서 기본적인 DB 연동을 처리하는 방법을 배운다. JDBC 프로그래밍의 단점을 보완하는 스프링 JDBC API를 이용하면 DB연동에 필요한 Connection을 구한 다음 쿼리를 실행하기 위해서 PreparedStatement를 생성한다. 그리고 쿼리를 실행한 뒤에는 finally 블록에서 ResultSet, PreparedStatement, Connection을 닫는다. Member member;...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-jdbc/",
+        "teaser": null
+      },{
+        "title": "[Spring] JDBC transaction",
+        "excerpt":"트랜잭션 처리 이메일이 유효한지 여부를 판단하기 위해 실제로 검증 목적의 메일을 발송하는 서비스를 경험해본 적이 있다. 이들 서비스는 이메일이 함꼐 보낸 링크를 클릭하면 최종적으로 이메일이 유효하다고 판단하고 해당 이메일을 사용할 수 있도록 한다. 이렇게 이메일 인증 시점에 테이블의 데이터를 변경하는 기능은 아래 코드처럼 회원 정보에서 이메일ㅇ르 수정하고 인증 상태를 변경하는...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-jdbc-transaction/",
+        "teaser": null
+      },{
+        "title": "[Spring] JDBC MVC",
+        "excerpt":"스프링 MVC 시작하기 스프링을 사용하는 여러 이유가 있지만 한 가지 이유를 꼽자면 스프링이 지원하는 웹 MVC 프레임워크 때문이다. 스프링 MVC의 설정 방법만 익혀두면 웹 개발에 필요한 다영한 기능을 구현할 수 있게 된다. 일단 이 장에서는 스프링 MVC 프레임웤를 이용해서 간단한 웹 프로그램을 작성해서 실행해 보고 이후 점진적으로 입문에 필요한 내용을...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/spring-jdbc-mvc/",
+        "teaser": null
+      },{
+        "title": "[Proj NJ] Proj Login",
+        "excerpt":"폴더 트리 D:\\DEV\\SPRING\\PROJECT-NIKLASJANG └─project-login ├─.settings ├─src │ └─main │ ├─java │ ├─resources │ └─webapp //HTML,CSS,JS,JSP 등 웹 앱 구현 코드 │ └─WEB-INF //web.xml 파일 │ └─view └─target //mvn compile로 생성된 디렉토리 ├─classes ├─m2e-wtp │ └─web-resources │ └─META-INF │ └─maven │ └─proj-niklasjang │ └─proj-login ├─maven-status │ └─maven-compiler-plugin │ └─compile │ └─default-compile...","categories": ["Spring"],
+        "tags": ["spring"],
+        "url": "http://localhost:4000/spring/proj-login/",
+        "teaser": null
+      },{
+        "title": "[Backend] 멀티쓰레드와 비동기 IO에 대해 ",
+        "excerpt":"좋은 글을 발견해서 일단 copy paste만 합니다. 멀티스레딩 프로그래을 다른 구분으로 나누면 Computed-Bounded 스레드와 IO-Bounded 스레드로 나뉠 수 있습니다. Computed-Bounded 스레드 라 하면 CPU, CPU Cache, 메인 메모리 범위에서 수행되는 작업입니다. 보통의 수학 연산이나, 메모리상의 Data 처리에 해당됩니다. IO-Bounded 스레드라고 하다면? 당근 CPU, 메모리를 제외한 HDD, 네트웍과 같이 외부저장장치와의 통신...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/multi-thread-vs-async-io/",
+        "teaser": null
+      },{
+        "title": "[기업분석] ARCUS",
+        "excerpt":"분산 메모리 캐시 클라우드 ARCUS 유연한 클라우드 Memcached 기반으로 단순한 key-value 유형 외에 list, set, b+ tree 같은 collection 유형을 제공하도록 확장함 Zookepper를 이용하여 운영 중 노두 추가 및 제거가 가능하도록 구현 데이터베이스의 앞 단에 위치해서 hot-spot 성격의 데이터를 캐싱 빠른 응답성을 제공 데이터 베이스의 부하를 감소 복잡한 계산에 의한...","categories": ["Backend"],
+        "tags": ["Backend"],
+        "url": "http://localhost:4000/backend/Company-Analysis-ARCUS/",
+        "teaser": null
+      },{
+        "title": "[Git] Git branch",
+        "excerpt":"브랜치 목록 확인 git branch ``` $ git branch iss53 master testing ``` 브랜치 별 가장 마지막 커밋 확인 git branch -v ``` $ git branch -v iss53 93b412c fix javascript issue master 7a98805 Merge branch ‘iss53’ testing 782fd34 add scott to the author list in the readmes ``` remote...","categories": ["Git"],
+        "tags": ["git","git branch"],
+        "url": "http://localhost:4000/git/git-branch/",
+        "teaser": null
+      },{
+        "title": "[Git] Git flow",
+        "excerpt":"git flow 배포했거나 배포할 코드만 master 브랜치에 Merge 해서 안정 버전의 코드만 master 브랜치에 둔다. 개발을 진행하고 안정화하는 브랜치는 develop라는 이름으로 추가로 만들어 사용한다. 이 브랜치는 언젠가 안정 상태가 되겠지만, 항상 안정 상태를 유지해야 하는 것이 아니다. 테스트를 거쳐서 안정적이라고 판단되면 master 브랜치에 Merge 한다. 개발 과정에서 여러 개의 기능을...","categories": ["Git"],
+        "tags": ["git","git flow"],
+        "url": "http://localhost:4000/git/git-flow/",
+        "teaser": null
+      },{
+        "title": "[Git] Git 설치, 설정, help",
+        "excerpt":"Git 설치 Ubuntu : $ sudo apt install git-all Window : https://git-scm.com/download/win Git 최초 설정 OS 적용 범위 명령어 디렉토리 Linux git config --system 시스템의 모든 사용자와 모든 저장소 /etc/gitconfig Linux git config --global 시스템의 특정 사용자의 모든 저장소 ~/.gitconfig,~/.config/git/config Linux git config --local 현재 작업중인 특정 저장소 ./ Git...","categories": ["Git"],
+        "tags": ["git","git install","git config","git help"],
+        "url": "http://localhost:4000/git/git-install-config-help/",
+        "teaser": null
+      },{
+        "title": "[Git] Git 로그 관리",
+        "excerpt":"로그 확인하기 기능 명령어 결과   기본 git log commit a11bef06a3f659402fe7563abf99ad00de2209e6 Author: Scott Chacon schacon@gee-mail.com Date: Sat Mar 15 10:31:28 2008 -0700 first commit   확인할 로그의 개수 설정 git log -2 git log와 같이 로그의 commit message만 확인 가능   확인할 로그의 수정된 내용까지 확인 git log -p -2...","categories": ["Git"],
+        "tags": ["git log","git"],
+        "url": "http://localhost:4000/git/git-log/",
+        "teaser": null
+      },{
+        "title": "[Git] Git Merge",
+        "excerpt":"Fast forward Merge C4 커밋이 C2 커밋에 기반한 브랜치이기 때문에 브랜치 포인터는 Merge 과정 없이 그저 최신 커밋으로 이동한다. $ git checkout master $ git merge hotfix 3-way Merge master와 iss53 브랜치를 merge하는 경우 두 브랜치의 조상이 다르기 때문에 ff merge를 진행할 수 없다. 이런 경우 3-way merge의 결과를 별도의...","categories": ["Git"],
+        "tags": ["git","git Merge"],
+        "url": "http://localhost:4000/git/git-merge/",
+        "teaser": null
+      },{
+        "title": "[Git] Git Rebase",
+        "excerpt":"Rebase? Git에서 한 브랜치에서 다른 브랜치로 합치는 방법으로는 두 가지가 있다. 하나는 Merge 이고 다른 하나는 Rebase 다. 비슷한 결과를 만드는 다른 방식으로, C3 에서 변경된 사항을 Patch로 만들고 이를 다시 C4 에 적용시키는 방법이 있다. Git에서는 이런 방식을 Rebase 라고 한다. rebase 명령으로 한 브랜치에서 변경된 사항을 다른 브랜치에...","categories": ["Git"],
+        "tags": ["git","git rebase"],
+        "url": "http://localhost:4000/git/git-rebase/",
+        "teaser": null
+      },{
+        "title": "[Git] Git 저장소 및 파일 관리",
+        "excerpt":"Git 저장소 만들기 기존 디렉토리를 Git 저장소로 만들어 github에 올리기 $ cd {프로젝트 디렉토리} $ git init $ 파일 작업 $ git add . $ git commit -m \"commit 설명\" $ git remote add origin https://github.com/{username}/{projecname} $ git pull origin master $ git push origin master github에 있는 저장소를 local로...","categories": ["Git"],
+        "tags": ["git add remote","gitignore","git add","git commit","git rm","git mv","git status","git diff"],
+        "url": "http://localhost:4000/git/git-remote-file-management/",
+        "teaser": null
+      },{
+        "title": "[Git] Git Alias",
+        "excerpt":"git은 완벽한 명령어만 알아듣는다. git config --global alias.co checkout git config --global alias.br branch git config --global alias.ci commit git config --global alias.st status git config --global alias.unstage 'reset HEAD --' 아래의 두 명령어는 정확히 같은 명령어 git unstage fileA git unstage HEAD -- fileA git config --global alias.last 'log...","categories": ["Git"],
+        "tags": ["git","git Alias"],
+        "url": "http://localhost:4000/git/git-tag-Alias/",
+        "teaser": null
+      },{
+        "title": "[Git] Git tag",
+        "excerpt":"Lightweight Tag lightweight 태그는 브랜치처럼 checkout할 수 있는 지점이지만, 가리키는 지점을 최신 커밋으로 이동시키지 않는다. 단순히 특정 커밋에 대한 포인터일 뿐이다. 생성 : git tag v0.0.1-lw 정보 확인 : git shw v0.0.1 lightweight가 가리키는 commit에 대한 정보를 알 수 있다. Annotation Tag Git DB를 만든 사람의 이름, 이메일, 태그를 만든...","categories": ["Git"],
+        "tags": ["git","git tag"],
+        "url": "http://localhost:4000/git/git-tag/",
+        "teaser": null
+      },{
+        "title": "[Git] Git 취소하기",
+        "excerpt":"unstage로 파일 상태를 변경하기   git reset HEAD {files}   Modified 파일 되돌리기   git checkout -- {file}   unstage로 바꾼 뒤 모든 변경 사항 버리기      git reset HEAD {file}   git checkout -- {file}   ","categories": ["Git"],
+        "tags": ["git","git reset","git checkout --"],
+        "url": "http://localhost:4000/git/git-undo/",
+        "teaser": null
+      },{
+        "title": "[Backend] HTTP, TCP/IP 동작과정",
+        "excerpt":"HTTP 동작 과정 host, 통신 링크, 라우터, 데이터, 패킷 host들은 통신 링크로 연결되며, 링크의 특성에 따라서 전송률과 대역폭이 달라집니다. 통신 링크들이 연결되는 지점을 router라고 합니다. link와 router를 통해서 전송되는 데이터는 packet의 형태를 가집니다. data를 segment로 나누고 header를 붙히면 packet이 됩니다. 네트워크 5계층 이름 정보 패킷 프로토콜 역할 애플리케이션 message HTTP,...","categories": ["Backend"],
+        "tags": ["backend","WAS","web server"],
+        "url": "http://localhost:4000/backend/how-http-tcp-ip-works/",
+        "teaser": null
+      },{
+        "title": "[Backend] level trigger eidge trigger 구조",
+        "excerpt":"trigger Level-Trigger Notification 상태 변화를 감지하고자 하는 fd가 준비되면 무조건 알리는 방식이다. 어떤 이벤트가 발생하고 있는 동안에 발생하는 트리거이다. 0과 1만 있는 상태에 대해서, 상태 1인 경우를 체크하기 위한 레벨 트리거는 상태가 1이면 이벤트가 발생한다. 반면에 상태가 0인 경우에는 이벤트가 발생하지 않는다. 소켓에 버퍼가 있는 동안에는 계속 반환한다. Edge-Trigger Notification...","categories": ["Backend"],
+        "tags": ["backend","trigger","level trigger","edge trigger"],
+        "url": "http://localhost:4000/backend/level-trigger-edge-trigger/",
+        "teaser": null
+      },{
+        "title": "[Backend] select, poll, epoll 구조",
+        "excerpt":"select 한줄로 표현하면, fd_set을 만들어 그 set에 속한 fd 중 하나라도 입력이 들어오면 블럭상태가 해제되고 원하는 루틴을 수행할 수 있다. select:: 동작 과정 싱글쓰레드로 다중 IO를 처리하는 대표적인 방법이다. select는 많은 fd를 한 번에 관찰하는 FD_SET 구조체를 사용하여 빠르고 간편하게 유저에게 fd의 상황을 알려준다. FD_SET을 통해서 fd가 IO 할 준비가...","categories": ["Backend"],
+        "tags": ["backend","WAS","web server"],
+        "url": "http://localhost:4000/backend/select-poll-epoll/",
+        "teaser": null
+      },{
+        "title": "[Backend] WAS(Web Application Service) 동작 과정",
+        "excerpt":"Static Pages 웹 서버는 파일 경로 이름을 받아서 경로와 일치하는 DB에서 file을 찾아서 반환합니다. 항상 동일한 페이지를 반환하는 경우를 static pages 라고 부릅니다. html, css, image, javascript 파일과 같이 컴퓨터에 저장되어 있는 파일을 의미합니다. 파일을 요청하는 url에 query string이 포함되지 않는 경우로 같은 파일에 대해서 항상 같은 url이 사용됩니다. Dynamic...","categories": ["Backend"],
+        "tags": ["backend","WAS","web server"],
+        "url": "http://localhost:4000/backend/was-structure/",
+        "teaser": null
+      },{
+        "title": "[DB]  트랜잭션과 ACID",
+        "excerpt":"트랜잭션이란 DB 내에서 하나의 논리적인 기능을 수행하는 단위로, 더이상 쪼갤 수 없는 작업의 논리적인 단위입니다. ACID 트랜잭션이 만족해야하는 속성으로 ACID는 다음과 같습니다. Atomicity Consistency Isolation Durablility 원자성(Atomicity) 트랜젝션 내의 모든 연산들은 반드시 한꺼번에 완전하게 전체가 정상적으로 수행이 완료되거나 아니면 어떠한 연산도 수행되지 않은 all or noting으로 수행되어야 합니다. 예를 들어...","categories": ["Database"],
+        "tags": ["transaction","acid"],
+        "url": "http://localhost:4000/database/transaction-acid/",
+        "teaser": null
+      },{
+        "title": "[Java] Garbage Collector 내부 구조",
+        "excerpt":"힙 영역의 구조 eden survivor1 survivor2 old permanent Minor GC eden 영역에서 old 영역 방향으로 오랫동안 참조되고 있는 메모리를 복사를 통해서 보존합니다. 가장 GC가 많이 일어나는 공간은 eden 영역입니다. 최초에 객체가 생성되면 Eden영역에 생성된다. Eden영역에 객체가 가득차게 되면 첫 번째 CG가 일어난다. survivor1 영역에 Eden영역의 메모리를 그대로 복사된다. 그리고 survivor1...","categories": ["Java"],
+        "tags": ["java","garbage collector","gc"],
+        "url": "http://localhost:4000/java/gargabe-collector/",
+        "teaser": null
+      },{
+        "title": "[Java] compile",
+        "excerpt":"*.jar java의 실행 가능한 파일 여러 개의 클래스 파일을 하나로 묶어서 실행할 수 있도록 해준다. 즉, .class 파일의 묶음 *.jar로 만들면 프로그램의 경로나 파일의 위치에 상관없이 실행이 가능하다 JDBC의 *.jar 데이터베이스에 connection하는 JDBC 인터페이스는 데이터베이스 프로그램을 만드는 회사에서 구현합니다. 자신의 회사의 데이터베이스에 맞게 구현한 클래스 파일 묶음인 .jar 라이브러리를 제공합니다....","categories": ["Java"],
+        "tags": ["java","compile"],
+        "url": "http://localhost:4000/java/java-compile/",
+        "teaser": null
+      },{
+        "title": "[Java] JDK, JRE, JVM 차이점",
+        "excerpt":"JDK : Java Development Kit JDK = JRE + Development Tools(Compiler(javac), Debugger etc) 자바 개발을 위해서 필요한 도구들 모음 JDK 안에는 JRE가 포함된다. 컴파일한 결과를 실행하기 위해서 필요하기 때문 JRE : Java Runtime Environment JRE = JVM + Libarary Classes 자바로 작성된 프로그램을 실행하기 위해서 필요한 것 자바 프로그램을 사용하기만...","categories": ["Java"],
+        "tags": ["java","jdk","jre","jvm"],
+        "url": "http://localhost:4000/java/jdk-jre-jvm/",
+        "teaser": null
+      },{
+        "title": "[Java] jsp ",
+        "excerpt":"JSP란   java를 기반으로하는 Server side 스크립트 언어이다. HTML 코드에 Java 코드를 넣어 동적인 웹 페이지를 생성하는 웹 어플리케이션 도구 JSP를 통해 정적인 HTML과 동적으로 생성된 contents(HTTP 요청 파라미터)를 혼합하여 사용할 수 있다. 즉, 사용자가 입력한 contents에 맞게 동적인 웹 페이지를 생성한다.  ","categories": ["Java"],
+        "tags": ["java","jsp"],
+        "url": "http://localhost:4000/java/jsp/",
+        "teaser": null
+      },{
+        "title": "[Java] JVM 내부 구조",
+        "excerpt":"JVM의 내부 구조 Class Loader(from *.class binary) 자바소스.java 파일을 컴파일하면 client.class와 같은 바이트코드가 생성된다. 이렇게 생성된 클래스 파일을 엮어서 JVM이 운영체제로부터 할당 받은 메모리 영역인 Runtime Data Area로 적재하는 역할을 수행한다. 자바 애플리케이션이 실행중일 때 이 작업이 수행된다. Execution Engine Class Loader에 의해서 메모리에 적재된 바이너리를 기계어로 변경해 명령어 단위로...","categories": ["Java"],
+        "tags": ["java","jvm"],
+        "url": "http://localhost:4000/java/jvm-structure/",
+        "teaser": null
+      },{
+        "title": "[Java] Polymorphism 다형성 ",
+        "excerpt":"다형성이란   한 인터페이스를 여러 클래스가 다양한 방식으로 구현한 경우 프로그램에서 인터페이스에 선언되 메서드를 사용할 때 각 클래스의 구현 내용과 상관없이 동일한 방식으로 사용할 수 있습니다.   같은 코드가 여러 구현 내용으로 실행되는 객체지향 특징을 다형성이라고 합니다.  ","categories": ["Java"],
+        "tags": ["java","compile"],
+        "url": "http://localhost:4000/java/polymorphism/",
+        "teaser": null
+      },{
+        "title": "[Backend] blocking/non blocking/sync/async socket io",
+        "excerpt":"Blocking I/O 작업은 유저레벨에서 직접 수행할 수 없다. 실제 I/O를 수행하는것은 커널레벨에서만 가능하다. 따라서 유저 프로세스(또는 쓰레드)는 커널에게 I/O를 요청해야한다. I/O에서 블로킹 형태의 작업은 유저 프로세스가 커널에게 I/O를 요청하는 함수를 호출하고, 커널이 작업을 완료되면 함수가 작업 결과를 반환한다. 만약 여러 클라이언트가 접속하는 서버를 블로킹방식으로 구현한다고 가정해보자. I/O작업이 blocking 방식으로 구현되면...","categories": ["Backend"],
+        "tags": ["backend","socket","io"],
+        "url": "http://localhost:4000/backend/blocking-non-blocking-io/",
+        "teaser": null
+      },{
+        "title": "[Backend] socket io 구조",
+        "excerpt":"               event       의미                       O_NONBLOCK       논 블럭킹 방식으로 데이터 전송하고자 할 때 적용하는 소켓의 attribute ( fcntl() 함수 사용)                 EAGAIN       버퍼가 꽉 차서 더 이상 전송이 불가능 할 경우에 발생하는 에러코드          ","categories": ["Backend"],
+        "tags": ["backend","socket","io"],
+        "url": "http://localhost:4000/backend/socket-io/",
+        "teaser": null
+      },{
+        "title": "[AWS] AWS 서비스 간단 설명",
+        "excerpt":"서비스 설명 EC2 Elastic Compute Cloud. 독립된 컴퓨터를 임대해주는 서비스. 터미널에서 ssh를 통해서 ec2의 IP주소로 접속해서 사용한다. S3 Simple Storage Serivce. bool,int,string과 같은 간단한 데이터 타입을 지원하는 저장공간이다. RDS Relational Database Service. 관계형 데이터베이스를 서비스로서 제공하는 제품이다. MySQL, MariaDB, PostgreSQL, SQL Server, ORACLE 등을 직접 운영하지 않고 AWS에 대행할 수...","categories": ["AWS"],
+        "tags": ["aws"],
+        "url": "http://localhost:4000/aws/socket-io/",
+        "teaser": null
+      },{
+        "title": "[Backend] CDN 콘텐츠 분배 네트워크",
+        "excerpt":"ISP, Internet Service Provider 사용자의 입장에서 접속 ISP는 텔코나 케이블 회사일 필요가 없다. 대신 대학교 또는 회사가 ISP가 될 수 있다. 이러한 연결은 종단 시스템이 연결되는 과정에서 극히 일부이고 접속 ISP들이 서로 연결되어야만 한다. 최초의 ISP 연결은 모든 접속 ISP는 하나의 글로벌 ISP와 연결하는 방법이다. 만약 또 다른 글로벌 ISP...","categories": ["Backend"],
+        "tags": ["backend","cdn"],
+        "url": "http://localhost:4000/backend/cdn-content-distribution-network/",
+        "teaser": null
+      },{
+        "title": "[Java] jar, war 차이점 ",
+        "excerpt":"jar와 war 모두 java의 jar 툴을 이용해서 생성도니 압축(아카이브) 파일입니다. 앱을 쉽게 배포하고 동작할 수 있도록 관련 소스들을 패키징 해주는 것이 주 역할입니다. JAR, java Archive maven 등을 통해 내려받은 라이브러리들은 CLASS 파일이 묶인 jar 파일로 구성되어 있습니다. class와 같은 java 리소스와 속성 파일, 라이브러리 등의 파일이 포함되어 있습니다. java...","categories": ["Java"],
+        "tags": ["java","jsp"],
+        "url": "http://localhost:4000/java/jar-war/",
+        "teaser": null
+      },{
+        "title": "[자격증][정처기] 3과목 데이터베이스 구축 - 1",
+        "excerpt":"1장 논리 데이터베이스 설계 70 데이터 베이스 설계 데이터베이스 설계 순서 요구 조건 분석 : 요구 조건 명세서 작성 개념적 설계 : 개념 스키마, 트랜잭션 모델링, ER 모델 논리적 설계 : 논리 스키마 설계,트랜잭션 인터페이스 설계 관계형 DB라면 테이블을 설계하는 단계 결과적으로 데이터베이스 스키마가 도출된다. 물리적 설계 : 물리적 구조의...","categories": ["EIP"],
+        "tags": ["EIP"],
+        "url": "http://localhost:4000/eip/EIP-Subject-3-1/",
+        "teaser": null
+      },{
+        "title": "[자격증][정처기] 3과목 데이터베이스 구축 - 2",
+        "excerpt":"2장 물리 데이터베이스 설계 85 사전 조사 분석 논리적 구조로 표현된 논리적 DB를 디스크 등의 물리적 저장장치에 저장할 수 있는 물리적 구조의 데이터로 변환하는 과정 물리적 DB 구조의 기본적인 데이터 단위는 저장 레코드이다. 반드시 포함되어야 하는 요소 저장 레코드의 양식 설계 Record Clustering의 분석 및 설계 접근 경로 설계 여러...","categories": ["EIP"],
+        "tags": ["EIP"],
+        "url": "http://localhost:4000/eip/EIP-Subject-3-2/",
+        "teaser": null
+      },{
+        "title": "[자격증][정처기] 5과목 정보시스템 구축 관리 - 1",
+        "excerpt":"1장 소프트웨어 개발 방법론 활용 157 소프트웨어 개발 방법론 소프트웨어 개발, 유지보수를 위한 수행 방법/기법을 표준화 한 것 목적 : 생산성과 품질 향상 방법론 종류 구조적 방법론 정형화된 분석 절차에 따라 사용자 요구사항을 파악해서 문서화하는 처리Process 중심의 방법론 목적 : 쉬운 이해 및 검증이 가능한 프로그램 개발 분할과 정복 원리를...","categories": ["EIP"],
+        "tags": ["EIP"],
+        "url": "http://localhost:4000/eip/EIP-Subject-5-1/",
+        "teaser": null
+      },{
+        "title": "[자격증][정처기] 5과목 정보시스템 구축 관리 - 2",
+        "excerpt":"2장 IT 프로젝트 정보 시스템 구축 관리 166 네트워크 관련 신기술 IoT 정보 통신 기술을 기반으로 실세계와 가상 세계의 다양한 사물을 인터넷으로 연결하여 서비스를 제공 유비쿼터스 : 어디서나 네트워크에 접속할 수 있는 환경 M2M. Machine to Machine. 사물 통신 무선 통신을 이용한 기계와 기계 사이의 통신 부호 분할 다중 접속(CDMA),...","categories": ["EIP"],
+        "tags": ["EIP"],
+        "url": "http://localhost:4000/eip/EIP-Subject-5-2/",
+        "teaser": null
+      },{
+        "title": "[PS][Java] java PS 몸풀기",
+        "excerpt":"터렛 풀이 1 : 두 점에서 만나는 경우를 정의하지 못한 경우. 두 명의 관측자의 좌표와 관측한 거리가 주어진다. 따라서 두 개의 원의 중심과 반지름 길이를 알 수 있다. 두 개의 원이 0,1,2 점에서 겹치는 경우를 따져보면 된다. 겹치는 점의 갯수와 상관없이 두 개의 원이 안으로 만나는지, 밖으로 만나는지를 따져야 한다....","categories": ["PS"],
+        "tags": ["math","java","ps"],
+        "url": "http://localhost:4000/ps/java-ps-warming-up/",
         "teaser": null
       }]

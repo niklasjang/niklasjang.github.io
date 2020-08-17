@@ -1,6 +1,6 @@
 ---
 title: "[PS][Java] java PS 몸풀기"
-excerpt: "BOJ 1002 터렛"
+excerpt: "BOJ 1002 1004 1010"
 date: 2020-08-13
 categories:
   - PS

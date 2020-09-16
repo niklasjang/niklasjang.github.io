@@ -12,6 +12,15 @@ toc_icon: "list"  # corresponding Font Awesome icon name (without fa prefix)
 toc_sticky: true
 classes: wide  
 ---
+- 2020 하반기 채용
+
+| 기업 | 공고 | 직무 | 마감날짜 | 코테 | 면접 |
+|:---- |:---- |:---- |:---- |:---- |:---- |
+|카카오|[블라인드공채][1]| - | 20.09.07 19시 | 1차 12일. 2차 26일 | - |
+
+[1]: https://careers.kakao.com/2021-developer
+
+
 - 은행
   - [한국](http://apply.bok.or.kr/recruit/recruitList.do) 4.2.4963
   - [농협](https://with.nonghyup.com/index.jsp) 3.6.5023

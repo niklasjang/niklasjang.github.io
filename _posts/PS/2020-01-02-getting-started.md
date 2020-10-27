@@ -1,7 +1,7 @@
 ---
-title: "[PS]코딩테스트 준비 시작하기 "
+title: "[PS] 코딩테스트 준비 시작하기"
 excerpt: "SWEA A+ 목표"
-date: 2020-01-02
+date: 2020-09-17
 categories:
   - PS
 tags:
@@ -12,8 +12,6 @@ toc_icon: "list"  # corresponding Font Awesome icon name (without fa prefix)
 toc_sticky: true
 ---
 
-본 포스팅은 SWEA A+ 취득을 목표로 합니다.
-- - - 
 
 # 문제 분류
 
@@ -21,7 +19,7 @@ toc_sticky: true
 
 ### 완전탐색 : 개념
 
-문제이 정의가 아닌 문제를 푸는 방법이 완전탐색인 경우에 사용합니다. 모든 정답 후보를 확인해보는 경우를 의미합니다.  
+문제의 정의가 아닌 문제를 푸는 방법이 완전탐색인 경우에 사용합니다. 모든 정답 후보를 확인해보는 경우를 의미합니다.  
 
 ### 완전탐색 : 기본 문제
 

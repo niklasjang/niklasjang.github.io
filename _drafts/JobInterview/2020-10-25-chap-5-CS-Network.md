@@ -63,6 +63,12 @@ host 간의 논리적 연결. **웹 서버가 session ID 파일을 만들어서 
 
 TCP는 3-way handshake라고 불리는 연결 동작과 4-way handshake라고 불리는 연결 종료를 통해 ACK와 Sequence Number를 주고 받아 데이터 흐름의 신뢰성을 구축한다.
 
+# 네트워크
+
+조건부 GET : 클라이언트가 브라우저로 전달되는 모든 객체들이 최신의 것임을 확인하면서 캐싱을 하도록 해주는 HTTP의 방식
+
+UDP와 TCP의 가장 기본적인 기능은 ‘종단 시스템 사이의 IP 전달 서비스’를 ‘종단 시스템에서 동작하는 두 프로세스 간의 전달 서비스’로 확장하는 것입니다
+
 ## TCP와 UDP의 차이점은
 TCP는 연결 동작을 통해 ACK와 Sequence Number를 주고받으며 신뢰성과 흐름제어를 제공하는 방면 UDP는 IP를 거의 그대로 사용하며 단순히 Checksum말고는 데이터의 훼손을 감지할 수 없다. 또한 ACK와 Sequence Number를 주고받지 않으므로 중간에 데이터가 유실되어도 이를 다시 요청하거나 할 수 있는 방법이 없다. 또한 TCP와 다르게 UDP는 혼잡을 제어할 수 있는 방법이 없다.
 
@@ -75,6 +81,9 @@ TCP는 연결 동작을 통해 ACK와 Sequence Number를 주고받으며 신뢰�
 5. 서버가 요청을 처리하고 응답을 되돌려보냄
 6. 브라우저는 서버가 보낸 HTML 내용을 표시
 
-## CORS
+## CORS : (Cross-Origin Resource Sharing
 
-## GET POST cookie? cache?
+SOP : Same-Origin Policy
+
+
+우리가 다른 출처로 리소스를 요청한다면 SOP 정책을 위반한 것이 되고, 거기다가 SOP의 예외 조항인 CORS 정책까지 지키지 않는다면 아예 다른 출처의 리소스를 사용할 수 없게 되는 것이다.

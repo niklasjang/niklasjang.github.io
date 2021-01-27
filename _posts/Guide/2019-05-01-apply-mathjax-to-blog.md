@@ -69,7 +69,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 #### `_layouts/default.html` 파일의 `<head>` 부분에 아래 내용 삽입
 
-만약 mmistakes/mm-github-pages-starter를 fork해서 _layouts가 존재하지 않는다면 [_includes](https://github.com/mmistakes/minimal-mistakes/tree/master/_layouts)와 
+만약 mmistakes/mm-github-pages-starter를 fork해서 _layouts가 존재하지 않는다면 [_includes](https://github.com/mmistakes/minimal-mistakes/tree/master/_includes)와 
 [_layouts](https://github.com/mmistakes/minimal-mistakes/tree/master/_layouts) 디렉토리 전체를 블로그 Root directory에 가져와서 복사합니다.  
 그리고 _include/search 파일에 있는 search_form.html를 `복사`해서 _include 디렉토리에도 하나 만들어 줍니다. (이는 `bundle exec jekyll serve`를 할 때 _includes에 있는 search_form.html을 찾는데 빠르게 해결하기 위함입니다.)
 

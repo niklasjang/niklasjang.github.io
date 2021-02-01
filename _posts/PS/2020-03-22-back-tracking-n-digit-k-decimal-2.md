@@ -1,7 +1,7 @@
 ---
 title: "[PS][완전탐색][N자리 K진수] Chapter 2"
 excerpt: "N자리 K진수 또 다른 접근 방법, 고른다/안고른다"
-date: 2020-03-23
+date: 2020-03-22
 categories:
   - PS
 tags:

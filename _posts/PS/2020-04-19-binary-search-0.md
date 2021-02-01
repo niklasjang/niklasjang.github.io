@@ -44,18 +44,18 @@ parametric search 문제는 전체가 o이거나 전체가 x인 경우의 대응
 	1. 방법 1 : maxRight = -1, minLeft = n으로 초기화
 	1. 방법 2 : 문제 입력의 범위보다 작은 값과 큰 값을 배열에 넣고 m += 2를 해주면, maxRight와 minLeft의 초기화는 문제되지 않는다. 항상 입력으로 주어지는 값보다 작고, 큰 값이 들어간 채로 정렬되기 때문이다.  
 
-## [나무 자르기](boj.kr/2805)
+## [나무 자르기](https://www.acmicpc.net/problem/2805)
 
 이분탐색의 시간복잡도는 (check함수의 시간복잡도)logN이기 때문에 check 함수의 시간복잡도를 줄여야 합니다. lower_bound 이후 반복적으로 합연산을 하는 부분을 미리 수행해서 간단한 수식을 통해 수행합니다.  
 
 문제의 정답은 [여기](https://gist.github.com/niklasjang/4b74dd1342cd6421bc7f127946e09ab5)에서 확인할 수 있습니다. 
 
-## [랜선 자르기](boj.kr/1654)
+## [랜선 자르기](https://www.acmicpc.net/problem/1654)
 
 이분탐색의 max는 모든 랜선의 합 / n이기 때문에 long long 타입으로 설정해야 한다. int로 하는 경우 값이 커질 때 적절한 답을 수할 수 없다.  
 문제의 정답은 [여기](https://gist.github.com/niklasjang/73a11da90de77676d5dbd721e5b466e2)에서 확인할 수 있습니다. 
 
-## [랜선 자르기](boj.kr/1654)
+## [랜선 자르기](https://www.acmicpc.net/problem/2512)
 
 check함수는 상한 예산이 가능한지 판단한다. 예산 신청 목록에서 상한보다 큰 위치를 찾는다. 만약 없다면 신청 예산이 가능한지 판단한다. 만약 있다면 상한보다 더 큰 금액을 상한으로 바꿔서 계산한다.  
 문제의 정답은 [여기](https://gist.github.com/niklasjang/dcb37c421e23ac17166230c36933b8b3)에서 확인할 수 있습니다.  
